@@ -20,6 +20,10 @@
         <servlet-name>AddProductIntoCartFromProductDetail</servlet-name>
         <servlet-class>controller.AddProductIntoCartFromProductDetail</servlet-class>
     </servlet>
+    <servlet>
+        <servlet-name>DeleteProductInCartController</servlet-name>
+        <servlet-class>controller.DeleteProductInCartController</servlet-class>
+    </servlet>
     <servlet-mapping>
         <servlet-name>HomeController</servlet-name>
         <url-pattern>/home</url-pattern>
@@ -39,6 +43,10 @@
     <servlet-mapping>
         <servlet-name>AddProductIntoCartFromProductDetail</servlet-name>
         <url-pattern>/addproductintocartfromproductdetails</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>DeleteProductInCartController</servlet-name>
+        <url-pattern>/deleteproductincart</url-pattern>
     </servlet-mapping>
     <session-config>
         <session-timeout>

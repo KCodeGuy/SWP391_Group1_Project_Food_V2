@@ -202,5 +202,62 @@ public class CartDAO {
         } // end try catch
         return false; // if can not insert
     }
+    
+    /**
+     * This function delete product in cart
+     * 
+     * This function use accountID and productID to delete a row in table cart
+     * 
+     * @param accountID Account ID of user
+     * @param productID ID of product
+     * @return true if delete successful, false if can not delete
+     */
+    public boolean deleteProductInCart(int accountID, int productID) {
+        String query = "DELETE CART WHERE AccountID = ? AND ProductID = ?"; // string query delete a row in cart
+        try {
+            con = new DBContext().getConnection(); // open connect database
+            ps = con.prepareStatement(query); // move query from Netbeen to SQl
+            ps.setInt(1, accountID); // set ProductID
+            ps.setInt(2, productID); // set AccountID
+            if (ps.executeUpdate() == 1) {
+                // if insert successfull to return true
+                return true;
+            } // end if ps.executeUpdate() == 1
+        } catch (Exception e) {
+            e.getMessage();
+        } // end try catch
+        return false; // if can not insert
+    }
+    
+    /**
+     * This function delete 1 quantity of a product in cart
+     * 
+     * This function user accountID and productID to update quantity equals 
+     * old quantity get from getQuannityProductInCart minus 1
+     * 
+     * @param accountID Account ID of user
+     * @param productID ID of product
+     * @return true if delete successful, false if can not delete
+     */
+    public boolean deleteQuantityProductInCart(int accountID, int productID) {
+        String query = "UPDATE CART\n"
+                + "SET CartQuantity = ?\n"
+                + "WHERE AccountID = ? AND ProductID = ?"; // string query update cart
+        int productQuantity = getQuannityProductInCart(accountID, productID) - 1;
+        try {
+            con = new DBContext().getConnection(); // open connect database
+            ps = con.prepareStatement(query); // move query to database
+            ps.setInt(1, productQuantity); // set ProductQuantity
+            ps.setInt(2, accountID); // set AccountID
+            ps.setInt(3, productID); // set ProductID
+            if (ps.executeUpdate() == 1) {
+                // if update successfull to return true
+                return true;
+            } // end if ps.executeUpdate() == 1
+        } catch (Exception e) {
+            e.getMessage();
+        } // end try catch
+        return false; // reutrn false if can not update
+    }
 
 }
