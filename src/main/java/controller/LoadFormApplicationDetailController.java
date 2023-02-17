@@ -35,7 +35,7 @@ public class LoadFormApplicationDetailController extends HttpServlet {
         int accountID = 8;
         // Create a new StaffDAO instance and retrieve infomation using account ID
         StaffDAO sdao = new StaffDAO();
-        Staff staff = sdao.getStaffByAccountID(accountID);
+        Staff staff = sdao.getApplicationFormByAccountID(accountID);
         // Set the user attribute for the request and forward to the use formApplicationDetails.jsp page
         request.setAttribute("staff", staff);
         request.getRequestDispatcher("formApplicationDetails.jsp").forward(request, response);

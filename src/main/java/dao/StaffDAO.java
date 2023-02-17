@@ -20,7 +20,7 @@ public class StaffDAO {
     ResultSet rs =null; // save result query
     // Method to get infomation of staff by their account ID
 
-    public Staff getStaffByAccountID(int accountID) {
+    public Staff getApplicationFormByAccountID(int accountID) {
         try {
             String query = "SELECT A.AccountName,A.AccountPhone,A.AccountEmail,A.AccountAddress,R.RoleDescription FROM [ACCOUNT] A JOIN [STAFF] S ON A.AccountID = S.AccountID JOIN [ROLE] R ON A.RoleID=R.RoleID\n" +
 "WHERE A.AccountID = ?;";//statement to query data from database tables(MySqlServer
