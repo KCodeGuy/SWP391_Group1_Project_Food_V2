@@ -17,7 +17,7 @@ import model.ProductStatus;
 
 /**
  *
- * @author Thanh
+ * @author thanh
  */
 public class AccountDAO {
 
@@ -25,35 +25,62 @@ public class AccountDAO {
     PreparedStatement ps = null; // move query from Netbeen to SQl
     ResultSet rs = null; // save result query
 
-     /**
+    /**
      * Function get list Account
      *
-     * This function use to take all Account
+     * This function use to take Account
+     * to upload to the home page
      *
      * @return List<Account> list of Account
      */
     public List<Account> getListAccount() {
         try {
-            String query = "SELECT * FROM [ACCOUNT] A JOIN [STAFF] S ON A.AccountID = S.AccountID \n"
-                    + "WHERE A.AccountStatus = 'PENDING'"; //query select Account orther than REMOVED
+            String query = "SELECT * FROM [ACCOUNT] A JOIN [STAFF] S ON A.AccountID = S.AccountID ";
+                    //query select product orther than REMOVED
             con = new DBContext().getConnection(); // open connection to SQL
             ps = con.prepareStatement(query); // move query from Netbeen to SQl
             rs = ps.executeQuery(); // the same with click to "excute" btn;
-            List<Account> list = new ArrayList<>(); //list product
+            List<Account> list = new ArrayList<>(); //list Account
             while (rs.next()) {
                 list.add(new Account(
                         rs.getInt("AccountID"),
                         rs.getString("AccountEmail"),
                         rs.getString("AccountPassword"),
                         AccountStatus.PENDING,
-                        "description"
+                        rs.getString("AccountName"),
+                        rs.getString("roleID")
                 )); // add new item in list
             } // end while rs.next
-            return list;// return list Account
+            return list;// return list product
         } catch (Exception e) {
             e.getMessage();
         }
         return null;
+    }
+/**
+     * Function getCountListAccount
+     *
+     * This function use to take Account
+     * 
+     *
+     * @return count 
+     */
+    public Integer getCountListAccount() {
+        Integer count = null;
+        try {
+            String query = "SELECT * FROM [ACCOUNT] A JOIN [STAFF] S ON A.AccountID = S.AccountID "; //query select product orther than REMOVED
+            con = new DBContext().getConnection(); // open connection to SQL
+            ps = con.prepareStatement(query); // move query from Netbeen to SQl
+            rs = ps.executeQuery(); // the same with click to "excute" btn;
+            
+            while (rs.next()) {
+                count = rs.getInt(1);
+            } // end while rs.next
+
+        } catch (Exception e) {
+            e.getMessage();
+        }
+        return count;
     }
 
 }
