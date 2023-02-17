@@ -96,6 +96,26 @@ public class Account {
     }
     
 
+     /**
+     *
+     * Constructor with parameters accountName, accountEmail, accountPhone,
+     * accountAddress and roleDescription.
+     *
+     * @param accountName name of the account
+     * @param accountEmail Email address of the account
+     * @param accountPhone phone of the account
+     * @param accountAddress address of the account
+     * @param roleDescription Description of the role of the account
+     */
+    
+    public Account(String accountEmail, String accountName, int accountPhone, String accountAddress, String roleDescription) {
+        this.accountEmail = accountEmail;
+        this.accountName = accountName;
+        this.accountPhone = accountPhone;
+        this.accountAddress = accountAddress;
+        this.roleDescription = roleDescription;
+    }
+
     /**
      *
      * Get ID of the account

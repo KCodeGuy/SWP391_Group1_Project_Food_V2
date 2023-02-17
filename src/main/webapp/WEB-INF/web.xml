@@ -8,6 +8,10 @@
         <servlet-name>LoadListProductInCartController</servlet-name>
         <servlet-class>controller.LoadListProductInCartController</servlet-class>
     </servlet>
+        <servlet>
+        <servlet-name>LoadFormApplicationDetailController</servlet-name>
+        <servlet-class>controller.LoadFormApplicationDetailController</servlet-class>
+    </servlet>
     <servlet>
         <servlet-name>AddProductIntoCartFromHome</servlet-name>
         <servlet-class>controller.AddProductIntoCartFromHome</servlet-class>
@@ -57,9 +61,11 @@
         <url-pattern>/home</url-pattern>
     </servlet-mapping>
     <servlet-mapping>
-        <servlet-name>LoadListProductInCartController</servlet-name>
+<servlet-name>LoadListProductInCartController</servlet-name>
         <url-pattern>/cart</url-pattern>
     </servlet-mapping>
+    <servlet-name>LoadFormApplicationDetailController</servlet-name>
+        <url-pattern>/loadformapplicationdetail</url-pattern>
     <servlet-mapping>
         <servlet-name>AddProductIntoCartFromHome</servlet-name>
         <url-pattern>/addproductintocartfromhome</url-pattern>
