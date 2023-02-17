@@ -42,37 +42,46 @@
 
                                         <div class="total-quantity-group">
                                             <h6 class="sort-form-label">Total quantity:</h6>
-                                            <button class="btn-primary total-quantity">
-                                                10
-                                            </button>
-                                        </div>
-                                    </form>
-                                    <div class="btn-group-search-add">
-                                        <div class="search-group">
-                                            <input type="text" placeholder="Enter indicate's name">
-                                            <button class="btn-main btn-search">
-                                                <i class="fa-solid fa-magnifying-glass"></i>
-                                            </button>
-                                        </div>
+                                        <%
+                                            AccountDAO ad2 = new AccountDAO();
+                                            Integer la3 = ad2.getCountListAccount();
+
+
+                                        %>
+                                        <button class="btn-primary total-quantity">
+                                            <%=la3%>
+                                        </button>
+
+                                        <%
+                                        %>
+                                    </div>
+                                </form>
+                                <div class="btn-group-search-add">
+                                    <div class="search-group">
+                                        <input type="text" placeholder="Enter indicate's name">
+                                        <button class="btn-main btn-search">
+                                            <i class="fa-solid fa-magnifying-glass"></i>
+                                        </button>
                                     </div>
                                 </div>
                             </div>
                         </div>
-                        <div class="row">
-                            <div class="col-xs-12">
-                                <table class="table table-striped text-center align-middle">
-                                    <thead class="table-heading">
-                                        <tr>
-                                            <th class="table-heading-text" scope="col">No.</th>
-                                            <th class="table-heading-text" scope="col">ID</th>
-                                            <th class="table-heading-text" scope="col">Name</th>
-                                            <th class="table-heading-text" scope="col">Email</th>
-                                            <th class="table-heading-text" scope="col">Role</th>
-                                            <th class="table-heading-text" scope="col">Detail</th>
-                                        </tr>
+                    </div>
+                    <div class="row">
+                        <div class="col-xs-12">
+                            <table class="table table-striped text-center align-middle">
+                                <thead class="table-heading">
+                                    <tr>
+                                        <th class="table-heading-text" scope="col">No.</th>
+                                        <th class="table-heading-text" scope="col">ID</th>
+                                        <th class="table-heading-text" scope="col">Name</th>
+                                        <th class="table-heading-text" scope="col">Email</th>
+                                        <th class="table-heading-text" scope="col">Role</th>
+                                        <th class="table-heading-text" scope="col">Detail</th>
+                                    </tr>
 
-                                    </thead>
-                                    <tbody>
+                                </thead>
+                                <tbody>
                                     <%
                                         AccountDAO ad = new AccountDAO();
                                         List<Account> la = ad.getListAccount();
@@ -87,7 +96,7 @@
                                         <td class="table-email">
                                             <%= la.get(idx).getAccountEmail()%>
                                         </td>
-                                        <td class="table-role"><%= la.get(idx).getRoleID()%></td>
+                                        <td class="table-role"><%= la.get(idx).getRoleDescription()%></td>
                                         <td class="table-btn">
                                             <a class="table-btn-edit" href="staffProfile.html"><i
                                                     class="fa-solid fa-pen-to-square"></i></a>
