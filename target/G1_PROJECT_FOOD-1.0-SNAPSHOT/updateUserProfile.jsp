@@ -34,36 +34,36 @@
                     </div>
 
                     <div class="form-control-group">
-                        <h4 class="form-text-label">User's full name:</h4>
+                        <h4 class="form-text-label">Full name:</h4>
                         <input type="text" id="name" name="name" placeholder="Huỳnh Hữu Nghĩa">
                         <div class="alert-warning" id="txtNameMessage"></div>
                     </div>
 
                     <div class="form-control-group">
-                        <h4 class="form-text-label">User's date of birth:</h4>
+                        <h4 class="form-text-label">Date of birth:</h4>
                         <input type="date" id="date-of-birth" name="date-of-birth" placeholder="01/01/2023">
                         <div class="alert-warning" id="txtDateOfBirthMessage"></div>
                     </div>
 
                     <div class="form-control-group">
-                        <h4 class="form-text-label">User's phone:</h4>
+                        <h4 class="form-text-label">Phone number:</h4>
                         <input type="text" id="phone" name="phone" placeholder="0345678234">
                         <div class="alert-warning" id="txtPhoneMessage"></div>
                     </div>
 
                     <div class="form-control-group">
-                        <h4 class="form-text-label">User's email:</h4>
+                        <h4 class="form-text-label">Email:</h4>
                         <input type="email" id="email" name="email" placeholder="nghiaMeGai@gmail.com" readonly>
                     </div>
 
                     <div class="form-control-group">
-                        <h4 class="form-text-label">User's address:</h4>
+                        <h4 class="form-text-label">Address:</h4>
                         <input type="text" id="address" name="address" placeholder="An bình, ninh kiều, cần thơ">
                         <div class="alert-warning" id="txtAddressMessage"></div>
                     </div>
 
                     <div class="form-control-group">
-                        <h4 class="form-text-label">User's password:</h4>
+                        <h4 class="form-text-label">Password:</h4>
                         <input type="password" id="password" name="password" placeholder="Abcd1234@" >
                         <div class="alert-warning" id="txtPasswordMessage"></div>
                     </div>

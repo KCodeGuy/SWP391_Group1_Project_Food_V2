@@ -5,11 +5,12 @@ var patt_password = /^(?=.*\d)(?=.*[a-z])(?=.*[A-Z])(?=.*[^a-zA-Z0-9])(?!.*\s).{
 
 function checkAllData() {
     isValidName = checkName();
+    isValidPhone = checkPhone();
     isValidAddress = checkAddress();
     isValidEmail = checkEmail();
     isValidPassword = checkPassword();
     isValidCPassword = checkConfirm();
-    isValid = isValidName && isValidAddress && isValidPassword && isValidEmail && isValidCPassword;
+    isValid = isValidName && isValidPhone && isValidAddress && isValidPassword && isValidEmail && isValidCPassword;
     return isValid;
 }
 
@@ -74,12 +75,14 @@ function checkPassword() {
 function checkConfirm() {
     password = $("#password").val();
     confirm = $("#confirm").val();
-    if (confirm === password) {
+    if (confirm === "") {
+        $("#txtConfirmMessage").html('Confirm password can not be empty!');
+    } else if (confirm === password) {
         $("#txtConfirmMessage").html('');
     } else {
-        $("#txtConfirmMessage").html("Passwords do not match!");
+        $("#txtConfirmMessage").html("Password does not match!");
     }
-    return confirm !== password;
+    return confirm === password;
 }
 
 $(document).ready(function () {

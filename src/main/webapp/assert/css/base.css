@@ -28,6 +28,15 @@
     display: none !important;
 }
 
+.success-message {
+    color: green;
+    margin-bottom: 6px;
+}
+
+.error-message {
+    margin-top: 18px;
+}
+
 /* Button */
 /* For main buttons with Red color: Buy now, Add to card, Cancel.... */
 .btn-main {
@@ -164,7 +173,7 @@
 }
 
 .wrapper-form {
-    width: 380px;
+    width: 420px;
     background-color: white; 
     padding: 26px;
     border-radius: 8px;
@@ -251,9 +260,7 @@
     color: var(--main-color);
 }
 
-.error-message {
-    margin-top: 18px;
-}
+
 
 /* Table base css */
 .table-container {

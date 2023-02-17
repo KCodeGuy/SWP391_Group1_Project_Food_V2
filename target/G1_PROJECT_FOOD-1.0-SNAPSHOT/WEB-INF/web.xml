@@ -4,9 +4,57 @@
         <servlet-name>HomeController</servlet-name>
         <servlet-class>controller.HomeController</servlet-class>
     </servlet>
+    <servlet>
+        <servlet-name>LoginController</servlet-name>
+        <servlet-class>controller.LoginController</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>RegisterController</servlet-name>
+        <servlet-class>controller.RegisterController</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>EmaiVerificationController</servlet-name>
+        <servlet-class>controller.EmaiVerificationController</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>ReEmailVerificationController</servlet-name>
+        <servlet-class>controller.ReEmailVerificationController</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>EmailAuthenUpdatePasswordController</servlet-name>
+        <servlet-class>controller.EmailAuthenUpdatePasswordController</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>ForgotPasswordController</servlet-name>
+        <servlet-class>controller.ForgotPasswordController</servlet-class>
+    </servlet>
     <servlet-mapping>
         <servlet-name>HomeController</servlet-name>
         <url-pattern>/home</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>LoginController</servlet-name>
+        <url-pattern>/loginController</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>RegisterController</servlet-name>
+        <url-pattern>/registerController</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>EmaiVerificationController</servlet-name>
+        <url-pattern>/authenEmailController</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>ReEmailVerificationController</servlet-name>
+        <url-pattern>/reAuthenEmailController</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>EmailAuthenUpdatePasswordController</servlet-name>
+        <url-pattern>/emailAuthenUpdatePassword</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>ForgotPasswordController</servlet-name>
+        <url-pattern>/forgotPasswordController</url-pattern>
     </servlet-mapping>
     <session-config>
         <session-timeout>

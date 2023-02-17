@@ -1,7 +1,3 @@
-/*
- * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
- * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
- */
 package dao;
 
 import context.DBContext;
@@ -57,13 +53,13 @@ public class ProductDAO {
         }
         return null;
     }
-    
-    public static void main(String[] args) {
-        ProductDAO pdao = new ProductDAO();
-        List<Product> listProduct = pdao.getListProduct();
-        for(Product product : listProduct) {
-            System.out.println(product.getProductID()); 
-        }
-        System.out.println(listProduct.size());
-    }
+//    
+//    public static void main(String[] args) {
+//        ProductDAO pdao = new ProductDAO();
+//        List<Product> listProduct = pdao.getListProduct();
+//        for(Product product : listProduct) {
+//            System.out.println(product.getProductID()); 
+//        }
+//        System.out.println(listProduct.size());
+//    }
 }
