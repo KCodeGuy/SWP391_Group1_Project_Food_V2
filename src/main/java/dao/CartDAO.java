@@ -175,7 +175,7 @@ public class CartDAO {
     }
     
     /**
-     * This function add product into cart from home page
+     * This function add product into cart from product detail
      *
      * Function use accountID and productID to insert new cart with cart
      * quantity is 1
