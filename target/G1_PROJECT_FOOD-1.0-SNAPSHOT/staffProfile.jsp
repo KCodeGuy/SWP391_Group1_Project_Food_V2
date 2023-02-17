@@ -3,6 +3,7 @@
     Created on : Feb 12, 2023, 2:14:42 AM
     Author     : PC
 --%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <!DOCTYPE html>
 <html lang="en">
@@ -34,29 +35,29 @@
                     </div>
 
                     <div class="form-control-group">
-                        <label class="form-text-label">Name:</label>
-                        <label>Le Van A</label>
-                    </div>
-                    <div class="form-control-group">
-                        <label class="form-text-label">Phone number:</label>
-                        <label>0932876543</label>
-                    </div>
-                    <div class="form-control-group">
-                        <label class="form-text-label">Email:</label>
-                        <label>levana@gmail.com</label>
-                    </div>
-                    <div class="form-control-group">
-                        <label class="form-text-label">Address:</label>
-                        <label>QL1A, An Bình, Ninh Kiều, Cần Thơ</label>
-                    </div>
-                    <div class="form-control-group">
-                        <label class="form-text-label">On-option:</label>
-                        <label>Chef</label>
-                    </div>
-                    <div class="form-control-group">
-                        <label class="form-text-label">Start date:</label>
-                        <label>01/01/2022</label>
-                    </div>
+                                <label class="form-text-label">Name:</label>
+                                <label>${staff.accountName}</label>    <!-- Push the value from Servlet -->
+                        </div>
+                        <div class="form-control-group">
+                            <label class="form-text-label">Phone number:</label>
+                            <label>${staff.accountPhone}</label>   <!-- Push the value from Servlet -->
+                        </div>
+                        <div class="form-control-group">
+                            <label class="form-text-label">Email:</label>
+                            <label>${staff.accountEmail}</label>   <!-- Push the value from Servlet -->
+                        </div>
+                        <div class="form-control-group">
+                            <label class="form-text-label">Address:</label>
+                            <label>${staff.accountAddress}</label> <!-- Push the value from Servlet -->
+                        </div>
+                        <div class="form-control-group">
+                            <label class="form-text-label">On-option:</label>
+                            <label>${staff.roleID}</label>         <!-- Push the value from Servlet -->
+                        </div>
+                        <div class="form-control-group">
+                            <label class="form-text-label">Start date:</label>
+                            <label>${staff.staffStartDate}</label>
+                        </div>
                     <div class="form-btn-group">
                         <button type="Submit" name="submit" class="btn-primary"><a href="">Update profile</a></button>
                         <!-- <h6 class="form-btn-separator">&nbsp;OR&nbsp;</h6>
