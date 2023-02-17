@@ -37,11 +37,11 @@
                                     </div>
 
                                     <div class="statistic-group">
-                                        <label for="" class="statistic-group-label">Start date:</label>
+                                        <label for="" class="statistic-group-label">End date:</label>
                                         <input class="date" type="date" name="" id="">
                                     </div>
 
-                                    <button class="btn-main"><a href="">Statisctic</a></button>
+                                    <button class="btn-main"><a href="">Statistic</a></button>
                                 </div>
                             </div>
                         </div>

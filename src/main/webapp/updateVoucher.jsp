@@ -16,7 +16,7 @@
         <link rel="stylesheet" href="./assert/css/base.css">
         <link rel="stylesheet" href="./assert/css/home.css">
         <link rel="stylesheet" href="./assert/font/fontawesome-free-6.1.1-web/css/all.css">
-        <link rel="stylesheet" href="assert/css/updateVoucher.css">
+        <link rel="stylesheet" href="./assert/css/updateVoucher.css">
         <title>Update Voucher</title>
     </head>
 

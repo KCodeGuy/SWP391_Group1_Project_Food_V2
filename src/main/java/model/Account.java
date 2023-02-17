@@ -27,6 +27,13 @@ public class Account {
     public Account() {
     }
 
+    public Account(String accountEmail, String accountPassword, String accountName, String roleID) {
+        this.accountEmail = accountEmail;
+        this.accountPassword = accountPassword;
+        this.accountName = accountName;
+        this.roleID = roleID;
+    }
+
     /**
      *
      * Constructor with parameters accountID, accountEmail, accountPassword,
@@ -252,7 +259,5 @@ public class Account {
     public void setRoleID(String roleID) {
         this.roleID = roleID;
     }
-    
-    
 
 }

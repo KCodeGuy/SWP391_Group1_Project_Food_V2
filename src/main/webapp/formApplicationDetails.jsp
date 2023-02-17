@@ -73,7 +73,7 @@
                     </div>
 
                     <div class="form-control-group">
-                        <span class="form-text-caption">Bạn vui lòng kiểm tra thông tin chích xác trước khi submit form! Xin cảm ơn</span>
+                        <span class="form-text-caption">Please check your's entered information before submitting!</span>
                     </div>
                     <div class="alert-warning disabled" id="">Message-error</div>
 
