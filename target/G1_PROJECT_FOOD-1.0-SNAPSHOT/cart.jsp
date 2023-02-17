@@ -64,7 +64,7 @@
                                             <button class="btn btn-search" type="submit">
                                                 <i class="fa-solid fa-magnifying-glass"></i>
                                             </button>
-                                            <a class="cart" href="home">
+                                            <a class="cart" href="cart">
                                                 <i class="fa-solid fa-cart-plus"></i>
                                                 <span class="cart-quantity">2</span>
                                             </a>
@@ -105,7 +105,7 @@
                                             <td class="table-quantity">
                                                 ${cart.cartQuantity}
                                             </td>
-                                            <td class="table-price"><fmt:formatNumber type="number" pattern="###,###" value="${cart.productPrice * (1-(cart.productSalePercent/100))}"/>đ</td>
+                                            <td class="table-price"><fmt:formatNumber type="number" pattern="###,###" value="${(cart.productPrice * (1-(cart.productSalePercent/100)))*cart.cartQuantity}"/>đ</td>
                                             <td class="table-btn">
                                                 <a href="#" onclick="return showMessageDelete();"><i class="fa-solid fa-trash"></i></a>
                                             </td>

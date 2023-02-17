@@ -103,7 +103,7 @@
                                             <button class="btn btn-search" type="submit">
                                                 <i class="fa-solid fa-magnifying-glass"></i>
                                             </button>
-                                            <a class="cart" href="home">
+                                            <a class="cart" href="cart">
                                                 <i class="fa-solid fa-cart-plus"></i>
                                                 <span class="cart-quantity">2</span>
                                             </a>
@@ -143,7 +143,7 @@
                                             </div>
                                         </div>
                                         <button class="btn-main ">
-                                            <a href="#" class="">BUY NOW</a>
+                                            <a href="addproductintocartfromhome?productID=${pr.productID}">BUY NOW</a>
                                         </button>
                                     </div>
                                 </div>
