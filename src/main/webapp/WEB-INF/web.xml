@@ -12,6 +12,10 @@
         <servlet-name>AddProductIntoCartFromHome</servlet-name>
         <servlet-class>controller.AddProductIntoCartFromHome</servlet-class>
     </servlet>
+        <servlet>
+        <servlet-name>LoadUserProfileController</servlet-name>
+        <servlet-class>controller.LoadUserProfileController</servlet-class>
+    </servlet>
     <servlet-mapping>
         <servlet-name>HomeController</servlet-name>
         <url-pattern>/home</url-pattern>
@@ -23,6 +27,10 @@
     <servlet-mapping>
         <servlet-name>AddProductIntoCartFromHome</servlet-name>
         <url-pattern>/addproductintocartfromhome</url-pattern>
+    </servlet-mapping>
+        <servlet-mapping>
+        <servlet-name>LoadUserProfileController</servlet-name>
+        <url-pattern>/loaduserprofile</url-pattern>
     </servlet-mapping>
     <session-config>
         <session-timeout>

@@ -17,7 +17,7 @@ public class Account {
     private String accountName; // Full name associated with the account
     private int accountPhone; // Phone number associated with the account
     private String accountAddress; // Address associated with the account
-    private int roleID; // ID of the role associated with the account
+    private String roleID; // ID of the role associated with the account
     private String roleDescription; // Description of role the account holds
 
     /**
@@ -59,7 +59,7 @@ public class Account {
      * @param AccountAddress Address associated with the account
      * @param roleID ID of the role associated with the account
      */
-    public Account(int accountID, String accountEmail, String accountPassword, AccountStatus accountStatus, String AccountName, int AccountPhone, String AccountAddress, int roleID, String roleDescription) {
+    public Account(int accountID, String accountEmail, String accountPassword, AccountStatus accountStatus, String AccountName, int AccountPhone, String AccountAddress, String roleID, String roleDescription) {
         this.accountID = accountID;
         this.accountEmail = accountEmail;
         this.accountPassword = accountPassword;
@@ -223,7 +223,7 @@ public class Account {
      * Get ID of the role associated with the account
      * @return roleID ID of the role associated with the account
      */
-    public int getRoleID() {
+    public String getRoleID() {
         return roleID;
     }
 
@@ -231,7 +231,7 @@ public class Account {
      * Set ID of the role associated with the account
      * @param roleID ID of the role associated with the account
      */
-    public void setRoleID(int roleID) {
+    public void setRoleID(String roleID) {
         this.roleID = roleID;
     }
     

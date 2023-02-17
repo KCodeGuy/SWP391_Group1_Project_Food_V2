@@ -31,7 +31,7 @@ public class User extends Account{
      * @param AccountAddress Address associated with the account
      * @param roleID ID of the role associated with the account
      */
-    public User(String userBirthday, int accountID, String accountEmail, String accountPassword, AccountStatus accountStatus, String AccountName, int AccountPhone, String AccountAddress, int roleID, String roleDescription) {
+    public User(String userBirthday, int accountID, String accountEmail, String accountPassword, AccountStatus accountStatus, String AccountName, int AccountPhone, String AccountAddress, String roleID, String roleDescription) {
         super(accountID, accountEmail, accountPassword, accountStatus, AccountName, AccountPhone, AccountAddress, roleID, roleDescription);
         this.userBirthday = userBirthday;
     }
