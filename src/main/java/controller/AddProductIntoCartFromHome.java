@@ -30,7 +30,7 @@ public class AddProductIntoCartFromHome extends HttpServlet {
     throws ServletException, IOException {
         response.setContentType("text/html;charset=UTF-8");
         int AccountID = 5;
-        int ProductID = 2;
+        int ProductID = Integer.parseInt(request.getParameter("productID"));
         
         CartDAO cdao = new CartDAO(); // create CartDAO
         if (cdao.isProductExistInCart(AccountID, ProductID)) {
