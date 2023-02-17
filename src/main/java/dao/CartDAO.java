@@ -173,5 +173,34 @@ public class CartDAO {
         } // end try catch
         return 0; // return 0 if can not select quantity of a product in cart
     }
+    
+    /**
+     * This function add product into cart from home page
+     *
+     * Function use accountID and productID to insert new cart with cart
+     * quantity is 1
+     *
+     * @param accountID Account ID of user
+     * @param productID ID of product
+     * @param productQuantity Quantity of a product in cart
+     * @return true if insert successful, false if can not insert
+     */
+    public boolean addProductIntoCartFromProductDetails(int productQuantity, int accountID, int productID) {
+        String query = "INSERT INTO [CART] VALUES (?,?,?)"; // string query insert cart
+        try {
+            con = new DBContext().getConnection(); // open connect database
+            ps = con.prepareStatement(query); // move query from Netbeen to SQl
+            ps.setInt(1, productQuantity); // set CartQuantity
+            ps.setInt(2, productID); // set ProductID
+            ps.setInt(3, accountID); // set AccountID
+            if (ps.executeUpdate() == 1) {
+                // if insert successfull to return true
+                return true;
+            } // end if ps.executeUpdate() == 1
+        } catch (Exception e) {
+            e.getMessage();
+        } // end try catch
+        return false; // if can not insert
+    }
 
 }
