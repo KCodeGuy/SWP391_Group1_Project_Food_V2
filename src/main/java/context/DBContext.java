@@ -16,17 +16,17 @@ import java.sql.SQLException;
 public class DBContext {
 
     // local host name 
-    private static final String dbPrefix = "jdbc:sqlserver://LAPTOP-F7OGOM4I\\SQLEXPRESS01";
+    private static final String dbPrefix = "jdbc:sqlserver://DESKTOP-QOGFITP\\THANHSERVER";
     // set port here
     private static final String dbPort = "1433";
     // database name to connect sql
-    private static final String databaseName = "G1FOOD";
+    private static final String databaseName = "G1FOOD;encrypt=true;trustServerCertificate=true;";
     // instance to for connection
     private final String instance = "";
     // user name when seting to connect
     private static final String user = "sa";
     // password when seting to connect
-    private static final String pass = "123456";
+    private static final String pass = "1234";
 
     /**
      * To connect with SQL server to process data.
