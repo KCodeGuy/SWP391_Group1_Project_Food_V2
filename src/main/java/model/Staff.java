@@ -19,6 +19,20 @@ public class Staff extends Account{
     }
 
     /**
+     * Constructor with parameters accountName , accountPhone, accountEmail,
+     * accountAddress and roleDescription
+     * 
+     * @param accountName
+     * @param accountPhone
+     * @param accountEmail
+     * @param accountAddress
+     * @param roleDescription 
+     */
+    public Staff(String accountName, int accountPhone,String accountEmail, String accountAddress, String roleDescription) {
+        super(accountEmail, accountName, accountPhone, accountAddress, roleDescription);
+    }
+    
+    /**
      * Constructor with all parameter
      * 
      * @param staffStartDate Start date of the staff associated with the account
@@ -35,6 +49,14 @@ public class Staff extends Account{
     public Staff(String staffStartDate, int accountID, String accountEmail, String accountPassword, AccountStatus accountStatus, String AccountName, int AccountPhone, String AccountAddress, int roleID, String roleDescription) {
         super(accountID, accountEmail, accountPassword, accountStatus, AccountName, AccountPhone, AccountAddress, roleID, roleDescription);
         this.staffStartDate = staffStartDate;
+    }
+
+    public Staff(String string, int aInt, String string0, int i, String string1) {
+        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
+    }
+
+    public Staff(String string, int aInt, String string0, String string1) {
+        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
     }
 
     
