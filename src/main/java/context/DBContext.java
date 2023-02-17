@@ -48,6 +48,10 @@ public class DBContext {
         return conn;
     }
 
+    /**
+     *
+     * @param args
+     */
     public static void main(String[] args) {
         DBContext db = new DBContext();
         Connection conn = db.getConnection();

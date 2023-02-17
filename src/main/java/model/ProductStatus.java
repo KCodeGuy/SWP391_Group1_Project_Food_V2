@@ -9,7 +9,19 @@ package model;
  * @author NghiaHHCE160343@fpt.edu.vn
  */
 public enum ProductStatus {
+
+    /**
+     *
+     */
     AVAILABLE,
+
+    /**
+     *
+     */
     SOUL_OUT,
+
+    /**
+     *
+     */
     REMOVED
 }

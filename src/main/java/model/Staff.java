@@ -51,10 +51,25 @@ public class Staff extends Account{
         this.staffStartDate = staffStartDate;
     }
 
+    /**
+     *
+     * @param string
+     * @param aInt
+     * @param string0
+     * @param i
+     * @param string1
+     */
     public Staff(String string, int aInt, String string0, int i, String string1) {
         throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
     }
 
+    /**
+     *
+     * @param string
+     * @param aInt
+     * @param string0
+     * @param string1
+     */
     public Staff(String string, int aInt, String string0, String string1) {
         throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
     }
@@ -62,11 +77,11 @@ public class Staff extends Account{
     /**
      * Constructor with parameter accountName, accountPhone, accountEmail, accountAddress, roleDescription, staffStartDate
      * Constructor use display information of staff
+     * @param accountName
+     * @param accountPhone
      * @param staffStartDate Start date of the staff associated with the account
-     * @param accountEmail Email address of the account
+     * @param accountAddress
      * @param roleDescription Description of the role of the account
-     * @param AccountName Full name associated with the account
-     * @param AccountPhone Phone number associated with the account
      * @param AccountAddress Address associated with the account
      */
     public Staff(String accountName, int accountPhone, String accountEmail, String accountAddress, String roleDescription,String staffStartDate) {

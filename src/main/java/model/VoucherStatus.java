@@ -9,6 +9,14 @@ package model;
  * @author NghiaHHCE160343@fpt.edu.vn
  */
 public enum VoucherStatus {
+
+    /**
+     *
+     */
     UNAVAILABLE,
+
+    /**
+     *
+     */
     AVAILABLE
 }

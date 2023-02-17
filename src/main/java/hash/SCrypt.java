@@ -104,6 +104,15 @@ public class SCrypt {
         return DK;
     }
 
+    /**
+     *
+     * @param B
+     * @param Bi
+     * @param r
+     * @param N
+     * @param V
+     * @param XY
+     */
     public static void smix(byte[] B, int Bi, int r, int N, byte[] V, byte[] XY) {
         int Xi = 0;
         int Yi = 128 * r;
@@ -125,6 +134,13 @@ public class SCrypt {
         arraycopy(XY, Xi, B, Bi, 128 * r);
     }
 
+    /**
+     *
+     * @param BY
+     * @param Bi
+     * @param Yi
+     * @param r
+     */
     public static void blockmix_salsa8(byte[] BY, int Bi, int Yi, int r) {
         byte[] X = new byte[64];
         int i;
@@ -146,10 +162,20 @@ public class SCrypt {
         }
     }
 
+    /**
+     *
+     * @param a
+     * @param b
+     * @return
+     */
     public static int R(int a, int b) {
         return (a << b) | (a >>> (32 - b));
     }
 
+    /**
+     *
+     * @param B
+     */
     public static void salsa20_8(byte[] B) {
         int[] B32 = new int[16];
         int[] x   = new int[16];
@@ -193,12 +219,27 @@ public class SCrypt {
         }
     }
 
+    /**
+     *
+     * @param S
+     * @param Si
+     * @param D
+     * @param Di
+     * @param len
+     */
     public static void blockxor(byte[] S, int Si, byte[] D, int Di, int len) {
         for (int i = 0; i < len; i++) {
             D[Di + i] ^= S[Si + i];
         }
     }
 
+    /**
+     *
+     * @param B
+     * @param Bi
+     * @param r
+     * @return
+     */
     public static int integerify(byte[] B, int Bi, int r) {
         int n;
 

@@ -15,8 +15,20 @@ import static java.util.regex.Pattern.CASE_INSENSITIVE;
  * @author Will Glozer
  */
 public class Platform {
+
+    /**
+     *
+     */
     public enum Arch {
+
+        /**
+         *
+         */
         x86   ("x86|i386"),
+
+        /**
+         *
+         */
         x86_64("x86_64|amd64");
 
         Pattern pattern;
@@ -26,9 +38,24 @@ public class Platform {
         }
     }
 
+    /**
+     *
+     */
     public enum OS {
+
+        /**
+         *
+         */
         darwin ("darwin|mac os x"),
+
+        /**
+         *
+         */
         freebsd("freebsd"),
+
+        /**
+         *
+         */
         linux  ("linux");
 
         Pattern pattern;
@@ -38,7 +65,14 @@ public class Platform {
         }
     }
 
+    /**
+     *
+     */
     public final Arch arch;
+
+    /**
+     *
+     */
     public final OS os;
 
     private Platform(Arch arch, OS os) {

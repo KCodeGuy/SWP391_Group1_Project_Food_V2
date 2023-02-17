@@ -27,6 +27,13 @@ public class Account {
     public Account() {
     }
 
+    /**
+     *
+     * @param accountEmail
+     * @param accountPassword
+     * @param accountName
+     * @param roleID
+     */
     public Account(String accountEmail, String accountPassword, String accountName, String roleID) {
         this.accountEmail = accountEmail;
         this.accountPassword = accountPassword;
@@ -81,10 +88,11 @@ public class Account {
     /**
      * Constructor with parameter accountName, accountPhone, accountEmail, accountAddress, roleDescription
      * Constructor to display employee information
+     * @param accountName
      * @param accountEmail Email address of the account
+     * @param accountPhone
      * @param roleDescription Description of the role of the account
-     * @param AccountName Full name associated with the account
-     * @param AccountPhone Phone number associated with the account
+     * @param accountAddress
      * @param AccountAddress Address associated with the account
      */
     public Account(String accountName, int accountPhone, String accountEmail, String accountAddress, String roleDescription) {

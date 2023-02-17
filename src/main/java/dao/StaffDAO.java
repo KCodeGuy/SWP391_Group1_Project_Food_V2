@@ -14,6 +14,11 @@ import model.Staff;
 
 
 // Initialize class
+
+/**
+ *
+ * @author 84832
+ */
 public class StaffDAO {
 
     Connection con;            // connect to SQL server
@@ -21,6 +26,11 @@ public class StaffDAO {
     ResultSet rs;              // save result query
     // Initialize method, the method used to query data from the database
 
+    /**
+     *
+     * @param accountID
+     * @return
+     */
     public Staff getStaffByAccountID(int accountID) {
         try {                                       //The try-catch statement can use an external error when an exceptional error occurs
             String query = "SELECT A.AccountName, A.AccountPhone, A.AccountEmail, A.AccountAddress, R.RoleDescription, S.StaffStartDate FROM [ACCOUNT] A JOIN [STAFF] S ON A.AccountID = S.AccountID JOIN [ROLE] R ON R.RoleID = A.RoleID\n"
@@ -46,6 +56,11 @@ public class StaffDAO {
         return null;                                // Return value null
     }//end method                           
 
+    /**
+     *
+     * @param accountID
+     * @return
+     */
     public Staff getApplicationFormByAccountID(int accountID) {
         try {
             String query = "SELECT A.AccountName,A.AccountPhone,A.AccountEmail,A.AccountAddress,R.RoleDescription FROM [ACCOUNT] A JOIN [STAFF] S ON A.AccountID = S.AccountID JOIN [ROLE] R ON A.RoleID=R.RoleID\n"

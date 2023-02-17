@@ -9,9 +9,29 @@ package model;
  * @author NghiaHHCE160343@fpt.edu.vn
  */
 public enum OrderStatus {
+
+    /**
+     *
+     */
     ACCEPT,
+
+    /**
+     *
+     */
     REJECT,
+
+    /**
+     *
+     */
     SUCCESSFUL,
+
+    /**
+     *
+     */
     PICKUP,
+
+    /**
+     *
+     */
     PENDING
 }
