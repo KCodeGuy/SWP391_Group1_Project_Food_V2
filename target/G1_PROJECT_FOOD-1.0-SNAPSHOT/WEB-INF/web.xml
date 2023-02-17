@@ -10,7 +10,7 @@
     </servlet>
     <servlet>
         <servlet-name>loadstaff</servlet-name>
-        <servlet-class>controller.LoadListStaffProfileController</servlet-class>
+        <servlet-class>controller.LoadStaffProfileController</servlet-class>
     </servlet>
     <servlet-mapping>
         <servlet-name>HomeController</servlet-name>

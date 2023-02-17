@@ -70,6 +70,24 @@ public class Account {
         this.roleID = roleID;
         this.roleDescription = roleDescription;
     }
+    
+    /**
+     * Constructor with parameter accountName, accountPhone, accountEmail, accountAddress, roleDescription
+     * Constructor to display employee information
+     * @param accountEmail Email address of the account
+     * @param roleDescription Description of the role of the account
+     * @param AccountName Full name associated with the account
+     * @param AccountPhone Phone number associated with the account
+     * @param AccountAddress Address associated with the account
+     */
+    public Account(String accountName, int accountPhone, String accountEmail, String accountAddress, String roleDescription) {
+        this.accountName = accountName;
+        this.accountPhone = accountPhone;
+        this.accountEmail = accountEmail;
+        this.accountAddress = accountAddress;
+        this.roleDescription = roleDescription;
+    }
+    
 
     /**
      *

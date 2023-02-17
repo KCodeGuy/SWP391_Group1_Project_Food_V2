@@ -37,6 +37,21 @@ public class Staff extends Account{
         this.staffStartDate = staffStartDate;
     }
 
+    /**
+     * Constructor with parameter accountName, accountPhone, accountEmail, accountAddress, roleDescription, staffStartDate
+     * Constructor use display information of staff
+     * @param staffStartDate Start date of the staff associated with the account
+     * @param accountEmail Email address of the account
+     * @param roleDescription Description of the role of the account
+     * @param AccountName Full name associated with the account
+     * @param AccountPhone Phone number associated with the account
+     * @param AccountAddress Address associated with the account
+     */
+    public Staff(String accountName, int accountPhone, String accountEmail, String accountAddress, String roleDescription,String staffStartDate) {
+        super(accountName, accountPhone, accountEmail, accountAddress, roleDescription);
+        this.staffStartDate = staffStartDate;
+    }
+    
     
     /**
      * Get the start date of the staff
