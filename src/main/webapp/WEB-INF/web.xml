@@ -60,6 +60,14 @@
         <servlet-name>LoadFormApplicationDetailForAdminController</servlet-name>
         <servlet-class>controller.LoadFormApplicationDetailForAdminController</servlet-class>
     </servlet>
+    <servlet>
+        <servlet-name>AcceptApplicationController</servlet-name>
+        <servlet-class>controller.AcceptApplicationController</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>RejectApplicationController</servlet-name>
+        <servlet-class>controller.RejectApplicationController</servlet-class>
+    </servlet>
     <servlet-mapping>
         <servlet-name>HomeController</servlet-name>
         <url-pattern>/home</url-pattern>
@@ -119,6 +127,14 @@
     <servlet-mapping>
         <servlet-name>LoadFormApplicationDetailForAdminController</servlet-name>
         <url-pattern>/loadformapplicationdetailforadmin</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>AcceptApplicationController</servlet-name>
+        <url-pattern>/acceptapplication</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>RejectApplicationController</servlet-name>
+        <url-pattern>/rejectapplication</url-pattern>
     </servlet-mapping>
     <session-config>
         <session-timeout>
