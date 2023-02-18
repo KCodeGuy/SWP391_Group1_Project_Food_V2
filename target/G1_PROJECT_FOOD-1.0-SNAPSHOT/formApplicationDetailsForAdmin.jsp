@@ -7,7 +7,6 @@
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <!DOCTYPE html>
 <html lang="en">
-
     <head>
         <meta charset="UTF-8">
         <meta http-equiv="X-UA-Compatible" content="IE=edge">
@@ -42,7 +41,7 @@
 
                         <div class="form-control-group">
                             <h4 class="form-text-label">Phone:</h4>
-                            <input type="text" id="phone" name="phone" placeholder="0345678234" value="${staff.accountPhone}" readonly>
+                            <input type="text" id="phone" name="phone" placeholder="0345678234" value="0${staff.accountPhone}" readonly>
                             <div class="alert-warning" id="txtPhoneMessage"></div>
                         </div>
 
@@ -57,8 +56,6 @@
                             <input type="text" id="address" name="address" placeholder="An bình, ninh kiều, cần thơ" value="${staff.accountAddress}" readonly>
                             <div class="alert-warning" id="txtAddressMessage"></div>
                         </div>
-
-
 
                         <div class="form-control-group">
                             <h4 class="form-text-label">On-position:</h4>

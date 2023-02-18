@@ -7,7 +7,8 @@ function checkAllData() {
     isValidName = checkName();
     isValidAddress = checkAddress();
     isValidPassword = checkPassword();
-    isValid = isValidName && isValidAddress && isValidPassword;
+    isValidPhone = checkPhone();
+    isValid = isValidName && isValidAddress && isValidPassword && isValidPhone;
     return isValid;
 }
 
@@ -39,8 +40,6 @@ function checkAddress() {
     address = $("#address").val();
     if (address === "") {
         $("#txtAddressMessage").html("Address can't be empty");
-    } else if (patt_name.test(address) === false) {
-        $("#txtAddressMessage").html("Address is invalid");
     } else {
         $("#txtAddressMessage").html("");
     }

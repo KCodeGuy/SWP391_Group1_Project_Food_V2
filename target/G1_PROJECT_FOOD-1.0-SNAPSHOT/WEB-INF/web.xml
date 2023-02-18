@@ -56,6 +56,22 @@
         <servlet-name>ForgotPasswordController</servlet-name>
         <servlet-class>controller.ForgotPasswordController</servlet-class>
     </servlet>
+    <servlet>
+        <servlet-name>LoadFormApplicationDetailForAdminController</servlet-name>
+        <servlet-class>controller.LoadFormApplicationDetailForAdminController</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>LoadPayingController</servlet-name>
+        <servlet-class>controller.LoadPayingController</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>UseVoucherController</servlet-name>
+        <servlet-class>controller.UseVoucherController</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>PayingController</servlet-name>
+        <servlet-class>controller.PayingController</servlet-class>
+    </servlet>
     <servlet-mapping>
         <servlet-name>HomeController</servlet-name>
         <url-pattern>/home</url-pattern>
@@ -111,6 +127,22 @@
     <servlet-mapping>
         <servlet-name>ForgotPasswordController</servlet-name>
         <url-pattern>/forgotPasswordController</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>LoadFormApplicationDetailForAdminController</servlet-name>
+        <url-pattern>/loadformapplicationdetailforadmin</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>LoadPayingController</servlet-name>
+        <url-pattern>/loadpaying</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>UseVoucherController</servlet-name>
+        <url-pattern>/usevoucher</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>PayingController</servlet-name>
+        <url-pattern>/paying</url-pattern>
     </servlet-mapping>
     <session-config>
         <session-timeout>

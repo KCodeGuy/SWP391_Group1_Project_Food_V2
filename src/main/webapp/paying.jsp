@@ -3,6 +3,8 @@
     Created on : Feb 12, 2023, 2:14:42 AM
     Author     : PC
 --%>
+<%@ taglib prefix = "fmt" uri = "http://java.sun.com/jsp/jstl/fmt" %>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <!DOCTYPE html>
 <html lang="en">
@@ -25,166 +27,125 @@
             <!-- 1. Navigation -->
             <jsp:include page="navigation.jsp"></jsp:include>
 
-                <form action="" class="container-fluild table-container">
+                <form action="paying" class="container-fluild table-container" id="myForm">
                     <div class="container">
                         <div class="row">
                             <!-- User profile paying -->
                             <div class="col-xs-12 col-lg-4">
                                 <div class="form-customer-info">
                                     <div class="wrapper-form">
-                                        <form action="login" id="myForm">
-                                            <div class="form-heading-group">
-                                                <h2 class="form-heading">PROFILE PAYING</h2>
-                                            </div>
+                                        <div class="form-heading-group">
+                                            <h2 class="form-heading">PROFILE PAYING</h2>
+                                        </div>
 
-                                            <div class="form-control-group">
-                                                <h4 class="form-text-label">Full name:</h4>
-                                                <input type="text" id="name" name="name" placeholder="Le Van A" readonly />
-                                            </div>
-
-                                            <div class="form-control-group">
-                                                <h4 class="form-text-label">Phone number:</h4>
-                                                <input type="text" id="phone" name="phone" placeholder="0932987654" readonly />
-                                            </div>
-
-                                            <div class="form-control-group">
-                                                <h4 class="form-text-label">Email address:</h4>
-                                                <input type="text" id="email" name="email" placeholder="levana@gmail.com"
-                                                       readonly />
-                                            </div>
-
-                                            <div class="form-control-group">
-                                                <h4 class="form-text-label">Address:</h4>
-                                                <input type="text" id="address" name="address"
-                                                       placeholder="An Binh, Ninh Kieu, Can Tho" readonly />
-                                            </div>
-                                            <div class="form-control-group">
-                                                <h4 class="form-text-label">Note:</h4>
-                                                <input type="text" id="note" name="note" placeholder="Nhiều gà ít cơm, ít rau." />
-                                            </div>
-                                            <div class="form-control-group">
-                                                <div class="form-group">
-                                                    <h4 class="form-text-label">Thanh toán:</h4>
-                                                    <div class="form-group-img">
-                                                        <img src="https://cf.shopee.vn/file/2c46b83d84111ddc32cfd3b5995d9281"
-                                                             alt="" />
-                                                        <img src="https://cf.shopee.vn/file/d4bbea4570b93bfd5fc652ca82a262a8"
-                                                             alt="" />
-                                                        <img src="https://cf.shopee.vn/file/a0a9062ebe19b45c1ae0506f16af5c16"
-                                                             alt="" />
-                                                        <img src="https://cf.shopee.vn/file/38fd98e55806c3b2e4535c4e4a6c4c08"
-                                                             alt="" />
-                                                    </div>
-                                                </div>
-
-                                                <div class="form-group form-customer-paying">
-                                                    <div class="form-group">
-                                                        <input id="ship-code" type="radio" name="form-transport" value="0"
-                                                               required />
-                                                        <label for="ship-code">Thanh toán khi nhận</label>
-                                                    </div>
-
-                                                    <div class="form-group">
-                                                        <input id="bank" type="radio" name="form-transport" value="1" disabled />
-                                                        <label for="bank">Chuyển khoản</label>
-                                                    </div>
-                                                </div>
-                                            </div>
-
-                                            <div class="form-note-register">
-                                                <span>Nếu chưa có tài khoản hãy đăng kí</span>
-                                                <a href="home.html">Tại đây.</a>
-                                            </div>
-
-                                        </form>
+                                        <div class="form-control-group">
+                                            <h4 class="form-text-label">Full name:</h4>
+                                            <input type="text" id="name" name="name" placeholder="Huỳnh Hữu Nghĩa" value="${user.accountName}">
+                                            <input type="text" id="accountID" name="accountID" placeholder="Huỳnh Hữu Nghĩa" value="${user.accountID}" hidden="true">
+                                            <input type="text" id="productSalePercent" name="productSalePercent" placeholder="Huỳnh Hữu Nghĩa" value="${productSalePercent}" hidden="true">
+                                        <div class="alert-warning" id="txtNameMessage"></div>
                                     </div>
 
+                                    <div class="form-control-group">
+                                        <h4 class="form-text-label">Phone number:</h4>
+                                        <input type="text" id="phone" name="phone" placeholder="0345678234" value="0${user.accountPhone}">
+                                        <div class="alert-warning" id="txtPhoneMessage"></div>
+                                    </div>
 
+                                    <div class="form-control-group">
+                                        <h4 class="form-text-label">Email address:</h4>
+                                        <input type="text" id="email" name="email" placeholder="levana@gmail.com" value="${user.accountEmail}"
+                                               readonly/>
+                                    </div>
 
+                                    <div class="form-control-group">
+                                        <h4 class="form-text-label">Address:</h4>
+                                        <input type="text" id="address" name="address" placeholder="An bình, ninh kiều, cần thơ" value="${user.accountAddress}">
+                                        <div class="alert-warning" id="txtAddressMessage"></div>
+                                    </div>
+                                    <div class="form-control-group">
+                                        <h4 class="form-text-label">Note:</h4>
+                                        <input type="text" id="note" name="note" placeholder="Nhiều gà ít cơm, ít rau." />
+                                    </div>
                                 </div>
-                            </div>
 
-                            <!-- Product paying -->
-                            <div class="col-xs-12 col-lg-8">
-                                <div class="container">
-                                    <div class="row">
-                                        <div class="col-xs-12">
-                                            <h4 class="table-header">PRODUCT PAYING</h4>
-                                        </div>
+
+
+                            </div>
+                        </div>
+
+                        <!-- Product paying -->
+                        <div class="col-xs-12 col-lg-8">
+                            <div class="container">
+                                <div class="row">
+                                    <div class="col-xs-12">
+                                        <h4 class="table-header">PRODUCT PAYING</h4>
                                     </div>
-                                    <div class="row">
-                                        <div class="col-xs-12">
-                                            <table class="table table-striped text-center align-middle">
-                                                <thead class="table-heading">
+                                </div>
+                                <div class="row">
+                                    <div class="col-xs-12">
+                                        <table class="table table-striped text-center align-middle">
+                                            <thead class="table-heading">
+                                                <tr>
+                                                    <th class="table-heading-text" scope="col">No.</th>
+                                                    <th class="table-heading-text" scope="col">Picture</th>
+                                                    <th class="table-heading-text" scope="col">Name</th>
+                                                    <th class="table-heading-text" scope="col">Quantity</th>
+                                                    <th class="table-heading-text" scope="col">Price</th>
+                                                </tr>
+                                            </thead>
+
+                                            <tbody>
+                                                <c:forEach items="${listCart}" var="cart">
                                                     <tr>
-                                                        <th class="table-heading-text" scope="col">No.</th>
-                                                        <th class="table-heading-text" scope="col">Picture</th>
-                                                        <th class="table-heading-text" scope="col">Name</th>
-                                                        <th class="table-heading-text" scope="col">Quantity</th>
-                                                        <th class="table-heading-text" scope="col">Price</th>
-                                                    </tr>
-                                                </thead>
-                                                <tbody>
-                                                    <tr>
-                                                        <td class="table-order">1</td>
-                                                        <td class="table-img"><img src="assert/img/Com_ga_sot_thai.png"></td>
-                                                        <td class="table-name"><a href="">Cơm sườn bì chả trứng</a></td>
+                                                        <td class="table-order">${cart.cartID}</td>
+                                                        <td class="table-img"><img src="${cart.productLink}"></td>
+                                                        <td class="table-name"><a href="">${cart.productName}</a></td>
                                                         <td class="table-quantity">
-                                                            20
+                                                            ${cart.cartQuantity}
                                                         </td>
-                                                        <td class="table-price">30.000đ</td>
+                                                        <td class="table-price"><fmt:formatNumber type="number" pattern="###,###" value="${(cart.productPrice * (1-((cart.productSalePercent + productSalePercent)/100)))*cart.cartQuantity}"/>đ</td>
                                                     </tr>
-                                                    <tr>
-                                                        <td class="table-order">1</td>
-                                                        <td class="table-img"><img src="assert/img/Com_ga_sot_thai.png"></td>
-                                                        <td class="table-name"><a href="">Cơm sườn bì chả trứng</a></td>
-                                                        <td class="table-quantity">
-                                                            20
-                                                        </td>
-                                                        <td class="table-price">30.000đ</td>
-                                                    </tr>
-                                                    <!-- <tr><td colspan="5" class="table-row-no-product">No product here!</td></tr> -->
-                                                </tbody>
-                                            </table>
-                                        </div>
+                                                </c:forEach>
+                                            </tbody>
+                                        </table>
                                     </div>
-                                    <div class="row">
-                                        <div class="col-xs-12 col-md-7">
-                                            <table class="table table-striped align-middle table-voucher">
-                                                <tbody>
-                                                    <tr>
-                                                        <td class="table-voucher-label">Mã giảm:</td>
-                                                        <td class="table-number table-voucher-btn-group">
-                                                            <select name="" id="">
-                                                                <option value="AXRT123">AXRT123</option>
-                                                                <option value="AXRT123">AXRT124</option>
-                                                                <option value="AXRT123">AXRT125</option>
-                                                            </select>
-                                                            <button type="button" class="btn-primary">
-                                                                <a href="">Apply</a>
+                                </div>
+                                <div class="row">
+                                    <div class="col-xs-12 col-md-7">
+                                        <table class="table table-striped align-middle table-voucher">
+                                            <tbody>
+                                                <tr>
+                                                    <td class="table-voucher-label">Mã giảm:</td>
+                                                    <td class="table-number table-voucher-btn-group">
+                                                        <form acction="usevoucher">
+                                                            <input type="text" id="voucher" name="voucher" placeholder="" />
+                                                            <button type="Submit" class="btn-primary">
+                                                                Apply
                                                             </button>
-                                                        </td>
-                                                    </tr>
-                                                    <tr>
-                                                        <td class="table-voucher-label">Tạm tính:</td>
-                                                        <td class="table-number table-voucher-price">
-                                                            35,000d
-                                                            <!-- <fmt:formatNumber type="number" pattern="###,###" value="" />đ -->
-                                                        </td>
-                                                    </tr>
-                                                    <tr>
-                                                        <td class="table-voucher-label">Voucher:</td>
-                                                        <td class="table-number table-voucher-tax">- 0đ</td>
-                                                    </tr>
-                                                    <tr>
-                                                        <td class="table-voucher-label">Phí ship:</td>
-                                                        <td class="table-number table-voucher-ship">+ 30,000đ</td>
-                                                    </tr>
-                                                    <tr>
-                                                        <td class="table-voucher-label">Tổng tiền:</td>
-                                                        <td class="table-number">
-                                                            <span  class="table-voucher-total">450.000đ</span>
-                                                            <!-- <fmt:formatNumber type="number" pattern="###,###" value="${totalPrice}" />đ -->
+                                                        </form>
+                                                    </td>
+                                                </tr>
+                                                <tr>
+                                                    <td class="table-voucher-label">Tạm tính:</td>
+                                                    <td class="table-number table-voucher-price">
+                                                        35,000d
+                                                        <!-- <fmt:formatNumber type="number" pattern="###,###" value="" />đ -->
+                                                    </td>
+                                                </tr>
+                                                <tr>
+                                                    <td class="table-voucher-label">Voucher:</td>
+                                                    <td class="table-number table-voucher-tax">- 0đ</td>
+                                                </tr>
+                                                <tr>
+                                                    <td class="table-voucher-label">Phí ship:</td>
+                                                    <td class="table-number table-voucher-ship">+ 30,000đ</td>
+                                                </tr>
+                                                <tr>
+                                                    <td class="table-voucher-label">Tổng tiền:</td>
+                                                    <td class="table-number">
+                                                        <span  class="table-voucher-total">450.000đ</span>
+                                                        <!-- <fmt:formatNumber type="number" pattern="###,###" value="${totalPrice}" />đ -->
                                                     </td>
                                                 </tr>
                                             </tbody>
@@ -200,10 +161,10 @@
                                                 </strong> store. Mọi thắc mắc xin liên hệ hotline <strong>0366.777.999</strong>. Chúc quí khách may mắn!.
                                             </p>
                                             <div class="form-paying-btn-group">
-                                                <button type="button" class="btn-primary">
-                                                    <a href="home">Paying</a>
+                                                <button type="Submit" name="submit" class="btn-primary">
+                                                    Paying
                                                 </button>
-                                                <button type="submit" class="btn-main">
+                                                <button type="button" class="btn-main">
                                                     <a href="">Cancel</a>
                                                 </button>
                                             </div>
@@ -215,11 +176,19 @@
                     </div>
                 </div>
             </form>
-
+            <form action="usevoucher">
+                <input type="text" id="accountID" name="accountID" placeholder="" hidden="true" value="${user.accountID}"/>
+                <input type="text" id="voucherID" name="voucherID" placeholder="" />
+                <button type="Submit" class="btn-primary">
+                    Apply
+                </button>
+            </form>
 
             <!-- 5. Footer  -->
             <jsp:include page="footer.jsp"></jsp:include>
         </div>
+        <script src="jquery/Jquery.js"></script>
+        <script src="jquery/updateUserProfile.js"></script>
     </body>
 
 </html>

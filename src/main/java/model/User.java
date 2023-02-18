@@ -55,6 +55,20 @@ public class User extends Account {
     }
 
     /**
+     * Constructor
+     * @param accountID ID of the account
+     * @param accountEmail Email address of the account
+     * @param accountName Full name associated with the account
+     * @param accountPhone Phone number associated with the account
+     * @param accountAddress address of the account
+     */
+    public User(int accountID, String accountEmail, String accountName, int accountPhone, String accountAddress) {
+        super(accountID, accountEmail, accountName, accountPhone, accountAddress);
+    }
+    
+    
+
+    /**
      * Get birthday of the user associated with the account
      *
      * @return userBirthday birthday of the user associated with the account

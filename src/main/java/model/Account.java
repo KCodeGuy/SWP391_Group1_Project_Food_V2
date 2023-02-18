@@ -30,10 +30,10 @@ public class Account {
     /**
      *
      * @param accountID ID of the account
-     * @param accountEmail
-     * @param accountPassword
-     * @param accountName
-     * @param roleID
+     * @param accountEmail Email address of the account
+     * @param accountPassword Password of the account
+     * @param accountName Full name associated with the account
+     * @param roleID ID of the role associated with the account
      */
     public Account(int accountID, String accountEmail, String accountPassword, String accountName, String roleID) {
         this.accountID = accountID;
@@ -70,19 +70,19 @@ public class Account {
      * @param accountPassword Password of the account
      * @param accountStatus Status of the account
      * @param roleDescription Description of the role of the account
-     * @param AccountName Full name associated with the account
-     * @param AccountPhone Phone number associated with the account
-     * @param AccountAddress Address associated with the account
+     * @param accountName Full name associated with the account
+     * @param accountPhone Phone number associated with the account
+     * @param accountAddress Address associated with the account
      * @param roleID ID of the role associated with the account
      */
-    public Account(int accountID, String accountEmail, String accountPassword, AccountStatus accountStatus, String AccountName, int AccountPhone, String AccountAddress, String roleID, String roleDescription) {
+    public Account(int accountID, String accountEmail, String accountPassword, AccountStatus accountStatus, String accountName, int accountPhone, String accountAddress, String roleID, String roleDescription) {
         this.accountID = accountID;
         this.accountEmail = accountEmail;
         this.accountPassword = accountPassword;
         this.accountStatus = accountStatus;
-        this.accountName = AccountName;
-        this.accountPhone = AccountPhone;
-        this.accountAddress = AccountAddress;
+        this.accountName = accountName;
+        this.accountPhone = accountPhone;
+        this.accountAddress = accountAddress;
         this.roleID = roleID;
         this.roleDescription = roleDescription;
     }
@@ -90,12 +90,11 @@ public class Account {
     /**
      * Constructor with parameter accountName, accountPhone, accountEmail, accountAddress, roleDescription
      * Constructor to display employee information
-     * @param accountName
+     * @param accountName Full name associated with the account
      * @param accountEmail Email address of the account
-     * @param accountPhone
+     * @param accountPhone Phone number associated with the account
      * @param roleDescription Description of the role of the account
-     * @param accountAddress
-     * @param accountAddress Address associated with the account
+     * @param accountAddress address of the account
      */
     public Account(String accountName, int accountPhone, String accountEmail, String accountAddress, String roleDescription) {
         this.accountName = accountName;
@@ -126,6 +125,13 @@ public class Account {
         this.roleDescription = roleDescription;
     }
 
+    /**
+     * Constructor
+     * @param accountID ID of the account
+     * @param accountEmail Email address of the account
+     * @param accountName Full name associated with the account
+     * @param roleDescription Description of the role of the account
+     */
     public Account(int accountID, String accountEmail, String accountName, String roleDescription) {
         this.accountID = accountID;
         this.accountEmail = accountEmail;
@@ -133,14 +139,36 @@ public class Account {
         this.roleDescription = roleDescription;
     }
     
-    
-
+    /**
+     * Constructor
+     * @param accountEmail Email address of the account
+     * @param accountName Full name associated with the account
+     * @param accountPhone Phone number associated with the account
+     * @param accountAddress address of the account
+     */
     public Account(String accountEmail, String accountName, int accountPhone, String accountAddress) {
         this.accountEmail = accountEmail;
         this.accountName = accountName;
         this.accountPhone = accountPhone;
         this.accountAddress = accountAddress;
     }
+
+    /**
+     * Constructor
+     * @param accountID ID of the account
+     * @param accountEmail Email address of the account
+     * @param accountName Full name associated with the account
+     * @param accountPhone Phone number associated with the account
+     * @param accountAddress address of the account
+     */
+    public Account(int accountID, String accountEmail, String accountName, int accountPhone, String accountAddress) {
+        this.accountID = accountID;
+        this.accountEmail = accountEmail;
+        this.accountName = accountName;
+        this.accountPhone = accountPhone;
+        this.accountAddress = accountAddress;
+    }
+    
     
 
     /**

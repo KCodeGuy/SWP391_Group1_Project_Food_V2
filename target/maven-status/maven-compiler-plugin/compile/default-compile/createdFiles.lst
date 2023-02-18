@@ -28,6 +28,7 @@ model\Account.class
 model\AccountStatus.class
 controller\EmailAuthenUpdatePasswordController.class
 context\DBContext.class
+controller\LoadFormApplicationDetailForAdminController.class
 com\example\demo\hash\jni\LibraryLoader.class
 controller\LoadUserProfileController.class
 model\ProductStatus.class

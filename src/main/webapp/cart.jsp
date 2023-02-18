@@ -127,7 +127,7 @@
 
                     <div class="row justify-content-end">
                         <div class="col-sm-3">
-                            <button class="btn-primary">Paying</button>
+                            <a href="loadpaying?accountID=${sessionScope.accountSesseion.accountID}"><button class="btn-primary">Paying</button></a>
                         </div>
                     </div>
                 </div>
