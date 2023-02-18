@@ -32,7 +32,7 @@ public class LoadFormApplicationDetailForAdminController extends HttpServlet {
             throws ServletException, IOException {
         response.setContentType("text/html;charset=UTF-8");
         // Set the account ID to get the infomation of the staff
-        int accountID = 8;//Integer.parseInt(request.getParameter("accountID"));
+        int accountID = Integer.parseInt(request.getParameter("accountID"));//Integer.parseInt(request.getParameter("accountID"));
         // Create a new StaffDAO instance and retrieve infomation using account ID
         StaffDAO sdao = new StaffDAO();
         Staff staff = sdao.getApplicationFormByAccountID(accountID);
