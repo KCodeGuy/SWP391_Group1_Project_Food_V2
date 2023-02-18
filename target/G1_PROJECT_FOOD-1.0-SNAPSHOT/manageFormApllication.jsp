@@ -82,6 +82,7 @@
 
                                 </thead>
                                 <tbody>
+                                      <!-- display information in the form of a list on the page -->
                                     <%
                                         AccountDAO ad = new AccountDAO();
                                         List<Account> la = ad.getListAccount();
