@@ -7,7 +7,6 @@
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <!DOCTYPE html>
 <html lang="en">
-
     <head>
         <meta charset="UTF-8">
         <meta http-equiv="X-UA-Compatible" content="IE=edge">
@@ -57,8 +56,6 @@
                             <input type="text" id="address" name="address" placeholder="An bình, ninh kiều, cần thơ" value="${staff.accountAddress}" readonly>
                             <div class="alert-warning" id="txtAddressMessage"></div>
                         </div>
-
-
 
                         <div class="form-control-group">
                             <h4 class="form-text-label">On-position:</h4>

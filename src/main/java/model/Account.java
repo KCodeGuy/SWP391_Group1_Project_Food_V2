@@ -95,7 +95,7 @@ public class Account {
      * @param accountPhone
      * @param roleDescription Description of the role of the account
      * @param accountAddress
-     * @param AccountAddress Address associated with the account
+     * @param accountAddress Address associated with the account
      */
     public Account(String accountName, int accountPhone, String accountEmail, String accountAddress, String roleDescription) {
         this.accountName = accountName;

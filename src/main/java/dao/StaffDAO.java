@@ -85,5 +85,6 @@ public class StaffDAO {
             e.getMessage();
         }//end catch
         return null; //If an exception occurs, return null
+        //end method
     }
 }
