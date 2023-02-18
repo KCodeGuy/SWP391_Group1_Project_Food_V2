@@ -19,7 +19,7 @@
         <!-- 1. Navigation -->
         <nav class="navbar navbar-expand-lg">
             <div class="container-fluid">
-                <a href="home.html">
+                <a href="home">
                     <img class="navbar-logo" src="./assert/img/Logo.png" alt="">
                 </a>
                 <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarScroll"
@@ -33,10 +33,10 @@
                                 <a class="nav-link" aria-current="page" href="home">Home-page</a>
                             </li>
                             <li class="nav-item">
-                                <a class="nav-link" href="#">Top-sale</a>
+                                <a class="nav-link" href="home">Top-sale</a>
                             </li>
                             <li class="nav-item">
-                                <a class="nav-link" href="#">Contact</a>
+                                <a class="nav-link" href="home">Contact</a>
                             </li>
                             <li class="nav-item">
                                 <a class="nav-link" href="logoutController">Logout</a>
@@ -55,6 +55,9 @@
                                     <a class="nav-link" aria-current="page" href="manageStaff.jsp">Manage staff</a>
                                 </li>
                                 <li class="nav-item">
+                                    <a class="nav-link" aria-current="page" href="manageVoucher.jsp">Manage application</a>
+                                </li>
+                                <li class="nav-item">
                                     <a class="nav-link" aria-current="page" href="manageVoucher.jsp">Manage voucher</a>
                                 </li>
                                 <li class="nav-item">
@@ -69,7 +72,7 @@
                                     <a class="nav-link" aria-current="page" href="staffProfile.jsp">Manage accepted orders</a>
                                 </li>
                                 <li class="nav-item">
-                                    <a class="nav-link" aria-current="page" href="staffProfile.jsp">${sessionScope.accountSesseion.accountName}</a>
+                                    <a class="nav-link" aria-current="page" href="loadstaffprofile">${sessionScope.accountSesseion.accountName}</a>
                                 </li>
                             </c:if>
                             <c:if test="${sessionScope.accountSesseion.roleID eq 'SHIPPER'}">
@@ -85,7 +88,7 @@
                             </c:if>
                             <c:if test="${sessionScope.accountSesseion.roleID eq 'USER'}">
                                 <li class="nav-item">
-                                    <a class="nav-link" aria-current="page" href="userProfile.jsp">${sessionScope.accountSesseion.accountName}</a>
+                                    <a class="nav-link" aria-current="page" href="loaduserprofile">${sessionScope.accountSesseion.accountName}</a>
                                 </li>
                             </c:if>
                         </c:if>

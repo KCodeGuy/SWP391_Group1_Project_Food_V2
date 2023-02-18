@@ -26,7 +26,7 @@ public class AccountDAO {
      */
     public Account loginAccount(String email, String password) {
         // query to check whether passed email and password is exist or not.
-        String query = "select AccountEmail, AccountPassword, AccountName, RoleID\n"
+        String query = "select AccountEmail, AccountPassword, AccountName, RoleID, AccountID\n"
                 + "from ACCOUNT \n"
                 + "where AccountEmail = ? and AccountPassword = ?;";
         try {
@@ -37,7 +37,7 @@ public class AccountDAO {
             rs = ps.executeQuery();                // excute query and return result to rs.
             while (rs.next()) {
                 // return an account
-                return new Account(rs.getString(1), rs.getString(2), rs.getString(3), rs.getString(4));
+                return new Account(rs.getInt(5), rs.getString(1), rs.getString(2), rs.getString(3), rs.getString(4));
             } // end while loop of table result.
         } catch (Exception e) {
             e.getMessage();
@@ -52,7 +52,7 @@ public class AccountDAO {
      */
     public boolean checkAccountIsExist(String email) {
         // query to check whether passed email is exist or not.
-        String query = "select AccountEmail, AccountPassword, AccountName, RoleID\n"
+        String query = "select AccountEmail, AccountPassword, AccountName, RoleID, AccountID\n"
                 + "from ACCOUNT \n"
                 + "where AccountEmail = ?;";
         Account acc = null; // initilize an account.
@@ -62,7 +62,7 @@ public class AccountDAO {
             ps.setString(1, email);                  // pass entered email to the first ?.
             rs = ps.executeQuery();                  // excute query and return result to rs.
             while (rs.next()) {
-                acc = new Account(rs.getString(1), rs.getString(2), rs.getString(3), rs.getString(4));
+                acc = new Account(rs.getInt(5), rs.getString(1), rs.getString(2), rs.getString(3), rs.getString(4));
             } // end while loop of table result.
             // check whether accoutn is null or not to return.
             if (acc != null) {

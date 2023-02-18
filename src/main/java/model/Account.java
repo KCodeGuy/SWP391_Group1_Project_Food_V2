@@ -29,12 +29,14 @@ public class Account {
 
     /**
      *
+     * @param accountID ID of the account
      * @param accountEmail
      * @param accountPassword
      * @param accountName
      * @param roleID
      */
-    public Account(String accountEmail, String accountPassword, String accountName, String roleID) {
+    public Account(int accountID, String accountEmail, String accountPassword, String accountName, String roleID) {
+        this.accountID = accountID;
         this.accountEmail = accountEmail;
         this.accountPassword = accountPassword;
         this.accountName = accountName;
