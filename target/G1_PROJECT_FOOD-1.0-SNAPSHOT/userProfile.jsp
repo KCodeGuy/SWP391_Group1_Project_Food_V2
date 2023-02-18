@@ -44,7 +44,7 @@
                             </div>
                             <div class="form-control-group">
                                 <label class="form-text-label">Phone number:</label>
-                                <label>${user.accountPhone}</label>
+                                <label>0${user.accountPhone}</label>
                             </div>
                             <div class="form-control-group">
                                 <label class="form-text-label">Email:</label>

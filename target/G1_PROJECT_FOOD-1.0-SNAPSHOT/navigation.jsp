@@ -55,7 +55,7 @@
                                     <a class="nav-link" aria-current="page" href="manageStaff.jsp">Manage staff</a>
                                 </li>
                                 <li class="nav-item">
-                                    <a class="nav-link" aria-current="page" href="manageVoucher.jsp">Manage application</a>
+                                    <a class="nav-link" aria-current="page" href="manageFormApllication.jsp">Manage application</a>
                                 </li>
                                 <li class="nav-item">
                                     <a class="nav-link" aria-current="page" href="manageVoucher.jsp">Manage voucher</a>
@@ -72,7 +72,7 @@
                                     <a class="nav-link" aria-current="page" href="staffProfile.jsp">Manage accepted orders</a>
                                 </li>
                                 <li class="nav-item">
-                                    <a class="nav-link" aria-current="page" href="loadstaffprofile">${sessionScope.accountSesseion.accountName}</a>
+                                    <a class="nav-link" aria-current="page" href="loadstaffprofile?accountID=${sessionScope.accountSesseion.accountID}">${sessionScope.accountSesseion.accountName}</a>
                                 </li>
                             </c:if>
                             <c:if test="${sessionScope.accountSesseion.roleID eq 'SHIPPER'}">
@@ -83,12 +83,12 @@
                                     <a class="nav-link" aria-current="page" href="staffProfile.jsp">Manage accepted orders</a>
                                 </li>
                                 <li class="nav-item">
-                                    <a class="nav-link" aria-current="page" href="staffProfile.jsp">${sessionScope.accountSesseion.accountName}</a>
+                                    <a class="nav-link" aria-current="page" href="loadstaffprofile?accountID=${sessionScope.accountSesseion.accountID}">${sessionScope.accountSesseion.accountName}</a>
                                 </li>
                             </c:if>
                             <c:if test="${sessionScope.accountSesseion.roleID eq 'USER'}">
                                 <li class="nav-item">
-                                    <a class="nav-link" aria-current="page" href="loaduserprofile">${sessionScope.accountSesseion.accountName}</a>
+                                    <a class="nav-link" aria-current="page" href="loaduserprofile?accountID=${sessionScope.accountSesseion.accountID}">${sessionScope.accountSesseion.accountName}</a>
                                 </li>
                             </c:if>
                         </c:if>

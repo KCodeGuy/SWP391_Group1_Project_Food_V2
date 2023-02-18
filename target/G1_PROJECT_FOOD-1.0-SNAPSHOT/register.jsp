@@ -24,7 +24,7 @@
         <div class="container-fluid wrapper">
             <!-- 1. Navigation -->
             <jsp:include page="navigation.jsp"></jsp:include>
-            <div class="container-fluid container-fluid-form" style="height: 1000px">
+                <div class="container-fluid container-fluid-form" style="height: 1000px">
                     <div class="wrapper-form">
                         <form action="registerController" id="myForm" method="post">
                             <div class="form-heading-group">
@@ -56,7 +56,6 @@
                                 <input type="text" id="address" name="address" placeholder="An Binh, Ninh Kieu, Can Tho" />
                                 <div class="alert-warning" id="txtAddressMessage"></div>
                             </div>
-
                             <div class="form-control-group">
                                 <h4 class="form-text-label">Password:</h4>
                                 <input type="password" id="password" name="password" placeholder="Your password" />
@@ -75,16 +74,16 @@
                                 </div>
                             </div>
                             <div class="alert-warning error-message">${accountExistMessage}</div>
-                            <div class="form-btn-group">
-                                <button class="btn-primary" type="submit">Register</button>
-                                <h6 class="form-btn-separator">&nbsp;OR&nbsp;</h6>
-                                <button class="btn-main" type="button"><a href="login.jsp">Login</a></button>
-                            </div>
-                        </form>
-                    </div>
+                        <div class="form-btn-group">
+                            <button class="btn-primary" type="submit">Register</button>
+                            <h6 class="form-btn-separator">&nbsp;OR&nbsp;</h6>
+                            <button class="btn-main" type="button"><a href="login.jsp">Login</a></button>
+                        </div>
+                    </form>
                 </div>
+            </div>
 
-                <!-- 5. Footer  -->
+            <!-- 5. Footer  -->
             <jsp:include page="footer.jsp"></jsp:include>
         </div>
         <script type="text/javascript" src="jquery/Jquery.js"></script>

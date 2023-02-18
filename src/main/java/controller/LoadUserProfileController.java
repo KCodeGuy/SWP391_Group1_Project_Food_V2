@@ -33,7 +33,7 @@ public class LoadUserProfileController extends HttpServlet {
             throws ServletException, IOException {
         response.setContentType("text/html;charset=UTF-8");
         //Set the account ID to retrieve the user 
-        int accountID = 5;
+        int accountID = Integer.parseInt(request.getParameter("accountID"));
         //Create a new UserDAO instance and retrieve the user with the specified account ID
         UserDAO udao = new UserDAO();
         User user = udao.getUserByAccountID(accountID);

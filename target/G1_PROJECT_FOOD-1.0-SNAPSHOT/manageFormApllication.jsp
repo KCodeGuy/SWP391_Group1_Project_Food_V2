@@ -99,7 +99,7 @@
                                         </td>
                                         <td class="table-role"><%= la.get(idx).getRoleDescription()%></td>
                                         <td class="table-btn">
-                                            <a class="table-btn-edit" href="staffProfile.html"><i
+                                            <a class="table-btn-edit" href="loadformapplicationdetail?accountID=<%= la.get(idx).getAccountID()%>"><i
                                                     class="fa-solid fa-pen-to-square"></i></a>
                                         </td>
                                     </tr>

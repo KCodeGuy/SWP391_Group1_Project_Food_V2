@@ -44,11 +44,6 @@
                                 <div class="carousel-inner">
                                     <div class="carousel-item active">
                                         <img src="./assert/img/slider-background-1.png" class="d-block w-100" alt="...">
-                                        <div class="slider-large-caption carousel-caption d-none d-md-block">
-                                            <button class="btn-main btn-main-slider">
-                                                <a href="home.html" class="carousel-caption-titel ">BUY NOW</a>
-                                            </button>
-                                        </div>
                                     </div>
                                 </div>
                                 <button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleCaptions"
@@ -103,7 +98,7 @@
                                             <button class="btn btn-search" type="submit">
                                                 <i class="fa-solid fa-magnifying-glass"></i>
                                             </button>
-                                            <a class="cart" href="cart">
+                                            <a class="cart" href="cart?accountID=${sessionScope.accountSesseion.accountID}">
                                                 <i class="fa-solid fa-cart-plus"></i>
                                                 <span class="cart-quantity">2</span>
                                             </a>
@@ -143,7 +138,7 @@
                                             </div>
                                         </div>
                                         <button class="btn-main ">
-                                            <a href="addproductintocartfromhome?productID=${pr.productID}">BUY NOW</a>
+                                            <a href="addproductintocartfromhome?accountID=${sessionScope.accountSesseion.accountID}&productID=${pr.productID}">BUY NOW</a>
                                         </button>
                                     </div>
                                 </div>

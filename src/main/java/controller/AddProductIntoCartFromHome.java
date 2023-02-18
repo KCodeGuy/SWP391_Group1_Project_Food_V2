@@ -29,19 +29,19 @@ public class AddProductIntoCartFromHome extends HttpServlet {
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
     throws ServletException, IOException {
         response.setContentType("text/html;charset=UTF-8");
-        int AccountID = 5;
-        int ProductID = Integer.parseInt(request.getParameter("productID"));
+        int accountID = Integer.parseInt(request.getParameter("accountID"));
+        int productID = Integer.parseInt(request.getParameter("productID"));
         
         CartDAO cdao = new CartDAO(); // create CartDAO
-        if (cdao.isProductExistInCart(AccountID, ProductID)) {
+        if (cdao.isProductExistInCart(accountID, productID)) {
             // if product already exist to update
-            cdao.updateQuantityProductInCart(1, AccountID, ProductID);
+            cdao.updateQuantityProductInCart(1, accountID, productID);
         } else {
             // if product not exist to insert
-            cdao.addProductIntoCartFromHome(AccountID, ProductID);
+            cdao.addProductIntoCartFromHome(accountID, productID);
         } // end if
         
-        response.sendRedirect("cart");
+        response.sendRedirect("cart?accountID=" + accountID);
     } 
 
     // <editor-fold defaultstate="collapsed" desc="HttpServlet methods. Click on the + sign on the left to edit the code.">

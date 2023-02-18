@@ -29,9 +29,9 @@ public class AddProductIntoCartFromProductDetail extends HttpServlet {
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
     throws ServletException, IOException {
         response.setContentType("text/html;charset=UTF-8");
-        int accountID = 5;
-        int productID = 5;
-        int productQuantity = 5;
+        int accountID = Integer.parseInt(request.getParameter("accountID"));
+        int productID = Integer.parseInt(request.getParameter("productID"));
+        int productQuantity = Integer.parseInt(request.getParameter("quantity"));
         
         CartDAO cdao = new CartDAO(); // create CartDAO
         if (cdao.isProductExistInCart(accountID, productID)) {
@@ -42,7 +42,7 @@ public class AddProductIntoCartFromProductDetail extends HttpServlet {
             cdao.addProductIntoCartFromProductDetails(productQuantity, accountID, productID);
         } // end if
         
-        response.sendRedirect("cart");
+        response.sendRedirect("cart?accountID=" + accountID);
     } 
 
     // <editor-fold defaultstate="collapsed" desc="HttpServlet methods. Click on the + sign on the left to edit the code.">

@@ -30,7 +30,7 @@ public class LoadStaffProfileController extends HttpServlet {
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         response.setContentType("text/html;charset=UTF-8");
-        int accountID = 3;                                        // Declaration
+        int accountID = Integer.parseInt(request.getParameter("accountID"));                                        // Declaration
         StaffDAO sdao = new StaffDAO();                           // Allocate memory for the cursor sdao
         model.Staff staff = sdao.getStaffByAccountID(accountID);  // Convert model.Staff to controller.Staff
         request.setAttribute("staff", staff);                     // Set access to Servlet 

@@ -95,7 +95,7 @@ Connection con = null;       // connect to SQL server.
      */
     public void registerAccount(String name, String email, String password, String phone, String address) {
         // query to insert a new account of user to database. With status is ACTIVED and role's id is USER default.
-        String query = "INSERT INTO ACCOUNT VALUES(?, ?, 'ACTIVED', ?, ?, ?, 'USER');";
+        String query = "INSERT INTO ACCOUNT VALUES(?, ?, 'ACTIVED', ?, ?, ?, 'USER');INSERT INTO [USER] VALUES ('1/1/1997',(SELECT TOP 1 AccountID FROM ACCOUNT ORDER BY AccountID DESC))";
         try {
             con = new DBContext().getConnection();   // open connection to SQL
             ps = con.prepareStatement(query);        // move query from Netbeen to SQl

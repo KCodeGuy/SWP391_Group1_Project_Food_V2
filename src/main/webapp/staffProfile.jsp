@@ -41,7 +41,7 @@
                         <!-- Display phone number of staff -->
                         <div class="form-control-group">
                             <label class="form-text-label">Phone number:</label>
-                            <label>${staff.accountPhone}</label>       <!-- Push the value from Servlet -->
+                            <label>0${staff.accountPhone}</label>       <!-- Push the value from Servlet -->
                         </div>
                         <!-- Display email of staff -->
                         <div class="form-control-group">
