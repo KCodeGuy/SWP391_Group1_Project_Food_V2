@@ -41,7 +41,7 @@
 
                         <div class="form-control-group">
                             <h4 class="form-text-label">Phone:</h4>
-                            <input type="text" id="phone" name="phone" placeholder="0345678234" value="${staff.accountPhone}" readonly>
+                            <input type="text" id="phone" name="phone" placeholder="0345678234" value="0${staff.accountPhone}" readonly>
                             <div class="alert-warning" id="txtPhoneMessage"></div>
                         </div>
 
