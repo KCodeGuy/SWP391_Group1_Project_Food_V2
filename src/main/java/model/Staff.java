@@ -37,6 +37,12 @@ public class Staff extends Account{
         this.staffStartDate = staffStartDate;
     }
 
+    public Staff(int accountID, String accountEmail, String accountName, String roleDescription) {
+        super(accountID, accountEmail, accountName, roleDescription);
+    }
+    
+    
+
     
     /**
      * Get the start date of the staff

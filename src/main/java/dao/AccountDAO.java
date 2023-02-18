@@ -14,6 +14,7 @@ import model.Account;
 import model.AccountStatus;
 import model.Product;
 import model.ProductStatus;
+import model.Staff;
 
 /**
  *
@@ -35,21 +36,15 @@ public class AccountDAO {
      */
     public List<Account> getListAccount() {
         try {
-            String query = "SELECT * FROM [ACCOUNT] A JOIN [STAFF] S ON A.AccountID = S.AccountID ";
+            String query = "SELECT A.AccountID, A.AccountEmail, A.AccountName, R.RoleDescription FROM [ACCOUNT] A JOIN [STAFF] S ON A.AccountID = S.AccountID"
+                    + " JOIN ROLE R ON R.RoleID = A.RoleID WHERE A.AccountStatus = 'PENDING'";
                     //query select product orther than REMOVED
             con = new DBContext().getConnection(); // open connection to SQL
             ps = con.prepareStatement(query); // move query from Netbeen to SQl
             rs = ps.executeQuery(); // the same with click to "excute" btn;
             List<Account> list = new ArrayList<>(); //list Account
             while (rs.next()) {
-                list.add(new Account(
-                        rs.getInt("AccountID"),
-                        rs.getString("AccountEmail"),
-                        rs.getString("AccountPassword"),
-                        AccountStatus.PENDING,
-                        rs.getString("AccountName"),
-                        rs.getString("roleID")
-                )); // add new item in list
+                list.add(new Staff(rs.getInt(1), rs.getString(2), rs.getString(3), rs.getString(4))); // add new item in list
             } // end while rs.next
             return list;// return list product
         } catch (Exception e) {
