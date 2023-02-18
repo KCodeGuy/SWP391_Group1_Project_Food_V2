@@ -39,61 +39,28 @@
 
                                             <div class="form-control-group">
                                                 <h4 class="form-text-label">Full name:</h4>
-                                                <input type="text" id="name" name="name" placeholder="Le Van A" readonly />
+                                                <input type="text" id="name" name="name" placeholder="Le Van A"  />
                                             </div>
 
                                             <div class="form-control-group">
                                                 <h4 class="form-text-label">Phone number:</h4>
-                                                <input type="text" id="phone" name="phone" placeholder="0932987654" readonly />
+                                                <input type="text" id="phone" name="phone" placeholder="0932987654"  />
                                             </div>
 
                                             <div class="form-control-group">
                                                 <h4 class="form-text-label">Email address:</h4>
                                                 <input type="text" id="email" name="email" placeholder="levana@gmail.com"
-                                                       readonly />
+                                                        readonly/>
                                             </div>
 
                                             <div class="form-control-group">
                                                 <h4 class="form-text-label">Address:</h4>
                                                 <input type="text" id="address" name="address"
-                                                       placeholder="An Binh, Ninh Kieu, Can Tho" readonly />
+                                                       placeholder="An Binh, Ninh Kieu, Can Tho"  />
                                             </div>
                                             <div class="form-control-group">
                                                 <h4 class="form-text-label">Note:</h4>
                                                 <input type="text" id="note" name="note" placeholder="Nhiều gà ít cơm, ít rau." />
-                                            </div>
-                                            <div class="form-control-group">
-                                                <div class="form-group">
-                                                    <h4 class="form-text-label">Thanh toán:</h4>
-                                                    <div class="form-group-img">
-                                                        <img src="https://cf.shopee.vn/file/2c46b83d84111ddc32cfd3b5995d9281"
-                                                             alt="" />
-                                                        <img src="https://cf.shopee.vn/file/d4bbea4570b93bfd5fc652ca82a262a8"
-                                                             alt="" />
-                                                        <img src="https://cf.shopee.vn/file/a0a9062ebe19b45c1ae0506f16af5c16"
-                                                             alt="" />
-                                                        <img src="https://cf.shopee.vn/file/38fd98e55806c3b2e4535c4e4a6c4c08"
-                                                             alt="" />
-                                                    </div>
-                                                </div>
-
-                                                <div class="form-group form-customer-paying">
-                                                    <div class="form-group">
-                                                        <input id="ship-code" type="radio" name="form-transport" value="0"
-                                                               required />
-                                                        <label for="ship-code">Thanh toán khi nhận</label>
-                                                    </div>
-
-                                                    <div class="form-group">
-                                                        <input id="bank" type="radio" name="form-transport" value="1" disabled />
-                                                        <label for="bank">Chuyển khoản</label>
-                                                    </div>
-                                                </div>
-                                            </div>
-
-                                            <div class="form-note-register">
-                                                <span>Nếu chưa có tài khoản hãy đăng kí</span>
-                                                <a href="home.html">Tại đây.</a>
                                             </div>
 
                                         </form>
