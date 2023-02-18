@@ -8,7 +8,8 @@ package model;
  *
  * @author NghiaHHCE160343@fpt.edu.vn
  */
-public class User extends Account{
+public class User extends Account {
+
     private String userBirthday; // Birthday of the user associated with the account
 
     /**
@@ -19,7 +20,7 @@ public class User extends Account{
 
     /**
      * Constructor with all parameter
-     * 
+     *
      * @param userBirthday Birthday of the user associated with the account
      * @param accountID ID of the account
      * @param accountEmail Email address of the account
@@ -37,7 +38,25 @@ public class User extends Account{
     }
 
     /**
+     * Constructs a new User object with the specified user birthday, account
+     * email, account name, account phone, and account address.
+     *
+     * @param userBirthday the user's birthday
+     * @param accountEmail the account email
+     * @param accountName the account name
+     * @param accountPhone the account phone number
+     * @param accountAddress the account address
+     */
+    public User(String userBirthday, String accountEmail, String accountName, int accountPhone, String accountAddress) {
+        // Call the constructor of the superclass (Account) to initialize the account email, account name, account phone, and account address fields
+        super(accountEmail, accountName, accountPhone, accountAddress);
+        // Set the user birthday field to the specified value
+        this.userBirthday = userBirthday;
+    }
+
+    /**
      * Get birthday of the user associated with the account
+     *
      * @return userBirthday birthday of the user associated with the account
      */
     public String getUserBirthday() {
@@ -46,12 +65,11 @@ public class User extends Account{
 
     /**
      * Set birthday of the user associated with the account
+     *
      * @param userBirthday birthday of the user associated with the account
      */
     public void setUserBirthday(String userBirthday) {
         this.userBirthday = userBirthday;
     }
-
-    
 
 }

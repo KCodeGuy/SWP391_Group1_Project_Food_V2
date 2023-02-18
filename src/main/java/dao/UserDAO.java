@@ -33,8 +33,11 @@ public class UserDAO {
     public User getUserByAccountID(int accountID) {
 
         try {
-            //SQL query to select the user associated with a given account ID
-            String query = "SELECT * FROM [ACCOUNT] A JOIN [USER] U ON A.AccountID = U.AccountID WHERE A.AccountID = ?";
+            //Declare a SQL query string
+            String query = "SELECT A.AccountName, U.UserBirthDay, A.AccountPhone, A.AccountEmail, A.AccountAddress\n"
+                    + "FROM [ACCOUNT] A \n"
+                    + "JOIN [USER] U  ON A.AccountID = U.AccountID \n" // Specify the tables to join and the join condition
+                    + "WHERE A.AccountID = ?"; // Specify the condition for selecting a specific account ID
             con = new DBContext().getConnection(); //Open connection to SQL
             ps = con.prepareStatement(query); //Move query to database
             ps.setInt(1, accountID); //Set accountID
@@ -46,16 +49,12 @@ public class UserDAO {
             while (rs.next()) {
                 //Create a new User object using data retrieved from the database
                 user = new User(
-                        rs.getString(10), //The user's birthday
-                        rs.getInt(1), //The user's ID
-                        rs.getString(2), //The user's email
-                        "", //The user's password
-                        AccountStatus.valueOf(rs.getString(4)), //The user's account status
-                        rs.getString(5), //The user's name
-                        rs.getInt(7), //The user's phone number
-                        rs.getString(6), //The user's address
-                        "", //The user's role ID
-                        "" //The user's role description
+                        rs.getString(2), //The user's birthday
+                        rs.getString(4), //The user's email
+                        rs.getString(1), //The user's name
+                        rs.getInt(3), //The user's phone number
+                        rs.getString(5) //The user's address
+
                 );
             } //End while
             //Return the user object

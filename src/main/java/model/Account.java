@@ -135,6 +135,14 @@ public class Account {
     
     
 
+    public Account(String accountEmail, String accountName, int accountPhone, String accountAddress) {
+        this.accountEmail = accountEmail;
+        this.accountName = accountName;
+        this.accountPhone = accountPhone;
+        this.accountAddress = accountAddress;
+    }
+    
+
     /**
      *
      * Get ID of the account
