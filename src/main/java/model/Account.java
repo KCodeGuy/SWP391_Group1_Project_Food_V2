@@ -126,6 +126,15 @@ public class Account {
         this.roleDescription = roleDescription;
     }
 
+    public Account(int accountID, String accountEmail, String accountName, String roleDescription) {
+        this.accountID = accountID;
+        this.accountEmail = accountEmail;
+        this.accountName = accountName;
+        this.roleDescription = roleDescription;
+    }
+    
+    
+
     /**
      *
      * Get ID of the account
