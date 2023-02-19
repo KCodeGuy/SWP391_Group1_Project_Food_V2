@@ -94,7 +94,7 @@
     </servlet>
     <servlet>
         <servlet-name>DeleteUser</servlet-name>
-        <servlet-class>controller.DeleteUser</servlet-class>
+        <servlet-class>controller.DeleteUserController</servlet-class>
     </servlet>
     <servlet-mapping>
         <servlet-name>HomeController</servlet-name>
