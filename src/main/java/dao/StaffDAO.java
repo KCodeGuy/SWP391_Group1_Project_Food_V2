@@ -89,16 +89,17 @@ public class StaffDAO {
         return null; //If an exception occurs, return null
         //end method
     }
-    
-    
-     /**
-     * Check the acceptance application form and update the status of the account
+
+    /**
+     * Check the acceptance application form and update the status of the
+     * account
+     *
      * @param accountID of the associated with staff
      * @return staff linked by acountID otherwise return null
      */
     public Staff getAcceptApplication(int accountID) {
         try {
-            String query = "UPDATE [ACCOUNT]\n" +"SET AccountStatus = 'ACTIVED'\n" +"WHERE AccountID = ?;";//statement to query data from database tables(MySqlServer
+            String query = "UPDATE [ACCOUNT]\n" + "SET AccountStatus = 'ACTIVED'\n" + "WHERE AccountID = ?;";//statement to query data from database tables(MySqlServer
             con = new DBContext().getConnection(); // open connection to SQL
             ps = con.prepareStatement(query); // move query from Netbeen to SQl
             ps.setInt(1, accountID); //set data according to the first '?'
@@ -121,15 +122,17 @@ public class StaffDAO {
         return null; //If an exception occurs, return null
         //end method
     }
-    
+
     /**
-     * Check the reject and update the status of the account application form and update the status of the account
+     * Check the reject and update the status of the account application form
+     * and update the status of the account
+     *
      * @param accountID of the associated with staff
      * @return staff linked by acountID otherwise return null
      */
     public Staff getRejecttApplication(int accountID) {
         try {
-            String query = "UPDATE [ACCOUNT]\n" +"SET AccountStatus = 'REMOVED'\n" +"WHERE AccountID = ?;";//statement to query data from database tables(MySqlServer
+            String query = "UPDATE [ACCOUNT]\n" + "SET AccountStatus = 'REMOVED'\n" + "WHERE AccountID = ?;";//statement to query data from database tables(MySqlServer
             con = new DBContext().getConnection(); // open connection to SQL
             ps = con.prepareStatement(query); // move query from Netbeen to SQl
             ps.setInt(1, accountID); //set data according to the first '?'
@@ -151,5 +154,42 @@ public class StaffDAO {
         }//end catch
         return null; //If an exception occurs, return null
         //end method
+    }
+
+    /**
+     * Update a user's profile in the database with the provided information.
+     *
+     * @param accountID The ID of the account whose profile is being updated.
+     * @param userBirthday The user's birthday.
+     * @param accountName The user's name associated with the account.
+     * @param accountPhone The user's phone number associated with the account.
+     * @param accountAddress The user's address associated with the account.
+     */
+    public void updateUserProfile(int accountID, String userBirthday, String accountName, int accountPhone, String accountAddress) {
+        //SQL query to update the account and user tables with the new profile information
+        String query = "UPDATE [ACCOUNT]\n"
+                + "SET \n"
+                + "AccountName = ?,\n"
+                + "AccountAddress = ?,\n"
+                + "AccountPhone = ?\n"
+                + "WHERE AccountID = ?\n"
+                + "UPDATE [USER]\n"
+                + "SET UserBirthDay = ?\n"
+                + "WHERE AccountID = ?";
+        try {
+            con = new DBContext().getConnection(); //Open connection to SQL
+            ps = con.prepareStatement(query); //Move query from Netbeen to SQL
+            //Set the values for the parameters in the SQL query
+            ps.setString(1, accountName); //The user's name
+            ps.setString(2, accountAddress); //The user's address
+            ps.setInt(3, accountPhone); //The user's phone number
+            ps.setInt(4, accountID); //The user's ID account
+            ps.setString(5, userBirthday); //The user's birthday
+            ps.setInt(6, accountID); //The user's ID account
+            //Execute the update query to update the user's profile
+            ps.executeUpdate();
+        } catch (Exception e) {
+            e.getMessage();
+        } //End trycatch
     }
 }

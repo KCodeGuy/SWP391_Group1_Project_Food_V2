@@ -80,7 +80,7 @@
         <servlet-name>LoadListUserController</servlet-name>
         <servlet-class>controller.LoadListUserController</servlet-class>
     </servlet>
-        <servlet>
+    <servlet>
         <servlet-name>LoadPayingController</servlet-name>
         <servlet-class>controller.LoadPayingController</servlet-class>
     </servlet>
@@ -91,6 +91,10 @@
     <servlet>
         <servlet-name>PayingController</servlet-name>
         <servlet-class>controller.PayingController</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>updatestaffcontroller</servlet-name>
+        <servlet-class>controller.UpdateStaffProfileController</servlet-class>
     </servlet>
     <servlet-mapping>
         <servlet-name>HomeController</servlet-name>
@@ -168,7 +172,7 @@
         <servlet-name>LoadListUserController</servlet-name>
         <url-pattern>/loadlistuser</url-pattern>
     </servlet-mapping>
-        <servlet-mapping>
+    <servlet-mapping>
         <servlet-name>LoadPayingController</servlet-name>
         <url-pattern>/loadpaying</url-pattern>
     </servlet-mapping>
@@ -179,6 +183,10 @@
     <servlet-mapping>
         <servlet-name>PayingController</servlet-name>
         <url-pattern>/paying</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>updatestaffcontroller</servlet-name>
+        <url-pattern>/updatestaffcontroller</url-pattern>
     </servlet-mapping>
     <session-config>
         <session-timeout>
