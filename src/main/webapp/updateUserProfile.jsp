@@ -49,7 +49,7 @@
 
                         <div class="form-control-group">
                             <h4 class="form-text-label">Phone number:</h4>
-                            <input type="text" id="phone" name="phone" value="${user.accountPhone}">
+                            <input type="text" id="phone" name="phone" value="0${user.accountPhone}">
                             <div class="alert-warning" id="txtPhoneMessage"></div>
                         </div>
 
