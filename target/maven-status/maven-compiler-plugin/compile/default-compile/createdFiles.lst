@@ -12,6 +12,7 @@ com\example\demo\hash\jni\Platform$OS.class
 model\Product.class
 model\VoucherStatus.class
 model\Voucher.class
+dao\VoucherDAO.class
 com\example\demo\hash\jni\Platform$Arch.class
 model\Account.class
 model\AccountStatus.class
