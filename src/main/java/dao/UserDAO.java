@@ -8,8 +8,11 @@ import context.DBContext;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
+import java.util.ArrayList;
+import java.util.List;
 import model.Account;
 import model.AccountStatus;
+import model.Staff;
 import model.User;
 
 /**
@@ -99,7 +102,37 @@ public class UserDAO {
             //Execute the update query to update the user's profile
             ps.executeUpdate();
         } catch (Exception e) {
-            e.getMessage(); 
+            e.getMessage();
         } //End trycatch
+    }
+
+    /**
+     * Returns a list of all active users in the database.
+     *
+     * @return A list of User objects representing active users.
+     */
+    public List<User> getListUser() {
+        try {
+            //Define a SQL query to retrieve account details for all active users, including role information.
+            String query = "SELECT A.AccountID, A.AccountEmail, A.AccountName, R.RoleDescription FROM [ACCOUNT] A JOIN [USER] S ON A.AccountID = S.AccountID\n"
+                    + "JOIN [ROLE] R ON R.RoleID = A.RoleID WHERE A.AccountStatus = 'ACTIVED'";
+            con = new DBContext().getConnection(); //Open a connection to the database.
+            ps = con.prepareStatement(query); //Move query from Netbeen to SQL
+            rs = ps.executeQuery(); //Execute the query and get the result set.
+            //Create a list to hold the User objects that will be created from the query results.
+            List<User> list = new ArrayList<>();
+            //Loop through the result set and create a new User object for each row.
+            while (rs.next()) {
+                list.add(new User(
+                        rs.getInt(1),       //AccountID
+                        rs.getString(2),    //AccountEmail
+                        rs.getString(3)));  //AccountName
+            } //End while
+            return list;  //Return the list of User objects.
+        } catch (Exception e) {
+            e.getMessage();
+        } //End trycatch
+        //If an exception is caught or if the list is empty, return null.
+        return null;
     }
 }

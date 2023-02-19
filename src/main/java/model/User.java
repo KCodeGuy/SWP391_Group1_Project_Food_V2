@@ -56,6 +56,21 @@ public class User extends Account {
 
     /**
      * Constructs a new User object with the specified user birthday, account
+     * email, account name, account phone, and account address.
+     *
+     * @param accountID the user's ID account
+     * @param accountEmail the account email
+     * @param accountName the account name
+     */
+    public User(int accountID, String accountEmail, String accountName) {
+        //Call the constructor of the superclass (Account) to initialize the account ID, account email and account name fields
+        super(accountID, accountEmail, accountName);
+    }
+    
+    
+
+    /**
+     * Constructs a new User object with the specified user birthday, account
      * email,account password , account name, account phone, and account address.
      * 
      * @param userBirthday the user's birthday
@@ -71,6 +86,8 @@ public class User extends Account {
         //Set the user birthday field to the specified value
         this.userBirthday = userBirthday;
     }
+    
+    
 
     /**
      * Get birthday of the user associated with the account
