@@ -16,7 +16,7 @@ import java.sql.SQLException;
 public class DBContext {
 
     // local host name 
-    private static final String dbPrefix = "jdbc:sqlserver://localhost";
+    private static final String dbPrefix = "jdbc:sqlserver://DESKTOP-QOGFITP\\THANHSERVER";
     // set port here
     private static final String dbPort = "1433";
     // database name to connect sql
@@ -26,7 +26,7 @@ public class DBContext {
     // user name when seting to connect
     private static final String user = "sa";
     // password when seting to connect
-    private static final String pass = "123456";
+    private static final String pass = "1234";
 
     /**
      * To connect with SQL server to process data.
