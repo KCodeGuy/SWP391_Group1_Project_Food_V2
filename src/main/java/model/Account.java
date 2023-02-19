@@ -182,21 +182,6 @@ public class Account {
         this.accountPhone = accountPhone;
         this.accountAddress = accountAddress;
     }
-        /**
-     * Constructor
-     * @param accountID ID of the account
-     * @param accountEmail Email address of the account
-     * @param accountName Full name associated with the account
-     * @param accountPhone Phone number associated with the account
-     * @param accountAddress address of the account
-     */
-    public Account(int accountID, String accountEmail, String accountName, int accountPhone, String accountAddress) {
-        this.accountID = accountID;
-        this.accountEmail = accountEmail;
-        this.accountName = accountName;
-        this.accountPhone = accountPhone;
-        this.accountAddress = accountAddress;
-    }
     
 
     public Account(String accountEmail, String accountPassword, String accountName, int accountPhone, String accountAddress) {

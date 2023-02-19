@@ -1,9 +1,6 @@
 com\example\demo\hash\jni\LibraryLoaders.class
 controller\HomeController.class
-<<<<<<< HEAD
-=======
 dao\OrderDAO.class
->>>>>>> NghiaHH_Payingv1
 controller\LoadListProductInCartController.class
 com\example\demo\hash\jni\Platform.class
 controller\UseVoucherController.class
@@ -17,11 +14,8 @@ com\example\demo\hash\jni\Platform$Arch.class
 model\User.class
 com\example\demo\hash\jni\JarLibraryLoader.class
 hash\PBKDF.class
-<<<<<<< HEAD
 controller\UpdateUserProfileController.class
-=======
 controller\LoadPayingController.class
->>>>>>> NghiaHH_Payingv1
 controller\AddProductIntoCartFromHome.class
 model\OrderStatus.class
 dao\StaffDAO.class
@@ -50,25 +44,17 @@ model\Account.class
 model\AccountStatus.class
 controller\EmailAuthenUpdatePasswordController.class
 context\DBContext.class
-<<<<<<< HEAD
 controller\AcceptApplicationController.class
-=======
->>>>>>> NghiaHH_Payingv1
 controller\LoadFormApplicationDetailForAdminController.class
 com\example\demo\hash\jni\LibraryLoader.class
 controller\LoadFormApplicationDetailController.class
 controller\LoadUserProfileController.class
 controller\RejectApplicationController.class
 model\ProductStatus.class
-<<<<<<< HEAD
-controller\ReEmailVerificationController.class
-model\Order.class
-controller\LoadListUserController.class
-=======
 controller\PayingController.class
 controller\ReEmailVerificationController.class
 model\Order.class
->>>>>>> NghiaHH_Payingv1
+controller\LoadListUserController.class
 emailHandler\EmailHandler$2.class
 com\example\demo\hash\jni\NilLibraryLoader.class
 controller\EmaiVerificationController.class
