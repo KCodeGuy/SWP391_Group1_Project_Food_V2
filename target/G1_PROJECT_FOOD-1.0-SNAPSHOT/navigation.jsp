@@ -49,10 +49,10 @@
                                     <a class="nav-link" aria-current="page" href="manageProduct.jsp">Manage products</a>
                                 </li>
                                 <li class="nav-item">
-                                    <a class="nav-link" aria-current="page" href="manageUser.jsp">Manage users</a>
+                                    <a class="nav-link" aria-current="page" href="loadlistuser">Manage users</a>
                                 </li>
                                 <li class="nav-item">
-                                    <a class="nav-link" aria-current="page" href="manageStaff.jsp">Manage staff</a>
+                                    <a class="nav-link" aria-current="page" href="loadliststaff">Manage staff</a>
                                 </li>
                                 <li class="nav-item">
                                     <a class="nav-link" aria-current="page" href="manageFormApllication.jsp">Manage application</a>

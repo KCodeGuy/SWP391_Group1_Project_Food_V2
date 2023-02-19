@@ -3,6 +3,7 @@
     Created on : Feb 12, 2023, 2:14:42 AM
     Author     : PC
 --%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <!DOCTYPE html>
 <html lang="en">
@@ -70,42 +71,21 @@
                                 </tr>
                             </thead>
                             <tbody>
+                                  <c:forEach items="${listUser}" var="lu">
                                 <tr>
                                     <td class="table-order">1</td>
-                                    <td class="table-id">ABC123</td>
-                                    <td class="table-name"><a href="">Nguyen Van A</a></td>
+                                    <td class="table-id">${lu.accountID}</td>
+                                    <td class="table-name"><a href="">${lu.accountName}</a></td>
                                     <td class="table-email">
-                                        khoatdce160laskd@gmail.com
+                                        ${lu.accountEmail}
                                     </td>
                                     <td class="table-btn">
-                                        <a class="table-btn-edit" href="staffProfile.html"><i
+                                        <a class="table-btn-edit" href="loaduserprofile?accountID=${lu.accountID}"><i
                                                 class="fa-solid fa-pen-to-square"></i></a>
                                     </td>
                                 </tr>
-                                <tr>
-                                  <td class="table-order">1</td>
-                                  <td class="table-id">ABC123</td>
-                                  <td class="table-name"><a href="">Nguyen Van A</a></td>
-                                  <td class="table-email">
-                                      khoatdce160laskd@gmail.com
-                                  </td>
-                                  <td class="table-btn">
-                                      <a class="table-btn-edit" href="staffProfile.html"><i
-                                              class="fa-solid fa-pen-to-square"></i></a>
-                                  </td>
-                              </tr>
-                              <tr>
-                                <td class="table-order">1</td>
-                                <td class="table-id">ABC123</td>
-                                <td class="table-name"><a href="">Nguyen Van A</a></td>
-                                <td class="table-email">
-                                    khoatdce160laskd@gmail.com
-                                </td>
-                                <td class="table-btn">
-                                    <a class="table-btn-edit" href="staffProfile.html"><i
-                                            class="fa-solid fa-pen-to-square"></i></a>
-                                </td>
-                            </tr>
+                                 </c:forEach>
+                                
                             </tbody>
                         </table>
                     </div>
