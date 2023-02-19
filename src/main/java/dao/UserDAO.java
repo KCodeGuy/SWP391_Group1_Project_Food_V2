@@ -135,4 +135,40 @@ public class UserDAO {
         //If an exception is caught or if the list is empty, return null.
         return null;
     }
+    
+    /**
+     * This function get information user for paying
+     *
+     * @param accountID the ID of the account associated with the user
+     * @return the User object associated with the given account ID, or null if
+     * the account ID is invalid
+     */
+    public User getUserPayingByAccountID(int accountID) {
+
+        try {
+            //Declare a SQL query string
+            String query = "SELECT A.AccountID, A.AccountEmail, A.AccountName, A.AccountPhone,  A.AccountAddress\n"
+                    + "FROM [ACCOUNT] A \n"
+                    + "JOIN [USER] U  ON A.AccountID = U.AccountID \n" // Specify the tables to join and the join condition
+                    + "WHERE A.AccountID = ?"; // Specify the condition for selecting a specific account ID
+            con = new DBContext().getConnection(); //Open connection to SQL
+            ps = con.prepareStatement(query); //Move query to database
+            ps.setInt(1, accountID); //Set accountID
+            //Execute the query and get the result set
+            rs = ps.executeQuery();
+            //Initialize a new user object
+            User user = null;
+            //Loop through the result set and create a new user object with the retrieved data
+            while (rs.next()) {
+                //Create a new User object using data retrieved from the database
+                user = new User(rs.getInt(1), rs.getString(2), rs.getString(3), rs.getInt(4), rs.getString(5));
+            } //End while
+            //Return the user object
+            return user;
+        } catch (Exception e) {
+            e.getMessage();
+        } //End trycatch
+        //If an exception is caught, return null
+        return null;
+    }
 }

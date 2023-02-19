@@ -11,12 +11,12 @@ package model;
 public class Cart {
 
     private int cartID; // ID of the cart
-    private String cartQuantity; // Quantity of items in the cart
+    private int cartQuantity; // Quantity of items in the cart
     private int productID; // ID of the product in the cart
     private int accountID; // ID of the account associated with the cart
     private String productName; // Name of product
     private String productLink; // Link image of product
-    private int productPrice; // Price of product
+    private double productPrice; // Price of product
     private int productSalePercent; // Sale percent of product
 
     /**
@@ -25,6 +25,20 @@ public class Cart {
      */
     public Cart() {
     }
+
+    /**
+     *
+     * @param cartQuantity
+     * @param productID
+     * @param productPrice
+     */
+    public Cart(int cartQuantity, int productID, double productPrice) {
+        this.cartQuantity = cartQuantity;
+        this.productID = productID;
+        this.productPrice = productPrice;
+    }
+    
+    
 
     /**
      *
@@ -39,7 +53,7 @@ public class Cart {
      * @param productPrice Price of the product
      * @param productSalePercent Sale percent of the product
      */
-    public Cart(int cartID, String cartQuantity, int productID, int accountID, String productName, String productLink, int productPrice, int productSalePercent) {
+    public Cart(int cartID, int cartQuantity, int productID, int accountID, String productName, String productLink, double productPrice, int productSalePercent) {
         this.cartID = cartID;
         this.cartQuantity = cartQuantity;
         this.productID = productID;
@@ -56,7 +70,7 @@ public class Cart {
      *
      * @return int price of the product
      */
-    public int getProductPrice() {
+    public double getProductPrice() {
         return productPrice;
     }
 
@@ -66,7 +80,7 @@ public class Cart {
      *
      * @param productPrice price of the product
      */
-    public void setProductPrice(int productPrice) {
+    public void setProductPrice(double productPrice) {
         this.productPrice = productPrice;
     }
 
@@ -152,7 +166,7 @@ public class Cart {
      *
      * @return the quantity of items in the cart.
      */
-    public String getCartQuantity() {
+    public int getCartQuantity() {
         return cartQuantity;
     }
 
@@ -162,7 +176,7 @@ public class Cart {
      *
      * @param cartQuantity the quantity of items in the cart.
      */
-    public void setCartQuantity(String cartQuantity) {
+    public void setCartQuantity(int cartQuantity) {
         this.cartQuantity = cartQuantity;
     }
 
