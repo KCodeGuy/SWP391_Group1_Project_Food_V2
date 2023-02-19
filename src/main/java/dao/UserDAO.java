@@ -8,6 +8,7 @@ import context.DBContext;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
+import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
 import model.Account;
@@ -124,8 +125,8 @@ public class UserDAO {
             //Loop through the result set and create a new User object for each row.
             while (rs.next()) {
                 list.add(new User(
-                        rs.getInt(1),       //AccountID
-                        rs.getString(2),    //AccountEmail
+                        rs.getInt(1), //AccountID
+                        rs.getString(2), //AccountEmail
                         rs.getString(3)));  //AccountName
             } //End while
             return list;  //Return the list of User objects.
@@ -135,7 +136,34 @@ public class UserDAO {
         //If an exception is caught or if the list is empty, return null.
         return null;
     }
-    
+
+    /**
+     * Deletes a user account and sets their account status to "REMOVED" in the
+     * database.
+     *
+     * @param accountID the ID of the user account to delete
+     */
+    public void deleteUser(int accountID) {
+        //Define SQL query to update the account status to "REMOVED" and set the email to empty
+        String query = "UPDATE [ACCOUNT]\n"
+                + "SET AccountStatus = 'REMOVED',\n"
+                + "AccountEmail = ''\n"
+                + "WHERE AccountID = ?";
+        try {
+            //Establish database connection
+            con = new DBContext().getConnection();
+            //Prepare the SQL statement with the query
+            ps = con.prepareStatement(query);
+            //Set the value of the accountID parameter in the SQL statement
+            ps.setInt(1, accountID);
+            //Execute the SQL statement to update the account status and email
+            ps.executeUpdate();
+        } catch (SQLException e) {
+            //If an SQL error occurs, print the error message to the console
+            System.err.println(e.getMessage());
+        } //End trycatch
+    }
+
     /**
      * This function get information user for paying
      *
