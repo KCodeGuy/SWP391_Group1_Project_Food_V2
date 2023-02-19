@@ -2,7 +2,6 @@ com\example\demo\hash\jni\LibraryLoaders.class
 controller\HomeController.class
 controller\LoadListProductInCartController.class
 com\example\demo\hash\jni\Platform.class
-controller\LoadListStaffController.class
 com\example\demo\hash\jni\SysLibraryLoader.class
 com\example\demo\hash\codec\Base64.class
 com\example\demo\hash\jni\Platform$OS.class
@@ -42,13 +41,16 @@ model\Account.class
 model\AccountStatus.class
 controller\EmailAuthenUpdatePasswordController.class
 context\DBContext.class
+controller\AcceptApplicationController.class
 controller\LoadFormApplicationDetailForAdminController.class
 com\example\demo\hash\jni\LibraryLoader.class
 controller\LoadFormApplicationDetailController.class
 controller\LoadUserProfileController.class
+controller\RejectApplicationController.class
 model\ProductStatus.class
 controller\ReEmailVerificationController.class
 model\Order.class
+controller\LoadListUserController.class
 emailHandler\EmailHandler$2.class
 com\example\demo\hash\jni\NilLibraryLoader.class
 controller\EmaiVerificationController.class

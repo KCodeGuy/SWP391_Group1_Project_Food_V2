@@ -30,7 +30,6 @@ public class DBContext {
 
     /**
      * To connect with SQL server to process data.
-     *
      * @return a connection to SQL
      */
     public Connection getConnection() {
@@ -46,15 +45,5 @@ public class DBContext {
             e.printStackTrace();
         }
         return conn;
-    }
-
-    /**
-     *
-     * @param args
-     */
-    public static void main(String[] args) {
-        DBContext db = new DBContext();
-        Connection conn = db.getConnection();
-        System.out.println(conn);
     }
 }
