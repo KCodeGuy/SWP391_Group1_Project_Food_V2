@@ -16,6 +16,7 @@ com\example\demo\hash\jni\JarLibraryLoader.class
 hash\PBKDF.class
 controller\UpdateUserProfileController.class
 controller\LoadPayingController.class
+dao\OrderDetailDAO.class
 controller\AddProductIntoCartFromHome.class
 model\OrderStatus.class
 dao\StaffDAO.class
@@ -53,6 +54,7 @@ controller\RejectApplicationController.class
 model\ProductStatus.class
 controller\PayingController.class
 controller\ReEmailVerificationController.class
+controller\LoadListOrderedForChefController.class
 model\Order.class
 controller\LoadListUserController.class
 emailHandler\EmailHandler$2.class

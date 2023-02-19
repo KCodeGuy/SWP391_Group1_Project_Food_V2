@@ -66,7 +66,7 @@
                             </c:if>
                             <c:if test="${sessionScope.accountSesseion.roleID eq 'CHEF'}">
                                 <li class="nav-item">
-                                    <a class="nav-link" aria-current="page" href="staffProfile.jsp">Manage orders</a>
+                                    <a class="nav-link" aria-current="page" href="loadlistorderedforchef">Manage orders</a>
                                 </li>
                                 <li class="nav-item">
                                     <a class="nav-link" aria-current="page" href="staffProfile.jsp">Manage accepted orders</a>

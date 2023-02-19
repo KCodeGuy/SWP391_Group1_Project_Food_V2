@@ -3,6 +3,8 @@
     Created on : Feb 12, 2023, 2:14:42 AM
     Author     : PC
 --%>
+<%@ taglib prefix = "fmt" uri = "http://java.sun.com/jsp/jstl/fmt" %>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <!DOCTYPE html>
 <html lang="en">
@@ -79,58 +81,31 @@
                                         </tr>
                                     </thead>
                                     <tbody>
+                                    <c:forEach items="${listOrder}" var="o">
                                         <tr>
                                             <td class="table-order">1</td>
-                                            <td class="table-order">ABC123</td>
-                                            <td class="table-name">Nguyen Van A</td>
-                                            <td class="table-quantity">4</td>
-                                            <td class="table-order-date">12/01/2023</td>
-                                            <td class="table-status">ACCEPTED</td>
-                                            <td class="table-price">90.000đ</td>
+                                            <td class="table-order">${o.orderID}</td>
+                                            <td class="table-name">${o.userFullName}</td>
+                                            <td class="table-quantity">${o.totalQuanityProduct}</td>
+                                            <td class="table-order-date">${o.orderDate}</td>
+                                            <td class="table-status">${o.orderStatus}</td>
+                                            <td class="table-price"><fmt:formatNumber type="number" pattern="###,###" value="${o.totalPrice}"/>đ</td>
                                             <td class="table-btn">
                                                 <a class="table-btn-edit" href="updateProduct.html"><i class="fa-solid fa-pen-to-square"></i></a>
                                                 <a href="#" onclick="return showMessageDelete();"><i
                                                         class="fa-solid fa-trash"></i></a>
                                             </td>
                                         </tr>
-                                        <tr>
-                                            <td class="table-order">1</td>
-                                            <td class="table-order">ABC123</td>
-                                            <td class="table-name">Nguyen Van A</td>
-                                            <td class="table-quantity">4</td>
-                                            <td class="table-order-date">12/01/2023</td>
-                                            <td class="table-status">ACCEPTED</td>
-                                            <td class="table-price">90.000đ</td>
-                                            <td class="table-btn">
-                                                <a class="table-btn-edit" href="updateProduct.html"><i class="fa-solid fa-pen-to-square"></i></a>
-                                                <a href="#" onclick="return showMessageDelete();"><i
-                                                        class="fa-solid fa-trash"></i></a>
-                                            </td>
-                                        </tr>
-                                        <tr>
-                                            <td class="table-order">1</td>
-                                            <td class="table-order">ABC123</td>
-                                            <td class="table-name">Nguyen Van A</td>
-                                            <td class="table-quantity">4</td>
-                                            <td class="table-order-date">12/01/2023</td>
-                                            <td class="table-status">ACCEPTED</td>
-                                            <td class="table-price">90.000đ</td>
-                                            <td class="table-btn">
-                                                <a class="table-btn-edit" href="updateProduct.html"><i class="fa-solid fa-pen-to-square"></i></a>
-                                                <a href="#" onclick="return showMessageDelete();"><i
-                                                        class="fa-solid fa-trash"></i></a>
-                                            </td>
-                                        </tr>
-
-                                    </tbody>
-                                </table>
-                            </div>
+                                    </c:forEach>                                        
+                                </tbody>
+                            </table>
                         </div>
                     </div>
                 </div>
+            </div>
 
 
-                <!-- 5. Footer  -->
+            <!-- 5. Footer  -->
             <jsp:include page="footer.jsp"></jsp:include>
         </div>
     </body>

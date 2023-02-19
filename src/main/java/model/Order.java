@@ -22,6 +22,8 @@ public class Order {
     private String productSalePercent; // Sale percent of the product in the order
     private String accountOfIDChef; // ID of the chef who prepared the order
     private String accountOfIDShipper; // ID of the shipper who delivered the order
+    private int totalQuanityProduct; // total quantity of product in order
+    private int totalPrice; // total price of product in order
 
     /**
      * Default constructor for Order class
@@ -59,6 +61,58 @@ public class Order {
         this.accountOfIDChef = accountOfIDChef;
         this.accountOfIDShipper = accountOfIDShipper;
     }
+
+    /**
+     * Constructor
+     * @param orderID ID of the order 
+     * @param orderStatus Status of the order
+     * @param orderDate Date of the order
+     * @param userFullName Full name of the user 
+     * @param totalQuanityProduct total quantity of product in order
+     * @param totalPrice total price of product in order
+     */
+    public Order(int orderID, OrderStatus orderStatus, String orderDate, String userFullName, int totalQuanityProduct, int totalPrice) {
+        this.orderID = orderID;
+        this.orderStatus = orderStatus;
+        this.orderDate = orderDate;
+        this.userFullName = userFullName;
+        this.totalQuanityProduct = totalQuanityProduct;
+        this.totalPrice = totalPrice;
+    }
+
+    /**
+     * Get total quantity of product in order
+     * @return total quantity of product in order
+     */
+    public int getTotalQuanityProduct() {
+        return totalQuanityProduct;
+    }
+
+    /**
+     * Set total quantity of product in order
+     * @param totalQuanityProduct total quantity of product in order
+     */
+    public void setTotalQuanityProduct(int totalQuanityProduct) {
+        this.totalQuanityProduct = totalQuanityProduct;
+    }
+
+    /**
+     * Get total price of product in order
+     * @return total price of product in order
+     */
+    public int getTotalPrice() {
+        return totalPrice;
+    }
+
+    /**
+     * Set total price of product in order
+     * @param totalPrice total price of product in order
+     */
+    public void setTotalPrice(int totalPrice) {
+        this.totalPrice = totalPrice;
+    }
+    
+    
 
     /**
      * Get the ID of the order
