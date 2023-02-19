@@ -26,6 +26,12 @@ public class Cart {
     public Cart() {
     }
 
+    /**
+     *
+     * @param cartQuantity
+     * @param productID
+     * @param productPrice
+     */
     public Cart(int cartQuantity, int productID, double productPrice) {
         this.cartQuantity = cartQuantity;
         this.productID = productID;

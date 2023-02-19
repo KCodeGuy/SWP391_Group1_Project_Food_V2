@@ -260,6 +260,10 @@ public class CartDAO {
         return false; // reutrn false if can not update
     }
 
+    /**
+     * This function delete cart by account ID
+     * @param accountID Account ID of user
+     */
     public void deleteCartByAccountID(int accountID) {
         String query = "DELETE FROM CART WHERE AccountID = ?"; // string query insert cart
         try {
@@ -273,6 +277,11 @@ public class CartDAO {
         } // end try catch
     }
     
+    /**
+     * Get list product in cart to paying
+     * @param accountID Account ID of user
+     * @return List product in cart
+     */
     public ArrayList<Cart> getListCartToPaying(int accountID) {
         try {
             String query = "SELECT C.CartQuantity, C.ProductID, P.ProductPrice, P.ProductSalePercent FROM [CART] C JOIN [PRODUCT] P ON C.ProductID = P.ProductID WHERE C.AccountID = ?"; // query select form database

@@ -24,6 +24,12 @@ public class OrderDetailDAO {
     PreparedStatement ps = null; // move query from Netbeen to SQl
     ResultSet rs = null; // save result query
 
+    /**
+     * This function to create list order details
+     * 
+     * @param cart list product to order
+     * @param orderID ID of order
+     */
     public void createOrderDetails(ArrayList<Cart> cart, int orderID) {
         String query = "INSERT INTO [ORDER_DETAIL] VALUES (?,?,?,?)"; // string query insert cart
         try {

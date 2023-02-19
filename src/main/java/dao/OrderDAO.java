@@ -20,6 +20,18 @@ public class OrderDAO {
     PreparedStatement ps = null; // move query from Netbeen to SQl
     ResultSet rs = null; // save result query
     
+    /**
+     * This function to create order
+     * 
+     * @param orderNote Note of order
+     * @param accountID Account ID of user
+     * @param accountName Name of user
+     * @param accountPhone Phone of user
+     * @param accountAddress Address of user
+     * @param voucherID ID of voucher
+     * @param productSalePercent Product sale percent
+     * @return true if create successful, false if can not create
+     */
     public boolean createOrder(String orderNote, int accountID,  String accountName, int accountPhone, String accountAddress, String voucherID, int productSalePercent) {
         LocalDateTime now = LocalDateTime.now();
         DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm:ss.SSS");
@@ -46,6 +58,10 @@ public class OrderDAO {
         return false; // if can not insert
     }
     
+    /**
+     * This function get new ID of voucher
+     * @return ID of voucher
+     */
     public int getNewOrderID() {
         String query = "SELECT TOP 1 OrderID FROM [ORDER] ORDER BY OrderID DESC";
         // string query select quantity of a product in cart

@@ -19,6 +19,11 @@ public class VoucherDAO {
     PreparedStatement ps; //Move query from Netbeen to SQl
     ResultSet rs; //Save result query
     
+    /**
+     *
+     * @param voucherID
+     * @return
+     */
     public int getProductSalePrecent(String voucherID) {
         try {
             //Declare a SQL query string

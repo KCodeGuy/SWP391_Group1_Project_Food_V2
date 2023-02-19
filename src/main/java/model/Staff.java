@@ -79,10 +79,10 @@ public class Staff extends Account{
      * Constructor use display information of staff
      * @param accountName
      * @param accountPhone
+     * @param accountEmail
      * @param staffStartDate Start date of the staff associated with the account
      * @param accountAddress
      * @param roleDescription Description of the role of the account
-     * @param AccountAddress Address associated with the account
      */
     public Staff(String accountName, int accountPhone, String accountEmail, String accountAddress, String roleDescription,String staffStartDate) {
         super(accountName, accountPhone, accountEmail, accountAddress, roleDescription);
