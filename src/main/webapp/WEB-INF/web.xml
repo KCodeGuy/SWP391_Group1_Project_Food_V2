@@ -60,6 +60,10 @@
         <servlet-name>LoadFormApplicationDetailForAdminController</servlet-name>
         <servlet-class>controller.LoadFormApplicationDetailForAdminController</servlet-class>
     </servlet>
+    <servlet>
+        <servlet-name>UpdateUserProfileController</servlet-name>
+        <servlet-class>controller.UpdateUserProfileController</servlet-class>
+    </servlet>
     <servlet-mapping>
         <servlet-name>HomeController</servlet-name>
         <url-pattern>/home</url-pattern>
@@ -119,6 +123,10 @@
     <servlet-mapping>
         <servlet-name>LoadFormApplicationDetailForAdminController</servlet-name>
         <url-pattern>/loadformapplicationdetailforadmin</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>UpdateUserProfileController</servlet-name>
+        <url-pattern>/updateuserprofile</url-pattern>
     </servlet-mapping>
     <session-config>
         <session-timeout>

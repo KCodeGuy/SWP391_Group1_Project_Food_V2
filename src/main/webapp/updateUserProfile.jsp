@@ -49,7 +49,7 @@
 
                         <div class="form-control-group">
                             <h4 class="form-text-label">Phone number:</h4>
-                            <input type="text" id="phone" name="phone" value="0${user.accountPhone}">
+                            <input type="text" id="phone" name="phone" value="${user.accountPhone}">
                             <div class="alert-warning" id="txtPhoneMessage"></div>
                         </div>
 
@@ -67,7 +67,7 @@
                         <div class="form-btn-group">
                             <button type="Submit" name="submit" class="btn-primary">Update</button>
                             <h6 class="form-btn-separator">&nbsp;OR&nbsp;</h6>
-                            <button type="button" class="btn-main">Cancel</button>
+                            <button type="button" class="btn-main"><a href="loaduserprofile?accountID=${sessionScope.accountSesseion.accountID}">Cancel</a></button>
                         </div>
 
                     </form>
