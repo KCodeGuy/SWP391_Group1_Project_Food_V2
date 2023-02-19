@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8" ?>
-<testsuite tests="4" failures="0" name="dao.StaffDAOTest" time="0.685" errors="0" skipped="0">
+<testsuite tests="4" failures="0" name="dao.StaffDAOTest" time="0.161" errors="0" skipped="0">
   <properties>
     <property name="java.runtime.name" value="Java(TM) SE Runtime Environment"/>
     <property name="java.vm.version" value="11.0.16+11-LTS-199"/>
@@ -18,7 +18,6 @@
     <property name="user.dir" value="D:\2023\[SP23]SWP391\SWP391_Group1_Project_Food_V2"/>
     <property name="java.vm.compressedOopsMode" value="Zero based"/>
     <property name="java.runtime.version" value="11.0.16+11-LTS-199"/>
-    <property name="netbeans.deploy" value="true"/>
     <property name="java.awt.graphicsenv" value="sun.awt.Win32GraphicsEnvironment"/>
     <property name="os.arch" value="amd64"/>
     <property name="java.io.tmpdir" value="C:\Users\84832\AppData\Local\Temp\"/>
@@ -47,7 +46,7 @@
     <property name="java.class.path" value="C:\Program Files\NetBeans-13\netbeans\java\maven\boot\plexus-classworlds-2.6.0.jar"/>
     <property name="java.vm.specification.version" value="11"/>
     <property name="sun.arch.data.model" value="64"/>
-    <property name="sun.java.command" value="org.codehaus.plexus.classworlds.launcher.Launcher -Dnetbeans.deploy=true -Dnetbeans.deploy.clientUrlPart=/home.jsp -Dmaven.ext.class.path=C:\Program Files\NetBeans-13\netbeans\java\maven-nblib\netbeans-eventspy.jar -Dfile.encoding=UTF-8 package"/>
+    <property name="sun.java.command" value="org.codehaus.plexus.classworlds.launcher.Launcher -Dmaven.ext.class.path=C:\Program Files\NetBeans-13\netbeans\java\maven-nblib\netbeans-eventspy.jar -Dfile.encoding=UTF-8 clean install"/>
     <property name="java.home" value="C:\Program Files\Java\jdk-11.0.16"/>
     <property name="user.language" value="en"/>
     <property name="java.specification.vendor" value="Oracle Corporation"/>
@@ -62,12 +61,11 @@
     <property name="sun.io.unicode.encoding" value="UnicodeLittle"/>
     <property name="sun.cpu.endian" value="little"/>
     <property name="java.vendor.version" value="18.9"/>
-    <property name="netbeans.deploy.clientUrlPart" value="/home.jsp"/>
     <property name="sun.desktop" value="windows"/>
     <property name="sun.cpu.isalist" value="amd64"/>
   </properties>
-  <testcase classname="dao.StaffDAOTest" name="testGetStaffByAccountID" time="0.611"/>
-  <testcase classname="dao.StaffDAOTest" name="testGetApplicationFormByAccountID1" time="0.029"/>
-  <testcase classname="dao.StaffDAOTest" name="testGetStaffByAccountID1" time="0.026"/>
-  <testcase classname="dao.StaffDAOTest" name="testGetApplicationFormByAccountID" time="0.019"/>
+  <testcase classname="dao.StaffDAOTest" name="testGetStaffByAccountID" time="0.086"/>
+  <testcase classname="dao.StaffDAOTest" name="testGetApplicationFormByAccountID1" time="0.031"/>
+  <testcase classname="dao.StaffDAOTest" name="testGetStaffByAccountID1" time="0.022"/>
+  <testcase classname="dao.StaffDAOTest" name="testGetApplicationFormByAccountID" time="0.022"/>
 </testsuite>

@@ -35,7 +35,7 @@ public class UseVoucherController extends HttpServlet {
         VoucherDAO vdao = new VoucherDAO();
         int productSalePercent = vdao.getProductSalePrecent(voucher);
         
-        response.sendRedirect("loadpaying?accountID=" + accountID + "&productSalePercent=" + productSalePercent);
+        response.sendRedirect("loadpaying?accountID=" + accountID + "&productSalePercent=" + productSalePercent + "&voucherID=" + voucher);
     } 
 
     // <editor-fold defaultstate="collapsed" desc="HttpServlet methods. Click on the + sign on the left to edit the code.">

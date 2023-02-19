@@ -42,6 +42,7 @@
                                             <h4 class="form-text-label">Full name:</h4>
                                             <input type="text" id="name" name="name" placeholder="Huỳnh Hữu Nghĩa" value="${user.accountName}">
                                             <input type="text" id="accountID" name="accountID" placeholder="Huỳnh Hữu Nghĩa" value="${user.accountID}" hidden="true">
+                                            <input type="text" id="voucherID" name="voucherID" placeholder="Huỳnh Hữu Nghĩa" value="${voucherID}" hidden="true">
                                             <input type="text" id="productSalePercent" name="productSalePercent" placeholder="Huỳnh Hữu Nghĩa" value="${productSalePercent}" hidden="true">
                                         <div class="alert-warning" id="txtNameMessage"></div>
                                     </div>
@@ -119,7 +120,7 @@
                                                     <td class="table-voucher-label">Mã giảm:</td>
                                                     <td class="table-number table-voucher-btn-group">
                                                         <form acction="usevoucher">
-                                                            <input type="text" id="voucher" name="voucher" placeholder="" />
+                                                            <input type="text" id="voucher"  placeholder="" />
                                                             <button type="Submit" class="btn-primary">
                                                                 Apply
                                                             </button>
@@ -161,7 +162,7 @@
                                                 </strong> store. Mọi thắc mắc xin liên hệ hotline <strong>0366.777.999</strong>. Chúc quí khách may mắn!.
                                             </p>
                                             <div class="form-paying-btn-group">
-                                                <button type="Submit" name="submit" class="btn-primary">
+                                                <button type="Submit" class="btn-primary">
                                                     Paying
                                                 </button>
                                                 <button type="button" class="btn-main">
@@ -188,7 +189,7 @@
             <jsp:include page="footer.jsp"></jsp:include>
         </div>
         <script src="jquery/Jquery.js"></script>
-        <script src="jquery/updateUserProfile.js"></script>
+        
     </body>
 
 </html>

@@ -41,7 +41,7 @@ public class CartDAO {
             rs = ps.executeQuery(); // execute query
             ArrayList<Cart> listCart = new ArrayList<>(); // create list product in cart
             while (rs.next()) {
-                listCart.add(new Cart(rs.getInt(1), rs.getString(2), rs.getInt(3), rs.getInt(4), rs.getString(5), rs.getString(6), rs.getInt(7), rs.getInt(8)));
+                listCart.add(new Cart(rs.getInt(1), rs.getInt(2), rs.getInt(3), rs.getInt(4), rs.getString(5), rs.getString(6), rs.getInt(7), rs.getInt(8)));
                 // add new item into list product in cart
             } // end while
             return listCart; // return list product in cart
@@ -258,6 +258,42 @@ public class CartDAO {
             e.getMessage();
         } // end try catch
         return false; // reutrn false if can not update
+    }
+
+    public void deleteCartByAccountID(int accountID) {
+        String query = "DELETE FROM CART WHERE AccountID = ?"; // string query insert cart
+        try {
+            con = new DBContext().getConnection(); // open connect database
+            ps = con.prepareStatement(query); // move query from Netbeen to SQl
+            ps.setInt(1, accountID);
+            ps.executeUpdate();
+            
+        } catch (Exception e) {
+            e.getMessage();
+        } // end try catch
+    }
+    
+    public ArrayList<Cart> getListCartToPaying(int accountID) {
+        try {
+            String query = "SELECT C.CartQuantity, C.ProductID, P.ProductPrice, P.ProductSalePercent FROM [CART] C JOIN [PRODUCT] P ON C.ProductID = P.ProductID WHERE C.AccountID = ?"; // query select form database
+            con = new DBContext().getConnection(); // open conect database
+            ps = con.prepareStatement(query); // set account ID into query
+            ps.setInt(1, accountID); // set account ID into query
+            rs = ps.executeQuery(); // execute query
+            ArrayList<Cart> listCart = new ArrayList<>(); // create list product in cart
+            double price;
+            while (rs.next()) {
+                double productPrice = rs.getInt(3);
+                double productSalePercent = rs.getInt(4);
+                price = productPrice * (1 - (productSalePercent/100));
+                listCart.add(new Cart(rs.getInt(1), rs.getInt(2), price));
+                // add new item into list product in cart
+            } // end while
+            return listCart; // return list product in cart
+        } catch (Exception e) {
+            e.getMessage();
+        } // end try catch
+        return null; // return null if not product into cart
     }
 
 }

@@ -40,6 +40,10 @@ public class LoadPayingController extends HttpServlet {
         } else {
             discount = Integer.parseInt(productSalePercent);
         }
+        String voucherID = request.getParameter("voucherID");
+        if (voucherID == null) {
+            voucherID = "";
+        }
         
         int accountID = Integer.parseInt(request.getParameter("accountID"));
         
@@ -53,6 +57,7 @@ public class LoadPayingController extends HttpServlet {
         request.setAttribute("listCart", listCart);
         request.setAttribute("user", user);
         request.setAttribute("productSalePercent", discount);
+        request.setAttribute("voucherID", voucherID);
         request.getRequestDispatcher("paying.jsp").forward(request, response);
     } 
 

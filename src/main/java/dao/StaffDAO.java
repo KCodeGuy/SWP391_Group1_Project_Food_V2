@@ -12,9 +12,7 @@ import java.sql.ResultSet;
 import model.AccountStatus;
 import model.Staff;
 
-
 // Initialize class
-
 /**
  *
  * @author 84832
@@ -27,9 +25,11 @@ public class StaffDAO {
     // Initialize method, the method used to query data from the database
 
     /**
+     * Returns the Staff associated with a given account ID.
      *
-     * @param accountID
-     * @return
+     * @param accountID the ID of the account associated with the Staff
+     * @return the Staff object associated with the given account ID, or null if
+     * the account ID is invalid
      */
     public Staff getStaffByAccountID(int accountID) {
         try {                                       //The try-catch statement can use an external error when an exceptional error occurs
@@ -57,9 +57,11 @@ public class StaffDAO {
     }//end method                           
 
     /**
+     * Interact with the database to load staff information by linking account
+     * ID
      *
-     * @param accountID
-     * @return
+     * @param accountID of the associated with staff
+     * @return staff linked by accountID otherwise return null
      */
     public Staff getApplicationFormByAccountID(int accountID) {
         try {
