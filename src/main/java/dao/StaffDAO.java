@@ -87,4 +87,67 @@ public class StaffDAO {
         return null; //If an exception occurs, return null
         //end method
     }
+    
+    
+     /**
+     * Check the acceptance application form and update the status of the account
+     * @param accountID of the associated with staff
+     * @return staff linked by acountID otherwise return null
+     */
+    public Staff getAcceptApplication(int accountID) {
+        try {
+            String query = "UPDATE [ACCOUNT]\n" +"SET AccountStatus = 'ACTIVED'\n" +"WHERE AccountID = ?;";//statement to query data from database tables(MySqlServer
+            con = new DBContext().getConnection(); // open connection to SQL
+            ps = con.prepareStatement(query); // move query from Netbeen to SQl
+            ps.setInt(1, accountID); //set data according to the first '?'
+            rs = ps.executeQuery(); // Execute the query and get the result set   
+            Staff staff = null;// Initialize a new staff object
+            while (rs.next()) {  // Loop through creating a new staff and retrieved data
+                staff = new Staff( //Create a new Staff object using data retrieved from the database(MySqlServer)
+                        rs.getString(1),//the staff name
+                        rs.getInt(2), //the staff email
+                        rs.getString(3),//the staff phone
+                        rs.getString(4),//the staff address 
+                        rs.getString(5) // the roleDescription
+                );
+            }//end while    
+            return staff;// return the staff
+
+        } catch (Exception e) {
+            e.getMessage();
+        }//end catch
+        return null; //If an exception occurs, return null
+        //end method
+    }
+    
+    /**
+     * Check the reject and update the status of the account application form and update the status of the account
+     * @param accountID of the associated with staff
+     * @return staff linked by acountID otherwise return null
+     */
+    public Staff getRejecttApplication(int accountID) {
+        try {
+            String query = "UPDATE [ACCOUNT]\n" +"SET AccountStatus = 'REMOVED'\n" +"WHERE AccountID = ?;";//statement to query data from database tables(MySqlServer
+            con = new DBContext().getConnection(); // open connection to SQL
+            ps = con.prepareStatement(query); // move query from Netbeen to SQl
+            ps.setInt(1, accountID); //set data according to the first '?'
+            rs = ps.executeQuery(); // Execute the query and get the result set   
+            Staff staff = null;// Initialize a new staff object
+            while (rs.next()) {  // Loop through creating a new staff and retrieved data
+                staff = new Staff( //Create a new Staff object using data retrieved from the database(MySqlServer)
+                        rs.getString(1),//the staff name
+                        rs.getInt(2), //the staff email
+                        rs.getString(3),//the staff phone
+                        rs.getString(4),//the staff address 
+                        rs.getString(5) // the roleDescription
+                );
+            }//end while    
+            return staff;// return the staff
+
+        } catch (Exception e) {
+            e.getMessage();
+        }//end catch
+        return null; //If an exception occurs, return null
+        //end method
+    }
 }

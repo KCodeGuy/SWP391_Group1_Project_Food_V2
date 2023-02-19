@@ -15,9 +15,9 @@ import model.Staff;
 
 /**
  *
- * @author CE160438_Le Trung Uol
+ * @author CE160438 Le Trung Uol
  */
-public class LoadFormApplicationDetailForAdminController extends HttpServlet {
+public class RejectApplicationController extends HttpServlet {
 
     /**
      * Processes requests for both HTTP <code>GET</code> and <code>POST</code>
@@ -31,15 +31,15 @@ public class LoadFormApplicationDetailForAdminController extends HttpServlet {
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         response.setContentType("text/html;charset=UTF-8");
-        // Set the account ID to get the infomation of the staff
+         // Set the account ID to get the infomation of the staff
         int accountID = Integer.parseInt(request.getParameter("accountID"));
         // Create a new StaffDAO instance and retrieve infomation using account ID
         StaffDAO sdao = new StaffDAO();
-        Staff staff = sdao.getApplicationFormByAccountID(accountID);
+        Staff staff = sdao.getRejecttApplication(accountID);
         // Set the user attribute for the request and forward to the use formApplicationDetailsForAdmin.jsp page
         request.setAttribute("accountID", accountID);
         request.setAttribute("staff", staff);
-        request.getRequestDispatcher("formApplicationDetailsForAdmin.jsp").forward(request, response);
+        request.getRequestDispatcher("manageFormApllication.jsp").forward(request, response);
     }
 
     // <editor-fold defaultstate="collapsed" desc="HttpServlet methods. Click on the + sign on the left to edit the code.">
