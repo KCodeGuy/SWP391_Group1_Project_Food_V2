@@ -36,6 +36,7 @@ controller\LoadStaffProfileController.class
 emailHandler\EmailHandler.class
 controller\AddProductIntoCartFromProductDetail.class
 emailHandler\EmailHandler$1.class
+dao\VoucherDAO.class
 model\Account.class
 model\AccountStatus.class
 controller\EmailAuthenUpdatePasswordController.class
