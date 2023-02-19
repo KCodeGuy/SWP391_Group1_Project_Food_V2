@@ -64,7 +64,7 @@ public class Account {
 
     /**
      * Constructor with all parameter
-     * 
+     *
      * @param accountID ID of the account
      * @param accountEmail Email address of the account
      * @param accountPassword Password of the account
@@ -86,10 +86,12 @@ public class Account {
         this.roleID = roleID;
         this.roleDescription = roleDescription;
     }
-    
+
     /**
-     * Constructor with parameter accountName, accountPhone, accountEmail, accountAddress, roleDescription
-     * Constructor to display employee information
+     * Constructor with parameter accountName, accountPhone, accountEmail,
+     * accountAddress, roleDescription Constructor to display employee
+     * information
+     *
      * @param accountName
      * @param accountEmail Email address of the account
      * @param accountPhone
@@ -104,9 +106,8 @@ public class Account {
         this.accountAddress = accountAddress;
         this.roleDescription = roleDescription;
     }
-    
 
-     /**
+    /**
      *
      * Constructor with parameters accountName, accountEmail, accountPhone,
      * accountAddress and roleDescription.
@@ -117,7 +118,6 @@ public class Account {
      * @param accountAddress address of the account
      * @param roleDescription Description of the role of the account
      */
-    
     public Account(String accountEmail, String accountName, int accountPhone, String accountAddress, String roleDescription) {
         this.accountEmail = accountEmail;
         this.accountName = accountName;
@@ -132,8 +132,6 @@ public class Account {
         this.accountName = accountName;
         this.roleDescription = roleDescription;
     }
-    
-    
 
     public Account(String accountEmail, String accountName, int accountPhone, String accountAddress) {
         this.accountEmail = accountEmail;
@@ -141,7 +139,14 @@ public class Account {
         this.accountPhone = accountPhone;
         this.accountAddress = accountAddress;
     }
-    
+
+    public Account(String accountEmail, String accountPassword, String accountName, int accountPhone, String accountAddress) {
+        this.accountEmail = accountEmail;
+        this.accountPassword = accountPassword;
+        this.accountName = accountName;
+        this.accountPhone = accountPhone;
+        this.accountAddress = accountAddress;
+    }
 
     /**
      *
@@ -245,6 +250,7 @@ public class Account {
 
     /**
      * Get full name associated with the account
+     *
      * @return accountName full name associated with the account
      */
     public String getAccountName() {
@@ -253,6 +259,7 @@ public class Account {
 
     /**
      * Set full name associated with the account
+     *
      * @param accountName full name associated with the account
      */
     public void setAccountName(String accountName) {
@@ -261,6 +268,7 @@ public class Account {
 
     /**
      * Get phone number associated with the account
+     *
      * @return accountPhone phone number associated with the account
      */
     public int getAccountPhone() {
@@ -269,6 +277,7 @@ public class Account {
 
     /**
      * Set phone number associated with the account
+     *
      * @param accountPhone phone number associated with the account
      */
     public void setAccountPhone(int accountPhone) {
@@ -277,6 +286,7 @@ public class Account {
 
     /**
      * Get address associated with the account
+     *
      * @return accountAddress address associated with the account
      */
     public String getAccountAddress() {
@@ -285,6 +295,7 @@ public class Account {
 
     /**
      * Set address associated with the account
+     *
      * @param accountAddress address associated with the account
      */
     public void setAccountAddress(String accountAddress) {
@@ -293,6 +304,7 @@ public class Account {
 
     /**
      * Get ID of the role associated with the account
+     *
      * @return roleID ID of the role associated with the account
      */
     public String getRoleID() {
@@ -301,6 +313,7 @@ public class Account {
 
     /**
      * Set ID of the role associated with the account
+     *
      * @param roleID ID of the role associated with the account
      */
     public void setRoleID(String roleID) {
