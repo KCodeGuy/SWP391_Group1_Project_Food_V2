@@ -29,7 +29,7 @@ public class DeleteProductInCartController extends HttpServlet {
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
     throws ServletException, IOException {
         response.setContentType("text/html;charset=UTF-8");
-        int accountID = 5;
+        int accountID = Integer.parseInt(request.getParameter("accountID"));
         int productID = Integer.parseInt(request.getParameter("productID"));
         
         CartDAO cdao = new CartDAO(); //create CartDAO

@@ -107,7 +107,7 @@
                                             </td>
                                             <td class="table-price"><fmt:formatNumber type="number" pattern="###,###" value="${(cart.productPrice * (1-(cart.productSalePercent/100)))*cart.cartQuantity}"/>đ</td>
                                             <td class="table-btn">
-                                                <a href="deleteproductincart?productID=${cart.productID}" onclick="return showMessageDelete();"><i class="fa-solid fa-trash"></i></a>
+                                                <a href="deleteproductincart?productID=${cart.productID}&accountID=${sessionScope.accountSesseion.accountID}" onclick="return showMessageDelete();"><i class="fa-solid fa-trash"></i></a>
                                             </td>
                                         </tr>
                                     </c:forEach>
