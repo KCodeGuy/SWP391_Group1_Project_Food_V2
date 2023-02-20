@@ -47,14 +47,16 @@
                                             </button>
                                         </div>
                                     </form>
-                                    <div class="btn-group-search-add">
-                                        <div class="search-group">
-                                            <input type="text" placeholder="Enter user's name">
-                                            <button class="btn-main btn-search">
-                                                <i class="fa-solid fa-magnifying-glass"></i>
-                                            </button>
+                                    <form action="searchuser">
+                                        <div class="btn-group-search-add">
+                                            <div class="search-group">
+                                                <input type="text" name="txtSearch" placeholder="Enter user's name">
+                                                <button type="submit" class="btn-main btn-search">
+                                                    <i class="fa-solid fa-magnifying-glass"></i>
+                                                </button>
+                                            </div>
                                         </div>
-                                    </div>
+                                    </form>
                                 </div>
                             </div>
                         </div>
@@ -87,6 +89,14 @@
                                             </td>
                                         </tr>
                                     </c:forEach>
+                                    <c:if test="${listUser.size() == 0}">
+                                        <tr>
+                                            <td class="table-row-no-product" colspan="5" >
+                                                 ${message}
+                                            </td>
+                                        </tr>
+                                        </c:if>
+
                                 </tbody>
                             </table>
                         </div>

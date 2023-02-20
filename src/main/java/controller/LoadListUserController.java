@@ -42,6 +42,7 @@ public class LoadListUserController extends HttpServlet {
         List<User> listUser = udao.getListUser();
         //Set the list of users as an attribute of the current request object with the key "listUser"
         request.setAttribute("listUser", listUser);
+        request.setAttribute("message", "The user is not found!");
         //Forward the request and response objects to the manageUser.jsp view for display
         request.getRequestDispatcher("manageUser.jsp").forward(request, response);
     }
