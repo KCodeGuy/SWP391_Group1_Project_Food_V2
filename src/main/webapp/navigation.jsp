@@ -46,7 +46,7 @@
                                     <a class="nav-link" aria-current="page" href="manageOrder.jsp">Manage orders</a>
                                 </li>
                                 <li class="nav-item">
-                                    <a class="nav-link" aria-current="page" href="manageProduct.jsp">Manage products</a>
+                                    <a class="nav-link" aria-current="page" href="loadlistproductformanageproductpage">Manage products</a>
                                 </li>
                                 <li class="nav-item">
                                     <a class="nav-link" aria-current="page" href="loadlistuser">Manage users</a>
