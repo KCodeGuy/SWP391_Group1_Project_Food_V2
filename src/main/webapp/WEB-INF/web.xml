@@ -60,7 +60,7 @@
         <servlet-name>LoadFormApplicationDetailForAdminController</servlet-name>
         <servlet-class>controller.LoadFormApplicationDetailForAdminController</servlet-class>
     </servlet>
-        <servlet>
+    <servlet>
         <servlet-name>DeleteUser</servlet-name>
         <servlet-class>controller.DeleteUserController</servlet-class>
     </servlet>
@@ -177,7 +177,6 @@
         <url-pattern>/rejectapplication</url-pattern>
     </servlet-mapping>
     <servlet-mapping>
-<<<<<<< Updated upstream
         <servlet-name>LoadListUserController</servlet-name>
         <url-pattern>/loadlistuser</url-pattern>
     </servlet-mapping>
@@ -197,13 +196,13 @@
         <servlet-name>LoadListOrderedForChefController</servlet-name>
         <url-pattern>/loadlistorderedforchef</url-pattern>
     </servlet-mapping>
-        <servlet-mapping>
+    <servlet-mapping>
         <servlet-name>DeleteUser</servlet-name>
         <url-pattern>/deleteuser</url-pattern>
-=======
+    </servlet-mapping>
+    <servlet-mapping>
         <servlet-name>LoadListProductForManageProductPageController</servlet-name>
         <url-pattern>/loadlistproductformanageproductpage</url-pattern>
->>>>>>> Stashed changes
     </servlet-mapping>
     <session-config>
         <session-timeout>
