@@ -42,7 +42,7 @@ public class DeleteProductInCartController extends HttpServlet {
             cdao.deleteProductInCart(accountID, productID);
         }
         
-        response.sendRedirect("cart");
+        response.sendRedirect("cart?accountID=" + accountID);
     } 
 
     // <editor-fold defaultstate="collapsed" desc="HttpServlet methods. Click on the + sign on the left to edit the code.">
