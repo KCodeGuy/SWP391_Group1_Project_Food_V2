@@ -186,7 +186,31 @@ public class OrderDAO {
             ps.setInt(1, orderID);
             rs = ps.executeQuery(); // execute query
             if (ps.executeUpdate() == 1) {
-                // if insert successfull to return true
+                // if accept successfull to return true
+                return true;
+            } // end if ps.executeUpdate() == 1
+        } catch (Exception e) {
+            e.getMessage();
+        } // end try catch
+        return false; // return null if not order
+    }
+    
+    /**
+     * This function to reject order
+     * @param orderID ID of order
+     * @return true if reject successful, false if can not reject
+     */
+    public boolean rejectOrderByOrderID(int orderID) {
+        try {
+            String query = "UPDATE [ORDER]\n"
+                    + "SET OrderStatus = 'REJECT'\n"
+                    + "WHERE OrderID = ?"; // query select form database
+            con = new DBContext().getConnection(); // open conect database
+            ps = con.prepareStatement(query); // set account ID into query
+            ps.setInt(1, orderID);
+            rs = ps.executeQuery(); // execute query
+            if (ps.executeUpdate() == 1) {
+                // if reject successfull to return true
                 return true;
             } // end if ps.executeUpdate() == 1
         } catch (Exception e) {
