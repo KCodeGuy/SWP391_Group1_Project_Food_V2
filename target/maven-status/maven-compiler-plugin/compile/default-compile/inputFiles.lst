@@ -48,6 +48,7 @@ D:\2023\[SP23]SWP391\SWP391_Group1_Project_Food_V2\src\main\java\controller\Payi
 D:\2023\[SP23]SWP391\SWP391_Group1_Project_Food_V2\src\main\java\controller\LoadListOrderedForChefController.java
 D:\2023\[SP23]SWP391\SWP391_Group1_Project_Food_V2\src\main\java\dao\OrderDAO.java
 D:\2023\[SP23]SWP391\SWP391_Group1_Project_Food_V2\src\main\java\dao\UserDAO.java
+D:\2023\[SP23]SWP391\SWP391_Group1_Project_Food_V2\src\main\java\controller\DeleteUserController.java
 D:\2023\[SP23]SWP391\SWP391_Group1_Project_Food_V2\src\main\java\hash\jni\LibraryLoader.java
 D:\2023\[SP23]SWP391\SWP391_Group1_Project_Food_V2\src\main\java\context\DBContext.java
 D:\2023\[SP23]SWP391\SWP391_Group1_Project_Food_V2\src\main\java\controller\LoadFormApplicationDetailController.java

@@ -7,6 +7,7 @@ controller\UseVoucherController.class
 com\example\demo\hash\jni\SysLibraryLoader.class
 com\example\demo\hash\codec\Base64.class
 com\example\demo\hash\jni\Platform$OS.class
+controller\DeleteUserController.class
 model\Product.class
 dao\UserDAO.class
 model\Voucher.class
