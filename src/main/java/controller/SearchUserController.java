@@ -40,7 +40,7 @@ public class SearchUserController extends HttpServlet {
         List<User> listUser = udao.getListUserByName(txtSearch);
         //Set the list of users as an attribute of the current request object with the key "listUser"
         request.setAttribute("listUser", listUser);
-        request.setAttribute("message", txtSearch);
+        request.setAttribute("message", "Unable to find a user with the name containing " + txtSearch);
         //Forward the request and response objects to the manageUser.jsp view for display
         request.getRequestDispatcher("manageUser.jsp").forward(request, response);
     }
