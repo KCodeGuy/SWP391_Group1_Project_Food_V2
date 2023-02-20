@@ -57,5 +57,34 @@ public class ProductDAO {
         }
         return null;
     }
-       
+    
+     /**
+     * Function get list product
+     *
+     * @return List<Product> list of product
+     */
+    public List<Product> getListProductManagePage() {
+        try {
+            String query = "SELECT ProductID,ProductLinkImage, ProductName, ProductDescription,ProductSalePercent,ProductPrice,ProductStatus FROM PRODUCT;";
+            con = new DBContext().getConnection(); // open connection to SQL
+            ps = con.prepareStatement(query); // move query from Netbeen to SQl
+            rs = ps.executeQuery(); // the same with click to "excute" btn;
+            List<Product> list = new ArrayList<>(); //list products
+            while (rs.next()) {
+                list.add(new Product(
+                        rs.getInt(1),
+                        rs.getString(2), 
+                        rs.getString(3),
+                        rs.getString(4),
+                        rs.getInt(5),
+                        rs.getInt(6),
+                        ProductStatus.valueOf(rs.getString(7))
+                )); // add new item in list
+            } // end while rs.next
+            return list;// return list product
+        } catch (Exception e) {
+            e.getMessage();
+        }
+        return null;
+    }      
 }
