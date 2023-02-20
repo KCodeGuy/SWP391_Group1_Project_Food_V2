@@ -91,7 +91,7 @@
                                             <td class="table-status">${o.orderStatus}</td>
                                             <td class="table-price"><fmt:formatNumber type="number" pattern="###,###" value="${o.totalPrice}"/>đ</td>
                                             <td class="table-btn">
-                                                <a class="table-btn-edit" href="updateProduct.html"><i class="fa-solid fa-pen-to-square"></i></a>
+                                                <a class="table-btn-edit" href="showorderdetailforchef?orderID=${o.orderID}"><i class="fa-solid fa-pen-to-square"></i></a>
                                                 <a href="#" onclick="return showMessageDelete();"><i
                                                         class="fa-solid fa-trash"></i></a>
                                             </td>

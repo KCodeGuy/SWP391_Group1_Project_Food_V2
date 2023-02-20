@@ -12,6 +12,7 @@ import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
 import model.Cart;
+import model.OrderDetail;
 import model.Product;
 
 /**
@@ -47,5 +48,33 @@ public class OrderDetailDAO {
         } // end try catch
     }
     
+    /**
+     * /**
+     * This function get list product in cart
+     *
+     * Function get accountID from parameter then use query into database to get
+     * all product in table cart by accountID.
+     *
+     * @param orderID ID of order
+     * @return list product in cart of user
+     */
+    public ArrayList<OrderDetail> getListOrderDetailByOrderID(int orderID) {
+        try {
+            String query = "SELECT D.OrderDQuantity, D.OrderDPrice, P.ProductName, P.ProductLinkImage FROM ORDER_DETAIL D JOIN PRODUCT P ON D.ProductID = P.ProductID WHERE D.OrderID = ?"; // query select form database
+            con = new DBContext().getConnection(); // open conect database
+            ps = con.prepareStatement(query); // set account ID into query
+            ps.setInt(1, orderID); // set account ID into query
+            rs = ps.executeQuery(); // execute query
+            ArrayList<OrderDetail> listOrder = new ArrayList<>(); // create list 
+            while (rs.next()) {
+                listOrder.add(new OrderDetail(rs.getInt(1), rs.getInt(2), rs.getString(3), rs.getString(4)));
+                // add new item into list 
+            } // end while
+            return listOrder; // return list 
+        } catch (Exception e) {
+            e.getMessage();
+        } // end try catch
+        return null; // return null
+    }
     
 }

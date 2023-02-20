@@ -15,6 +15,8 @@ public class OrderDetail {
     private int orderPrice; // Price of the product in the order
     private int productID; // ID of the product in the order
     private int orderID; // ID of the order associated with the order detail
+    private String productName; // Name of product
+    private String productLink; // Link image of product
 
     /**
      * Constructor default
@@ -38,6 +40,59 @@ public class OrderDetail {
         this.orderPrice = orderPrice;
         this.productID = productID;
         this.orderID = orderID;
+    }
+
+    /**
+     * Constructor
+     *
+     * @param orderQuantity Quantity of the order detail
+     * @param orderPrice Price of the order detail
+     * @param productName Name of the product
+     * @param productLink Link image of product
+     */
+    public OrderDetail(int orderQuantity, int orderPrice, String productName, String productLink) {
+        this.orderQuantity = orderQuantity;
+        this.orderPrice = orderPrice;
+        this.productName = productName;
+        this.productLink = productLink;
+    }
+
+    /**
+     *
+     * Get name of the product
+     *
+     * @return String name of the product
+     */
+    public String getProductName() {
+        return productName;
+    }
+
+    /**
+     *
+     * Set name of the product
+     *
+     * @param productName name of the product
+     */
+    public void setProductName(String productName) {
+        this.productName = productName;
+    }
+
+    /**
+     * Get link image of product
+     *
+     * @return productLink link image of product
+     */
+    public String getProductLink() {
+        return productLink;
+    }
+
+    /**
+     * Set link image of product
+     *
+     * @param productLink link image of product
+     */
+    public void setProductLink(String productLink) {
+        this.productLink = productLink;
     }
 
     /**

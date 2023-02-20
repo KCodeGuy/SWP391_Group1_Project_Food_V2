@@ -19,7 +19,7 @@ public class Order {
     private int userPhone; // Phone number of the user who placed the order
     private String userAddress; // Shipping address of the user who placed the order
     private String voucherID; // ID of the voucher used for the order
-    private String productSalePercent; // Sale percent of the product in the order
+    private int productSalePercent; // Sale percent of the product in the order
     private String accountOfIDChef; // ID of the chef who prepared the order
     private String accountOfIDShipper; // ID of the shipper who delivered the order
     private int totalQuanityProduct; // total quantity of product in order
@@ -47,7 +47,7 @@ public class Order {
      * @param accountOfIDChef ID of the chef account
      * @param accountOfIDShipper ID of the shipper account
      */
-    public Order(int orderID, String orderNote, OrderStatus orderStatus, String orderDate, int accountID, String userFullName, int userPhone, String userAddress, String voucherID, String productSalePercent, String accountOfIDChef, String accountOfIDShipper) {
+    public Order(int orderID, String orderNote, OrderStatus orderStatus, String orderDate, int accountID, String userFullName, int userPhone, String userAddress, String voucherID, int productSalePercent, String accountOfIDChef, String accountOfIDShipper) {
         this.orderID = orderID;
         this.orderNote = orderNote;
         this.orderStatus = orderStatus;
@@ -79,6 +79,36 @@ public class Order {
         this.totalQuanityProduct = totalQuanityProduct;
         this.totalPrice = totalPrice;
     }
+
+    /**
+     * Constructor
+     * @param orderID ID of the order
+     * @param orderNote Note of the order
+     * @param orderDate Date of the order
+     * @param accountID ID of the account
+     * @param userFullName Full name of the user
+     * @param userPhone Phone number of the user
+     * @param userAddress Address of the user
+     * @param voucherID ID of the voucher
+     * @param productSalePercent Sale percent of the product
+     * @param totalQuanityProduct total quantity of product in order
+     * @param totalPrice total price of product in order
+     */
+    public Order(int orderID, String orderNote, String orderDate, int accountID, String userFullName, int userPhone, String userAddress, String voucherID, int productSalePercent, int totalQuanityProduct, int totalPrice) {
+        this.orderID = orderID;
+        this.orderNote = orderNote;
+        this.orderDate = orderDate;
+        this.accountID = accountID;
+        this.userFullName = userFullName;
+        this.userPhone = userPhone;
+        this.userAddress = userAddress;
+        this.voucherID = voucherID;
+        this.productSalePercent = productSalePercent;
+        this.totalQuanityProduct = totalQuanityProduct;
+        this.totalPrice = totalPrice;
+    }
+    
+    
 
     /**
      * Get total quantity of product in order
@@ -281,7 +311,7 @@ public class Order {
      *
      * @return the sale percentage of the product.
      */
-    public String getProductSalePercent() {
+    public int getProductSalePercent() {
         return productSalePercent;
     }
 
@@ -290,7 +320,7 @@ public class Order {
      *
      * @param productSalePercent the sale percentage of the product to be set.
      */
-    public void setProductSalePercent(String productSalePercent) {
+    public void setProductSalePercent(int productSalePercent) {
         this.productSalePercent = productSalePercent;
     }
 

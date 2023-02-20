@@ -88,6 +88,7 @@ public class OrderDAO {
 
     /**
      * This function get list product have status is pending
+     *
      * @return list order
      */
     public ArrayList<Order> getListOrder() {
@@ -98,7 +99,7 @@ public class OrderDAO {
                     + "   [ORDER].OrderDate, \n"
                     + "   [ORDER].OrderStatus, \n"
                     + "   SUM([ORDER_DETAIL].OrderDQuantity) AS Quantity, \n"
-                    + "   SUM([ORDER_DETAIL].OrderDPrice * (100 - [ORDER].ProductSalePercent) / 100) AS Price \n"
+                    + "   SUM(([ORDER_DETAIL].OrderDPrice * (100 - [ORDER].ProductSalePercent) / 100) * [ORDER_DETAIL].OrderDQuantity) AS Price \n"
                     + "FROM [ORDER] \n"
                     + "INNER JOIN [ORDER_DETAIL] ON [ORDER].OrderID = [ORDER_DETAIL].OrderID \n"
                     + "WHERE [ORDER].OrderStatus = 'PENDING'\n"
@@ -116,6 +117,53 @@ public class OrderDAO {
                 // add new item into list order
             } // end while
             return listOrder; // return list order
+        } catch (Exception e) {
+            e.getMessage();
+        } // end try catch
+        return null; // return null if not order
+    }
+
+    /**
+     * This function get order by order ID
+     * @param orderID ID of order
+     * @return order of user
+     */
+    public Order getOrderByOrderID(int orderID) {
+        try {
+            String query = "SELECT \n"
+                    + "   [ORDER].OrderID, \n"
+                    + "   [ORDER].AccountID,\n"
+                    + "   [ORDER].UserFullName, \n"
+                    + "   [ORDER].UserPhone,\n"
+                    + "   [ORDER].UserAddress,\n"
+                    + "   [ORDER].OrderDate, \n"
+                    + "   [ORDER].OrderNote,\n"
+                    + "   [ORDER].VoucherID,\n"
+                    + "   [ORDER].ProductSalePercent,\n"
+                    + "   SUM([ORDER_DETAIL].OrderDQuantity) AS Quantity, \n"
+                    + "   SUM(([ORDER_DETAIL].OrderDPrice * (100 - [ORDER].ProductSalePercent) / 100) * [ORDER_DETAIL].OrderDQuantity) AS Price \n"
+                    + "FROM [ORDER] \n"
+                    + "INNER JOIN [ORDER_DETAIL] ON [ORDER].OrderID = [ORDER_DETAIL].OrderID \n"
+                    + "WHERE [ORDER].OrderStatus = 'PENDING' AND [ORDER].OrderID = ?\n"
+                    + "GROUP BY \n"
+                    + "   [ORDER].OrderID, \n"
+                    + "   [ORDER].AccountID,\n"
+                    + "   [ORDER].UserFullName, \n"
+                    + "   [ORDER].UserPhone,\n"
+                    + "   [ORDER].UserAddress,\n"
+                    + "   [ORDER].OrderDate, \n"
+                    + "   [ORDER].OrderNote,\n"
+                    + "   [ORDER].VoucherID,\n"
+                    + "   [ORDER].ProductSalePercent"; // query select form database
+            con = new DBContext().getConnection(); // open conect database
+            ps = con.prepareStatement(query); // set account ID into query
+            ps.setInt(1, orderID);
+            rs = ps.executeQuery(); // execute query
+            Order order = null;
+            while (rs.next()) {
+                order = new Order(rs.getInt(1), rs.getString(7), rs.getString(6), rs.getInt(2), rs.getString(3), rs.getInt(4), rs.getString(5), rs.getString(8), rs.getInt(9), rs.getInt(10), rs.getInt(11));
+            } // end while
+            return order; // return list order
         } catch (Exception e) {
             e.getMessage();
         } // end try catch
