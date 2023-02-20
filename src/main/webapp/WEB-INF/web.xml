@@ -60,7 +60,7 @@
         <servlet-name>LoadFormApplicationDetailForAdminController</servlet-name>
         <servlet-class>controller.LoadFormApplicationDetailForAdminController</servlet-class>
     </servlet>
-        <servlet>
+    <servlet>
         <servlet-name>DeleteUser</servlet-name>
         <servlet-class>controller.DeleteUserController</servlet-class>
     </servlet>
@@ -99,6 +99,10 @@
     <servlet>
         <servlet-name>LoadListOrderedForChefController</servlet-name>
         <servlet-class>controller.LoadListOrderedForChefController</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>SearchUserController</servlet-name>
+        <servlet-class>controller.SearchUserController</servlet-class>
     </servlet>
     <servlet-mapping>
         <servlet-name>HomeController</servlet-name>
@@ -192,9 +196,13 @@
         <servlet-name>LoadListOrderedForChefController</servlet-name>
         <url-pattern>/loadlistorderedforchef</url-pattern>
     </servlet-mapping>
-        <servlet-mapping>
+    <servlet-mapping>
         <servlet-name>DeleteUser</servlet-name>
         <url-pattern>/deleteuser</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>SearchUserController</servlet-name>
+        <url-pattern>/searchuser</url-pattern>
     </servlet-mapping>
     <session-config>
         <session-timeout>

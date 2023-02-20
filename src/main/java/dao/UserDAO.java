@@ -165,6 +165,41 @@ public class UserDAO {
     }
 
     /**
+     * Returns a list of User objects with names that match the provided search
+     * text.
+     *
+     * @param txtSearch the search text to match user names against
+     * @return a list of User objects whose names match the provided search
+     * text, or null if no match is found
+     */
+    public List<User> getListUserByName(String txtSearch) {
+        try {
+            //Define a SQL query to retrieve account details for all active users, including role information.
+            String query = "SELECT A.AccountID, A.AccountEmail, A.AccountName"
+                    + " FROM [ACCOUNT] A JOIN [USER] U ON A.AccountID = U.AccountID "
+                    + "WHERE A.AccountStatus = 'ACTIVED' AND AccountName LIKE ?";
+            con = new DBContext().getConnection(); //Open a connection to the database.
+            ps = con.prepareStatement(query); //Move query from Netbeen to SQL
+            ps.setString(1, "%" + txtSearch + "%");
+            rs = ps.executeQuery(); //Execute the query and get the result set.
+            //Create a list to hold the User objects that will be created from the query results.
+            List<User> list = new ArrayList<>();
+            //Loop through the result set and create a new User object for each row.
+            while (rs.next()) {
+                list.add(new User(
+                        rs.getInt(1), //AccountID
+                        rs.getString(2), //AccountEmail
+                        rs.getString(3)));  //AccountName
+            } //End while
+            return list;  //Return the list of User objects.
+        } catch (Exception e) {
+            e.getMessage();
+        } //End trycatch
+        //If an exception is caught or if the list is empty, return null.
+        return null;
+    }
+
+    /**
      * This function get information user for paying
      *
      * @param accountID the ID of the account associated with the user
