@@ -112,6 +112,10 @@
         <servlet-name>ShowOrderDetailsForChefController</servlet-name>
         <servlet-class>controller.ShowOrderDetailsForChefController</servlet-class>
     </servlet>
+    <servlet>
+        <servlet-name>AcceptOrderController</servlet-name>
+        <servlet-class>controller.AcceptOrderController</servlet-class>
+    </servlet>
     <servlet-mapping>
         <servlet-name>HomeController</servlet-name>
         <url-pattern>/home</url-pattern>
@@ -219,6 +223,10 @@
     <servlet-mapping>
         <servlet-name>ShowOrderDetailsForChefController</servlet-name>
         <url-pattern>/showorderdetailforchef</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>AcceptOrderController</servlet-name>
+        <url-pattern>/acceptorder</url-pattern>
     </servlet-mapping>
     <session-config>
         <session-timeout>

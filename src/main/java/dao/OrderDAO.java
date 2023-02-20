@@ -125,6 +125,7 @@ public class OrderDAO {
 
     /**
      * This function get order by order ID
+     *
      * @param orderID ID of order
      * @return order of user
      */
@@ -168,6 +169,30 @@ public class OrderDAO {
             e.getMessage();
         } // end try catch
         return null; // return null if not order
+    }
+
+    /**
+     * This function to accept order
+     * @param orderID ID of order
+     * @return true if accept successful, false if can not accept
+     */
+    public boolean acceptOrderByOrderID(int orderID) {
+        try {
+            String query = "UPDATE [ORDER]\n"
+                    + "SET OrderStatus = 'ACCEPT'\n"
+                    + "WHERE OrderID = ?"; // query select form database
+            con = new DBContext().getConnection(); // open conect database
+            ps = con.prepareStatement(query); // set account ID into query
+            ps.setInt(1, orderID);
+            rs = ps.executeQuery(); // execute query
+            if (ps.executeUpdate() == 1) {
+                // if insert successfull to return true
+                return true;
+            } // end if ps.executeUpdate() == 1
+        } catch (Exception e) {
+            e.getMessage();
+        } // end try catch
+        return false; // return null if not order
     }
 
 }

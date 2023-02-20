@@ -151,7 +151,7 @@
                     <div class="row">
                         <div class="col-xs-12">
                             <div class="detail-table-group">
-                                <button class="btn-primary"><a href="">Accept</a></button>
+                                <button class="btn-primary"><a href="acceptorder?orderID=${order.orderID}">Accept</a></button>
                                 <button class="btn-main"><a href="">Reject</a></button>
                             </div>
                         </div>

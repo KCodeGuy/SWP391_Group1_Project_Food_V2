@@ -80,7 +80,7 @@
                                     <a class="nav-link" aria-current="page" href="staffProfile.jsp">Manage ship</a>
                                 </li>
                                 <li class="nav-item">
-                                    <a class="nav-link" aria-current="page" href="staffProfile.jsp">Manage accepted orders</a>
+                                    <a class="nav-link" aria-current="page" href="staffProfile.jsp">Manage pickup orders</a>
                                 </li>
                                 <li class="nav-item">
                                     <a class="nav-link" aria-current="page" href="loadstaffprofile?accountID=${sessionScope.accountSesseion.accountID}">${sessionScope.accountSesseion.accountName}</a>
