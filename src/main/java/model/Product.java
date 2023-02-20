@@ -27,26 +27,28 @@ public class Product {
     }
 
     /**
-     * Constructor with parameters productID, productLink, productName,productDescription,
-     * productSalePercent,peoductPrice, productStatus
-     * @param productID
-     * @param productLink
-     * @param productName
-     * @param productDescription
-     * @param productSalePercent
-     * @param productPrice
-     * @param productStatus
+     * Constructor with parameters productID, productLink,
+     * productName,productDescription, productSalePercent,peoductPrice,
+     * productStatus
+     *
+     * @param productID ID of the product
+     * @param productName Name of the product
+     * @param productDescription Description of the product
+     * @param productPrice Price of the product
+     * @param productSalePercent Sale percent of the product
+     * @param productStatus Status of the product
+     * @param productLink Link image of product
      */
-    public Product(int productID,String productLink, String productName, String productDescription, int productSalePercent,int productPrice ,ProductStatus productStatus) {
-        this.productID = productID; 
+    public Product(int productID, String productLink, String productName, String productDescription, int productSalePercent, int productPrice, ProductStatus productStatus) {
+        this.productID = productID;
         this.productLink = productLink;
         this.productName = productName;
         this.productDescription = productDescription;
         this.productSalePercent = productSalePercent;
         this.productPrice = productPrice;
-        this.productStatus = productStatus; 
+        this.productStatus = productStatus;
     }
- 
+
     /**
      *
      * Constructor with parameters productID, productName, productDescription,
@@ -214,6 +216,7 @@ public class Product {
 
     /**
      * Get link image of product
+     *
      * @return productLink link image of product
      */
     public String getProductLink() {
@@ -222,12 +225,11 @@ public class Product {
 
     /**
      * Set link image of product
+     *
      * @param productLink link image of product
      */
     public void setProductLink(String productLink) {
         this.productLink = productLink;
     }
-    
-    
 
 }
