@@ -100,6 +100,10 @@
         <servlet-name>LoadListOrderedForChefController</servlet-name>
         <servlet-class>controller.LoadListOrderedForChefController</servlet-class>
     </servlet>
+    <servlet>
+        <servlet-name>LoadListProductForManageProductPageController</servlet-name>
+        <servlet-class>controller.LoadListProductForManageProductPageController</servlet-class>
+    </servlet>
     <servlet-mapping>
         <servlet-name>HomeController</servlet-name>
         <url-pattern>/home</url-pattern>
@@ -173,6 +177,7 @@
         <url-pattern>/rejectapplication</url-pattern>
     </servlet-mapping>
     <servlet-mapping>
+<<<<<<< Updated upstream
         <servlet-name>LoadListUserController</servlet-name>
         <url-pattern>/loadlistuser</url-pattern>
     </servlet-mapping>
@@ -195,6 +200,10 @@
         <servlet-mapping>
         <servlet-name>DeleteUser</servlet-name>
         <url-pattern>/deleteuser</url-pattern>
+=======
+        <servlet-name>LoadListProductForManageProductPageController</servlet-name>
+        <url-pattern>/loadlistproductformanageproductpage</url-pattern>
+>>>>>>> Stashed changes
     </servlet-mapping>
     <session-config>
         <session-timeout>
