@@ -101,11 +101,12 @@ public class AccountDAO {
      */
     public void registerAccount(String name, String email, String password, String phone, String address, String dob, String startDay) {
         // query to insert a new account of user to database. With status is ACTIVED and role's id is USER default.
-        String query = "INSERT INTO [ACCOUNT] VALUES (?,N?,N?,'PENDING',N?,N?,N?,?,?)";
+        String query = "INSERT INTO [ACCOUNT] VALUES (?,?,?,'ACTIVED',?,?,?,?,?)";
+        String id = createNewUserID();
         try {
             con = new DBContext().getConnection();   // open connection to SQL
             ps = con.prepareStatement(query);        // move query from Netbeen to SQl
-            ps.setString(1, createNewUserID());                  // pass entered email to the first ?. 
+            ps.setString(1, id);                  // pass entered email to the first ?. 
             ps.setString(2, email);               // pass entered password to the second ?.
             ps.setString(3, password);                   // pass entered name to the third ?.
             ps.setString(4, name);                // pass entered address to the four ?.
@@ -117,12 +118,6 @@ public class AccountDAO {
         } catch (Exception e) {
             e.getMessage();
         } // end try-catch.
-    }
-    
-    public static void main(String[] args) {
-        AccountDAO adao = new AccountDAO();
-        System.out.println(adao.createNewUserID());
-        adao.registerAccount("Lê Văn Chef", "chef@gmail.com", "aA@chef123", "0123456789", "G1 FOOD", "1995-01-01", "1995-01-01");
     }
 
     /**
