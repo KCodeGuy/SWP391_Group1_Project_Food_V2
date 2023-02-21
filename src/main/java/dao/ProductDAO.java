@@ -47,7 +47,7 @@ public class ProductDAO {
                         rs.getInt(5),
                         ProductStatus.valueOf(rs.getString(6)),
                         rs.getString(7),
-                        rs.getString(9))
+                        rs.getString(8))
                 ); // add new item in list
             } // end while rs.next
             return list;// return list product
@@ -64,7 +64,7 @@ public class ProductDAO {
      */
     public List<Product> getListProductManagePage() {
         try {
-            String query = "SELECT ProductID,SELECT ProductID,ProductLinkImage, ProductName, ProductDescription,ProductSalePercent,ProductPrice,ProductStatus FROM PRODUCT, ProductName, ProductDescription,ProductSalePercent,ProductPrice,ProductStatus FROM PRODUCT;";
+            String query = "SELECT ProductID, ProductImage, ProductName, ProductDescription,ProductSalePercent,ProductPrice,ProductStatus FROM PRODUCT";
             con = new DBContext().getConnection(); // open connection to SQL
             ps = con.prepareStatement(query); // move query from Netbeen to SQl
             rs = ps.executeQuery(); // the same with click to "excute" btn;
@@ -107,9 +107,5 @@ public class ProductDAO {
         } // end try-catch.
         return lastID;
     }
-    
-    public static void main(String[] args) {
-        ProductDAO pdao = new ProductDAO();
-        System.out.println(pdao.getListProduct().get(0).getProductID());
-    }
+
 }
