@@ -31,14 +31,15 @@ public class LoadProductDetailController extends HttpServlet {
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         response.setContentType("text/html;charset=UTF-8");
-        //This line gets the product ID from the request parameter and converts it to an integer.
+        //Retrieve the product ID parameter from the request and parse it as an integer.
         int productID = Integer.parseInt(request.getParameter("productID"));
-        //These lines create a new instance of the ProductDAO class and use it to retrieve the product 
-        //information from the database based on the product ID obtained earlier.
+        //Create a new instance of the ProductDAO class to access the database.
         ProductDAO pdao = new ProductDAO();
+        //Call the getProductByProductID method from the ProductDAO instance to retrieve a Product object with the given ID.
         Product product = pdao.getProductByProductID(productID);
-        
+        //Set the retrieved Product object as an attribute of the current request object with the key "product".
         request.setAttribute("product", product);
+        //Forward the request and response objects to the productDetail.jsp view for display.
         request.getRequestDispatcher("productDetail.jsp").forward(request, response);
     }
 
