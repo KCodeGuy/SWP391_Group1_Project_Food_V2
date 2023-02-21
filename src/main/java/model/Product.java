@@ -75,6 +75,25 @@ public class Product {
     }
 
     /**
+     * Constructs a product with the specified details.
+     *
+     * @param productName the name of the product
+     * @param productDescription the description of the product
+     * @param productPrice the price of the product
+     * @param productSalePercent the sale percentage of the product
+     * @param productStatus the status of the product
+     * @param productLink the link to the product image
+     */
+    public Product(String productName, String productDescription, int productPrice, int productSalePercent, ProductStatus productStatus, String productLink) {
+        this.productName = productName;
+        this.productDescription = productDescription;
+        this.productPrice = productPrice;
+        this.productSalePercent = productSalePercent;
+        this.productStatus = productStatus;
+        this.productLink = productLink;
+    }
+
+    /**
      *
      * Get ID of the product
      *

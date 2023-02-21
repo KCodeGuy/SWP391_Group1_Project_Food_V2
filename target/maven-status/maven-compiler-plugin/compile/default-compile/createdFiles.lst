@@ -14,6 +14,7 @@ model\Voucher.class
 com\example\demo\hash\jni\Platform$Arch.class
 model\User.class
 com\example\demo\hash\jni\JarLibraryLoader.class
+controller\LoadProductDetailController.class
 hash\PBKDF.class
 controller\UpdateUserProfileController.class
 controller\LoadPayingController.class
@@ -58,6 +59,7 @@ controller\ReEmailVerificationController.class
 controller\LoadListOrderedForChefController.class
 model\Order.class
 controller\LoadListUserController.class
+controller\LoadListProductForManageProductPageController.class
 controller\SearchUserController.class
 emailHandler\EmailHandler$2.class
 com\example\demo\hash\jni\NilLibraryLoader.class

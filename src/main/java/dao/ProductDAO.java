@@ -12,6 +12,7 @@ import java.util.ArrayList;
 import java.util.List;
 import model.Product;
 import model.ProductStatus;
+import model.User;
 
 /**
  *
@@ -42,7 +43,7 @@ public class ProductDAO {
             while (rs.next()) {
                 list.add(new Product(
                         rs.getInt(1),
-                        rs.getString(2), 
+                        rs.getString(2),
                         rs.getString(3),
                         rs.getInt(4),
                         rs.getInt(5),
@@ -57,8 +58,8 @@ public class ProductDAO {
         }
         return null;
     }
-    
-     /**
+
+    /**
      * Function get list product
      *
      * @return List<Product> list of product
@@ -73,7 +74,7 @@ public class ProductDAO {
             while (rs.next()) {
                 list.add(new Product(
                         rs.getInt(1),
-                        rs.getString(2), 
+                        rs.getString(2),
                         rs.getString(3),
                         rs.getString(4),
                         rs.getInt(5),
@@ -86,5 +87,49 @@ public class ProductDAO {
             e.getMessage();
         }
         return null;
-    }      
+    }
+
+    /**
+     *
+     * Get product by productID from the database
+     *
+     * @param productID the ID of the product to retrieve
+     *
+     * @return a Product object representing the retrieved product, or null if
+     * the product does not exist or there was an error retrieving it
+     */
+    public Product getProductByProductID(int productID) {
+
+        try {
+            //Declare a SQL query string
+            String query = "SELECT ProductName, ProductDescription, ProductPrice, ProductSalePercent, ProductStatus, ProductLinkImage "
+                    + "FROM [PRODUCT] WHERE ProductID = ?"; // Specify the condition for selecting a specific product ID
+            con = new DBContext().getConnection(); //Open connection to SQL
+            ps = con.prepareStatement(query); //Move query to database
+            ps.setInt(1, productID); //Set productID
+            //Execute the query and get the result set
+            rs = ps.executeQuery();
+            // Initialize a new product object
+            Product product = null;
+            // Loop through the result set and create a new product object with the retrieved data
+            while (rs.next()) {
+                // Create a new Product object using data retrieved from the database
+                product = new Product(
+                        rs.getString(1), // The product's name
+                        rs.getString(2), // The product's description
+                        rs.getInt(3), // The product's price
+                        rs.getInt(4), // The product's sale percent
+                        ProductStatus.valueOf(rs.getString(5)), // The product's status
+                        rs.getString(6) // The product's image link
+                );
+            } // End while
+            // Return the product object
+            return product;
+        } catch (Exception e) {
+            e.getMessage();
+        } // End try-catch
+        // If an exception is caught or no product is found, return null
+        return null;
+    }
+
 }

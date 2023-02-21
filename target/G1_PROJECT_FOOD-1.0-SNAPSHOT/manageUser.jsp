@@ -92,8 +92,7 @@
                                     <c:if test="${listUser.size() == 0}">
                                         <tr>
                                             <td class="table-row-no-product" colspan="5" >
-                                                 The user ${message} is not found!
-                                                
+                                                 ${message}
                                             </td>
                                         </tr>
                                         </c:if>

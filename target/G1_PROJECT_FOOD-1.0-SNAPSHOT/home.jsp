@@ -121,11 +121,11 @@
                         <c:forEach items="${listProduct}" var="pr">
                             <div class="col-xs-12 col-sm-6 col-md-6 col-lg-3">
                                 <div class="card">
-                                    <img src="${pr.productLink}" class="card-img-top" alt="...">
+                                    <a href="loadproductdetail?productID=${pr.productID}"><img src="${pr.productLink}" class="card-img-top" alt="..."></a>
                                     <div class="card-body">
                                         <div class="card-sale-percent"><span>-${pr.productSalePercent}%</span></div>
                                         <div class="card-sold-out"><span>${pr.productStatus}</span></div>
-                                        <h5 class="card-title"><a href="#">${pr.productName}</a></h5>
+                                        <h5 class="card-title"><a href="loadproductdetail?productID=${pr.productID}">${pr.productName}</a></h5>
                                         <p class="card-text">${pr.productDescription}</p>
                                         <div class="card-group">
                                             <div class="card-price-group">

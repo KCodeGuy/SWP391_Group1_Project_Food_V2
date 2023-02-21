@@ -3,6 +3,8 @@
     Created on : Feb 12, 2023, 2:14:42 AM
     Author     : PC
 --%>
+<%@ taglib prefix = "fmt" uri = "http://java.sun.com/jsp/jstl/fmt" %>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <!DOCTYPE html>
 <html lang="en">
@@ -78,66 +80,23 @@
                                 </tr>
                             </thead>
                             <tbody>
-                                <tr>
-                                    <td class="table-order">1</td>
-                                    <td class="table-img"><img src="assert/img/Com_ga_sot_thai.png"></td>
-                                    <td class="table-name"><a href="">Cơm sườn bì chả trứng</a></td>
-                                    <td class="table-description"><span>Cơm ăn cùng rau, nước mắm cha trung va rau
-                                            them</span></td>
-                                    <td class="table-sale">
-                                        20
-                                    </td>
-                                    <td class="table-price">30.000đ</td>
-                                    <td class="table-status">
-                                        AVAILABLE
-                                    </td>
+                                <c:forEach items="${listProduct}" var="pr">
+                                <tr>   
+                                    <td class="table-order">${pr.productID}</td>
+                                    <td class="table-img"><img src="${pr.productLink}"></td>
+                                    <td class="table-name">${pr.productName}</a></td>
+                                    <td class="table-description">${pr.productDescription}</td>
+                                    <td class="table-sale">${pr.productSalePercent}</td>
+                                    <td class="table-price"><fmt:formatNumber type="number" pattern="###,###" value="${pr.productPrice}"/>đ</td>
+                                    <td class="table-status">${pr.productStatus}</td>
                                     <td class="table-btn">
                                         <a class="table-btn-edit" href="updateProduct.html"><i
                                                 class="fa-solid fa-pen-to-square"></i></a>
                                         <a href="#" onclick="return showMessageDelete();"><i
                                                 class="fa-solid fa-trash"></i></a>
-                                    </td>
+                                    </td>   
                                 </tr>
-                                <tr>
-                                    <td class="table-order">1</td>
-                                    <td class="table-img"><img src="assert/img/Com_ga_sot_thai.png"></td>
-                                    <td class="table-name"><a href="">Cơm sườn bì chả trứng</a></td>
-                                    <td class="table-description"><span>Cơm ăn cùng rau, nước mắm cha trung va rau
-                                            them</span></td>
-                                    <td class="table-sale">
-                                        20
-                                    </td>
-                                    <td class="table-price">30.000đ</td>
-                                    <td class="table-status">
-                                        AVAILABLE
-                                    </td>
-                                    <td class="table-btn">
-                                        <a class="table-btn-edit" href="updateProduct.html"><i
-                                                class="fa-solid fa-pen-to-square"></i></a>
-                                        <a href="#" onclick="return showMessageDelete();"><i
-                                                class="fa-solid fa-trash"></i></a>
-                                    </td>
-                                </tr>
-                                <tr>
-                                    <td class="table-order">1</td>
-                                    <td class="table-img"><img src="assert/img/Com_ga_sot_thai.png"></td>
-                                    <td class="table-name"><a href="">Cơm sườn bì chả trứng</a></td>
-                                    <td class="table-description"><span>Cơm ăn cùng rau, nước mắm cha trung va rau
-                                            them</span></td>
-                                    <td class="table-sale">
-                                        20
-                                    </td>
-                                    <td class="table-price">30.000đ</td>
-                                    <td class="table-status">
-                                        AVAILABLE
-                                    </td>
-                                    <td class="table-btn">
-                                        <a class="table-btn-edit" href="updateProduct.html"><i
-                                                class="fa-solid fa-pen-to-square"></i></a>
-                                        <a href="#" onclick="return showMessageDelete();"><i
-                                                class="fa-solid fa-trash"></i></a>
-                                    </td>
-                                </tr>
+                                </c:forEach>
                             </tbody>
                         </table>
                     </div>

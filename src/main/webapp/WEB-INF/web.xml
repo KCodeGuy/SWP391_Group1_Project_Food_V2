@@ -104,9 +104,13 @@
         <servlet-name>LoadListProductForManageProductPageController</servlet-name>
         <servlet-class>controller.LoadListProductForManageProductPageController</servlet-class>
     </servlet>
-        <servlet>
+    <servlet>
         <servlet-name>SearchUserController</servlet-name>
         <servlet-class>controller.SearchUserController</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>LoadProductDetailController</servlet-name>
+        <servlet-class>controller.LoadProductDetailController</servlet-class>
     </servlet>
     <servlet-mapping>
         <servlet-name>HomeController</servlet-name>
@@ -208,9 +212,13 @@
         <servlet-name>LoadListProductForManageProductPageController</servlet-name>
         <url-pattern>/loadlistproductformanageproductpage</url-pattern>
     </servlet-mapping>
-        <servlet-mapping>
+    <servlet-mapping>
         <servlet-name>SearchUserController</servlet-name>
         <url-pattern>/searchuser</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>LoadProductDetailController</servlet-name>
+        <url-pattern>/loadproductdetail</url-pattern>
     </servlet-mapping>
     <session-config>
         <session-timeout>

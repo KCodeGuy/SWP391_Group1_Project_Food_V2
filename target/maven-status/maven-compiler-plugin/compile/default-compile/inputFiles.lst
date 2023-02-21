@@ -2,6 +2,7 @@ D:\2023\SPRING2023\SWP391\Project\SWP391_Group1_Project_Food_V2\src\main\java\ha
 D:\2023\SPRING2023\SWP391\Project\SWP391_Group1_Project_Food_V2\src\main\java\controller\LoadListProductInCartController.java
 D:\2023\SPRING2023\SWP391\Project\SWP391_Group1_Project_Food_V2\src\main\java\hash\jni\JarLibraryLoader.java
 D:\2023\SPRING2023\SWP391\Project\SWP391_Group1_Project_Food_V2\src\main\java\hash\jni\LibraryLoaders.java
+D:\2023\SPRING2023\SWP391\Project\SWP391_Group1_Project_Food_V2\src\main\java\controller\LoadListProductForManageProductPageController.java
 D:\2023\SPRING2023\SWP391\Project\SWP391_Group1_Project_Food_V2\src\main\java\hash\jni\SysLibraryLoader.java
 D:\2023\SPRING2023\SWP391\Project\SWP391_Group1_Project_Food_V2\src\main\java\controller\LoginController.java
 D:\2023\SPRING2023\SWP391\Project\SWP391_Group1_Project_Food_V2\src\main\java\hash\jni\Platform.java
@@ -34,6 +35,7 @@ D:\2023\SPRING2023\SWP391\Project\SWP391_Group1_Project_Food_V2\src\main\java\ha
 D:\2023\SPRING2023\SWP391\Project\SWP391_Group1_Project_Food_V2\src\main\java\model\User.java
 D:\2023\SPRING2023\SWP391\Project\SWP391_Group1_Project_Food_V2\src\main\java\controller\LoadFormApplicationDetailController.java
 D:\2023\SPRING2023\SWP391\Project\SWP391_Group1_Project_Food_V2\src\main\java\dao\ProductDAO.java
+D:\2023\SPRING2023\SWP391\Project\SWP391_Group1_Project_Food_V2\src\main\java\controller\LoadProductDetailController.java
 D:\2023\SPRING2023\SWP391\Project\SWP391_Group1_Project_Food_V2\src\main\java\model\OrderStatus.java
 D:\2023\SPRING2023\SWP391\Project\SWP391_Group1_Project_Food_V2\src\main\java\hash\codec\Base64.java
 D:\2023\SPRING2023\SWP391\Project\SWP391_Group1_Project_Food_V2\src\main\java\controller\LoadPayingController.java
