@@ -33,8 +33,7 @@ public class ProductDAO {
      */
     public List<Product> getListProduct() {
         try {
-            String query = "SELECT * FROM [PRODUCT] P\n"
-                    + "WHERE P.ProductStatus <> 'REMOVED'"; //query select product orther than REMOVED
+            String query = "SELECT * FROM PRODUCT WHERE ProductStatus <> 'REMOVED'"; //query select product orther than REMOVED
             con = new DBContext().getConnection(); // open connection to SQL
             ps = con.prepareStatement(query); // move query from Netbeen to SQl
             rs = ps.executeQuery(); // the same with click to "excute" btn;
@@ -107,5 +106,10 @@ public class ProductDAO {
             e.getMessage();
         } // end try-catch.
         return lastID;
+    }
+    
+    public static void main(String[] args) {
+        ProductDAO pdao = new ProductDAO();
+        System.out.println(pdao.getListProduct().get(0).getProductID());
     }
 }

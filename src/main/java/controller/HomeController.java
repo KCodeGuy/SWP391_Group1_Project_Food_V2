@@ -30,7 +30,6 @@ public class HomeController extends HttpServlet {
         response.setContentType("text/html;charset=UTF-8");
         ProductDAO pdao = new ProductDAO(); 
         List<Product> listProduct = pdao.getListProduct(); // get list product to load page
-        request.setAttribute("imageBytes", "[B@16c0663d");
         request.setAttribute("listProduct", listProduct);
         request.getRequestDispatcher("home.jsp").forward(request, response);
     }
