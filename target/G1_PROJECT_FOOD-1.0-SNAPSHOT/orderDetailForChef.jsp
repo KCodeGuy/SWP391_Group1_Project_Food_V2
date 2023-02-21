@@ -46,7 +46,7 @@
                                         <b class="form-label">Phone number</b>
                                     </div>
                                     <div class="col-sm-9">
-                                        <div>0${order.userPhone}</div>
+                                        <div>${order.userPhone}</div>
                                     </div>
                                 </div>
                                 <div class="row">

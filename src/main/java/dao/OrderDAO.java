@@ -62,17 +62,14 @@ public class OrderDAO {
                 return true;
             } // end if ps.executeUpdate() == 1
         } catch (Exception e) {
-            e.getMessage();
+            System.out.println(e.getMessage());;
         } // end try catch
         return false; // if can not insert
     }
-    
-    public static void main(String[] args) {
-        System.out.println(new OrderDAO().createOrder("", "US0017", "", "", "", "", 0));
-    }
-    
+
     /**
      * Get last id in table order
+     *
      * @return last id
      */
     public String getLastIDOfOrder() {
@@ -105,7 +102,7 @@ public class OrderDAO {
                     + "   [ORDER].OrderDate, \n"
                     + "   [ORDER].OrderStatus, \n"
                     + "   SUM([ORDER_DETAIL].OrderDQuantity) AS Quantity, \n"
-                    + "   SUM(([ORDER_DETAIL].OrderDPrice * (100 - [ORDER].ProductSalePercent) / 100) * [ORDER_DETAIL].OrderDQuantity) AS Price \n"
+                    + "   SUM([ORDER_DETAIL].OrderDPrice * (100 - [ORDER].ProductSalePercent) / 100) AS Price \n"
                     + "FROM [ORDER] \n"
                     + "INNER JOIN [ORDER_DETAIL] ON [ORDER].OrderID = [ORDER_DETAIL].OrderID \n"
                     + "WHERE [ORDER].OrderStatus = 'PENDING'\n"
@@ -179,6 +176,7 @@ public class OrderDAO {
 
     /**
      * This function to accept order
+     *
      * @param orderID ID of order
      * @return true if accept successful, false if can not accept
      */
@@ -199,9 +197,10 @@ public class OrderDAO {
         } // end try catch
         return false; // return null if not order
     }
-    
+
     /**
      * This function to reject order
+     *
      * @param orderID ID of order
      * @return true if reject successful, false if can not reject
      */

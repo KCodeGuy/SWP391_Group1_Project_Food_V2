@@ -40,11 +40,11 @@
                             </div>
                             <div class="form-control-group">
                                 <label class="form-text-label">Date of birth:</label>
-                                <label>${user.userBirthday}</label>
+                                <label>${user.accountDOB}</label>
                             </div>
                             <div class="form-control-group">
                                 <label class="form-text-label">Phone number:</label>
-                                <label>0${user.accountPhone}</label>
+                                <label>${user.accountPhone}</label>
                             </div>
                             <div class="form-control-group">
                                 <label class="form-text-label">Email:</label>

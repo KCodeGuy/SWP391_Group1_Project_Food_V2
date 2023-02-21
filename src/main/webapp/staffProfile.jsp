@@ -41,7 +41,7 @@
                         <!-- Display phone number of staff -->
                         <div class="form-control-group">
                             <label class="form-text-label">Phone number:</label>
-                            <label>0${staff.accountPhone}</label>       <!-- Push the value from Servlet -->
+                            <label>${staff.accountPhone}</label>       <!-- Push the value from Servlet -->
                         </div>
                         <!-- Display email of staff -->
                         <div class="form-control-group">
@@ -61,7 +61,7 @@
                         <!-- Display start date of staff -->
                         <div class="form-control-group">
                             <label class="form-text-label">Start date:</label>
-                            <label>${staff.staffStartDate}</label>
+                            <label>${staff.accountStartDay}</label>
                         </div>
                         <div class="form-btn-group">
                             <button type="Submit" name="submit" class="btn-primary"><a href="">Update profile</a></button>

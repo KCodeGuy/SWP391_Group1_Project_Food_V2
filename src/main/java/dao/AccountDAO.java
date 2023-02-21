@@ -368,7 +368,7 @@ public class AccountDAO {
             rs = ps.executeQuery();                 // Perform query in database
             Account staff = null;                     // Assign values ​​in null
             while (rs.next()) {                     // While loops used to scan via value in the database
-                staff = new Account(rs.getString(1), rs.getString(4), "", AccountStatus.NULL, rs.getString(2), rs.getString(3), rs.getString(4), rs.getString(7), rs.getString(6), "");
+                staff = new Account(rs.getString(1), rs.getString(4), "", AccountStatus.NULL, rs.getString(2), rs.getString(3), rs.getString(5), rs.getString(7), rs.getString(6), "");
             }
             return staff;                           // Return the query value
         } catch (Exception e) {
