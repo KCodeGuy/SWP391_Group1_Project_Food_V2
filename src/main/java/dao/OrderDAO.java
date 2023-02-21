@@ -43,10 +43,12 @@ public class OrderDAO {
         DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm:ss.SSS");
         String formattedDateTime = now.format(formatter);
         String query = "INSERT INTO [ORDER] VALUES (?,?,'PENDING',?,?,?,?,?,?,?,null,null)"; // string query insert cart
+        String id = new GenerateID().generateNewID("OR", getLastIDOfOrder());
+        System.out.println(id);
         try {
             con = new DBContext().getConnection(); // open connect database
             ps = con.prepareStatement(query); // move query from Netbeen to SQl
-            ps.setString(1, new GenerateID().generateNewID("OR", getLastIDOfOrder()));
+            ps.setString(1, id);
             ps.setString(2, orderNote);
             ps.setString(3, formattedDateTime);
             ps.setString(4, accountID);
@@ -65,13 +67,17 @@ public class OrderDAO {
         return false; // if can not insert
     }
     
+    public static void main(String[] args) {
+        System.out.println(new OrderDAO().createOrder("", "US0017", "", "", "", "", 0));
+    }
+    
     /**
      * Get last id in table order
      * @return last id
      */
     public String getLastIDOfOrder() {
         String lastID = null;
-        String query = "SELECT TOP 1 AccountID FROM [ORDER] ORDER BY CAST(RIGHT(OrderID, 4) AS INT) DESC;";
+        String query = "SELECT TOP 1 OrderID FROM [ORDER] ORDER BY CAST(RIGHT(OrderID, 4) AS INT) DESC;";
         try {
             con = new DBContext().getConnection(); // open connection to SQL
             ps = con.prepareStatement(query);      // move query from Netbeen to SQl

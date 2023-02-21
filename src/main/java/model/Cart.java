@@ -12,8 +12,8 @@ public class Cart {
 
     private int cartID; // ID of the cart
     private int cartQuantity; // Quantity of items in the cart
-    private int productID; // ID of the product in the cart
-    private int accountID; // ID of the account associated with the cart
+    private String productID; // ID of the product in the cart
+    private String accountID; // ID of the account associated with the cart
     private String productName; // Name of product
     private String productLink; // Link image of product
     private double productPrice; // Price of product
@@ -32,7 +32,7 @@ public class Cart {
      * @param productID
      * @param productPrice
      */
-    public Cart(int cartQuantity, int productID, double productPrice) {
+    public Cart(int cartQuantity, String productID, double productPrice) {
         this.cartQuantity = cartQuantity;
         this.productID = productID;
         this.productPrice = productPrice;
@@ -53,7 +53,7 @@ public class Cart {
      * @param productPrice Price of the product
      * @param productSalePercent Sale percent of the product
      */
-    public Cart(int cartID, int cartQuantity, int productID, int accountID, String productName, String productLink, double productPrice, int productSalePercent) {
+    public Cart(int cartID, int cartQuantity, String productID, String accountID, String productName, String productLink, double productPrice, int productSalePercent) {
         this.cartID = cartID;
         this.cartQuantity = cartQuantity;
         this.productID = productID;
@@ -186,7 +186,7 @@ public class Cart {
      *
      * @return the ID of the product in the cart.
      */
-    public int getProductID() {
+    public String getProductID() {
         return productID;
     }
 
@@ -196,7 +196,7 @@ public class Cart {
      *
      * @param productID the ID of the product in the cart.
      */
-    public void setProductID(int productID) {
+    public void setProductID(String productID) {
         this.productID = productID;
     }
 
@@ -206,7 +206,7 @@ public class Cart {
      *
      * @return the ID of the account associated with the cart.
      */
-    public int getAccountID() {
+    public String getAccountID() {
         return accountID;
     }
 
@@ -216,7 +216,7 @@ public class Cart {
      *
      * @param accountID the ID of the account associated with the cart.
      */
-    public void setAccountID(int accountID) {
+    public void setAccountID(String accountID) {
         this.accountID = accountID;
     }
 

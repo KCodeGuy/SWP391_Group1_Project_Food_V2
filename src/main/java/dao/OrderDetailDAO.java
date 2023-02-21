@@ -34,14 +34,15 @@ public class OrderDetailDAO {
      */
     public void createOrderDetails(ArrayList<Cart> cart, String orderID) {
         String query = "INSERT INTO [ORDER_DETAIL] VALUES (?,?,?,?,?)"; // string query insert cart
+        String id = new GenerateID().generateNewID("OD", getLastIDOfOrderDetail());
         try {
             con = new DBContext().getConnection(); // open connect database
             ps = con.prepareStatement(query); // move query from Netbeen to SQl
             for (Cart c : cart) {
-                ps.setString(1, new GenerateID().generateNewID("OD", getLastIDOfOrderDetail()));
+                ps.setString(1, id);
                 ps.setInt(2, c.getCartQuantity());
                 ps.setDouble(3, c.getProductPrice());
-                ps.setInt(4, c.getProductID());
+                ps.setString(4, c.getProductID());
                 ps.setString(5, orderID);
                 ps.executeUpdate();
             }

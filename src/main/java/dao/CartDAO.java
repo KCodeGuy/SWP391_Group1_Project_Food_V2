@@ -33,15 +33,14 @@ public class CartDAO {
      */
     public ArrayList<Cart> getListCartByAccountID(String accountID) {
         try {
-            String query = "SELECT C.*, P.ProductName, P.ProductLinkImage ,P.ProductPrice, P.ProductSalePercent FROM [CART] C JOIN [PRODUCT] P ON C.ProductID = P.ProductID \n"
-                    + "WHERE AccountID = ?"; // query select form database
+            String query = "SELECT C.*, P.ProductName, P.ProductImage ,P.ProductPrice, P.ProductSalePercent FROM [CART] C JOIN [PRODUCT] P ON C.ProductID = P.ProductID WHERE C.AccountID = ?"; // query select form database
             con = new DBContext().getConnection(); // open conect database
             ps = con.prepareStatement(query); // set account ID into query
             ps.setString(1, accountID); // set account ID into query
             rs = ps.executeQuery(); // execute query
             ArrayList<Cart> listCart = new ArrayList<>(); // create list product in cart
             while (rs.next()) {
-                listCart.add(new Cart(rs.getInt(1), rs.getInt(2), rs.getInt(3), rs.getInt(4), rs.getString(5), rs.getString(6), rs.getInt(7), rs.getInt(8)));
+                listCart.add(new Cart(rs.getInt(1), rs.getInt(2), rs.getString(3), rs.getString(4), rs.getString(5), rs.getString(6), rs.getInt(7), rs.getInt(8)));
                 // add new item into list product in cart
             } // end while
             return listCart; // return list product in cart
@@ -50,6 +49,7 @@ public class CartDAO {
         } // end try catch
         return null; // return null if not product into cart
     }
+
 
     /**
      * This function add product into cart from home page
@@ -295,7 +295,7 @@ public class CartDAO {
                 double productPrice = rs.getInt(3);
                 double productSalePercent = rs.getInt(4);
                 price = productPrice * (1 - (productSalePercent/100));
-                listCart.add(new Cart(rs.getInt(1), rs.getInt(2), price));
+                listCart.add(new Cart(rs.getInt(1), rs.getString(2), price));
                 // add new item into list product in cart
             } // end while
             return listCart; // return list product in cart
