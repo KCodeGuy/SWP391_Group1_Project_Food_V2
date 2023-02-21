@@ -4,7 +4,7 @@
  */
 package controller;
 
-import dao.UserDAO;
+import dao.AccountDAO;
 import java.io.IOException;
 import java.io.PrintWriter;
 import jakarta.servlet.ServletException;
@@ -12,7 +12,7 @@ import jakarta.servlet.http.HttpServlet;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
 import java.util.List;
-import model.User;
+import model.Account;
 
 /**
  *
@@ -35,9 +35,9 @@ public class SearchUserController extends HttpServlet {
         //Get the value of the "txtSearch" parameter from the request object
         String txtSearch = request.getParameter("txtSearch");
         //Create a new instance of the UserDAO class
-        UserDAO udao = new UserDAO();
+        AccountDAO udao = new AccountDAO();
         //Call the getListUser method from the UserDAO instance to retrieve a list of users
-        List<User> listUser = udao.getListUserByName(txtSearch);
+        List<Account> listUser = udao.getListUserByName(txtSearch);
         //Set the list of users as an attribute of the current request object with the key "listUser"
         request.setAttribute("listUser", listUser);
         request.setAttribute("message", "Unable to find a user with the name containing " + txtSearch);

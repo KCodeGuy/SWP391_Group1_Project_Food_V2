@@ -4,8 +4,7 @@
  */
 package controller;
 
-import dao.StaffDAO;
-import dao.UserDAO;
+import dao.AccountDAO;
 import jakarta.servlet.ServletException;
 import jakarta.servlet.http.HttpServletRequest;
 import java.io.IOException;
@@ -15,8 +14,7 @@ import jakarta.servlet.http.HttpServlet;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
 import java.util.List;
-import model.Staff;
-import model.User;
+import model.Account;
 
 /**
  *
@@ -37,9 +35,9 @@ public class LoadListUserController extends HttpServlet {
             throws ServletException, IOException {
         response.setContentType("text/html;charset=UTF-8");
         //Create a new instance of the UserDAO class
-        UserDAO udao = new UserDAO();
+        AccountDAO udao = new AccountDAO();
         //Call the getListUser method from the UserDAO instance to retrieve a list of users
-        List<User> listUser = udao.getListUser();
+        List<Account> listUser = udao.getListUser();
         //Set the list of users as an attribute of the current request object with the key "listUser"
         request.setAttribute("listUser", listUser);
         request.setAttribute("message", "The user is not found!");

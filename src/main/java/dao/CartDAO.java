@@ -31,13 +31,13 @@ public class CartDAO {
      * @param accountID Account ID of user
      * @return list product in cart of user
      */
-    public ArrayList<Cart> getListCartByAccountID(int accountID) {
+    public ArrayList<Cart> getListCartByAccountID(String accountID) {
         try {
             String query = "SELECT C.*, P.ProductName, P.ProductLinkImage ,P.ProductPrice, P.ProductSalePercent FROM [CART] C JOIN [PRODUCT] P ON C.ProductID = P.ProductID \n"
                     + "WHERE AccountID = ?"; // query select form database
             con = new DBContext().getConnection(); // open conect database
             ps = con.prepareStatement(query); // set account ID into query
-            ps.setInt(1, accountID); // set account ID into query
+            ps.setString(1, accountID); // set account ID into query
             rs = ps.executeQuery(); // execute query
             ArrayList<Cart> listCart = new ArrayList<>(); // create list product in cart
             while (rs.next()) {
@@ -61,14 +61,14 @@ public class CartDAO {
      * @param productID ID of product
      * @return true if insert successful, false if can not insert
      */
-    public boolean addProductIntoCartFromHome(int accountID, int productID) {
+    public boolean addProductIntoCartFromHome(String accountID, String productID) {
         String query = "INSERT INTO [CART] VALUES (?,?,?)"; // string query insert cart
         try {
             con = new DBContext().getConnection(); // open connect database
             ps = con.prepareStatement(query); // move query from Netbeen to SQl
             ps.setInt(1, 1); // set CartQuantity
-            ps.setInt(2, productID); // set ProductID
-            ps.setInt(3, accountID); // set AccountID
+            ps.setString(2, productID); // set ProductID
+            ps.setString(3, accountID); // set AccountID
             if (ps.executeUpdate() == 1) {
                 // if insert successfull to return true
                 return true;
@@ -89,14 +89,14 @@ public class CartDAO {
      * @param productID ID of product
      * @return true if product exist, false if product not exist
      */
-    public boolean isProductExistInCart(int accountID, int productID) {
+    public boolean isProductExistInCart(String accountID, String productID) {
         String query = "SELECT CartQuantity FROM [CART] WHERE AccountID = ? AND ProductID = ?";
         // String query select quanity of a product in cart
         try {
             con = new DBContext().getConnection(); // open connect database
             ps = con.prepareStatement(query); // move query to database
-            ps.setInt(1, accountID); // set AccountID
-            ps.setInt(2, productID); // set ProductID
+            ps.setString(1, accountID); // set AccountID
+            ps.setString(2, productID); // set ProductID
             rs = ps.executeQuery(); // execute query
             while (rs.next()) {
                 if (rs.getInt(1) >= 1) {
@@ -123,7 +123,7 @@ public class CartDAO {
      * @param productID ID of product
      * @return true if update successful, false if can not update
      */
-    public boolean updateQuantityProductInCart(int productQuantity, int accountID, int productID) {
+    public boolean updateQuantityProductInCart(int productQuantity, String accountID, String productID) {
         String query = "UPDATE CART\n"
                 + "SET CartQuantity = ?\n"
                 + "WHERE AccountID = ? AND ProductID = ?"; // string query update cart
@@ -132,8 +132,8 @@ public class CartDAO {
             con = new DBContext().getConnection(); // open connect database
             ps = con.prepareStatement(query); // move query to database
             ps.setInt(1, productQuantity); // set ProductQuantity
-            ps.setInt(2, accountID); // set AccountID
-            ps.setInt(3, productID); // set ProductID
+            ps.setString(2, accountID); // set AccountID
+            ps.setString(3, productID); // set ProductID
             if (ps.executeUpdate() == 1) {
                 // if update successfull to return true
                 return true;
@@ -154,14 +154,14 @@ public class CartDAO {
      * @param productID ID of product
      * @return int quantity of a product in cart
      */
-    public int getQuannityProductInCart(int accountID, int productID) {
+    public int getQuannityProductInCart(String accountID, String productID) {
         String query = "SELECT CartQuantity FROM [CART] WHERE AccountID = ? AND ProductID = ?";
         // string query select quantity of a product in cart
         try {
             con = new DBContext().getConnection(); // open connect database
             ps = con.prepareStatement(query); // move query to database
-            ps.setInt(1, accountID); // set AccountID
-            ps.setInt(2, productID); // set ProductID
+            ps.setString(1, accountID); // set AccountID
+            ps.setString(2, productID); // set ProductID
             rs = ps.executeQuery(); // execute query
             int quantity = 0; // create quantity
             while (rs.next()) {
@@ -185,14 +185,14 @@ public class CartDAO {
      * @param productQuantity Quantity of a product in cart
      * @return true if insert successful, false if can not insert
      */
-    public boolean addProductIntoCartFromProductDetails(int productQuantity, int accountID, int productID) {
+    public boolean addProductIntoCartFromProductDetails(int productQuantity, String accountID, String productID) {
         String query = "INSERT INTO [CART] VALUES (?,?,?)"; // string query insert cart
         try {
             con = new DBContext().getConnection(); // open connect database
             ps = con.prepareStatement(query); // move query from Netbeen to SQl
             ps.setInt(1, productQuantity); // set CartQuantity
-            ps.setInt(2, productID); // set ProductID
-            ps.setInt(3, accountID); // set AccountID
+            ps.setString(2, productID); // set ProductID
+            ps.setString(3, accountID); // set AccountID
             if (ps.executeUpdate() == 1) {
                 // if insert successfull to return true
                 return true;
@@ -212,13 +212,13 @@ public class CartDAO {
      * @param productID ID of product
      * @return true if delete successful, false if can not delete
      */
-    public boolean deleteProductInCart(int accountID, int productID) {
+    public boolean deleteProductInCart(String accountID, String productID) {
         String query = "DELETE CART WHERE AccountID = ? AND ProductID = ?"; // string query delete a row in cart
         try {
             con = new DBContext().getConnection(); // open connect database
             ps = con.prepareStatement(query); // move query from Netbeen to SQl
-            ps.setInt(1, accountID); // set ProductID
-            ps.setInt(2, productID); // set AccountID
+            ps.setString(1, accountID); // set ProductID
+            ps.setString(2, productID); // set AccountID
             if (ps.executeUpdate() == 1) {
                 // if insert successfull to return true
                 return true;
@@ -239,7 +239,7 @@ public class CartDAO {
      * @param productID ID of product
      * @return true if delete successful, false if can not delete
      */
-    public boolean deleteQuantityProductInCart(int accountID, int productID) {
+    public boolean deleteQuantityProductInCart(String accountID, String productID) {
         String query = "UPDATE CART\n"
                 + "SET CartQuantity = ?\n"
                 + "WHERE AccountID = ? AND ProductID = ?"; // string query update cart
@@ -248,8 +248,8 @@ public class CartDAO {
             con = new DBContext().getConnection(); // open connect database
             ps = con.prepareStatement(query); // move query to database
             ps.setInt(1, productQuantity); // set ProductQuantity
-            ps.setInt(2, accountID); // set AccountID
-            ps.setInt(3, productID); // set ProductID
+            ps.setString(2, accountID); // set AccountID
+            ps.setString(3, productID); // set ProductID
             if (ps.executeUpdate() == 1) {
                 // if update successfull to return true
                 return true;
@@ -264,12 +264,12 @@ public class CartDAO {
      * This function delete cart by account ID
      * @param accountID Account ID of user
      */
-    public void deleteCartByAccountID(int accountID) {
+    public void deleteCartByAccountID(String accountID) {
         String query = "DELETE FROM CART WHERE AccountID = ?"; // string query insert cart
         try {
             con = new DBContext().getConnection(); // open connect database
             ps = con.prepareStatement(query); // move query from Netbeen to SQl
-            ps.setInt(1, accountID);
+            ps.setString(1, accountID);
             ps.executeUpdate();
             
         } catch (Exception e) {
@@ -282,12 +282,12 @@ public class CartDAO {
      * @param accountID Account ID of user
      * @return List product in cart
      */
-    public ArrayList<Cart> getListCartToPaying(int accountID) {
+    public ArrayList<Cart> getListCartToPaying(String accountID) {
         try {
             String query = "SELECT C.CartQuantity, C.ProductID, P.ProductPrice, P.ProductSalePercent FROM [CART] C JOIN [PRODUCT] P ON C.ProductID = P.ProductID WHERE C.AccountID = ?"; // query select form database
             con = new DBContext().getConnection(); // open conect database
             ps = con.prepareStatement(query); // set account ID into query
-            ps.setInt(1, accountID); // set account ID into query
+            ps.setString(1, accountID); // set account ID into query
             rs = ps.executeQuery(); // execute query
             ArrayList<Cart> listCart = new ArrayList<>(); // create list product in cart
             double price;

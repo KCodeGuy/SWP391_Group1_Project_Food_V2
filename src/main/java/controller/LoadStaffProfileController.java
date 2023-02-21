@@ -4,13 +4,14 @@
  */
 package controller;
 
-import dao.StaffDAO;
+import dao.AccountDAO;
 import java.io.IOException;
 import java.io.PrintWriter;
 import jakarta.servlet.ServletException;
 import jakarta.servlet.http.HttpServlet;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
+import model.Account;
 
 /**
  *
@@ -30,9 +31,9 @@ public class LoadStaffProfileController extends HttpServlet {
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         response.setContentType("text/html;charset=UTF-8");
-        int accountID = Integer.parseInt(request.getParameter("accountID"));                                        // Declaration
-        StaffDAO sdao = new StaffDAO();                           // Allocate memory for the cursor sdao
-        model.Staff staff = sdao.getStaffByAccountID(accountID);  // Convert model.Staff to controller.Staff
+        String accountID = request.getParameter("accountID");                                        // Declaration
+        AccountDAO sdao = new AccountDAO();                           // Allocate memory for the cursor sdao
+        Account staff = sdao.getStaffByAccountID(accountID);  // Convert model.Staff to controller.Staff
         request.setAttribute("staff", staff);                     // Set access to Servlet 
         request.getRequestDispatcher("staffProfile.jsp").forward(request, response); // Request redirection
 }

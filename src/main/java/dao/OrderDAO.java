@@ -5,6 +5,7 @@
 package dao;
 
 import context.DBContext;
+import hash.GenerateID;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
@@ -37,22 +38,23 @@ public class OrderDAO {
      * @param productSalePercent Product sale percent
      * @return true if create successful, false if can not create
      */
-    public boolean createOrder(String orderNote, int accountID, String accountName, int accountPhone, String accountAddress, String voucherID, int productSalePercent) {
+    public boolean createOrder(String orderNote, String accountID, String accountName, String accountPhone, String accountAddress, String voucherID, int productSalePercent) {
         LocalDateTime now = LocalDateTime.now();
         DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm:ss.SSS");
         String formattedDateTime = now.format(formatter);
-        String query = "INSERT INTO [ORDER] VALUES (?,'PENDING',?,?,?,?,?,?,?,null,null)"; // string query insert cart
+        String query = "INSERT INTO [ORDER] VALUES (?,?,'PENDING',?,?,?,?,?,?,?,null,null)"; // string query insert cart
         try {
             con = new DBContext().getConnection(); // open connect database
             ps = con.prepareStatement(query); // move query from Netbeen to SQl
-            ps.setString(1, orderNote);
-            ps.setString(2, formattedDateTime);
-            ps.setInt(3, accountID);
-            ps.setString(4, accountName);
-            ps.setString(5, "0" + accountPhone);
-            ps.setString(6, accountAddress);
-            ps.setString(7, voucherID);
-            ps.setInt(8, productSalePercent);
+            ps.setString(1, new GenerateID().generateNewID("OR", getLastIDOfOrder()));
+            ps.setString(2, orderNote);
+            ps.setString(3, formattedDateTime);
+            ps.setString(4, accountID);
+            ps.setString(5, accountName);
+            ps.setString(6, accountPhone);
+            ps.setString(7, accountAddress);
+            ps.setString(8, voucherID);
+            ps.setInt(9, productSalePercent);
             if (ps.executeUpdate() == 1) {
                 // if insert successfull to return true
                 return true;
@@ -62,28 +64,26 @@ public class OrderDAO {
         } // end try catch
         return false; // if can not insert
     }
-
+    
     /**
-     * This function get new ID of voucher
-     *
-     * @return ID of voucher
+     * Get last id in table order
+     * @return last id
      */
-    public int getNewOrderID() {
-        String query = "SELECT TOP 1 OrderID FROM [ORDER] ORDER BY OrderID DESC";
-        // string query select quantity of a product in cart
+    public String getLastIDOfOrder() {
+        String lastID = null;
+        String query = "SELECT TOP 1 AccountID FROM [ORDER] ORDER BY CAST(RIGHT(OrderID, 4) AS INT) DESC;";
         try {
-            con = new DBContext().getConnection(); // open connect database
-            ps = con.prepareStatement(query); // move query to database
-            rs = ps.executeQuery(); // execute query
-            int quantity = 0; // create quantity
+            con = new DBContext().getConnection(); // open connection to SQL
+            ps = con.prepareStatement(query);      // move query from Netbeen to SQl
+            rs = ps.executeQuery();                // excute query and return result to rs.
             while (rs.next()) {
-                quantity = rs.getInt(1);
-            } // end while
-            return quantity; // return quantity of a product in cart
+                // return an account
+                lastID = rs.getString(1);
+            } // end while loop of table result.
         } catch (Exception e) {
             e.getMessage();
-        } // end try catch
-        return 0; // return 0 if can not select quantity of a product in cart
+        } // end try-catch.
+        return lastID;
     }
 
     /**
@@ -113,7 +113,7 @@ public class OrderDAO {
             rs = ps.executeQuery(); // execute query
             ArrayList<Order> listOrder = new ArrayList<>(); // create list product in order
             while (rs.next()) {
-                listOrder.add(new Order(rs.getInt(1), OrderStatus.valueOf(rs.getString(4)), rs.getString(3), rs.getString(2), rs.getInt(5), rs.getInt(6)));
+                listOrder.add(new Order(rs.getString(1), OrderStatus.valueOf(rs.getString(4)), rs.getString(3), rs.getString(2), rs.getInt(5), rs.getInt(6)));
                 // add new item into list order
             } // end while
             return listOrder; // return list order
@@ -129,7 +129,7 @@ public class OrderDAO {
      * @param orderID ID of order
      * @return order of user
      */
-    public Order getOrderByOrderID(int orderID) {
+    public Order getOrderByOrderID(String orderID) {
         try {
             String query = "SELECT \n"
                     + "   [ORDER].OrderID, \n"
@@ -158,11 +158,11 @@ public class OrderDAO {
                     + "   [ORDER].ProductSalePercent"; // query select form database
             con = new DBContext().getConnection(); // open conect database
             ps = con.prepareStatement(query); // set account ID into query
-            ps.setInt(1, orderID);
+            ps.setString(1, orderID);
             rs = ps.executeQuery(); // execute query
             Order order = null;
             while (rs.next()) {
-                order = new Order(rs.getInt(1), rs.getString(7), rs.getString(6), rs.getInt(2), rs.getString(3), rs.getInt(4), rs.getString(5), rs.getString(8), rs.getInt(9), rs.getInt(10), rs.getInt(11));
+                order = new Order(rs.getString(1), rs.getString(7), rs.getString(6), rs.getString(2), rs.getString(3), rs.getString(4), rs.getString(5), rs.getString(8), rs.getInt(9), rs.getInt(10), rs.getInt(11));
             } // end while
             return order; // return list order
         } catch (Exception e) {
@@ -176,15 +176,14 @@ public class OrderDAO {
      * @param orderID ID of order
      * @return true if accept successful, false if can not accept
      */
-    public boolean acceptOrderByOrderID(int orderID) {
+    public boolean acceptOrderByOrderID(String orderID) {
         try {
             String query = "UPDATE [ORDER]\n"
                     + "SET OrderStatus = 'ACCEPT'\n"
                     + "WHERE OrderID = ?"; // query select form database
             con = new DBContext().getConnection(); // open conect database
             ps = con.prepareStatement(query); // set account ID into query
-            ps.setInt(1, orderID);
-            rs = ps.executeQuery(); // execute query
+            ps.setString(1, orderID);
             if (ps.executeUpdate() == 1) {
                 // if accept successfull to return true
                 return true;
@@ -200,15 +199,14 @@ public class OrderDAO {
      * @param orderID ID of order
      * @return true if reject successful, false if can not reject
      */
-    public boolean rejectOrderByOrderID(int orderID) {
+    public boolean rejectOrderByOrderID(String orderID) {
         try {
             String query = "UPDATE [ORDER]\n"
                     + "SET OrderStatus = 'REJECT'\n"
                     + "WHERE OrderID = ?"; // query select form database
             con = new DBContext().getConnection(); // open conect database
             ps = con.prepareStatement(query); // set account ID into query
-            ps.setInt(1, orderID);
-            rs = ps.executeQuery(); // execute query
+            ps.setString(1, orderID);
             if (ps.executeUpdate() == 1) {
                 // if reject successfull to return true
                 return true;

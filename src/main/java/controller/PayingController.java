@@ -31,7 +31,7 @@ public class PayingController extends HttpServlet {
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
     throws ServletException, IOException {
         response.setContentType("text/html;charset=UTF-8");
-        int accountID = Integer.parseInt(request.getParameter("accountID"));
+        String accountID = request.getParameter("accountID");
         String voucherID = request.getParameter("voucherID");
         String productSalePercent = request.getParameter("productSalePercent");
         int discount;
@@ -42,7 +42,7 @@ public class PayingController extends HttpServlet {
         }
         String note = request.getParameter("note");
         String name = request.getParameter("name");
-        int phone = Integer.parseInt(request.getParameter("phone"));
+        String phone = request.getParameter("phone");
         String address = request.getParameter("address");
         
         OrderDAO odao = new OrderDAO();
@@ -50,7 +50,7 @@ public class PayingController extends HttpServlet {
         CartDAO cdao = new CartDAO();
         
         odao.createOrder(note, accountID, name, phone, address, voucherID, discount);
-        ddao.createOrderDetails(cdao.getListCartToPaying(accountID), odao.getNewOrderID());
+        ddao.createOrderDetails(cdao.getListCartToPaying(accountID), odao.getLastIDOfOrder());
         cdao.deleteCartByAccountID(accountID);
         
         response.sendRedirect("home");

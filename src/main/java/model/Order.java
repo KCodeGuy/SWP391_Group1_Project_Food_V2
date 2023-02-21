@@ -10,13 +10,13 @@ package model;
  */
 public class Order {
 
-    private int orderID; // ID of the order
+    private String orderID; // ID of the order
     private String orderNote; // Note associated with the order
     private OrderStatus orderStatus; // Status of the order (pending, accept, reject, pickup, successful)
     private String orderDate; // Date the order was placed
-    private int accountID; // ID of the account associated with the order
+    private String accountID; // ID of the account associated with the order
     private String userFullName; // Full name of the user who placed the order
-    private int userPhone; // Phone number of the user who placed the order
+    private String userPhone; // Phone number of the user who placed the order
     private String userAddress; // Shipping address of the user who placed the order
     private String voucherID; // ID of the voucher used for the order
     private int productSalePercent; // Sale percent of the product in the order
@@ -47,7 +47,7 @@ public class Order {
      * @param accountOfIDChef ID of the chef account
      * @param accountOfIDShipper ID of the shipper account
      */
-    public Order(int orderID, String orderNote, OrderStatus orderStatus, String orderDate, int accountID, String userFullName, int userPhone, String userAddress, String voucherID, int productSalePercent, String accountOfIDChef, String accountOfIDShipper) {
+    public Order(String orderID, String orderNote, OrderStatus orderStatus, String orderDate, String accountID, String userFullName, String userPhone, String userAddress, String voucherID, int productSalePercent, String accountOfIDChef, String accountOfIDShipper) {
         this.orderID = orderID;
         this.orderNote = orderNote;
         this.orderStatus = orderStatus;
@@ -71,7 +71,7 @@ public class Order {
      * @param totalQuanityProduct total quantity of product in order
      * @param totalPrice total price of product in order
      */
-    public Order(int orderID, OrderStatus orderStatus, String orderDate, String userFullName, int totalQuanityProduct, int totalPrice) {
+    public Order(String orderID, OrderStatus orderStatus, String orderDate, String userFullName, int totalQuanityProduct, int totalPrice) {
         this.orderID = orderID;
         this.orderStatus = orderStatus;
         this.orderDate = orderDate;
@@ -94,7 +94,7 @@ public class Order {
      * @param totalQuanityProduct total quantity of product in order
      * @param totalPrice total price of product in order
      */
-    public Order(int orderID, String orderNote, String orderDate, int accountID, String userFullName, int userPhone, String userAddress, String voucherID, int productSalePercent, int totalQuanityProduct, int totalPrice) {
+    public Order(String orderID, String orderNote, String orderDate, String accountID, String userFullName, String userPhone, String userAddress, String voucherID, int productSalePercent, int totalQuanityProduct, int totalPrice) {
         this.orderID = orderID;
         this.orderNote = orderNote;
         this.orderDate = orderDate;
@@ -149,7 +149,7 @@ public class Order {
      *
      * @return ID of the order
      */
-    public int getOrderID() {
+    public String getOrderID() {
         return orderID;
     }
 
@@ -158,7 +158,7 @@ public class Order {
      *
      * @param orderID ID of the order
      */
-    public void setOrderID(int orderID) {
+    public void setOrderID(String orderID) {
         this.orderID = orderID;
     }
 
@@ -221,7 +221,7 @@ public class Order {
      *
      * @return the account ID of the user.
      */
-    public int getAccountID() {
+    public String getAccountID() {
         return accountID;
     }
 
@@ -230,7 +230,7 @@ public class Order {
      *
      * @param accountID the account ID of the user to be set.
      */
-    public void setAccountID(int accountID) {
+    public void setAccountID(String accountID) {
         this.accountID = accountID;
     }
 
@@ -257,7 +257,7 @@ public class Order {
      *
      * @return the phone number of the user.
      */
-    public int getUserPhone() {
+    public String getUserPhone() {
         return userPhone;
     }
 
@@ -266,7 +266,7 @@ public class Order {
      *
      * @param userPhone the phone number of the user to be set.
      */
-    public void setUserPhone(int userPhone) {
+    public void setUserPhone(String userPhone) {
         this.userPhone = userPhone;
     }
 

@@ -10,14 +10,15 @@ package model;
  */
 public class Account {
 
-    private int accountID; // ID of account
+    private String accountID; // ID of account
     private String accountEmail; // Email of account
     private String accountPassword; // Password of account
     private AccountStatus accountStatus; // Status of account (actived, pending, removed)
     private String accountName; // Full name associated with the account
-    private int accountPhone; // Phone number associated with the account
+    private String accountPhone; // Phone number associated with the account
     private String accountAddress; // Address associated with the account
-    private String roleID; // ID of the role associated with the account
+    private String accountDOB; // Birthday of staff or user
+    private String accountStartDay; // Day create account
     private String roleDescription; // Description of role the account holds
 
     /**
@@ -28,43 +29,8 @@ public class Account {
     }
 
     /**
-     *
-     * @param accountID ID of the account
-     * @param accountEmail Email address of the account
-     * @param accountPassword Password of the account
-     * @param accountName Full name associated with the account
-     * @param roleID ID of the role associated with the account
-     */
-    public Account(int accountID, String accountEmail, String accountPassword, String accountName, String roleID) {
-        this.accountID = accountID;
-        this.accountEmail = accountEmail;
-        this.accountPassword = accountPassword;
-        this.accountName = accountName;
-        this.roleID = roleID;
-    }
-
-    /**
-     *
-     * Constructor with parameters accountID, accountEmail, accountPassword,
-     * accountStatus, roleID, and roleDescription
-     *
-     * @param accountID ID of the account
-     * @param accountEmail Email address of the account
-     * @param accountPassword Password of the account
-     * @param accountStatus Status of the account
-     * @param roleDescription Description of the role of the account
-     */
-    public Account(int accountID, String accountEmail, String accountPassword, AccountStatus accountStatus, String roleDescription) {
-        this.accountID = accountID;
-        this.accountEmail = accountEmail;
-        this.accountPassword = accountPassword;
-        this.accountStatus = accountStatus;
-        this.roleDescription = roleDescription;
-    }
-
-    /**
      * Constructor with all parameter
-     *
+     * 
      * @param accountID ID of the account
      * @param accountEmail Email address of the account
      * @param accountPassword Password of the account
@@ -74,8 +40,10 @@ public class Account {
      * @param accountPhone Phone number associated with the account
      * @param accountAddress Address associated with the account
      * @param roleID ID of the role associated with the account
+     * @param accountDOB Birthday of staff or user
+     * @param accountStartDay Day create account
      */
-    public Account(int accountID, String accountEmail, String accountPassword, AccountStatus accountStatus, String accountName, int accountPhone, String accountAddress, String roleID, String roleDescription) {
+    public Account(String accountID, String accountEmail, String accountPassword, AccountStatus accountStatus, String accountName, String accountPhone, String accountAddress, String accountDOB, String accountStartDay, String roleDescription) {
         this.accountID = accountID;
         this.accountEmail = accountEmail;
         this.accountPassword = accountPassword;
@@ -83,123 +51,50 @@ public class Account {
         this.accountName = accountName;
         this.accountPhone = accountPhone;
         this.accountAddress = accountAddress;
-        this.roleID = roleID;
+        this.accountDOB = accountDOB;
+        this.accountStartDay = accountStartDay;
         this.roleDescription = roleDescription;
     }
 
     /**
-     * Constructor with parameter accountName, accountPhone, accountEmail,
-     * accountAddress, roleDescription Constructor to display employee
-     * information
-     *
-     * @param accountEmail Email address of the account
-     * @param accountPhone Phone number associated with the account
-     * @param roleDescription Description of the role of the account
-     * @param accountAddress address of the account
+     * Get Birthday of staff or user
+     * @return Birthday of staff or user
      */
-    public Account(String accountName, int accountPhone, String accountEmail, String accountAddress, String roleDescription) {
-        this.accountName = accountName;
-        this.accountPhone = accountPhone;
-        this.accountEmail = accountEmail;
-        this.accountAddress = accountAddress;
-        this.roleDescription = roleDescription;
+    public String getAccountDOB() {
+        return accountDOB;
     }
 
     /**
-     *
-     * Constructor with parameters accountName, accountEmail, accountPhone,
-     * accountAddress and roleDescription.
-     *
-     * @param accountName name of the account
-     * @param accountEmail Email address of the account
-     * @param accountPhone phone of the account
-     * @param accountAddress address of the account
-     * @param roleDescription Description of the role of the account
+     * Set Birthday of staff or user
+     * @param accountDOB Birthday of staff or user
      */
-    public Account(String accountEmail, String accountName, int accountPhone, String accountAddress, String roleDescription) {
-        this.accountEmail = accountEmail;
-        this.accountName = accountName;
-        this.accountPhone = accountPhone;
-        this.accountAddress = accountAddress;
-        this.roleDescription = roleDescription;
+    public void setAccountDOB(String accountDOB) {
+        this.accountDOB = accountDOB;
     }
 
     /**
-     * Constructor
-     * @param accountID ID of the account
-     * @param accountEmail Email address of the account
-     * @param accountName Full name associated with the account
-     * @param roleDescription Description of the role of the account
+     * Get Day create account
+     * @return Day create account
      */
-    public Account(int accountID, String accountEmail, String accountName, String roleDescription) {
-        this.accountID = accountID;
-        this.accountEmail = accountEmail;
-        this.accountName = accountName;
-        this.roleDescription = roleDescription;
-    }
-    
-     /**
-     *
-     * Constructor with parameters accountID, accountName and accountEmail,
-     *
-     * @param accountID ID of the account
-     * @param accountName name of the account
-     * @param accountEmail Email address of the account
-     */
-    
-    public Account(int accountID, String accountEmail, String accountName) {
-        this.accountID = accountID;
-        this.accountEmail = accountEmail;
-        this.accountName = accountName;
-    }
-
-        /**
-     * Constructor
-     * @param accountEmail Email address of the account
-     * @param accountName Full name associated with the account
-     * @param accountPhone Phone number associated with the account
-     * @param accountAddress address of the account
-     */
-    public Account(String accountEmail, String accountName, int accountPhone, String accountAddress) {
-        this.accountEmail = accountEmail;
-        this.accountName = accountName;
-        this.accountPhone = accountPhone;
-        this.accountAddress = accountAddress;
+    public String getAccountStartDay() {
+        return accountStartDay;
     }
 
     /**
-     * Constructor
-     * @param accountID ID of the account
-     * @param accountEmail Email address of the account
-     * @param accountName Full name associated with the account
-     * @param accountPhone Phone number associated with the account
-     * @param accountAddress address of the account
+     * Set Day create account
+     * @param accountStartDay Day create account
      */
-    public Account(int accountID, String accountEmail, String accountName, int accountPhone, String accountAddress) {
-        this.accountID = accountID;
-        this.accountEmail = accountEmail;
-        this.accountName = accountName;
-        this.accountPhone = accountPhone;
-        this.accountAddress = accountAddress;
+    public void setAccountStartDay(String accountStartDay) {
+        this.accountStartDay = accountStartDay;
     }
-    
-
-    public Account(String accountEmail, String accountPassword, String accountName, int accountPhone, String accountAddress) {
-        this.accountEmail = accountEmail;
-        this.accountPassword = accountPassword;
-        this.accountName = accountName;
-        this.accountPhone = accountPhone;
-        this.accountAddress = accountAddress;
-    }
-
     
     /**
      *
      * Get ID of the account
      *
-     * @return int ID of the account
+     * @return String ID of the account
      */
-    public int getAccountID() {
+    public String getAccountID() {
         return accountID;
     }
 
@@ -209,7 +104,7 @@ public class Account {
      *
      * @param accountID ID of the account
      */
-    public void setAccountID(int accountID) {
+    public void setAccountID(String accountID) {
         this.accountID = accountID;
     }
 
@@ -316,7 +211,7 @@ public class Account {
      *
      * @return accountPhone phone number associated with the account
      */
-    public int getAccountPhone() {
+    public String getAccountPhone() {
         return accountPhone;
     }
 
@@ -325,7 +220,7 @@ public class Account {
      *
      * @param accountPhone phone number associated with the account
      */
-    public void setAccountPhone(int accountPhone) {
+    public void setAccountPhone(String accountPhone) {
         this.accountPhone = accountPhone;
     }
 
@@ -347,22 +242,5 @@ public class Account {
         this.accountAddress = accountAddress;
     }
 
-    /**
-     * Get ID of the role associated with the account
-     *
-     * @return roleID ID of the role associated with the account
-     */
-    public String getRoleID() {
-        return roleID;
-    }
-
-    /**
-     * Set ID of the role associated with the account
-     *
-     * @param roleID ID of the role associated with the account
-     */
-    public void setRoleID(String roleID) {
-        this.roleID = roleID;
-    }
 
 }

@@ -10,11 +10,11 @@ package model;
  */
 public class OrderDetail {
 
-    private int orderDetailID; // ID of the order detail
+    private String orderDetailID; // ID of the order detail
     private int orderQuantity; // Quantity of product in the order
     private int orderPrice; // Price of the product in the order
-    private int productID; // ID of the product in the order
-    private int orderID; // ID of the order associated with the order detail
+    private String productID; // ID of the product in the order
+    private String orderID; // ID of the order associated with the order detail
     private String productName; // Name of product
     private String productLink; // Link image of product
 
@@ -34,7 +34,7 @@ public class OrderDetail {
      * @param productID ID of the product
      * @param orderID ID of the order
      */
-    public OrderDetail(int orderDetailID, int orderQuantity, int orderPrice, int productID, int orderID) {
+    public OrderDetail(String orderDetailID, int orderQuantity, int orderPrice, String productID, String orderID) {
         this.orderDetailID = orderDetailID;
         this.orderQuantity = orderQuantity;
         this.orderPrice = orderPrice;
@@ -100,7 +100,7 @@ public class OrderDetail {
      *
      * @return int ID of the order detail
      */
-    public int getOrderDetailID() {
+    public String getOrderDetailID() {
         return orderDetailID;
     }
 
@@ -109,7 +109,7 @@ public class OrderDetail {
      *
      * @param orderDetailID ID of the order detail
      */
-    public void setOrderDetailID(int orderDetailID) {
+    public void setOrderDetailID(String orderDetailID) {
         this.orderDetailID = orderDetailID;
     }
 
@@ -152,9 +152,9 @@ public class OrderDetail {
     /**
      * Get ID of the product
      *
-     * @return int ID of the product
+     * @return String ID of the product
      */
-    public int getProductID() {
+    public String getProductID() {
         return productID;
     }
 
@@ -163,16 +163,16 @@ public class OrderDetail {
      *
      * @param productID ID of the product
      */
-    public void setProductID(int productID) {
+    public void setProductID(String productID) {
         this.productID = productID;
     }
 
     /**
      * Get ID of the Order
      *
-     * @return int ID of the Order
+     * @return String ID of the Order
      */
-    public int getOrderID() {
+    public String getOrderID() {
         return orderID;
     }
 
@@ -181,7 +181,7 @@ public class OrderDetail {
      *
      * @param orderID ID of the Order
      */
-    public void setOrderID(int orderID) {
+    public void setOrderID(String orderID) {
         this.orderID = orderID;
     }
 

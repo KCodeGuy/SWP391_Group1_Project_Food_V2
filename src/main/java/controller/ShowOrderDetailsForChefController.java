@@ -33,7 +33,7 @@ public class ShowOrderDetailsForChefController extends HttpServlet {
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
     throws ServletException, IOException {
         response.setContentType("text/html;charset=UTF-8");
-        int orderID = Integer.parseInt(request.getParameter("orderID"));
+        String orderID = request.getParameter("orderID");
         
         Order order; // create order
         OrderDAO odao = new OrderDAO(); // create orderDAO

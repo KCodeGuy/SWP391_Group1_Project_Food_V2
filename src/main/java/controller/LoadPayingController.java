@@ -5,8 +5,8 @@
 
 package controller;
 
+import dao.AccountDAO;
 import dao.CartDAO;
-import dao.UserDAO;
 import java.io.IOException;
 import java.io.PrintWriter;
 import jakarta.servlet.ServletException;
@@ -14,8 +14,8 @@ import jakarta.servlet.http.HttpServlet;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
 import java.util.ArrayList;
+import model.Account;
 import model.Cart;
-import model.User;
 
 /**
  *
@@ -45,10 +45,10 @@ public class LoadPayingController extends HttpServlet {
             voucherID = "";
         }
         
-        int accountID = Integer.parseInt(request.getParameter("accountID"));
+        String accountID = request.getParameter("accountID");
         
-        UserDAO udao = new UserDAO();
-        User user = udao.getUserPayingByAccountID(accountID);
+        AccountDAO udao = new AccountDAO();
+        Account user = udao.getUserPayingByAccountID(accountID);
         
         CartDAO cdao = new CartDAO();
         

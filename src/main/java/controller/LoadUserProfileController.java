@@ -4,7 +4,7 @@
  */
 package controller;
 
-import dao.UserDAO;
+import dao.AccountDAO;
 import jakarta.servlet.ServletException;
 import java.io.IOException;
 import java.io.PrintWriter;
@@ -12,7 +12,8 @@ import jakarta.servlet.ServletException;
 import jakarta.servlet.http.HttpServlet;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
-import model.User;
+import model.Account;
+
 
 /**
  *
@@ -33,10 +34,10 @@ public class LoadUserProfileController extends HttpServlet {
             throws ServletException, IOException {
         response.setContentType("text/html;charset=UTF-8");
         //Set the account ID to retrieve the user 
-        int accountID = Integer.parseInt(request.getParameter("accountID"));
+        String accountID = request.getParameter("accountID");
         //Create a new UserDAO instance and retrieve the user with the specified account ID
-        UserDAO udao = new UserDAO();
-        User user = udao.getUserByAccountID(accountID);
+        AccountDAO udao = new AccountDAO();
+        Account user = udao.getUserByAccountID(accountID);
         //Set the user attribute for the request and forward to the userProfile.jsp page
         request.setAttribute("user", user);
         request.getRequestDispatcher("userProfile.jsp").forward(request, response);

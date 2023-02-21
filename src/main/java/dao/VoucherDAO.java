@@ -11,7 +11,6 @@ import java.sql.ResultSet;
 import java.util.ArrayList;
 import java.util.List;
 import model.Voucher;
-import model.User;
 
 /**
  *
@@ -22,6 +21,10 @@ public class VoucherDAO {
     PreparedStatement ps; //Move query from Netbeen to SQl
     ResultSet rs; //Save result query
     
+    /**
+     *
+     * @return
+     */
     public static List<Voucher> getAllVoucher() {
 
         Connection con = null;       // connect to SQL server.
@@ -39,7 +42,7 @@ public class VoucherDAO {
             //Loop through the result set and create a new user object with the retrieved data
             while (rs.next()) {
                 //Create a new User object using data retrieved from the database
-                list.add(new Voucher(rs.getString(1), rs.getString(2), rs.getString(3), rs.getInt(4)));
+                list.add(new Voucher(rs.getString(1), rs.getString(2), rs.getString(3), rs.getInt(4), rs.getInt(5), rs.getString(6), rs.getString(7)));
             } //End while
             //Return the user object
 

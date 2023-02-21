@@ -4,14 +4,14 @@
  */
 package controller;
 
-import dao.UserDAO;
+import dao.AccountDAO;
 import java.io.IOException;
 import java.io.PrintWriter;
 import jakarta.servlet.ServletException;
 import jakarta.servlet.http.HttpServlet;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
-import model.User;
+import model.Account;
 
 /**
  *
@@ -58,10 +58,10 @@ public class UpdateUserProfileController extends HttpServlet {
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         //Set the account ID to retrieve the user 
-        int accountID = Integer.parseInt(request.getParameter("accountID"));
+        String accountID = request.getParameter("accountID");
         //Create a new UserDAO instance and retrieve the user with the specified account ID
-        UserDAO udao = new UserDAO();
-        User user = udao.getUserByAccountID(accountID);
+        AccountDAO udao = new AccountDAO();
+        Account user = udao.getUserByAccountID(accountID);
         //Set the user and accountID attribute for the request and forward to the updateUserProfile.jsp page
         request.setAttribute("user", user);
         request.setAttribute("accountID", accountID);
@@ -80,13 +80,13 @@ public class UpdateUserProfileController extends HttpServlet {
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
          //Retrieve form data from HTTP request parameters
-        int accountID = Integer.parseInt(request.getParameter("accountID"));
+        String accountID = request.getParameter("accountID");
         String accountName = request.getParameter("name");
         String accountAddress = request.getParameter("address");
-        int accountPhone = Integer.parseInt(request.getParameter("phone"));
+        String accountPhone = request.getParameter("phone");
         String userBirthday = request.getParameter("date-of-birth");
          //Create a UserDAO object and update user profile using retrieved form data
-        UserDAO udao = new UserDAO();
+        AccountDAO udao = new AccountDAO();
         udao.updateUserProfile(accountID, userBirthday, accountName, accountPhone, accountAddress);
         //Redirect user to the user profile page with the updated accountID
         response.sendRedirect("loaduserprofile?accountID=" + accountID);

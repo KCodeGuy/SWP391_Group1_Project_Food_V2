@@ -33,7 +33,7 @@ public class ProductDAO {
      */
     public List<Product> getListProduct() {
         try {
-            String query = "SELECT * FROM [PRODUCT] P join [CATEGORY] C ON P.CategoryID = C.CategoryID\n"
+            String query = "SELECT * FROM [PRODUCT] P\n"
                     + "WHERE P.ProductStatus <> 'REMOVED'"; //query select product orther than REMOVED
             con = new DBContext().getConnection(); // open connection to SQL
             ps = con.prepareStatement(query); // move query from Netbeen to SQl
@@ -41,7 +41,7 @@ public class ProductDAO {
             List<Product> list = new ArrayList<>(); //list products
             while (rs.next()) {
                 list.add(new Product(
-                        rs.getInt(1),
+                        rs.getString(1),
                         rs.getString(2), 
                         rs.getString(3),
                         rs.getInt(4),
@@ -65,14 +65,14 @@ public class ProductDAO {
      */
     public List<Product> getListProductManagePage() {
         try {
-            String query = "SELECT ProductID,ProductLinkImage, ProductName, ProductDescription,ProductSalePercent,ProductPrice,ProductStatus FROM PRODUCT;";
+            String query = "SELECT ProductID,SELECT ProductID,ProductLinkImage, ProductName, ProductDescription,ProductSalePercent,ProductPrice,ProductStatus FROM PRODUCT, ProductName, ProductDescription,ProductSalePercent,ProductPrice,ProductStatus FROM PRODUCT;";
             con = new DBContext().getConnection(); // open connection to SQL
             ps = con.prepareStatement(query); // move query from Netbeen to SQl
             rs = ps.executeQuery(); // the same with click to "excute" btn;
             List<Product> list = new ArrayList<>(); //list products
             while (rs.next()) {
                 list.add(new Product(
-                        rs.getInt(1),
+                        rs.getString(1),
                         rs.getString(2), 
                         rs.getString(3),
                         rs.getString(4),
@@ -86,5 +86,26 @@ public class ProductDAO {
             e.getMessage();
         }
         return null;
-    }      
+    }   
+    
+    /**
+     * Get last id in table Product
+     * @return last id
+     */
+    public String getLastIDOfProduct() {
+        String lastID = null;
+        String query = "SELECT TOP 1 AccountID FROM [Product] ORDER BY CAST(RIGHT(ProductID, 4) AS INT) DESC;";
+        try {
+            con = new DBContext().getConnection(); // open connection to SQL
+            ps = con.prepareStatement(query);      // move query from Netbeen to SQl
+            rs = ps.executeQuery();                // excute query and return result to rs.
+            while (rs.next()) {
+                // return an account
+                lastID = rs.getString(1);
+            } // end while loop of table result.
+        } catch (Exception e) {
+            e.getMessage();
+        } // end try-catch.
+        return lastID;
+    }
 }

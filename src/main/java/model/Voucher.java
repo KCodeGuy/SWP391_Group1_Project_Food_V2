@@ -14,6 +14,9 @@ public class Voucher {
     private String voucherDescription; // Description of the voucher
     private String voucherStatus; // Status of the voucher (available, unavailable)
     private int productSalePercent; // Sale percent associated with the voucher
+    private int voucherQuantity; // quantity of voucher
+    private String voucherStartDay; // start day voucher
+    private String voucherEndDay; // end day voucher
 
     /**
      * Constructor with parameter voucherID, voucherDescription, voucherStatus,
@@ -23,12 +26,66 @@ public class Voucher {
      * @param voucherDescription Description of the voucher
      * @param voucherStatus Status of the voucher
      * @param productSalePercent Percentage of sale for the voucher
+     * @param voucherQuantity quantity of voucher
+     * @param voucherStartDay start day voucher
+     * @param voucherEndDay end day voucher
      */
-    public Voucher(String voucherID, String voucherDescription, String voucherStatus, int productSalePercent) {
+    public Voucher(String voucherID, String voucherDescription, String voucherStatus, int productSalePercent, int voucherQuantity, String voucherStartDay, String voucherEndDay) {
         this.voucherID = voucherID;
         this.voucherDescription = voucherDescription;
         this.voucherStatus = voucherStatus;
         this.productSalePercent = productSalePercent;
+        this.voucherQuantity = voucherQuantity;
+        this.voucherStartDay = voucherStartDay;
+        this.voucherEndDay = voucherEndDay;
+    }
+
+    /**
+     * Get quantity of voucher
+     * @return quantity of voucher
+     */
+    public int getVoucherQuantity() {
+        return voucherQuantity;
+    }
+
+    /**
+     * Set quantity of voucher
+     * @param voucherQuantity quantity of voucher
+     */
+    public void setVoucherQuantity(int voucherQuantity) {
+        this.voucherQuantity = voucherQuantity;
+    }
+
+    /**
+     * Get start day voucher
+     * @return start day voucher
+     */
+    public String getVoucherStartDay() {
+        return voucherStartDay;
+    }
+
+    /**
+     * Set start day voucher 
+     * @param voucherStartDay start day voucher
+     */
+    public void setVoucherStartDay(String voucherStartDay) {
+        this.voucherStartDay = voucherStartDay;
+    }
+
+    /**
+     * Get end day voucher
+     * @return end day voucher
+     */
+    public String getVoucherEndDay() {
+        return voucherEndDay;
+    }
+
+    /**
+     * Set end day voucher
+     * @param voucherEndDay end day voucher
+     */
+    public void setVoucherEndDay(String voucherEndDay) {
+        this.voucherEndDay = voucherEndDay;
     }
 
     /**

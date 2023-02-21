@@ -4,14 +4,14 @@
  */
 package controller;
 
-import dao.StaffDAO;
+import dao.AccountDAO;
 import java.io.IOException;
 import java.io.PrintWriter;
 import jakarta.servlet.ServletException;
 import jakarta.servlet.http.HttpServlet;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
-import model.Staff;
+import model.Account;
 
 /**
  *
@@ -32,10 +32,10 @@ public class LoadFormApplicationDetailForAdminController extends HttpServlet {
             throws ServletException, IOException {
         response.setContentType("text/html;charset=UTF-8");
         // Set the account ID to get the infomation of the staff
-        int accountID = Integer.parseInt(request.getParameter("accountID"));
+        String accountID = request.getParameter("accountID");
         // Create a new StaffDAO instance and retrieve infomation using account ID
-        StaffDAO sdao = new StaffDAO();
-        Staff staff = sdao.getApplicationFormByAccountID(accountID);
+        AccountDAO sdao = new AccountDAO();
+        Account staff = sdao.getApplicationFormByAccountID(accountID);
         // Set the user attribute for the request and forward to the use formApplicationDetailsForAdmin.jsp page
         request.setAttribute("accountID", accountID);
         request.setAttribute("staff", staff);

@@ -10,7 +10,7 @@ package model;
  */
 public class Product {
 
-    private int productID; // ID of product
+    private String productID; // ID of product
     private String productName; // Name of product
     private String productDescription; // Description of product
     private int productPrice; // Price of product
@@ -39,7 +39,7 @@ public class Product {
      * @param productStatus Status of the product
      * @param productLink Link image of product
      */
-    public Product(int productID, String productLink, String productName, String productDescription, int productSalePercent, int productPrice, ProductStatus productStatus) {
+    public Product(String productID, String productLink, String productName, String productDescription, int productSalePercent, int productPrice, ProductStatus productStatus) {
         this.productID = productID;
         this.productLink = productLink;
         this.productName = productName;
@@ -63,7 +63,7 @@ public class Product {
      * @param productLink Link image of product
      * @param categoryID ID of the category the product belongs to
      */
-    public Product(int productID, String productName, String productDescription, int productPrice, int productSalePercent, ProductStatus productStatus, String productLink, String categoryID) {
+    public Product(String productID, String productName, String productDescription, int productPrice, int productSalePercent, ProductStatus productStatus, String productLink, String categoryID) {
         this.productID = productID;
         this.productName = productName;
         this.productDescription = productDescription;
@@ -78,9 +78,9 @@ public class Product {
      *
      * Get ID of the product
      *
-     * @return int ID of the product
+     * @return String ID of the product
      */
-    public int getProductID() {
+    public String getProductID() {
         return productID;
     }
 
@@ -90,7 +90,7 @@ public class Product {
      *
      * @param productID ID of the product
      */
-    public void setProductID(int productID) {
+    public void setProductID(String productID) {
         this.productID = productID;
     }
 

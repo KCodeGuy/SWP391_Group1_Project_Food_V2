@@ -29,8 +29,8 @@ public class AddProductIntoCartFromHome extends HttpServlet {
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
     throws ServletException, IOException {
         response.setContentType("text/html;charset=UTF-8");
-        int accountID = Integer.parseInt(request.getParameter("accountID"));
-        int productID = Integer.parseInt(request.getParameter("productID"));
+        String accountID = request.getParameter("accountID");
+        String productID = request.getParameter("productID");
         
         CartDAO cdao = new CartDAO(); // create CartDAO
         if (cdao.isProductExistInCart(accountID, productID)) {

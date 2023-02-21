@@ -1,4 +1,5 @@
 D:\2023\[SP23]SWP391\SWP391_Group1_Project_Food_V2\src\main\java\controller\EmaiVerificationController.java
+D:\2023\[SP23]SWP391\SWP391_Group1_Project_Food_V2\src\main\java\controller\AcceptOrderController.java
 D:\2023\[SP23]SWP391\SWP391_Group1_Project_Food_V2\src\main\java\model\AccountStatus.java
 D:\2023\[SP23]SWP391\SWP391_Group1_Project_Food_V2\src\main\java\model\Voucher.java
 D:\2023\[SP23]SWP391\SWP391_Group1_Project_Food_V2\src\main\java\hash\jni\UnsupportedPlatformException.java
@@ -15,12 +16,13 @@ D:\2023\[SP23]SWP391\SWP391_Group1_Project_Food_V2\src\main\java\controller\Load
 D:\2023\[SP23]SWP391\SWP391_Group1_Project_Food_V2\src\main\java\controller\LoadUserProfileController.java
 D:\2023\[SP23]SWP391\SWP391_Group1_Project_Food_V2\src\main\java\dao\OrderDetailDAO.java
 D:\2023\[SP23]SWP391\SWP391_Group1_Project_Food_V2\src\main\java\controller\LoginController.java
+D:\2023\[SP23]SWP391\SWP391_Group1_Project_Food_V2\src\main\java\controller\ShowOrderDetailsForChefController.java
 D:\2023\[SP23]SWP391\SWP391_Group1_Project_Food_V2\src\main\java\hash\jni\Platform.java
 D:\2023\[SP23]SWP391\SWP391_Group1_Project_Food_V2\src\main\java\controller\LoadListProductInCartController.java
 D:\2023\[SP23]SWP391\SWP391_Group1_Project_Food_V2\src\main\java\controller\LogoutController.java
 D:\2023\[SP23]SWP391\SWP391_Group1_Project_Food_V2\src\main\java\controller\EmailAuthenUpdatePasswordController.java
 D:\2023\[SP23]SWP391\SWP391_Group1_Project_Food_V2\src\main\java\controller\AddProductIntoCartFromHome.java
-D:\2023\[SP23]SWP391\SWP391_Group1_Project_Food_V2\src\main\java\model\User.java
+D:\2023\[SP23]SWP391\SWP391_Group1_Project_Food_V2\src\main\java\hash\GenerateID.java
 D:\2023\[SP23]SWP391\SWP391_Group1_Project_Food_V2\src\main\java\controller\LoadPayingController.java
 D:\2023\[SP23]SWP391\SWP391_Group1_Project_Food_V2\src\main\java\model\Account.java
 D:\2023\[SP23]SWP391\SWP391_Group1_Project_Food_V2\src\main\java\emailHandler\EmailHandler.java
@@ -37,7 +39,6 @@ D:\2023\[SP23]SWP391\SWP391_Group1_Project_Food_V2\src\main\java\dao\VoucherDAO.
 D:\2023\[SP23]SWP391\SWP391_Group1_Project_Food_V2\src\main\java\hash\SCrypt.java
 D:\2023\[SP23]SWP391\SWP391_Group1_Project_Food_V2\src\main\java\hash\SCryptUtil.java
 D:\2023\[SP23]SWP391\SWP391_Group1_Project_Food_V2\src\main\java\model\OrderDetail.java
-D:\2023\[SP23]SWP391\SWP391_Group1_Project_Food_V2\src\main\java\model\Staff.java
 D:\2023\[SP23]SWP391\SWP391_Group1_Project_Food_V2\src\main\java\controller\RejectApplicationController.java
 D:\2023\[SP23]SWP391\SWP391_Group1_Project_Food_V2\src\main\java\dao\AccountDAO.java
 D:\2023\[SP23]SWP391\SWP391_Group1_Project_Food_V2\src\main\java\hash\jni\NilLibraryLoader.java
@@ -49,12 +50,11 @@ D:\2023\[SP23]SWP391\SWP391_Group1_Project_Food_V2\src\main\java\model\Cart.java
 D:\2023\[SP23]SWP391\SWP391_Group1_Project_Food_V2\src\main\java\controller\PayingController.java
 D:\2023\[SP23]SWP391\SWP391_Group1_Project_Food_V2\src\main\java\controller\LoadListOrderedForChefController.java
 D:\2023\[SP23]SWP391\SWP391_Group1_Project_Food_V2\src\main\java\dao\OrderDAO.java
-D:\2023\[SP23]SWP391\SWP391_Group1_Project_Food_V2\src\main\java\dao\UserDAO.java
 D:\2023\[SP23]SWP391\SWP391_Group1_Project_Food_V2\src\main\java\controller\DeleteUserController.java
 D:\2023\[SP23]SWP391\SWP391_Group1_Project_Food_V2\src\main\java\hash\jni\LibraryLoader.java
 D:\2023\[SP23]SWP391\SWP391_Group1_Project_Food_V2\src\main\java\context\DBContext.java
 D:\2023\[SP23]SWP391\SWP391_Group1_Project_Food_V2\src\main\java\controller\LoadFormApplicationDetailController.java
-D:\2023\[SP23]SWP391\SWP391_Group1_Project_Food_V2\src\main\java\dao\StaffDAO.java
+D:\2023\[SP23]SWP391\SWP391_Group1_Project_Food_V2\src\main\java\controller\RejectOrderController.java
 D:\2023\[SP23]SWP391\SWP391_Group1_Project_Food_V2\src\main\java\hash\jni\SysLibraryLoader.java
 D:\2023\[SP23]SWP391\SWP391_Group1_Project_Food_V2\src\main\java\hash\jni\LibraryLoaders.java
 D:\2023\[SP23]SWP391\SWP391_Group1_Project_Food_V2\src\main\java\model\Order.java

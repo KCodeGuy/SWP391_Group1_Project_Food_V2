@@ -23,5 +23,6 @@ public enum AccountStatus {
     /**
      *
      */
-    REMOVED
+    REMOVED,
+    NULL
 }

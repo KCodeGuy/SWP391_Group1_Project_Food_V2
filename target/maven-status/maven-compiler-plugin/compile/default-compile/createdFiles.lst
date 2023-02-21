@@ -1,6 +1,8 @@
 com\example\demo\hash\jni\LibraryLoaders.class
 controller\HomeController.class
 dao\OrderDAO.class
+controller\ShowOrderDetailsForChefController.class
+controller\AcceptOrderController.class
 controller\LoadListProductInCartController.class
 com\example\demo\hash\jni\Platform.class
 controller\UseVoucherController.class
@@ -9,10 +11,8 @@ com\example\demo\hash\codec\Base64.class
 com\example\demo\hash\jni\Platform$OS.class
 controller\DeleteUserController.class
 model\Product.class
-dao\UserDAO.class
 model\Voucher.class
 com\example\demo\hash\jni\Platform$Arch.class
-model\User.class
 com\example\demo\hash\jni\JarLibraryLoader.class
 hash\PBKDF.class
 controller\UpdateUserProfileController.class
@@ -20,8 +20,8 @@ controller\LoadPayingController.class
 dao\OrderDetailDAO.class
 controller\AddProductIntoCartFromHome.class
 model\OrderStatus.class
-dao\StaffDAO.class
 hash\SCrypt.class
+controller\RejectOrderController.class
 model\Category.class
 controller\DeleteProductInCartController.class
 com\example\demo\hash\jni\JarLibraryLoader$1.class
@@ -33,12 +33,12 @@ dao\CartDAO.class
 dao\AccountDAO.class
 controller\RegisterController.class
 hash\SCryptUtil.class
-model\Staff.class
 controller\ForgotPasswordController.class
 controller\LoginController.class
 model\VoucherStatus.class
 controller\LoadStaffProfileController.class
 emailHandler\EmailHandler.class
+hash\GenerateID.class
 controller\AddProductIntoCartFromProductDetail.class
 emailHandler\EmailHandler$1.class
 dao\VoucherDAO.class

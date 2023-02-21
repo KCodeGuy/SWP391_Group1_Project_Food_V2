@@ -4,7 +4,7 @@
  */
 package controller;
 
-import dao.UserDAO;
+import dao.AccountDAO;
 import java.io.IOException;
 import java.io.PrintWriter;
 import jakarta.servlet.ServletException;
@@ -59,9 +59,9 @@ public class DeleteUserController extends HttpServlet {
         //Get the ID of the account to be deleted from the request parameter
         String accountID = request.getParameter("accountID");        
         //Create a new UserDAO object to access the database
-        UserDAO udao = new UserDAO();        
+        AccountDAO udao = new AccountDAO();        
         //Call the deleteUser method of the UserDAO object to delete the user with the given ID
-        udao.deleteUser(Integer.parseInt(accountID));        
+        udao.deleteUser(accountID);        
         //Redirect the user to the page that lists all users
         response.sendRedirect("loadlistuser");
     }
