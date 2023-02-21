@@ -39,7 +39,7 @@ public class EmaiVerificationController extends HttpServlet {
         if (enteredCode.equals(originCode)) {
             if (featurePage.equalsIgnoreCase("AUTHENEMAIL")) {
                 AccountDAO adao = new AccountDAO();
-                adao.registerAccount(fullName, email, password, phone, address, "2023-02-14", "2023-02-14");
+                adao.registerAccount(fullName, email, password, phone, address, "1/1/2022", "1/1/2022");
                 request.setAttribute("registerSuccesMessage", "Register successfully! Please login your account!");
                 request.getRequestDispatcher("login.jsp").forward(request, response);
             } else {

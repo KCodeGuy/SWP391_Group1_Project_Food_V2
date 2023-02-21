@@ -41,7 +41,7 @@
                             <li class="nav-item">
                                 <a class="nav-link" href="logoutController">Logout</a>
                             </li>
-                            <c:if test="${sessionScope.accountSesseion.roleID eq 'ADMIN'}">
+                            <c:if test="${sessionScope.accountSesseion.accountID.startsWith('AD')}">
                                 <li class="nav-item">
                                     <a class="nav-link" aria-current="page" href="manageOrder.jsp">Manage orders</a>
                                 </li>
@@ -64,7 +64,7 @@
                                     <a class="nav-link" aria-current="page" href="statistic.jsp">Statistic</a>
                                 </li>
                             </c:if>
-                            <c:if test="${sessionScope.accountSesseion.roleID eq 'CHEF'}">
+                            <c:if test="${sessionScope.accountSesseion.accountID.startsWith('CH')}">
                                 <li class="nav-item">
                                     <a class="nav-link" aria-current="page" href="loadlistorderedforchef">Manage orders</a>
                                 </li>
@@ -75,7 +75,7 @@
                                     <a class="nav-link" aria-current="page" href="loadstaffprofile?accountID=${sessionScope.accountSesseion.accountID}">${sessionScope.accountSesseion.accountName}</a>
                                 </li>
                             </c:if>
-                            <c:if test="${sessionScope.accountSesseion.roleID eq 'SHIPPER'}">
+                            <c:if test="${sessionScope.accountSesseion.accountID.startsWith('SP')}">
                                  <li class="nav-item">
                                     <a class="nav-link" aria-current="page" href="staffProfile.jsp">Manage ship</a>
                                 </li>
@@ -86,7 +86,7 @@
                                     <a class="nav-link" aria-current="page" href="loadstaffprofile?accountID=${sessionScope.accountSesseion.accountID}">${sessionScope.accountSesseion.accountName}</a>
                                 </li>
                             </c:if>
-                            <c:if test="${sessionScope.accountSesseion.roleID eq 'USER'}">
+                            <c:if test="${sessionScope.accountSesseion.accountID.startsWith('US')}">
                                 <li class="nav-item">
                                     <a class="nav-link" aria-current="page" href="loaduserprofile?accountID=${sessionScope.accountSesseion.accountID}">${sessionScope.accountSesseion.accountName}</a>
                                 </li>

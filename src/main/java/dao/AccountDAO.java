@@ -39,9 +39,7 @@ public class AccountDAO {
      */
     public Account loginAccount(String email, String password) {
         // query to check whether passed email and password is exist or not.
-        String query = "select AccountEmail, AccountPassword, AccountName, AccountID\n"
-                + "from ACCOUNT \n"
-                + "where AccountEmail = ? and AccountPassword = ? and accountStatus = 'ACTIVED';";
+        String query = "SELECT AccountEmail, AccountPassword, AccountName, AccountID FROM ACCOUNT WHERE AccountEmail=? AND AccountPassword=? AND AccountStatus = 'ACTIVED'";
         try {
             con = new DBContext().getConnection(); // open connection to SQL
             ps = con.prepareStatement(query);      // move query from Netbeen to SQl
@@ -50,7 +48,7 @@ public class AccountDAO {
             rs = ps.executeQuery();                // excute query and return result to rs.
             while (rs.next()) {
                 // return an account
-                return new Account(rs.getString(5), rs.getString(1), rs.getString(2), AccountStatus.ACTIVED, rs.getString(3), "", "", "", "", "");
+                return new Account(rs.getString(4), rs.getString(1), rs.getString(2), AccountStatus.ACTIVED, rs.getString(3), "", "", "", "", "");
             } // end while loop of table result.
         } catch (Exception e) {
             e.getMessage();
@@ -77,7 +75,7 @@ public class AccountDAO {
             ps.setString(1, email);                  // pass entered email to the first ?.
             rs = ps.executeQuery();                  // excute query and return result to rs.
             while (rs.next()) {
-                acc = new Account(rs.getString(5), rs.getString(1), rs.getString(2), AccountStatus.valueOf(rs.getString(6)), rs.getString(3), "", "", "", "", "");
+                acc = new Account(rs.getString(4), rs.getString(1), rs.getString(2), AccountStatus.valueOf(rs.getString(5)), rs.getString(3), "", "", "", "", "");
             } // end while loop of table result.
             // check whether accoutn is null or not to return.
             if (acc != null) {
@@ -103,7 +101,7 @@ public class AccountDAO {
      */
     public void registerAccount(String name, String email, String password, String phone, String address, String dob, String startDay) {
         // query to insert a new account of user to database. With status is ACTIVED and role's id is USER default.
-        String query = "INSERT INTO [ACCOUNT] VALUES (?,?,?,'ACTIVED',?,?,?,?,?)";
+        String query = "INSERT INTO [ACCOUNT] VALUES (?,N?,N?,'PENDING',N?,N?,N?,?,?)";
         try {
             con = new DBContext().getConnection();   // open connection to SQL
             ps = con.prepareStatement(query);        // move query from Netbeen to SQl
@@ -119,6 +117,12 @@ public class AccountDAO {
         } catch (Exception e) {
             e.getMessage();
         } // end try-catch.
+    }
+    
+    public static void main(String[] args) {
+        AccountDAO adao = new AccountDAO();
+        System.out.println(adao.createNewUserID());
+        adao.registerAccount("Lê Văn Chef", "chef@gmail.com", "aA@chef123", "0123456789", "G1 FOOD", "1995-01-01", "1995-01-01");
     }
 
     /**
