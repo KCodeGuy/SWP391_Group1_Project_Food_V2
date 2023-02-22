@@ -80,19 +80,20 @@
                                 </tr>
                             </thead>
                             <tbody>
-                                <c:forEach items="${listProduct}" var="pr">
+                              <c:forEach items="${listProduct}" var="pr">
                                 <tr>   
+                                    <td class="table-order">1</td>
                                     <td class="table-order">${pr.productID}</td>
                                     <td class="table-img"><img src="${pr.productLink}"></td>
                                     <td class="table-name">${pr.productName}</a></td>
-                                    <td class="table-description">${pr.productDescription}</td>
+                                    <td class="table-description"><span>${pr.productDescription}</span></td>
                                     <td class="table-sale">${pr.productSalePercent}</td>
                                     <td class="table-price"><fmt:formatNumber type="number" pattern="###,###" value="${pr.productPrice}"/>đ</td>
                                     <td class="table-status">${pr.productStatus}</td>
                                     <td class="table-btn">
                                         <a class="table-btn-edit" href="updateProduct.html"><i
                                                 class="fa-solid fa-pen-to-square"></i></a>
-                                        <a href="#" onclick="return showMessageDelete();"><i
+                                        <a href="deleteproductformanagepage?productID=${pr.productID}" onclick="return showMessageDelete();"><i
                                                 class="fa-solid fa-trash"></i></a>
                                     </td>   
                                 </tr>

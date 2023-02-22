@@ -11,14 +11,12 @@ import jakarta.servlet.ServletException;
 import jakarta.servlet.http.HttpServlet;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
-import java.util.List;
-import model.Product;
 
 /**
  *
  * @author ASUS
  */
-public class LoadListProductForManageProductPageController extends HttpServlet {
+public class DeleteProductForManagePageController extends HttpServlet {
 
     /**
      * Processes requests for both HTTP <code>GET</code> and <code>POST</code>
@@ -32,10 +30,14 @@ public class LoadListProductForManageProductPageController extends HttpServlet {
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         response.setContentType("text/html;charset=UTF-8");
+       //Get ID of the product to delete from request parameter
+        String productID = request.getParameter("productID");
+        //Create new ProductDAO 
         ProductDAO pdao = new ProductDAO(); 
-        List<Product> listProduct = pdao.getListProduct(); // get list product to load manageProduct page    
-        request.setAttribute("listProduct", listProduct); 
-        request.getRequestDispatcher("manageProduct.jsp").forward(request, response);
+        //Call delete method from class ProductDAO
+        pdao.deleteProduct(productID);
+        //Redictect to the page list all product
+        response.sendRedirect("loadlistproductformanageproductpage");
     }
 
     // <editor-fold defaultstate="collapsed" desc="HttpServlet methods. Click on the + sign on the left to edit the code.">

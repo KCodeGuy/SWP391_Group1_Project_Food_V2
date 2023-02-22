@@ -8,6 +8,7 @@ import context.DBContext;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
+import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
 import model.Product;
@@ -107,5 +108,27 @@ public class ProductDAO {
         } // end try-catch.
         return lastID;
     }
+    
+    /**
+     * Create method delete product by productID 
+     * @param productID
+     */
+    public void deleteProduct(String productID) {
+        //Create query update status of the product
+        String query ="UPDATE PRODUCT SET ProductStatus = 'REMOVED' WHERE ProductID = ?";   
+        try {
+            // Open connection to database
+            con = new DBContext().getConnection();
+            //Move query from Netbean to SQL
+            ps = con.prepareStatement(query);
+            //Set the value of the productID parameter in the SQL statement
+            ps.setString(1, productID);
+            // Excuse query
+            ps.executeUpdate();
+        }
+        catch (SQLException e){
+            System.err.println(e.getMessage());
+        }
+    }// End method
 
 }
