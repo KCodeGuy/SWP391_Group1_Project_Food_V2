@@ -43,7 +43,7 @@
 
                         <div class="form-control-group">
                             <h4 class="form-text-label">Date of birth:</h4>
-                            <input type="date" id="date-of-birth" name="date-of-birth" value="${user.userBirthday}">
+                            <input type="date" id="date-of-birth" name="date-of-birth" value="${user.accountDOB}">
                             <div class="alert-warning" id="txtDateOfBirthMessage"></div>
                         </div>
 
