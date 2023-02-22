@@ -120,6 +120,10 @@
         <servlet-name>RejectOrderController</servlet-name>
         <servlet-class>controller.RejectOrderController</servlet-class>
     </servlet>
+    <servlet>
+        <servlet-name>loadliststaff</servlet-name>
+        <servlet-class>controller.LoadListStaffController</servlet-class>
+    </servlet>
     <servlet-mapping>
         <servlet-name>HomeController</servlet-name>
         <url-pattern>/home</url-pattern>
@@ -235,6 +239,10 @@
     <servlet-mapping>
         <servlet-name>RejectOrderController</servlet-name>
         <url-pattern>/rejectorder</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>loadliststaff</servlet-name>
+        <url-pattern>/loadliststaff</url-pattern>
     </servlet-mapping>
     <session-config>
         <session-timeout>
