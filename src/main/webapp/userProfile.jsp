@@ -18,6 +18,7 @@
         <link rel="stylesheet" href="./assert/css/userProfile.css">
         <link rel="stylesheet" href="./assert/font/fontawesome-free-6.1.1-web/css/all.css">
         <title>User profile</title>
+        
     </head>
 
     <body>
