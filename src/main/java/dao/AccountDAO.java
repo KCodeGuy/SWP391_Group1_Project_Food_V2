@@ -231,31 +231,31 @@ public class AccountDAO {
         return null;
     }
 
-//    /**
-//     * Function getCountListAccount
-//     *
-//     * This function use to take Account
-//     *
-//     *
-//     * @return count
-//     */
-//    public Integer getCountListAccount() {
-//        Integer count = null;
-//        try {
-//            String query = "SELECT * FROM [ACCOUNT] A JOIN [STAFF] S ON A.AccountID = S.AccountID "; //query select product orther than REMOVED
-//            con = new DBContext().getConnection(); // open connection to SQL
-//            ps = con.prepareStatement(query); // move query from Netbeen to SQl
-//            rs = ps.executeQuery(); // the same with click to "excute" btn;
-//
-//            while (rs.next()) {
-//                count = rs.getInt(1);
-//            } // end while rs.next
-//
-//        } catch (Exception e) {
-//            e.getMessage();
-//        }
-//        return count;
-//    }
+    /**
+     * Function getCountListAccount
+     *
+     * This function use to take Account
+     *
+     *
+     * @return count
+     */
+    public int getCountListAccount() {
+        int count = 0;
+        try {
+            String query = "SELECT COUNT(*) FROM [ACCOUNT] WHERE (AccountID LIKE 'SP%' OR AccountID LIKE 'CH%') AND AccountStatus = 'PENDING'"; //query select product orther than REMOVED
+            con = new DBContext().getConnection(); // open connection to SQL
+            ps = con.prepareStatement(query); // move query from Netbeen to SQl
+            rs = ps.executeQuery(); // the same with click to "excute" btn;
+
+            while (rs.next()) {
+                count = rs.getInt(1);
+            } // end while rs.next
+
+        } catch (Exception e) {
+            e.getMessage();
+        }
+        return count;
+    }
     /**
      * Returns the Staff associated with a given account ID.
      *

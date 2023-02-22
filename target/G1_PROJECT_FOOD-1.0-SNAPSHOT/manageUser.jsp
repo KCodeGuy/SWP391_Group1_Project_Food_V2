@@ -43,7 +43,7 @@
                                         <div class="total-quantity-group">
                                             <h6 class="sort-form-label">Total quantity:</h6>
                                             <button class="btn-primary total-quantity">
-                                                150
+                                                ${size}
                                             </button>
                                         </div>
                                     </form>

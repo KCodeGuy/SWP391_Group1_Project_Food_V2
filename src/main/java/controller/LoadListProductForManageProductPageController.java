@@ -35,6 +35,7 @@ public class LoadListProductForManageProductPageController extends HttpServlet {
         ProductDAO pdao = new ProductDAO(); 
         List<Product> listProduct = pdao.getListProductManagePage(); // get list product to load manageProduct page    
         request.setAttribute("listProduct", listProduct);
+        request.setAttribute("size", listProduct.size());
         request.getRequestDispatcher("manageProduct.jsp").forward(request, response);
     }
 

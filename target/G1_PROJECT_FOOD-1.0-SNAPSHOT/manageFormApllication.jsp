@@ -44,7 +44,7 @@
                                             <h6 class="sort-form-label">Total quantity:</h6>
                                         <%
                                             AccountDAO ad2 = new AccountDAO();
-                                            Integer la3 = ad2.getCountListAccount();
+                                            int la3 = ad2.getCountListAccount();
 
 
                                         %>
