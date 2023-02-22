@@ -41,7 +41,7 @@
                             </div>
                             <div class="form-control-group">
                                 <label class="form-text-label">Date of birth:</label>
-                                <label>${user.accountDOB}</label>
+                                <label>${user.accountPhone}</label>
                             </div>
                             <div class="form-control-group">
                                 <label class="form-text-label">Phone number:</label>
