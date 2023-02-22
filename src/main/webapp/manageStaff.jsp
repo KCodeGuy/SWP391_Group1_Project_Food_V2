@@ -3,6 +3,7 @@
     Created on : Feb 12, 2023, 2:14:42 AM
     Author     : PC
 --%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <!DOCTYPE html>
 <html lang="en">
@@ -82,7 +83,7 @@
                                             <td class="table-email">
                                                 ${ls.accountEmail}
                                             </td>
-                                            <td class="table-name"><a href="">${ls.roleID}</a></td>
+                                            <td class="table-name"><a href=""></a></td>
                                             <td class="table-btn">
                                                 <a class="table-btn-edit" href="loaduserprofile?accountID=${ls.accountID}"><i
                                                         class="fa-solid fa-pen-to-square"></i></a>

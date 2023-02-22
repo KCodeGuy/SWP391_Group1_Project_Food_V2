@@ -289,7 +289,7 @@ public class AccountDAO {
     public List<Account> getListStaff() {
         try {
             //Define a SQL query to retrieve account details for all active users, including role information.
-            String query = "SELECT AccountID, AccountName, AccountEmail FROM ACCOUNT WHERE  AccountID LIKE 'US%'";
+            String query = "SELECT AccountID, AccountName, AccountEmail FROM ACCOUNT WHERE  AccountID LIKE 'CH%' OR AccountID LIKE 'SP%'";
             con = new DBContext().getConnection(); //Open a connection to the database.
             ps = con.prepareStatement(query); //Move query from Netbeen to SQL
             rs = ps.executeQuery(); //Execute the query and get the result set.
