@@ -167,7 +167,8 @@ Connection con = null;       // connect to SQL server.
     public Integer getCountListAccount() {
         Integer count = null;
         try {
-            String query = "SELECT * FROM [ACCOUNT] A JOIN [STAFF] S ON A.AccountID = S.AccountID "; //query select product orther than REMOVED
+            String query = "SELECT A.AccountID, A.AccountEmail, A.AccountName, R.RoleDescription FROM [ACCOUNT] A JOIN [STAFF] S ON A.AccountID = S.AccountID"
+                    + " JOIN ROLE R ON R.RoleID = A.RoleID WHERE A.AccountStatus = 'PENDING'"; //query select product orther than REMOVED
             con = new DBContext().getConnection(); // open connection to SQL
             ps = con.prepareStatement(query); // move query from Netbeen to SQl
             rs = ps.executeQuery(); // the same with click to "excute" btn;

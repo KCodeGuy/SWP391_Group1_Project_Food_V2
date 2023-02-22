@@ -31,6 +31,10 @@ public class Voucher {
         this.productSalePercent = productSalePercent;
     }
 
+    public Voucher(String toUpperCase, String voucherDescription, String voucherStatus, Integer valueOf, Integer valueOf0, String voucherSDate, String voucherEDate) {
+        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
+    }
+
     /**
      * Get ID of the voucher
      *
@@ -101,6 +105,18 @@ public class Voucher {
      */
     public void setProductSalePercent(int productSalePercent) {
         this.productSalePercent = productSalePercent;
+    }
+
+    public int getVoucherQuantity() {
+        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
+    }
+
+    public String getVoucherStartDay() {
+        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
+    }
+
+    public String getVoucherEndDay() {
+        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
     }
 
 }

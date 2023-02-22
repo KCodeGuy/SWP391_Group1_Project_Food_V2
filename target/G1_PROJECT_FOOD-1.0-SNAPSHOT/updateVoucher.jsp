@@ -29,7 +29,7 @@
                 <!-- Form update product -->
                 <div class="container-fluid container-fluid-form">
                     <div class="wrapper-form">
-                        <form id="myForm">
+                        <form id="myForm" action="UpdateVoucherController" method="POST">
                             <div class="form-heading-group">
                                 <i class="fa-solid fa-file-pen"></i>
                                 <h2 class="form-heading">UPDATE VOUCHER</h2>
@@ -37,41 +37,58 @@
 
                             <div class="form-control-group">
                                 <h4 class="form-text-label">Voucher's code:</h4>
-                                <input type="text" id="voucherID" name="voucherID" placeholder="ABC123">
-                                <div class="alert-warning" id="txtVoucherIDMessage"></div>
-                            </div>
+                                <input type="text" id="voucherID" name="voucherID" placeholder="ABC123" required="" value="${param.voucherID}" readonly="">
+                            <div class="alert-warning" id="txtVoucherIDMessage">${requestScope.MESSAGE}</div>
+                        </div>
 
-                            <div class="form-control-group">
-                                <h4 class="form-text-label">Voucher's description:</h4>
-                                <input type="text" id="voucherDescription" name="voucherDescription"
-                                       placeholder="Combo học sinh viên viên">
-                                <div class="alert-warning" id="txtVoucherDescriptionMessage"></div>
-                            </div>
+                        <div class="form-control-group">
+                            <h4 class="form-text-label">Voucher's description:</h4>
+                            <input type="text" id="voucherDescription" name="voucherDescription"
+                                   placeholder="Combo học sinh viên viên" required="" value="${param.voucherDescription}">
+                            <div class="alert-warning" id="txtVoucherDescriptionMessage"></div>
+                        </div>
 
-                            <div class="form-control-group">
-                                <h4 class="form-text-label">Voucher's discount percent:</h4>
-                                <input type="number" id="voucherPercent" name="voucherPercent" placeholder="50">
-                                <div class="alert-warning" id="txtVoucherPercentMessage"></div>
-                            </div>
+                        <div class="form-control-group">
+                            <h4 class="form-text-label">Voucher's discount percent:</h4>
+                            <input type="number" id="voucherPercent" name="voucherPercent" placeholder="50" required="" value="${param.voucherPercent}" min="0" max="100">
+                            <div class="alert-warning" id="txtVoucherPercentMessage"></div>
+                        </div>
 
-                            <div class="form-control-group">
-                                <h4 class="form-text-label">Voucher's status:</h4>
-                                <select id="voucherStatus" name="voucherStatus">
-                                    <option value="AVAILABLE">AVAILABLE</option>
-                                    <option value="UNAVAILABLE">UNAVAILABLE</option>
-                                </select>
-                            </div>
+                        <div class="form-control-group">
+                            <h4 class="form-text-label">Voucher's quantity:</h4>
+                            <input type="number" id="voucherPercent" name="voucherQuantity" placeholder="50" required="" min="0" value="${param.voucherQuantity}">
+                            <div class="alert-warning" id="txtVoucherPercentMessage"></div>
+                        </div>
 
-                            <div class="form-btn-group">
-                                <button type="Submit" name="submit" class="btn-primary">Update</button>
-                                <h6 class="form-btn-separator">&nbsp;OR&nbsp;</h6>
-                                <button type="button" name="submit" class="btn-main">Cancel</button>
-                            </div>
-                        </form>
-                    </div>
+                        <div class="form-control-group">
+                            <h4 class="form-text-label">Voucher's start date:</h4>
+                            <input type="date" id="voucherPercent" name="voucherSDate" required="" value="${param.voucherSDate}" >
+                            <div class="alert-warning" id="txtVoucherPercentMessage"></div>
+                        </div>
+                        <div class="form-control-group">
+                            <h4 class="form-text-label">Voucher's end date:</h4>
+                            <input type="date" id="voucherPercent" name="voucherEDate" required="" value="${param.voucherEDate}" >
+                            <div class="alert-warning" id="txtVoucherPercentMessage"></div>
+                        </div>
+
+                        <div class="form-control-group">
+                            <h4 class="form-text-label">Voucher's status:</h4>
+                            <select  id="voucherStatus" name="voucherStatus" >
+                                <option ${param.voucherStatus == 'AVAILABLE' ? 'selected=/"/"' : ''}  value="AVAILABLE">AVAILABLE</option>
+                                <option ${param.voucherStatus == 'UNAVAILABLE' ? 'selected=/"/"' : ''} value="UNAVAILABLE">UNAVAILABLE</option>
+                            </select>
+                        </div>
+
+                        <div class="form-btn-group">
+                            <button type="Submit" name="submit" class="btn-primary">Update</button>
+                            <h6 class="form-btn-separator">&nbsp;OR&nbsp;</h6>
+                            <button type="button" name="submit" class="btn-main">Cancel</button>
+                        </div>
+                    </form>
                 </div>
+            </div>
 
-                <!-- 5. Footer  -->
+            <!-- 5. Footer  -->
             <jsp:include page="footer.jsp"></jsp:include>
         </div>
         <script src="jquery/Jquery.js"></script>
