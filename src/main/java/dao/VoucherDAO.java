@@ -57,7 +57,7 @@ public class VoucherDAO {
   /**
    *
    * @param voucherID
-   * @return
+   * @return 
    */
   public int getProductSalePrecent(String voucherID) {
     try {
@@ -84,12 +84,18 @@ public class VoucherDAO {
     return 0;
   }
 
-  public static boolean addVoucher(Voucher dto) throws SQLException {
+    /**
+     * add voucher to SQL
+     * @param dto 
+     * @return result
+     * @throws SQLException
+     */
+    public static boolean addVoucher(Voucher dto) throws SQLException {
     boolean result = false;
     Connection conn = null;
     PreparedStatement stm = null;
     String INSERT =
-      "insert into VOUCHER(VoucherID, VoucherDescription, VoucherStatus, ProductSalePercent, VoucherQuantity, VoucherStartDay, VoucherEndday) values(?,?,?,?,?,?,?)";
+      "insert into VOUCHER(VoucherID, VoucherDescription, VoucherStatus, Discount, VoucherQuantity, VoucherStartDay, VoucherEndday) values(?,?,?,?,?,?,?)";
 
     try {
       conn = new DBContext().getConnection();
@@ -108,13 +114,19 @@ public class VoucherDAO {
     return result;
   }
 
-  public static boolean updateVoucher(Voucher dto) throws SQLException {
+    /**
+     * update voucher to SQL
+     * @param dto
+     * @return result
+     * @throws SQLException
+     */
+    public static boolean updateVoucher(Voucher dto) throws SQLException {
     boolean result = false;
     Connection conn = null;
     PreparedStatement stm = null;
 
     String UPDATE =
-      "UPDATE VOUCHER SET VoucherDescription=?, VoucherStatus=?, ProductSalePercent=?, VoucherQuantity=?, VoucherStartDay=?, VoucherEndday=? WHERE VoucherID=?";
+      "UPDATE VOUCHER SET VoucherDescription=?, VoucherStatus=?, Discount=?, VoucherQuantity=?, VoucherStartDay=?, VoucherEndday=? WHERE VoucherID=?";
 
     try {
       conn = new DBContext().getConnection();
