@@ -10,6 +10,7 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.util.ArrayList;
 import java.util.List;
+import model.Category;
 import model.Product;
 import model.ProductStatus;
 
@@ -85,10 +86,11 @@ public class ProductDAO {
             e.getMessage();
         }
         return null;
-    }   
-    
+    }
+
     /**
      * Get last id in table Product
+     *
      * @return last id
      */
     public String getLastIDOfProduct() {
@@ -107,6 +109,7 @@ public class ProductDAO {
         } // end try-catch.
         return lastID;
     }
+
     /**
      *
      * Get product by productID from the database
@@ -146,8 +149,102 @@ public class ProductDAO {
         } catch (Exception e) {
             e.getMessage();
         } // End try-catch
-        // If an exception is caught or no product is found, return null
+        //If an exception, return null
         return null;
     }
 
+    /**
+     * This method retrieves the CategoryID of a product given its ProductID.
+     *
+     * @param ProductID the ProductID of the product whose CategoryID is to be
+     * retrieved.
+     * @return the CategoryID of the product or null if the ProductID is not
+     * found in the database.
+     *
+     */
+    public String getCategoryIDByProductID(String ProductID) {
+        //Initialize category variable to null
+        String category = null;
+        //Prepare the SQL query to select the CategoryID of a product with the given ProductID
+        String query = "SELECT CategoryID FROM [PRODUCT] WHERE ProductID = ?";
+        try {
+            con = new DBContext().getConnection(); // open connection to SQL
+            ps = con.prepareStatement(query); // Prepare the SQL statement with the query and set the ProductID parameter value
+            ps.setString(1, ProductID);
+            rs = ps.executeQuery();
+            //Extract the CategoryID from the result set and assign it to the category variable
+            while (rs.next()) {
+                category = rs.getString(1); //The category of product
+            } //End while
+            //Return the CategoryID or null if the ProductID was not found in the database
+            return category;
+        } catch (Exception e) {
+            e.getMessage();
+        } //End try catch
+        //Return null if an exception was caught or the ProductID was not found in the database
+        return null;
+    }
+
+    /**
+     * This method retrieves a list of top 4 products in the same category as a
+     * given product, based on their total order quantities.
+     *
+     * @param categoryID the ID of the category to search for products in
+     * @param productID the ID of the product to exclude from the search
+     * @return an ArrayList of up to 4 Product objects representing the
+     * top-selling products in the same category
+     */
+    public ArrayList<Product> getTop4ProductByCategoryID(String categoryID, String productID) {
+        try {
+            //SQL query to retrieve top 4 products based on total order quantities
+            String query = "   SELECT TOP 4 *\n"
+                    + "FROM (\n"
+                    + "    SELECT P.ProductID,P.ProductName, P.ProductDescription, P.ProductImage, P.ProductPrice, P.ProductSalePercent, SUM(D.OrderDQuantity) AS TotalQuantity\n"
+                    + "    FROM [PRODUCT] P \n"
+                    + "    JOIN [ORDER_DETAIL] D ON D.ProductID = P.ProductID\n"
+                    + "    JOIN [CATEGORY] C ON P.CategoryID = C.CategoryID\n"
+                    + "    JOIN [ORDER] O ON O.OrderID = D.OrderID\n"
+                    + "    WHERE C.CategoryID = ? AND P.ProductID <> ? AND (O.OrderStatus = 'ACCEPT' OR O.OrderStatus = 'PICKUP' OR O.OrderStatus = 'SUCCESSFUL')\n"
+                    + "    GROUP BY P.ProductID,P.ProductName, P.ProductDescription, P.ProductImage, P.ProductPrice, P.ProductSalePercent\n"
+                    + "\n"
+                    + "    UNION ALL\n"
+                    + "\n"
+                    + "    SELECT P.ProductID,P.ProductName, P.ProductDescription, P.ProductImage, P.ProductPrice, P.ProductSalePercent, 0 AS TotalQuantity\n"
+                    + "    FROM [PRODUCT] P\n"
+                    + "    JOIN [CATEGORY] C ON P.CategoryID = C.CategoryID\n"
+                    + "    WHERE C.CategoryID = ? AND P.ProductID <> ? AND P.ProductID NOT IN (SELECT P.ProductID\n"
+                    + "    FROM [PRODUCT] P \n"
+                    + "    JOIN [ORDER_DETAIL] D ON D.ProductID = P.ProductID\n"
+                    + "    JOIN [CATEGORY] C ON P.CategoryID = C.CategoryID\n"
+                    + "    JOIN [ORDER] O ON O.OrderID = D.OrderID\n"
+                    + "    WHERE C.CategoryID = ? AND P.ProductID <> ? AND (O.OrderStatus = 'ACCEPT' OR O.OrderStatus = 'PICKUP' OR O.OrderStatus = 'SUCCESSFUL')\n"
+                    + "    GROUP BY P.ProductID) \n"
+                    + "    GROUP BY P.ProductID,P.ProductName, P.ProductDescription, P.ProductImage, P.ProductPrice, P.ProductSalePercent\n"
+                    + "    HAVING COUNT(*) < 4\n"
+                    + ") AS combined\n"
+                    + "ORDER BY TotalQuantity DESC";
+            con = new DBContext().getConnection(); //Open connection to SQL
+            ps = con.prepareStatement(query); //Move query from Netbeen to SQl
+            //Set the values of the parameters in the query
+            ps.setString(1, categoryID);
+            ps.setString(2, productID);
+            ps.setString(3, categoryID);
+            ps.setString(4, productID);
+            ps.setString(5, categoryID);
+            ps.setString(6, productID);
+            rs = ps.executeQuery(); //Execute the query and retrieve the result set
+            //Create an ArrayList to hold the retrieved products
+            ArrayList<Product> list = new ArrayList<>();
+            //Iterate through the result set and add each product to the ArrayList
+            while (rs.next()) {
+                list.add(new Product(rs.getString(1), rs.getString(4), rs.getString(2), rs.getString(3), rs.getInt(6), rs.getInt(5), ProductStatus.AVAILABLE));
+            } //End while
+            // Return the list object
+            return list;
+        } catch (Exception e) {
+            e.getMessage();
+        } //End try-catch
+        //If an exception is caught or no product is found, return null
+        return null;
+    }
 }

@@ -11,6 +11,7 @@ import jakarta.servlet.ServletException;
 import jakarta.servlet.http.HttpServlet;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
+import java.util.ArrayList;
 import model.Product;
 
 /**
@@ -37,8 +38,14 @@ public class LoadProductDetailController extends HttpServlet {
         ProductDAO pdao = new ProductDAO();
         //Call the getProductByProductID method from the ProductDAO instance to retrieve a Product object with the given ID.
         Product product = pdao.getProductByProductID(productID);
+        //Get category ID of a product with given product ID
+        String categoryID = pdao.getCategoryIDByProductID(productID);
+        //Get the top 4 products in the same category as the given product ID, excluding the given product
+        ArrayList<Product> listProduct = pdao.getTop4ProductByCategoryID(categoryID, productID);
         //Set the retrieved Product object as an attribute of the current request object with the key "product".
         request.setAttribute("product", product);
+        //Set an attribute of a request object with the ArrayList of products obtained from the previous code snippet
+        request.setAttribute("listProduct", listProduct);
         //Forward the request and response objects to the productDetail.jsp view for display.
         request.getRequestDispatcher("productDetail.jsp").forward(request, response);
     }
