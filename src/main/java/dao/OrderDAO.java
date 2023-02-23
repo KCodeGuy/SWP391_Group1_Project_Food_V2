@@ -91,7 +91,7 @@ public class OrderDAO {
 
     /**
      * This function get list product have status is pending
-     *
+     * 
      * @return list order
      */
     public ArrayList<Order> getListOrder() {
@@ -125,7 +125,48 @@ public class OrderDAO {
         } // end try catch
         return null; // return null if not order
     }
-
+    
+    /**
+     * This function get list product have status is accept reject and successful
+     * @return list order
+     */
+    public ArrayList<Order> getListOrderForAdmin() {
+        try {
+            String query = "SELECT \n"
+                    + "   [ORDER].OrderID, \n"
+                    + "   [ORDER].BuyerFullName, \n"
+                    + "   [ORDER].OrderDate, \n"
+                    + "   [ORDER].OrderStatus, \n"
+                    + "   SUM([ORDER_DETAIL].OrderDQuantity) AS Quantity, \n"
+                    + "   SUM(([ORDER_DETAIL].OrderDPrice * (100 - [ORDER].ProductSalePercent) / 100) * [ORDER_DETAIL].OrderDQuantity) AS Price \n"
+                    + "FROM [ORDER] \n"
+                    + "INNER JOIN [ORDER_DETAIL] ON [ORDER].OrderID = [ORDER_DETAIL].OrderID \n"
+                    + "WHERE [ORDER].OrderStatus != 'PENDING' \n"
+                    + "GROUP BY \n"
+                    + "   [ORDER].OrderID, \n"
+                    + "   [ORDER].BuyerFullName, \n"
+                    + "   [ORDER].OrderDate, \n"
+                    + "   [ORDER].OrderStatus"; // query select form database
+            con = new DBContext().getConnection(); // open conect database
+            ps = con.prepareStatement(query); // set account ID into query
+            rs = ps.executeQuery(); // execute query
+            ArrayList<Order> listOrder = new ArrayList<>(); // create list product in order
+            while (rs.next()) {
+                listOrder.add(new Order(rs.getString(1), 
+                        OrderStatus.valueOf(rs.getString(4)),
+                        rs.getString(3), 
+                        rs.getString(2), 
+                        rs.getInt(5),
+                        rs.getInt(6)));
+                // add new item into list order
+            } // end while
+            return listOrder; // return list order
+        } catch (Exception e) {
+            e.getMessage();
+        } // end try catch
+        return null; // return null if not order
+    }
+    
     /**
      * This function get order by order ID
      *
