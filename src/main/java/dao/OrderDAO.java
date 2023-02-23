@@ -44,7 +44,6 @@ public class OrderDAO {
         String formattedDateTime = now.format(formatter);
         String query = "INSERT INTO [ORDER] VALUES (?,?,'PENDING',?,?,?,?,?,?,?,null,null)"; // string query insert cart
         String id = new GenerateID().generateNewID("OR", getLastIDOfOrder());
-        System.out.println(id);
         try {
             con = new DBContext().getConnection(); // open connect database
             ps = con.prepareStatement(query); // move query from Netbeen to SQl
@@ -62,7 +61,7 @@ public class OrderDAO {
                 return true;
             } // end if ps.executeUpdate() == 1
         } catch (Exception e) {
-            System.out.println(e.getMessage());;
+            e.getMessage();
         } // end try catch
         return false; // if can not insert
     }

@@ -51,7 +51,7 @@ public class OrderDetailDAO {
                 ps.executeUpdate();
 
             } catch (Exception e) {
-                System.out.println(e.getMessage());
+                e.getMessage();
             } // end try catch
         }
     }
