@@ -83,7 +83,7 @@
                                             <td class="table-email">
                                                 ${ls.accountEmail}
                                             </td>
-                                            <td class="table-name"><a href=""></a></td>
+                                            <td class="table-name"><a href="">${ls.roleDescription}</a></td>
                                             <td class="table-btn">
                                                 <a class="table-btn-edit" href="loaduserprofile?accountID=${ls.accountID}"><i
                                                         class="fa-solid fa-pen-to-square"></i></a>
