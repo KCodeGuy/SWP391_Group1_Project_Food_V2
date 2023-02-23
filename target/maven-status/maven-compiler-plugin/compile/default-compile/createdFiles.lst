@@ -26,6 +26,7 @@ hash\SCrypt.class
 controller\RejectOrderController.class
 model\Category.class
 controller\DeleteProductInCartController.class
+controller\DeleteProductForManagePageController.class
 com\example\demo\hash\jni\JarLibraryLoader$1.class
 controller\LogoutController.class
 dao\ProductDAO.class
