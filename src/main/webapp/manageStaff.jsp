@@ -21,7 +21,7 @@
     </head>
 
     <body>
-         <!-- Wrapper contains all website's components -->
+        <!-- Wrapper contains all website's components -->
         <div class="container-fluid wrapper">
             <!-- 1. Navigation -->
             <jsp:include page="navigation.jsp"></jsp:include>
@@ -95,10 +95,10 @@
                                     <c:if test="${listStaff.size() == 0}">
                                         <tr>
                                             <td class="table-row-no-product" colspan="5" >
-                                                 ${message}
+                                                ${message}
                                             </td>
                                         </tr>
-                                        </c:if>
+                                    </c:if>
 
                                 </tbody>
                             </table>

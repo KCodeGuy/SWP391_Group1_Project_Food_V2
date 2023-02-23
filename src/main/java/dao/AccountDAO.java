@@ -128,11 +128,11 @@ public class AccountDAO {
     public String createNewUserID() {
         GenerateID g = new GenerateID();
         String lastID = getLastIDOfAccount();
-        
+
         String newID = g.generateNewID("US", lastID);
         return newID;
     }
-    
+
     /**
      * Create new ID of Chef
      *
@@ -141,11 +141,11 @@ public class AccountDAO {
     public String createNewChefID() {
         GenerateID g = new GenerateID();
         String lastID = getLastIDOfAccount();
-        
+
         String newID = g.generateNewID("CH", lastID);
         return newID;
     }
-    
+
     /**
      * Create new ID of shipper
      *
@@ -154,13 +154,14 @@ public class AccountDAO {
     public String createNewShipperID() {
         GenerateID g = new GenerateID();
         String lastID = getLastIDOfAccount();
-        
+
         String newID = g.generateNewID("SP", lastID);
         return newID;
     }
-    
+
     /**
      * Get last id in table account
+     *
      * @return last id
      */
     public String getLastIDOfAccount() {
@@ -217,7 +218,7 @@ public class AccountDAO {
             rs = ps.executeQuery(); // the same with click to "excute" btn;
             List<Account> list = new ArrayList<>(); //list Account
             while (rs.next()) {
-                if (rs.getString(1).substring(2).equalsIgnoreCase("SP")) {
+                if (rs.getString(1).substring(0, 2).equalsIgnoreCase("SP")) {
                     list.add(new Account(rs.getString(1), rs.getString(2), "", AccountStatus.PENDING, rs.getString(3), "", "", "", "", "Shipper")); // add new item in list
                 } else {
                     list.add(new Account(rs.getString(1), rs.getString(2), "", AccountStatus.PENDING, rs.getString(3), "", "", "", "", "Chef")); // add new item in list
@@ -280,7 +281,7 @@ public class AccountDAO {
         }
         return null;                                // Return value null
     }//end method                           
-    
+
     /**
      * Returns a list of all active users in the database.
      *
@@ -288,29 +289,29 @@ public class AccountDAO {
      */
     public List<Account> getListStaff() {
         try {
-            //Define a SQL query to retrieve account details for all active users, including role information.
+            //Define a SQL query to retrieve account details for all active staffs, including role information.
             String query = "SELECT AccountID, AccountName, AccountEmail FROM ACCOUNT WHERE  AccountID LIKE 'CH%' OR AccountID LIKE 'SP%'";
             con = new DBContext().getConnection(); //Open a connection to the database.
             ps = con.prepareStatement(query); //Move query from Netbeen to SQL
             rs = ps.executeQuery(); //Execute the query and get the result set.
-            //Create a list to hold the User objects that will be created from the query results.
+            //Create a list to hold the Staff objects that will be created from the query results.
             List<Account> list = new ArrayList<>();
-            //Loop through the result set and create a new User object for each row.
+            //Loop through the result set and create a new Staff object for each row.
             while (rs.next()) {
-                if (rs.getString(1).substring(2).equalsIgnoreCase("SP")) {
+                if (rs.getString(1).substring(0, 2).equalsIgnoreCase("SP")) {
                     list.add(new Account(rs.getString(1), rs.getString(3), "", AccountStatus.NULL, rs.getString(2), "", "", "", "", "Shipper")); // add new item in list
                 } else {
                     list.add(new Account(rs.getString(1), rs.getString(3), "", AccountStatus.NULL, rs.getString(2), "", "", "", "", "Chef")); // add new item in list
                 }
             } // end while rs.next
-            return list;  //Return the list of User objects.
+            return list;  //Return the list of Staff objects.
         } catch (Exception e) {
             e.getMessage();
         } //End trycatch
         //If an exception is caught or if the list is empty, return null.
         return null;
     }
-    
+
     /**
      * Interact with the database to load staff information by linking account
      * ID
@@ -406,7 +407,7 @@ public class AccountDAO {
         }
         return null;
     }
-    
+
     /**
      * Update a user's profile in the database with the provided information.
      *
@@ -465,7 +466,6 @@ public class AccountDAO {
         //If an exception is caught or if the list is empty, return null.
         return null;
     }
-    
 
     /**
      * Deletes a user account and sets their account status to "REMOVED" in the
