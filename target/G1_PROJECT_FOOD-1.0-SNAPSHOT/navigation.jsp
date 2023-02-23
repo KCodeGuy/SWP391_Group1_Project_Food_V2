@@ -43,7 +43,7 @@
                             </li>
                             <c:if test="${sessionScope.accountSesseion.accountID.startsWith('AD')}">
                                 <li class="nav-item">
-                                    <a class="nav-link" aria-current="page" href="manageOrder.jsp">Manage orders</a>
+                                    <a class="nav-link" aria-current="page" href="loadlistorderedformanagepage">Manage orders</a>
                                 </li>
                                 <li class="nav-item">
                                     <a class="nav-link" aria-current="page" href="loadlistproductformanageproductpage">Manage products</a>
