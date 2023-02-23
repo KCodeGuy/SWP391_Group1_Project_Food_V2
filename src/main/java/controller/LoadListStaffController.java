@@ -32,14 +32,14 @@ public class LoadListStaffController extends HttpServlet {
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         response.setContentType("text/html;charset=UTF-8");
-        //Create a new instance of the UserDAO class
+        //Create a new instance of the StaffDAO class
         AccountDAO sdao = new AccountDAO();
-        //Call the getListUser method from the UserDAO instance to retrieve a list of users
+        //Call the getListStaff method from the StaffDAO instance to retrieve a list of staffs
         List<Account> listStaff = sdao.getListStaff();
-        //Set the list of users as an attribute of the current request object with the key "listUser"
+        //Set the list of staffs as an attribute of the current request object with the key "listStaff"
         request.setAttribute("listStaff", listStaff);//Switch to JSP page
         request.setAttribute("message", "The staff is not found!");//display if not found
-        //Forward the request and response objects to the manageUser.jsp view for display
+        //Forward the request and response objects to the manageStaff.jsp view for display
         request.getRequestDispatcher("manageStaff.jsp").forward(request, response);
 
     }

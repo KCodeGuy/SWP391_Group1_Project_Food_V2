@@ -106,7 +106,6 @@
                     </div>
                 </div>
             </div>
-
             <!-- 5. Footer  -->
             <jsp:include page="footer.jsp"></jsp:include>
         </div>
@@ -114,5 +113,4 @@
         <script src="jquery/Jquery.js"></script>
         <script src="jquery/manageUser.js"></script>
     </body>
-
 </html>
