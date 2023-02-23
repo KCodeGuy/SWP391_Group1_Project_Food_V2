@@ -32,7 +32,7 @@ public class LoadProductDetailController extends HttpServlet {
             throws ServletException, IOException {
         response.setContentType("text/html;charset=UTF-8");
         //Retrieve the product ID parameter from the request and parse it as an integer.
-        int productID = Integer.parseInt(request.getParameter("productID"));
+        String productID = request.getParameter("productID");
         //Create a new instance of the ProductDAO class to access the database.
         ProductDAO pdao = new ProductDAO();
         //Call the getProductByProductID method from the ProductDAO instance to retrieve a Product object with the given ID.

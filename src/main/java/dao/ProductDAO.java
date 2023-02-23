@@ -12,7 +12,6 @@ import java.util.ArrayList;
 import java.util.List;
 import model.Product;
 import model.ProductStatus;
-import model.User;
 
 /**
  *
@@ -117,15 +116,15 @@ public class ProductDAO {
      * @return a Product object representing the retrieved product, or null if
      * the product does not exist or there was an error retrieving it
      */
-    public Product getProductByProductID(int productID) {
+    public Product getProductByProductID(String productID) {
 
         try {
             //Declare a SQL query string
-            String query = "SELECT ProductName, ProductDescription, ProductPrice, ProductSalePercent, ProductStatus, ProductLinkImage "
+            String query = "SELECT ProductName, ProductDescription, ProductPrice, ProductSalePercent, ProductStatus, ProductImage "
                     + "FROM [PRODUCT] WHERE ProductID = ?"; // Specify the condition for selecting a specific product ID
             con = new DBContext().getConnection(); //Open connection to SQL
             ps = con.prepareStatement(query); //Move query to database
-            ps.setInt(1, productID); //Set productID
+            ps.setString(1, productID); //Set productID
             //Execute the query and get the result set
             rs = ps.executeQuery();
             // Initialize a new product object
