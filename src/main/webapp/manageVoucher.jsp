@@ -29,7 +29,7 @@
             <!-- 1. Navigation -->
             <jsp:include page="navigation.jsp"></jsp:include>
 
-                <!-- Manage product container -->
+                <!-- Manage product container --> 
                 <div class="container-fluid table-container">
                     <div class="container">
                         <div class="row">
@@ -47,7 +47,7 @@
                                     <div class="btn-group-search-add">
                                         <button class="btn-primary btn-add">
                                             <i class="fa-solid fa-plus"></i>
-                                            <a href="">Add voucher</a>
+                                            <a href="addVoucher.jsp">Add voucher</a>
                                         </button>
                                         <div class="search-group">
                                             <input type="text" placeholder="ABC123">
@@ -87,7 +87,7 @@
                                                 ${vc.voucherStatus}
                                             </td>
                                             <td class="table-btn">
-                                                <a class="table-btn-edit" href="updateProduct.html"><i
+                                                <a class="table-btn-edit" href="updateVoucher.jsp?voucherID=${vc.voucherID}&voucherDescription=${vc.voucherDescription}&voucherPercent=${vc.productSalePercent}&voucherStatus=${vc.voucherStatus}&voucherQuantity=${vc.voucherQuantity}&voucherSDate=${vc.voucherStartDay}&voucherEDate=${vc.voucherEndDay}"><i
                                                         class="fa-solid fa-pen-to-square"></i></a>
                                                 <a href="#" onclick="return showMessageDelete();"><i
                                                         class="fa-solid fa-trash"></i></a>
