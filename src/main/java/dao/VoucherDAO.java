@@ -62,7 +62,7 @@ public class VoucherDAO {
   public int getProductSalePrecent(String voucherID) {
     try {
       //Declare a SQL query string
-      String query = "SELECT ProductSalePercent FROM VOUCHER WHERE VoucherID = ?"; // Specify the condition for selecting a specific account ID
+      String query = "SELECT discount FROM VOUCHER WHERE VoucherID = ?"; // Specify the condition for selecting a specific account ID
       con = new DBContext().getConnection(); //Open connection to SQL
       ps = con.prepareStatement(query); //Move query to database
       ps.setString(1, voucherID); //Set voucherID

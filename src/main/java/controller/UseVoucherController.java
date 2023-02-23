@@ -30,7 +30,7 @@ public class UseVoucherController extends HttpServlet {
     throws ServletException, IOException {
         response.setContentType("text/html;charset=UTF-8");
         String voucher = request.getParameter("voucherID");
-        int accountID = Integer.parseInt(request.getParameter("accountID"));
+        String accountID = request.getParameter("accountID");
         
         VoucherDAO vdao = new VoucherDAO();
         int productSalePercent = vdao.getProductSalePrecent(voucher);

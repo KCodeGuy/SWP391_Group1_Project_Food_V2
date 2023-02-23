@@ -26,7 +26,7 @@ public class DBContext {
     // user name when seting to connect
     private static final String user = "sa";
     // password when seting to connect
-    private static final String pass = "1234";
+    private static final String pass = "123456";
 
     /**
      * To connect with SQL server to process data.
