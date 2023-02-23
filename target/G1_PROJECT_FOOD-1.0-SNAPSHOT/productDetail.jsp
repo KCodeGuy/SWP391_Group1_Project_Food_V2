@@ -3,6 +3,8 @@
     Created on : Feb 12, 2023, 2:14:42 AM
     Author     : PC
 --%>
+<%@ taglib prefix = "fmt" uri = "http://java.sun.com/jsp/jstl/fmt" %>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <!DOCTYPE html>
 <html lang="en">
@@ -81,27 +83,34 @@
                         <form action="" method="">
                             <div class="row">
                                 <div class="col-xs-12 col-md-5">
-                                    <img class="product-detail-img" src="./assert/img/Com_suon.jpg" alt="">
+                                    <img class="product-detail-img" src="${product.productLink}" alt="">
                                 </div>
-                                <div class="col-xs-12 col-md-7">
+                                 <div class="col-xs-12 col-md-7">
                                     <ul class="product-detail-container">
                                         <li class="product-detail-item heading">
-                                            <h3 class="product-detail-name">Cơm sườn bì chả</h3>
-                                            <span class="product-detail-sale-percent">-35%</span>
+                                            <h3 class="product-detail-name">${product.productName}</h3>
+                                            <span class="product-detail-sale-percent">${product.productSalePercent}%</span>
                                         </li> 
                                         <li class="product-detail-item">
                                             <span class="product-detail-label">Description:</span>
-                                            <span class="product-detail-descript">Đặc trưng của cơm tấm là sự kết hợp với sườn nướng, trứng ốp la, bì, chả,...thêm một chút mỡ hành béo ngậy giúp món ăn bắt mắt và thơm ngon. Bạn sẽ được thưởng thức một đĩa cơm nóng hổi với miếng thịt vừa được nướng nghi ngút khói ăn kèm với một chén mắm chua ngọt vị cay cay.</span>
+                                            <span class="product-detail-descript">${product.productDescription}</span>
                                         </li>
                                         <li class="product-detail-item">
                                             <span class="product-detail-label">Price:</span>
-                                            <span class="product-detail-price">35,000d</span>
-                                            <span class="product-detail-original-price">40,000d</span>
+                                             <span class="product-detail-price"> <fmt:formatNumber type="number" pattern="###,###" value="${product.productPrice * (1-(product.productSalePercent/100))}"/>đ</span>
+                                            <c:if test="${product.productSalePercent != 0}">
+                                        <tr>
+                                            <span class="product-detail-original-price"><fmt:formatNumber type="number" pattern="###,###" value="${product.productPrice}"/>đ</span>
+                                            
+                                        </tr>
+                                        </c:if>
+                                           
+                                           
                                         </li>
 
                                         <li class="product-detail-item">
                                             <span class="product-detail-label">Status:</span>
-                                            <span class="product-detail-status">Sold-out</span>
+                                            <span class="product-detail-status">${product.productStatus}</span>
                                         </li>
                                         <li class="product-detail-item">
                                             <button type="submit" class="btn-main"btn-related-product>
@@ -114,7 +123,6 @@
                                     </ul>
                                 </div>
                             </div>
-
                             <dvi class="row justify-content-center">
                                 <div class="separtor">
                                 </div>

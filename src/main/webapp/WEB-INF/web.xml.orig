@@ -109,12 +109,9 @@
         <servlet-class>controller.SearchUserController</servlet-class>
     </servlet>
     <servlet>
+<<<<<<< HEAD
         <servlet-name>ShowOrderDetailsForChefController</servlet-name>
         <servlet-class>controller.ShowOrderDetailsForChefController</servlet-class>
-    </servlet>
-        <servlet>
-        <servlet-name>LoadProductDetailController</servlet-name>
-        <servlet-class>controller.LoadProductDetailController</servlet-class>
     </servlet>
     <servlet>
         <servlet-name>AcceptOrderController</servlet-name>
@@ -123,6 +120,10 @@
     <servlet>
         <servlet-name>RejectOrderController</servlet-name>
         <servlet-class>controller.RejectOrderController</servlet-class>
+=======
+        <servlet-name>LoadProductDetailController</servlet-name>
+        <servlet-class>controller.LoadProductDetailController</servlet-class>
+>>>>>>> origin/HieuTTN_showProductDetail
     </servlet>
     <servlet-mapping>
         <servlet-name>HomeController</servlet-name>
@@ -229,12 +230,9 @@
         <url-pattern>/searchuser</url-pattern>
     </servlet-mapping>
     <servlet-mapping>
+<<<<<<< HEAD
         <servlet-name>ShowOrderDetailsForChefController</servlet-name>
         <url-pattern>/showorderdetailforchef</url-pattern>
-    </servlet-mapping>
-    <servlet-mapping>
-        <servlet-name>LoadProductDetailController</servlet-name>
-        <url-pattern>/loadproductdetail</url-pattern>
     </servlet-mapping>
     <servlet-mapping>
         <servlet-name>AcceptOrderController</servlet-name>
@@ -243,6 +241,10 @@
     <servlet-mapping>
         <servlet-name>RejectOrderController</servlet-name>
         <url-pattern>/rejectorder</url-pattern>
+=======
+        <servlet-name>LoadProductDetailController</servlet-name>
+        <url-pattern>/loadproductdetail</url-pattern>
+>>>>>>> origin/HieuTTN_showProductDetail
     </servlet-mapping>
     <session-config>
         <session-timeout>
