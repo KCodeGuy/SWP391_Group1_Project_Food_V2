@@ -9,6 +9,7 @@ import jakarta.servlet.http.HttpServlet;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
 import jakarta.servlet.http.HttpSession;
+import model.AccountStatus;
 
 /**
  *
@@ -28,28 +29,46 @@ public class RegisterController extends HttpServlet {
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         response.setContentType("text/html;charset=UTF-8");
-        String fullName = request.getParameter("name");
-        String phone = request.getParameter("phone");
-        String email = request.getParameter("email");
-        String address = request.getParameter("address");
-        String password = request.getParameter("password");
+         // Get entered data from form to handle.
+        String fullName = request.getParameter("name");     // entered full name of account.
+        String phone = request.getParameter("phone");       // entered phone of account.
+        String email = request.getParameter("email");       // entered email of account.
+        String address = request.getParameter("address");   // entered address of account.
+        String password = request.getParameter("password"); // entered password of account.
+        String birthday = request.getParameter("birthday"); // entered birthday of account.
+
+        EmailHandler eh = new EmailHandler();
         AccountDAO adao = new AccountDAO();
-        if(adao.checkAccountIsExist(email)) {            
+        // get current date to set start date.
+        String todayDate = eh.getTodayDate();
+        // get id of a secified account by entered email.
+        String accountID = adao.getAccountIDByEmail(email);
+
+        // check whether an account is exist or not by email to hanle
+        if (adao.checkAccountIsExist(email)) { // account has been already exist actived status.
             request.setAttribute("accountExistMessage", "Account has been adready exist! Please try again!");
             request.getRequestDispatcher("register.jsp").forward(request, response);
-        }else {
+        } else {  // account is not exist different with actived status.
             int timeSendFailed = 0;
-            EmailHandler eh = new EmailHandler();
+            // get otp code for verify
             String otpCode = eh.generateRandomCode();
+            // check whether an account is null or peding to hanle.
+            if(adao.getAccountStatusByEmail(email) == null) { // account is null status - not added in database.
+                // insert an account to database.
+                adao.registerAccount(fullName, email, password, phone, address, birthday, todayDate);
+            }else if(adao.getAccountStatusByEmail(email).equals(String.valueOf(AccountStatus.PENDING))) { // account is pending status.
+                // update account when it is pending status.
+                adao.updateAccountIsPending(accountID, birthday, fullName, phone, address, todayDate);
+            }
+            // send email verify to user with otp-code
             eh.sendEmailAuthen(email, otpCode);
+            // set necessary attribute to website.
             request.setAttribute("featurePage", "AUTHENEMAIL");
             request.setAttribute("timeSendFailed", timeSendFailed);
-            request.setAttribute("name", fullName);
-            request.setAttribute("phone", phone);
             request.setAttribute("email", email);
-            request.setAttribute("address", address);
-            request.setAttribute("password", password);
+            request.setAttribute("accountID", accountID);
             request.setAttribute("otpCode", otpCode);
+            // forward to emailVerification page.
             request.getRequestDispatcher("emailVerification.jsp").forward(request, response);
         }
     }

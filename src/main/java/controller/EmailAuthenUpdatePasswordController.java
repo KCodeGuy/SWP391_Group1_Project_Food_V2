@@ -27,19 +27,22 @@ public class EmailAuthenUpdatePasswordController extends HttpServlet {
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         response.setContentType("text/html;charset=UTF-8");
+        // get email on input.
         String email = request.getParameter("email");
         AccountDAO adao = new AccountDAO();
-        if (adao.checkAccountIsExist(email)) {
+        // check whether an account is exist or not by email
+        if (adao.checkAccountIsExist(email)) { // email is exist it means active status.
             int timeSendFailed = 0;
             EmailHandler eh = new EmailHandler();
             String otpCode = eh.generateRandomCode();
             eh.sendEmailAuthen(email, otpCode);
             request.setAttribute("email", email);
+            request.setAttribute("accountID", adao.getAccountIDByEmail(email));
             request.setAttribute("timeSendFailed", timeSendFailed);
             request.setAttribute("otpCode", otpCode);
             request.setAttribute("featurePage", "UPDATEPASS");
             request.getRequestDispatcher("emailVerification.jsp").forward(request, response);
-        } else {
+        } else { // email is not exist it means different to active status.
             request.setAttribute("accountExistMessage", "Entered email does not exist! Please try again!");
             request.getRequestDispatcher("enterEmail.jsp").forward(request, response);
         }

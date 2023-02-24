@@ -25,9 +25,9 @@
             <!-- 1. Navigation -->
             <jsp:include page="navigation.jsp"></jsp:include>
 
-                <div class="container-fluid-form">
+             <div class="container-fluid-form">
                     <div class="container wrapper-form">
-                        <form action="forgotPasswordController" id="myForm" method="GET">
+                        <form action="forgotPasswordController" id="myForm" method="POST">
                             <div class="form-heading-group">
                                 <i class="fa-solid fa-lock"></i>
                                 <h2 class="form-heading ">FORGOT PASSWORD</h2>
@@ -58,7 +58,7 @@
                     </form>
                 </div>
             </div>
-
+                        
             <!-- 5. Footer  -->
             <jsp:include page="footer.jsp"></jsp:include>
         </div>

@@ -7,6 +7,8 @@ import jakarta.servlet.ServletException;
 import jakarta.servlet.http.HttpServlet;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
+import model.Account;
+import model.AccountStatus;
 
 /**
  *
@@ -26,42 +28,42 @@ public class EmaiVerificationController extends HttpServlet {
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         response.setContentType("text/html;charset=UTF-8");
-        String fullName = request.getParameter("name");
-        String phone = request.getParameter("phone");
-        String email = request.getParameter("email");
-        String address = request.getParameter("address");
-        String password = request.getParameter("password");
+       // Get parameter on input to handle.
+        String accountID = request.getParameter("accountID");
         String enteredCode = request.getParameter("enteredCode");
         String originCode = request.getParameter("orginalCode");
         String featurePage = request.getParameter("featurePage");
         int timeSendingFailed = Integer.parseInt(request.getParameter("timeSendFailed")) + 1;
+        
+        AccountDAO adao = new AccountDAO();
+        // get an account by passed.
+        Account acc = adao.getAccountByID(accountID);
 
-        if (enteredCode.equals(originCode)) {
-            if (featurePage.equalsIgnoreCase("AUTHENEMAIL")) {
-                AccountDAO adao = new AccountDAO();
-                adao.registerAccount(fullName, email, password, phone, address, "1/1/2022", "1/1/2022");
+        // check whehter entered otp-code is matched or not
+        if (enteredCode.equals(originCode)) { // opt-code is matched
+            // check it is in authen email or update password feature.
+            if (featurePage.equalsIgnoreCase("AUTHENEMAIL")) { // authen email feature
+                adao.updateAccountStatus(acc.getAccountID(), String.valueOf(AccountStatus.ACTIVED));
                 request.setAttribute("registerSuccesMessage", "Register successfully! Please login your account!");
                 request.getRequestDispatcher("login.jsp").forward(request, response);
-            } else {
+            } else { // update password feature
                 request.setAttribute("authenEmailSuccess", "Verify email  successfully! Please enter password!");
-                request.setAttribute("email", email);
+                request.setAttribute("email", acc.getAccountEmail());
                 request.getRequestDispatcher("forgotPassword.jsp").forward(request, response);
             }
-        } else {
-            if (timeSendingFailed >= 3) {
+        } else { // opt-code is not matched
+            // check wrong entering time to back home
+            if (timeSendingFailed >= 3) { // wrong entering greater than 3 time then back to home
                 response.sendRedirect("home");
-            } else {
-                if (featurePage.equalsIgnoreCase("AUTHENEMAIL")) {
+            } else { // wrong entering less than 3 time then back to home
+                if (featurePage.equalsIgnoreCase("AUTHENEMAIL")) { // authen email feature
                     request.setAttribute("featurePage", "AUTHENEMAIL");
-                    request.setAttribute("name", fullName);
-                    request.setAttribute("phone", phone);
-                    request.setAttribute("address", address);
-                    request.setAttribute("password", password);
-                }else {
+                }else {  // update password feature
                      request.setAttribute("featurePage", "UPDATEPASS");
                 }
+                request.setAttribute("accountID", accountID);
                 request.setAttribute("timeSendFailed", timeSendingFailed);
-                request.setAttribute("email", email);
+                request.setAttribute("email", acc.getAccountEmail());
                 request.setAttribute("showSendAgainBtn", true);
                 request.setAttribute("wrongCodeMessage", "Entered OPT-code is incorect! Please try again!");
                 request.getRequestDispatcher("emailVerification.jsp").forward(request, response);
