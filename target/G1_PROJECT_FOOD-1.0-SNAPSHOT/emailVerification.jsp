@@ -27,7 +27,7 @@
             <jsp:include page="navigation.jsp"></jsp:include>
                 <div class="container-fluid container-fluid-form" style="height: 600px">
                     <div class="wrapper-form">
-                        <form action="authenEmailController" method="post">
+                        <form action="authenEmailController" method="POST">
                             <div class="form-heading-group">
                                 <i class="fa-solid fa-envelope-open-text fa-2x"></i>
                                 <h2 class="form-heading">EMAIL VERIFICATION</h2>
@@ -45,25 +45,8 @@
                             <input placeholder="123456" id="orginalCode" name="orginalCode" value="${otpCode}"/>
                         </div>
                         <div class="form-control-group disabled">
-                            <h4 class="form-text-label ">Name:</h4>
-                            <input placeholder="" id="name" name="name" value="${name}"/>
-                        </div>
-                        <div class="form-control-group disabled">
-                            <h4 class="form-text-label">Email:</h4>
-                            <input placeholder="" id="email" name="email" value="${email}"/>
-                            <div class="form-error"></div>
-                        </div>
-                        <div class="form-control-group disabled">
-                            <h4 class="form-text-label ">Phone:</h4>
-                            <input placeholder="" id="phone" name="phone" value="${phone}"/>
-                        </div>
-                        <div class="form-control-group disabled">
-                            <h4 class="form-text-label ">Address:</h4>
-                            <input placeholder="" id="address" name="address" value="${address}"/>
-                        </div>
-                        <div class="form-control-group disabled">
-                            <h4 class="form-text-label ">Password:</h4>
-                            <input placeholder="" id="password" name="password" value="${password}"/>
+                            <h4 class="form-text-label ">Account ID:</h4>
+                            <input placeholder="123456" id="accountID" name="accountID" value="${accountID}"/>
                         </div>
                         <div class="form-control-group disabled">
                             <h4 class="form-text-label ">Time:</h4>
@@ -88,7 +71,7 @@
                         </c:if>
                         <c:if test="${showSendAgainBtn}">
                             <div class="form-btn-group">
-                                <button class="btn-primary" type="button"><a href="reAuthenEmailController?email=${email}&name=${name}&phone=${phone}&address=${address}&password=${password}&timeSendFailed=${timeSendFailed}&featurePage=${featurePage}">Send again</a></button>
+                                <button class="btn-primary" type="button"><a href="reAuthenEmailController?accountID=${accountID}&timeSendFailed=${timeSendFailed}&featurePage=${featurePage}">Send again</a></button>
 <!--                                <h6 class="form-btn-separator">&nbsp;OR&nbsp;</h6>
                                 <button class="btn-main" type="button"><a href="home">Cancel</a></button>-->
                             </div>

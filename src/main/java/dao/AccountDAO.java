@@ -1,7 +1,3 @@
-/*
- * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
- * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
- */
 package dao;
 
 import context.DBContext;
@@ -14,9 +10,6 @@ import java.util.ArrayList;
 import java.util.List;
 import model.Account;
 import model.AccountStatus;
-import model.Product;
-import model.ProductStatus;
-
 /**
  *
  *
@@ -32,20 +25,20 @@ public class AccountDAO {
      * For all actors of system login an account to system. This function will
      * check whether passed email and password is exist in system or not. If
      * return null then login failed, and login successfully otherwise.
-     *
      * @param email entered email from user(String).
      * @param password entered password from user(String).
      * @return Account if email and password is matched and null otherwise.
+     * @author Trần Đăng Khoa - CE160367
      */
     public Account loginAccount(String email, String password) {
         // query to check whether passed email and password is exist or not.
         String query = "SELECT AccountEmail, AccountPassword, AccountName, AccountID FROM ACCOUNT WHERE AccountEmail=? AND AccountPassword=? AND AccountStatus = 'ACTIVED'";
         try {
-            con = new DBContext().getConnection(); // open connection to SQL
-            ps = con.prepareStatement(query);      // move query from Netbeen to SQl
-            ps.setString(1, email);                // pass entered email to the first ?.
-            ps.setString(2, password);             // pass entered password to the second ?.
-            rs = ps.executeQuery();                // excute query and return result to rs.
+            con = new DBContext().getConnection();  // open connection to SQL
+            ps = con.prepareStatement(query); // move query from Netbeen to SQl
+            ps.setString(1, email);         // pass entered email to the first ?.
+            ps.setString(2, password);      // pass entered password to the second ?.
+            rs = ps.executeQuery();                 // excute query and return result to rs.
             while (rs.next()) {
                 // return an account
                 return new Account(rs.getString(4), rs.getString(1), rs.getString(2), AccountStatus.ACTIVED, rs.getString(3), "", "", "", "", "");
@@ -59,20 +52,20 @@ public class AccountDAO {
     /**
      * To check an account is exist in system or not by passed email for login
      * function.
-     *
      * @param email entered email from user(String).
      * @return status of check - account is exist(true) and false otherwise.
+     * @author Trần Đăng Khoa - CE160367
      */
     public boolean checkAccountIsExist(String email) {
         // query to check whether passed email is exist or not.
         String query = "select AccountEmail, AccountPassword, AccountName, AccountID, AccountStatus\n"
                 + "from ACCOUNT \n"
-                + "where AccountEmail = ?;";
+                + "where AccountEmail = ? and AccountStatus = 'ACTIVED';";
         Account acc = null; // initilize an account.
         try {
             con = new DBContext().getConnection();   // open connection to SQL
-            ps = con.prepareStatement(query);        // move query from Netbeen to SQl
-            ps.setString(1, email);                  // pass entered email to the first ?.
+            ps = con.prepareStatement(query);  // move query from Netbeen to SQl
+            ps.setString(1, email);          // pass entered email to the first ?.
             rs = ps.executeQuery();                  // excute query and return result to rs.
             while (rs.next()) {
                 acc = new Account(rs.getString(4), rs.getString(1), rs.getString(2), AccountStatus.valueOf(rs.getString(5)), rs.getString(3), "", "", "", "", "");
@@ -88,33 +81,125 @@ public class AccountDAO {
     }
 
     /**
+     * To get specified status of an account by email.
+     * @param email passed email to get status of an account.
+     * @return status of an account(String)
+     * @author Trần Đăng Khoa - CE160367
+     */
+    public String getAccountStatusByEmail(String email) {
+        // query to get account status by passed email.
+        String query = "select AccountStatus from ACCOUNT where AccountEmail = ?;";
+        try {
+            con = new DBContext().getConnection();   // open connection to SQL
+            ps = con.prepareStatement(query);  // move query from Netbeen to SQl
+            ps.setString(1, email);          // pass entered email to the first ?.
+            rs = ps.executeQuery();                  // excute query and return result to rs.
+            while (rs.next()) {
+                // return status of an account.
+                return rs.getString(1);
+            } // end while loop of table result.
+        } catch (Exception e) {
+            e.getMessage();
+        } // end try-catch.
+        return null; // status of checking statyus of account.
+    }
+
+    /**
      * To create a new account by user(register account).This function will
      * insert to database some of parameters as below:
-     *
      * @param name entered name of user(String).
      * @param email entered email of user(String).
      * @param password entered password of user(String).
      * @param phone entered phone of user(String).
      * @param address entered address of user(String).
-     * @param dob day of birth
-     * @param startDay start day
+     * @param dob day of birth of user(String)
+     * @param startDay current date when register(String).
+     * @author Trần Đăng Khoa - CE160367
      */
     public void registerAccount(String name, String email, String password, String phone, String address, String dob, String startDay) {
         // query to insert a new account of user to database. With status is ACTIVED and role's id is USER default.
-        String query = "INSERT INTO [ACCOUNT] VALUES (?,?,?,'ACTIVED',?,?,?,?,?)";
-        String id = createNewUserID();
+        String query = "INSERT INTO [ACCOUNT] VALUES (?,?,?,'PENDING',?,?,?,?,?)";
+        String id = createNewUserID(); // get account's id of user.
         try {
             con = new DBContext().getConnection();   // open connection to SQL
-            ps = con.prepareStatement(query);        // move query from Netbeen to SQl
-            ps.setString(1, id);                  // pass entered email to the first ?. 
-            ps.setString(2, email);               // pass entered password to the second ?.
-            ps.setString(3, password);                   // pass entered name to the third ?.
-            ps.setString(4, name);                // pass entered address to the four ?.
-            ps.setString(5, address);                  // pass entered phone to the filth ?.
-            ps.setString(6, phone);                  // pass entered phone to the filth ?.
-            ps.setString(7, dob);                  // pass entered phone to the filth ?.
-            ps.setString(8, startDay);                  // pass entered phone to the filth ?.
+            ps = con.prepareStatement(query);  // move query from Netbeen to SQl
+            ps.setString(1, id);             // pass entered id to the first ?. 
+            ps.setString(2, email);          // pass entered email to the second ?.
+            ps.setString(3, password);       // pass entered password to the third ?.
+            ps.setString(4, name);           // pass entered name to the four ?.
+            ps.setString(5, address);        // pass entered address to the filth ?.
+            ps.setString(6, phone);          // pass entered phone to the 6th ?.
+            ps.setString(7, dob);            // pass entered date of birth to the 7th ?.
+            ps.setString(8, startDay);       // pass entered current date to the 8th ?.
             ps.executeUpdate();                      // insert a new account of user to database.
+        } catch (Exception e) {
+            e.getMessage();
+        } // end try-catch.
+    }
+
+    /**
+     * To get id of a specified account by passed email.
+     * @param email entered email of user(String).
+     * @return account's id by passed email(String)
+     * @author Trần Đăng Khoa - CE160367
+     */
+    public String getAccountIDByEmail(String email) {
+        // query to get account id by email
+        String query = "select AccountID from ACCOUNT where AccountEmail = ?; ";
+        try {
+            con = new DBContext().getConnection();  // open connection to SQL
+            ps = con.prepareStatement(query); // move query from Netbeen to SQl
+            ps.setString(1, email);         // pass entered email to the first ?.
+            rs = ps.executeQuery();                 // excute query and return result to rs.
+            while (rs.next()) {
+                // return an account
+                return rs.getString(1);
+            } // end while loop of table result.
+        } catch (Exception e) {
+            e.getMessage();
+        } // end try-catch.
+        return null; // null id of account when table result is null
+    }
+
+    /**
+     * This method will return a specified account by passed id.
+     * @param ID passed id of account(String)
+     * @return a specified account by passed id(Account).
+     * @author Trần Đăng Khoa - CE160367
+     */
+    public Account getAccountByID(String ID) {
+        // query to get an accont by id.
+        String query = "select * from ACCOUNT where AccountID = ?;";
+        try {
+            con = new DBContext().getConnection();  // open connection to SQL
+            ps = con.prepareStatement(query); // move query from Netbeen to SQl
+            ps.setString(1, ID);            // passed secified id to the first ?.
+            rs = ps.executeQuery();                 // excute query and return result to rs.
+            while (rs.next()) {
+                // return an account
+                return new Account(rs.getString(1), rs.getString(2), rs.getString(3), AccountStatus.valueOf(rs.getString(4)), rs.getString(5), rs.getString(7), rs.getString(6), rs.getString(8), rs.getString(9), "");
+            } // end while loop of table result.
+        } catch (Exception e) {
+            e.getMessage();
+        } // end try-catch.
+        return null;
+    }
+
+    /**
+     * To update account status by account's id.
+     * @param accountID passed id of an account to update(String).
+     * @param newStatus  passed new status of account to update(String).
+     * @author Trần Đăng Khoa - CE160367
+     */
+    public void updateAccountStatus(String accountID, String newStatus) {
+        // query to update new status of account by passed email.
+        String query = "update ACCOUNT set AccountStatus = ? where AccountID = ?";
+        try {
+            con = new DBContext().getConnection();   // open connection to SQL.
+            ps = con.prepareStatement(query);  // move query from Netbeen to SQl.
+            ps.setString(1, newStatus);      // pass new status to the first ?. 
+            ps.setString(2, accountID);      // pass id of account to the second ?. 
+            ps.executeUpdate();                      // update a new password into database.                 
         } catch (Exception e) {
             e.getMessage();
         } // end try-catch.
@@ -128,11 +213,11 @@ public class AccountDAO {
     public String createNewUserID() {
         GenerateID g = new GenerateID();
         String lastID = getLastIDOfAccount();
-        
+
         String newID = g.generateNewID("US", lastID);
         return newID;
     }
-    
+
     /**
      * Create new ID of Chef
      *
@@ -141,11 +226,11 @@ public class AccountDAO {
     public String createNewChefID() {
         GenerateID g = new GenerateID();
         String lastID = getLastIDOfAccount();
-        
+
         String newID = g.generateNewID("CH", lastID);
         return newID;
     }
-    
+
     /**
      * Create new ID of shipper
      *
@@ -154,13 +239,14 @@ public class AccountDAO {
     public String createNewShipperID() {
         GenerateID g = new GenerateID();
         String lastID = getLastIDOfAccount();
-        
+
         String newID = g.generateNewID("SP", lastID);
         return newID;
     }
-    
+
     /**
      * Get last id in table account
+     *
      * @return last id
      */
     public String getLastIDOfAccount() {
@@ -256,6 +342,7 @@ public class AccountDAO {
         }
         return count;
     }
+
     /**
      * Returns the Staff associated with a given account ID.
      *
@@ -403,6 +490,41 @@ public class AccountDAO {
             ps.setString(3, accountAddress); //The user's phone number
             ps.setString(4, userBirthday); //The user's birthday
             ps.setString(5, accountID); //The user's ID account
+            //Execute the update query to update the user's profile
+            ps.executeUpdate();
+        } catch (Exception e) {
+            e.getMessage();
+        } //End trycatch
+    }
+    
+     /**
+     * Update a account's information when user re-register it(pending status).
+     * @param accountID The ID of the account whose profile is being updated.
+     * @param userBirthday The user's birthday.
+     * @param accountName The user's name associated with the account.
+     * @param accountPhone The user's phone number associated with the account.
+     * @param accountAddress The user's address associated with the account.
+     * @param todayDate The current date to register an account.
+     * @author Trần Đăng Khoa - CE160367
+     */
+    public void updateAccountIsPending(String accountID, String userBirthday, String accountName, String accountPhone, String accountAddress, String todayDate) {
+        //SQL query to update the account and user tables with the new profile information
+        String query = "UPDATE ACCOUNT\n"
+                + "SET AccountName = ?,\n"
+                + "AccountPhone = ?,\n"
+                + "AccountAddress = ?,\n"
+                + "AccountBirthDay = ?,\n"
+                + "AccountStartDate = ?\n"
+                + "WHERE AccountID = ?";
+        try {
+            con = new DBContext().getConnection();    //Open connection to SQL
+            ps = con.prepareStatement(query);   //Move query from Netbeen to SQL
+            ps.setString(1, accountName);     //The user's name
+            ps.setString(2, accountPhone);    //The user's address
+            ps.setString(3, accountAddress);  //The user's phone number
+            ps.setString(4, userBirthday);    //The user's birthday
+            ps.setString(5, todayDate);       //The current date to register an account.
+            ps.setString(6, accountID);       //The user's ID account
             //Execute the update query to update the user's profile
             ps.executeUpdate();
         } catch (Exception e) {

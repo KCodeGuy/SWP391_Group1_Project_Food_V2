@@ -5,15 +5,18 @@
 
 package controller;
 
+import dao.AccountDAO;
 import dao.CartDAO;
 import dao.OrderDAO;
 import dao.OrderDetailDAO;
+import emailHandler.EmailHandler;
 import java.io.IOException;
 import java.io.PrintWriter;
 import jakarta.servlet.ServletException;
 import jakarta.servlet.http.HttpServlet;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
+import model.Account;
 
 /**
  *
@@ -44,15 +47,19 @@ public class PayingController extends HttpServlet {
         String name = request.getParameter("name");
         String phone = request.getParameter("phone");
         String address = request.getParameter("address");
-        
         OrderDAO odao = new OrderDAO();
+        AccountDAO adao = new AccountDAO();
+        Account acc = adao.getAccountByID(accountID);       
+        
         OrderDetailDAO ddao = new OrderDetailDAO();
         CartDAO cdao = new CartDAO();
+        EmailHandler eh = new EmailHandler();
         
         odao.createOrder(note, accountID, name, phone, address, voucherID, discount);
+        
         ddao.createOrderDetails(cdao.getListCartToPaying(accountID), odao.getLastIDOfOrder());
         cdao.deleteCartByAccountID(accountID);
-        
+        eh.sendEmailOrderSuccess(acc.getAccountName(), acc.getAccountEmail(), phone, address, odao.getLastIDOfOrder(), odao.getLastIDOfOrder() , discount, 25000000, discount);
         response.sendRedirect("home");
     } 
 

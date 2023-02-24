@@ -32,10 +32,10 @@ public class LoginController extends HttpServlet {
         
         AccountDAO adao  = new AccountDAO();
         Account acc = adao.loginAccount(txtEmail, txtPassword);
-        if(acc == null) {
+        if(acc == null) { // account is not exist.
             request.setAttribute("loginFailedMessage", "Account is not exist. Please try again!");
             request.getRequestDispatcher("login.jsp").forward(request, response);
-        }else {
+        }else { // account is exist
             HttpSession session = request.getSession();
             session.setAttribute("accountSesseion", acc);
             session.setMaxInactiveInterval(360000000);
