@@ -34,7 +34,7 @@
                                 <h2 class="form-heading">UPDATE STAFF PROFILE</h2>
                             </div>
 
-                            <div class="form-control-group">
+                        <div class="form-control-group">
                                 <h4 class="form-text-label">Staff's ID:</h4>
                                 <input type="text" id="id" name="id" value="${staff.accountName}" readonly>
                         </div>
@@ -66,18 +66,18 @@
 
                         <div class="form-control-group">
                             <h4 class="form-text-label">Staff's start date:</h4>
-                            <input type="date" id="start-date" name="start-date" placeholder="dd/mm/yyyy" readonly>
+                            <input type="date" id="start-date" name="start-date" value="${staff.accountStartDay}">
                         </div>
 
                         <div class="form-control-group">
                             <h4 class="form-text-label">Staff's role:</h4>
-                            <input type="text" id="role" name="role" placeholder="Chef staff" readonly>
+                            <input type="text" id="role" name="role" value="${staff.roleDescription}">
                         </div>
 
                         <div class="form-btn-group">
                             <button type="Submit" name="submit" class="btn-primary">Update</button>
                             <h6 class="form-btn-separator">&nbsp;OR&nbsp;</h6>
-                            <button type="button" class="btn-main"><a href="loaduserprofile?accountID=${sessionScope.accountSesseion.accountID}">Cancel</a></button>
+                            <button type="button" class="btn-main"><a href="loadstaffprofile?accountID=${sessionScope.accountSesseion.accountID}">Cancel</a></button>
                         </div>
 
                     </form>
@@ -89,7 +89,7 @@
         </div>
         <script src="./bootstap/bootstrap.js"></script>
         <script src="jquery/Jquery.js"></script>
-        <script src="jquery/updateUserProfile.js"></script>
+        <script src="jquery/updateStaffProfile.js"></script>
     </body>
 
 </html>

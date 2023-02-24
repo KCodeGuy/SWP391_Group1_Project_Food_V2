@@ -271,9 +271,16 @@ public class AccountDAO {
             ps.setString(1, accountID);
             rs = ps.executeQuery();                 // Perform query in database
             Account staff = null;                     // Assign values ​​in null
-            while (rs.next()) {                     // While loops used to scan via value in the database
-                staff = new Account(rs.getString(1), rs.getString(4), "", AccountStatus.NULL, rs.getString(2), rs.getString(3), rs.getString(4), rs.getString(7), rs.getString(6), "");
-            }
+//            while (rs.next()) {                     // While loops used to scan via value in the database
+//                staff = new Account(rs.getString(1), rs.getString(4), "", AccountStatus.NULL, rs.getString(2), rs.getString(3), rs.getString(4), rs.getString(7), rs.getString(6), "");
+//            }
+            while (rs.next()) {
+                if (rs.getString(1).substring(0, 2).equalsIgnoreCase("SP")) {
+                    staff = new Account(rs.getString(1), rs.getString(4), "", AccountStatus.NULL, rs.getString(2), rs.getString(3), rs.getString(5), rs.getString(7), rs.getString(6), "Shipper"); // add new item in list
+                } else {
+                    staff = new Account(rs.getString(1), rs.getString(4), "", AccountStatus.NULL, rs.getString(2), rs.getString(3), rs.getString(5), rs.getString(7), rs.getString(6), "Chef"); // add new item in list
+                }
+            } // end while rs.next
             return staff;                           // Return the query value
         } catch (Exception e) {
             e.getMessage();                         // Show an exception error
@@ -316,6 +323,8 @@ public class AccountDAO {
      * @param accountID The ID of the account whose profile is being updated.
      * @param accountName The staff's name associated with the account.
      * @param accountPhone The staff's phone number associated with the account.
+     * @param accountStartDay The staff's phone number associated with the account.
+     * @param roleDescription The staff's phone number associated with the account.
      * @param accountAddress The staff's address associated with the account.
      */
     public void updateStaffProfile(String accountID, String accountEmail, String accountName, String accountPhone, String accountAddress, String accountStartDay, String roleDescription) {

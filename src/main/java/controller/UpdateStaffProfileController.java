@@ -80,12 +80,12 @@ public class UpdateStaffProfileController extends HttpServlet {
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         //Retrieve form data from HTTP request parameters
-        String accountID = request.getParameter("accountID");
+        String accountID = request.getParameter("id");
         String accountName = request.getParameter("name");
         String accountPhone = request.getParameter("phone");
         String accountEmail = request.getParameter("email");
         String accountAddress = request.getParameter("address");
-        String accountStartDay = request.getParameter("date");
+        String accountStartDay = request.getParameter("start-date");
         String roleDescription = request.getParameter("role");
         //Create a StaffDAO object and update user profile using retrieved form data
         AccountDAO sdao = new AccountDAO();
