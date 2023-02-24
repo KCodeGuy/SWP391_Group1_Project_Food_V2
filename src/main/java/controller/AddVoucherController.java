@@ -12,6 +12,10 @@ import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
 import java.io.IOException;
 import java.sql.SQLException;
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import model.Voucher;
 
 /**
@@ -30,7 +34,7 @@ public class AddVoucherController extends HttpServlet {
    * @throws ServletException if a servlet-specific error occurs
    * @throws IOException if an I/O error occurs
    */
-  protected void processRequest(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+  protected void processRequest(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException, ParseException {
     try {
       String voucherID = request.getParameter("voucherID");
       String voucherDescription = request.getParameter("voucherDescription");
@@ -39,6 +43,12 @@ public class AddVoucherController extends HttpServlet {
       String voucherQuantity = request.getParameter("voucherQuantity");
       String voucherSDate = request.getParameter("voucherSDate");
       String voucherEDate = request.getParameter("voucherEDate");
+      
+       SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-DD");
+            if (sdf.parse(voucherSDate).after(sdf.parse(voucherEDate))) {
+                request.setAttribute("DATEERROR", "Start date is before end date");
+                request.getRequestDispatcher("addVoucher.jsp").forward(request, response);
+            }
 
       Voucher vc = new Voucher(
         voucherID.toUpperCase(),
@@ -71,7 +81,11 @@ public class AddVoucherController extends HttpServlet {
    */
   @Override
   protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-    processRequest(request, response);
+      try {
+          processRequest(request, response);
+      } catch (ParseException ex) {
+          Logger.getLogger(AddVoucherController.class.getName()).log(Level.SEVERE, null, ex);
+      }
   }
 
   /**
@@ -84,7 +98,11 @@ public class AddVoucherController extends HttpServlet {
    */
   @Override
   protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-    processRequest(request, response);
+      try {
+          processRequest(request, response);
+      } catch (ParseException ex) {
+          Logger.getLogger(AddVoucherController.class.getName()).log(Level.SEVERE, null, ex);
+      }
   }
 
   /**

@@ -63,7 +63,7 @@
                         <div class="form-control-group">
                             <h4 class="form-text-label">Voucher's start date:</h4>
                             <input type="date" id="voucherPercent" name="voucherSDate" required="" value="${param.voucherSDate}" >
-                            <div class="alert-warning" id="txtVoucherPercentMessage"></div>
+                            <div class="alert-warning" id="txtVoucherPercentMessage">${requestScope.DATEERROR}</div>
                         </div>
                         <div class="form-control-group">
                             <h4 class="form-text-label">Voucher's end date:</h4>

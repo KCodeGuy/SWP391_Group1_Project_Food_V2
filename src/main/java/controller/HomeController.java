@@ -1,4 +1,3 @@
-
 package controller;
 
 import dao.ProductDAO;
@@ -8,6 +7,8 @@ import jakarta.servlet.http.HttpServletResponse;
 import java.io.IOException;
 import java.util.List;
 import jakarta.servlet.http.HttpServlet;
+import java.util.ArrayList;
+import java.util.stream.Stream;
 import model.Product;
 
 /**
@@ -15,8 +16,8 @@ import model.Product;
  * @author NghiaHHCE160343@fpt.edu.vn
  */
 public class HomeController extends HttpServlet {
-   
-   /**
+
+    /**
      * Processes requests for both HTTP <code>GET</code> and <code>POST</code>
      * methods.
      *
@@ -28,8 +29,14 @@ public class HomeController extends HttpServlet {
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         response.setContentType("text/html;charset=UTF-8");
-        ProductDAO pdao = new ProductDAO(); 
+        ProductDAO pdao = new ProductDAO();
         List<Product> listProduct = pdao.getListProduct(); // get list product to load page
+
+        String txtSearch = request.getParameter("txtSearch");
+        if (txtSearch != null) {
+            listProduct = pdao.findProductByName(txtSearch);
+        }
+
         request.setAttribute("listProduct", listProduct);
         request.getRequestDispatcher("home.jsp").forward(request, response);
     }

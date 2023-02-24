@@ -270,4 +270,31 @@ public class ProductDAO {
         //If an exception is caught or no product is found, return null
         return null;
     }
+  public List<Product> findProductByName(String search) {
+        List<Product> list = new ArrayList<>(); //list products
+        try {
+            String query = "SELECT * FROM PRODUCT WHERE ProductStatus <> 'REMOVED' AND ProductName like ?"; //query select product orther than REMOVED
+            con = new DBContext().getConnection(); // open connection to SQL
+            ps = con.prepareStatement(query); // move query from Netbeen to SQl
+            ps.setString(1, "%" + search + "%");
+            rs = ps.executeQuery(); // the same with click to "excute" btn;
+
+            while (rs.next()) {
+                list.add(new Product(
+                        rs.getString(1),
+                        rs.getString(2),
+                        rs.getString(3),
+                        rs.getInt(4),
+                        rs.getInt(5),
+                        ProductStatus.valueOf(rs.getString(6)),
+                        rs.getString(7),
+                        rs.getString(8))
+                ); // add new item in list
+            } // end while rs.next
+        } catch (Exception e) {
+            e.getMessage();
+        }
+        return list;
+    }
+
 }
