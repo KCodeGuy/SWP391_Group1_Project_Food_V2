@@ -125,27 +125,29 @@
         <servlet-class>controller.RejectOrderController</servlet-class>
     </servlet>
     <servlet>
-<<<<<<< HEAD
         <servlet-name>DeleteProductForManagePageController</servlet-name>
         <servlet-class>controller.DeleteProductForManagePageController</servlet-class>
-    </servlet>
-        <servlet>
-        <servlet-name>loadliststaff</servlet-name>
-        <servlet-class>controller.LoadListStaffController</servlet-class>
-    </servlet>
-        <servlet>
-        <servlet-name>LoadListOrderedForManagePageController</servlet-name>
-        <servlet-class>controller.LoadListOrderedForManagePageController</servlet-class>
-    </servlet>
-=======
-        <servlet-name>updatestaffprofile</servlet-name>
-        <servlet-class>controller.UpdateStaffProfileController</servlet-class>
     </servlet>
     <servlet>
         <servlet-name>loadliststaff</servlet-name>
         <servlet-class>controller.LoadListStaffController</servlet-class>
     </servlet>
->>>>>>> QuyenNNM_UpdateStaffProfile_new
+<<<<<<< HEAD
+        <servlet>
+        <servlet-name>updatestaffprofile</servlet-name>
+        <servlet-class>controller.UpdateStaffProfileController</servlet-class>
+    </servlet>
+        <servlet>
+=======
+    <servlet>
+>>>>>>> HieuTTN_showListOrdersShip
+        <servlet-name>LoadListOrderedForManagePageController</servlet-name>
+        <servlet-class>controller.LoadListOrderedForManagePageController</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>LoadListOrdersShipController</servlet-name>
+        <servlet-class>controller.LoadListOrdersShipController</servlet-class>
+    </servlet>
     <servlet-mapping>
         <servlet-name>HomeController</servlet-name>
         <url-pattern>/home</url-pattern>
@@ -267,27 +269,29 @@
         <url-pattern>/rejectorder</url-pattern>
     </servlet-mapping>
     <servlet-mapping>
-<<<<<<< HEAD
         <servlet-name>DeleteProductForManagePageController</servlet-name>
         <url-pattern>/deleteproduct</url-pattern>
-    </servlet-mapping>
-        <servlet-mapping>
-        <servlet-name>loadliststaff</servlet-name>
-        <url-pattern>/loadliststaff</url-pattern>
-    </servlet-mapping>
-        <servlet-mapping>
-        <servlet-name>LoadListOrderedForManagePageController</servlet-name>
-        <url-pattern>/loadlistorderedformanagepage</url-pattern>
-    </servlet-mapping>
-=======
-        <servlet-name>updatestaffprofile</servlet-name>
-        <url-pattern>/updatestaffprofile</url-pattern>
     </servlet-mapping>
     <servlet-mapping>
         <servlet-name>loadliststaff</servlet-name>
         <url-pattern>/loadliststaff</url-pattern>
     </servlet-mapping>
->>>>>>> QuyenNNM_UpdateStaffProfile_new
+<<<<<<< HEAD
+        <servlet-mapping>
+        <servlet-name>updatestaffprofile</servlet-name>
+        <url-pattern>/updatestaffprofile</url-pattern>
+    </servlet-mapping>
+        <servlet-mapping>
+=======
+    <servlet-mapping>
+>>>>>>> HieuTTN_showListOrdersShip
+        <servlet-name>LoadListOrderedForManagePageController</servlet-name>
+        <url-pattern>/loadlistorderedformanagepage</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>LoadListOrdersShipController</servlet-name>
+        <url-pattern>/loadlistordership</url-pattern>
+    </servlet-mapping>
     <session-config>
         <session-timeout>
             30

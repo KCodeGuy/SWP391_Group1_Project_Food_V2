@@ -77,7 +77,7 @@
                             </c:if>
                             <c:if test="${sessionScope.accountSesseion.accountID.startsWith('SP')}">
                                  <li class="nav-item">
-                                    <a class="nav-link" aria-current="page" href="staffProfile.jsp">Manage ship</a>
+                                    <a class="nav-link" aria-current="page" href="loadlistordership">Manage ship</a>
                                 </li>
                                 <li class="nav-item">
                                     <a class="nav-link" aria-current="page" href="staffProfile.jsp">Manage pickup orders</a>
