@@ -279,8 +279,42 @@ public class AccountDAO {
             e.getMessage();                         // Show an exception error
         }
         return null;                                // Return value null
-    }//end method                           
-
+    }//end method      
+    
+    /**
+     * Update a staff's profile in the database with the provided information.
+     * @param accountEmail entered email of user(String).
+     * @param accountID The ID of the account whose profile is being updated.
+     * @param accountName The staff's name associated with the account.
+     * @param accountPhone The staff's phone number associated with the account.
+     * @param accountAddress The staff's address associated with the account.
+     */
+    public void updateStaffProfile(String accountID, String accountEmail, String accountName, String accountPhone, String accountAddress, String accountStartDay, String roleDescription) {
+        //SQL query to update the account and staff tables with the new profile information
+        String query = "UPDATE ACCOUNT\n"
+                + "SET AccountName = ?,\n"
+                + "AccountPhone = ?,\n"
+                + "AccountEmail = ?,\n"
+                + "AccountAddress = ?,\n"
+                + "AccountStartDate = ?\n"
+                + "WHERE AccountID = ?";
+        try {
+            con = new DBContext().getConnection(); //Open connection to SQL
+            ps = con.prepareStatement(query); //Move query from Netbeen to SQL
+            //Set the values for the parameters in the SQL query
+            ps.setString(1, accountName); //The staff's name
+            ps.setString(2, accountPhone); //The staff's address
+            ps.setString(3, accountEmail); //The staff's phone number
+            ps.setString(4, accountAddress); //The staff's birthday
+            ps.setString(5, accountStartDay); //The staff's birthday
+            ps.setString(6, accountID); //The staff's ID account
+            //Execute the update query to update the staff's profile
+            ps.executeUpdate();
+        } catch (Exception e) {
+            e.getMessage();
+        } //End trycatch
+    }
+    
     /**
      * Interact with the database to load staff information by linking account
      * ID

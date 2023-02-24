@@ -112,7 +112,7 @@
         <servlet-name>ShowOrderDetailsForChefController</servlet-name>
         <servlet-class>controller.ShowOrderDetailsForChefController</servlet-class>
     </servlet>
-        <servlet>
+    <servlet>
         <servlet-name>LoadProductDetailController</servlet-name>
         <servlet-class>controller.LoadProductDetailController</servlet-class>
     </servlet>
@@ -123,6 +123,10 @@
     <servlet>
         <servlet-name>RejectOrderController</servlet-name>
         <servlet-class>controller.RejectOrderController</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>updatestaffprofile</servlet-name>
+        <servlet-class>controller.UpdateStaffProfileController</servlet-class>
     </servlet>
     <servlet-mapping>
         <servlet-name>HomeController</servlet-name>
@@ -243,6 +247,10 @@
     <servlet-mapping>
         <servlet-name>RejectOrderController</servlet-name>
         <url-pattern>/rejectorder</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>updatestaffprofile</servlet-name>
+        <url-pattern>/updatestaffprofile</url-pattern>
     </servlet-mapping>
     <session-config>
         <session-timeout>
