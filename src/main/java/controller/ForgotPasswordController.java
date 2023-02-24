@@ -25,12 +25,16 @@ public class ForgotPasswordController extends HttpServlet {
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         response.setContentType("text/html;charset=UTF-8");
-       String email = request.getParameter("email");
-       String newPassword = request.getParameter("password");
-       AccountDAO adao = new AccountDAO();
-       adao.updatePassword(email, newPassword);
-       request.setAttribute("registerSuccesMessage", "Update password successfully! Please login account!");
-       request.getRequestDispatcher("login.jsp").forward(request, response);
+      // get parameter on input for handle.
+        // get email of account.
+        String email = request.getParameter("email");
+        // get new password of account.
+        String newPassword = request.getParameter("password");
+        AccountDAO adao = new AccountDAO();
+        //update password by email and new password.
+        adao.updatePassword(email, newPassword);
+        request.setAttribute("registerSuccesMessage", "Update password successfully! Please login here!");
+        request.getRequestDispatcher("login.jsp").forward(request, response);
     }
 
     // <editor-fold defaultstate="collapsed" desc="HttpServlet methods. Click on the + sign on the left to edit the code.">
