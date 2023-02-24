@@ -8,6 +8,8 @@ import jakarta.mail.Session;
 import jakarta.mail.Transport;
 import jakarta.mail.internet.InternetAddress;
 import jakarta.mail.internet.MimeMessage;
+import java.time.LocalDate;
+import java.time.format.DateTimeFormatter;
 import java.util.Properties;
 import java.util.Random;
 
@@ -19,18 +21,26 @@ public class EmailHandler {
 
     /**
      * Function create verification code for authentication email when register
-     *
-     * @return verification code with 6 random digits
+     * @return verification code with 6 random digits(String).
      */
     public String generateRandomCode() {
         Random r = new Random();
         int number = r.nextInt(999999);
         return String.format("%06d", number);
     }
-
+    
+    /**
+     * To get current date to added into database. 
+     * @return a current date to added into database(String)
+     */
+    public String getTodayDate() {
+        LocalDate today = LocalDate.now();
+        DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd");
+        return String.valueOf(today.format(formatter));
+    }
+    
     /**
      * Function verify customer email
-     *
      * @param toEmail email of customer
      * @param randomCode verification code sent to customer
      * @return completion or not completion
@@ -117,9 +127,9 @@ public class EmailHandler {
                     Message.RecipientType.TO,
                     InternetAddress.parse(toEmail)
             );
-            mimeMessage.setSubject("[Group1Shop] ĐẶT HÀNG THÀNH CÔNG", "utf-8");
+            mimeMessage.setSubject("[G1-FOOD] ĐẶT HÀNG THÀNH CÔNG", "utf-8");
             mimeMessage.setContent("<span>Xin Chào <b>" + fulllName + ",</b></span>"
-                    + "<span> Group1Shop store xác nhận đơn hàng của quí khách đã được đặt thành công. </span>"
+                    + "<span> G1-FOOD store xác nhận đơn hàng của quí khách đã được đặt thành công. </span>"
                     + "<h4>#Thông tin khách hàng:</h4>"
                     + "_Tên khách hàng: " + fulllName
                     + "<br>_Số điện thoại: " + phone
@@ -132,10 +142,10 @@ public class EmailHandler {
                     + "<br>_Phí vận chuyển: " + shipFee + " đ"
                     + "<br>_Hình thức thanh toán: Ship code(Thanh toán khi nhận hàng)"
                     + "<br><span>_Tổng tiền: <b><font color=red> " + (total + shipFee) + " đ</font></b></span><br>"
-                    + "<br><span>Group1Shop rất cảm ơn quí khách đã tin tưởng và đặt hàng. Đơn hàng sẽ được xử lí và giao đến quí khác trong 3-7 ngày."
+                    + "<br><span>G1-FOOD rất cảm ơn quí khách đã tin tưởng và đặt hàng. Đơn hàng sẽ được xử lí và giao đến quí khác trong ít phút."
                     + " Lưu ý: Mọi thắc mắc cần tư vấn về sản phẩm hay đơn hàng. Xin vui lòng liên hệ <b>Hotline: 0933.782.768.</b></h4>"
                     + "<h4>Trân trọng,</span>"
-                    + "<h4>Group1Shop</h4>",
+                    + "<h4>G1-FOOD</h4>",
                     "text/html; charset=UTF-8");
 
             Transport.send(mimeMessage);

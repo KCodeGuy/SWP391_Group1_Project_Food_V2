@@ -25,9 +25,9 @@
             <!-- 1. Navigation -->
             <jsp:include page="navigation.jsp"></jsp:include>
 
-                <div class="container-fluid container-fluid-form" style="height: 600px">
+                 <div class="container-fluid container-fluid-form" style="height: 600px">
                     <div class="wrapper-form" style="width: 400px">
-                        <form id="myForm" action="emailAuthenUpdatePassword" method="GET">
+                        <form id="myForm" action="emailAuthenUpdatePassword" method="POST">
                             <div class="form-heading-group">
                                 <i class="fa-solid fa-envelope-open-text fa-2x"></i>
                                 <h2 class="form-heading">FORGOT PASSWORD</h2>

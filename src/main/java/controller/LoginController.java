@@ -29,19 +29,18 @@ public class LoginController extends HttpServlet {
         response.setContentType("text/html;charset=UTF-8");
         String txtEmail = request.getParameter("email");
         String txtPassword = request.getParameter("password");
-        
-        AccountDAO adao  = new AccountDAO();
+
+        AccountDAO adao = new AccountDAO();
         Account acc = adao.loginAccount(txtEmail, txtPassword);
-        if(acc == null) {
+        if (acc == null) { // account is not exist.
             request.setAttribute("loginFailedMessage", "Account is not exist. Please try again!");
             request.getRequestDispatcher("login.jsp").forward(request, response);
-        }else {
+        } else { // account is exist
             HttpSession session = request.getSession();
             session.setAttribute("accountSesseion", acc);
             session.setMaxInactiveInterval(360000000);
             request.getRequestDispatcher("home").forward(request, response);
         }
-
     }
 
     // <editor-fold defaultstate="collapsed" desc="HttpServlet methods. Click on the + sign on the left to edit the code.">
