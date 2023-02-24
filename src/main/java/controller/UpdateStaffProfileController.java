@@ -65,6 +65,7 @@ public class UpdateStaffProfileController extends HttpServlet {
         //Set the staff and accountID attribute for the request and forward to the updateStaffProfile.jsp page
         request.setAttribute("staff", staff);
         request.setAttribute("accountID", accountID);
+        //Forward the request and response objects to the updateStaffProfile.jsp view for display.
         request.getRequestDispatcher("updateStaffProfile.jsp").forward(request, response);
     }
 
@@ -89,9 +90,11 @@ public class UpdateStaffProfileController extends HttpServlet {
         String roleDescription = request.getParameter("role");
         //Create a StaffDAO object and update user profile using retrieved form data
         AccountDAO sdao = new AccountDAO();
-        sdao.updateStaffProfile(accountID, accountName, accountPhone, accountEmail, accountAddress,accountStartDay,roleDescription);
+        sdao.updateStaffProfile(accountID, accountName, accountPhone, accountAddress, accountStartDay,roleDescription);
         //Redirect staff to the staff profile page with the updated accountID
-        response.sendRedirect("loadstaffprofile?accountID=" + accountID);
+        request.setAttribute("email", accountEmail);
+        //Forward the request and response objects to the updateStaffProfile.jsp view for display.
+        request.getRequestDispatcher("loadstaffprofile?accountID=" + accountID).forward(request, response);
     }
 
     /**

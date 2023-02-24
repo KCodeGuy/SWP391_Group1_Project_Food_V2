@@ -258,7 +258,7 @@ public class AccountDAO {
     }
     /**
      * Returns the Staff associated with a given account ID.
-     *
+     * 
      * @param accountID the ID of the account associated with the Staff
      * @return the Staff object associated with the given account ID, or null if
      * the account ID is invalid
@@ -268,16 +268,13 @@ public class AccountDAO {
             String query = "SELECT AccountID, AccountName, AccountPhone, AccountEmail, AccountAddress, AccountStartDate, AccountBirthDay FROM ACCOUNT WHERE AccountID = ? AND AccountID NOT LIKE 'US%'"; // Database query statement
             con = new DBContext().getConnection();  // open connection to SQL
             ps = con.prepareStatement(query);       // move query from Netbeen to SQl
-            ps.setString(1, accountID);
+            ps.setString(1, accountID);        
             rs = ps.executeQuery();                 // Perform query in database
-            Account staff = null;                     // Assign values ​​in null
-//            while (rs.next()) {                     // While loops used to scan via value in the database
-//                staff = new Account(rs.getString(1), rs.getString(4), "", AccountStatus.NULL, rs.getString(2), rs.getString(3), rs.getString(4), rs.getString(7), rs.getString(6), "");
-//            }
-            while (rs.next()) {
-                if (rs.getString(1).substring(0, 2).equalsIgnoreCase("SP")) {
+            Account staff = null;                   // Assign values ​​in null
+            while (rs.next()) { // Loop through creating a new staff and retrieved data
+                if (rs.getString(1).substring(0, 2).equalsIgnoreCase("SP")) { //If-Else statement, if the condition is correct, go to the IF command if it is wrong, then run into the Else
                     staff = new Account(rs.getString(1), rs.getString(4), "", AccountStatus.NULL, rs.getString(2), rs.getString(3), rs.getString(5), rs.getString(7), rs.getString(6), "Shipper"); // add new item in list
-                } else {
+                } else { // If the condition is wrong
                     staff = new Account(rs.getString(1), rs.getString(4), "", AccountStatus.NULL, rs.getString(2), rs.getString(3), rs.getString(5), rs.getString(7), rs.getString(6), "Chef"); // add new item in list
                 }
             } // end while rs.next
@@ -303,7 +300,7 @@ public class AccountDAO {
             //Create a list to hold the Staff objects that will be created from the query results.
             List<Account> list = new ArrayList<>();
             //Loop through the result set and create a new Staff object for each row.
-            while (rs.next()) {
+            while (rs.next()) { // Loop through creating a new staff and retrieved data
                 if (rs.getString(1).substring(0, 2).equalsIgnoreCase("SP")) {
                     list.add(new Account(rs.getString(1), rs.getString(3), "", AccountStatus.NULL, rs.getString(2), "", "", "", "", "Shipper")); // add new item in list
                 } else {
@@ -327,12 +324,11 @@ public class AccountDAO {
      * @param roleDescription The staff's phone number associated with the account.
      * @param accountAddress The staff's address associated with the account.
      */
-    public void updateStaffProfile(String accountID, String accountEmail, String accountName, String accountPhone, String accountAddress, String accountStartDay, String roleDescription) {
+    public void updateStaffProfile(String accountID, String accountName, String accountPhone, String accountAddress, String accountStartDay, String roleDescription) {
         //SQL query to update the account and staff tables with the new profile information
         String query = "UPDATE ACCOUNT\n"
                 + "SET AccountName = ?,\n"
                 + "AccountPhone = ?,\n"
-                + "AccountEmail = ?,\n"
                 + "AccountAddress = ?,\n"
                 + "AccountStartDate = ?\n"
                 + "WHERE AccountID = ?";
@@ -342,10 +338,9 @@ public class AccountDAO {
             //Set the values for the parameters in the SQL query
             ps.setString(1, accountName); //The staff's name
             ps.setString(2, accountPhone); //The staff's address
-            ps.setString(3, accountEmail); //The staff's phone number
-            ps.setString(4, accountAddress); //The staff's birthday
-            ps.setString(5, accountStartDay); //The staff's birthday
-            ps.setString(6, accountID); //The staff's ID account
+            ps.setString(3, accountAddress); //The staff's birthday
+            ps.setString(4, accountStartDay); //The staff's birthday
+            ps.setString(5, accountID); //The staff's ID account
             //Execute the update query to update the staff's profile
             ps.executeUpdate();
         } catch (Exception e) {
