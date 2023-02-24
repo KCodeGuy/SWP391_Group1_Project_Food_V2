@@ -83,4 +83,8 @@ public class LoadListStaffController extends HttpServlet {
         return "Short description";
     }// </editor-fold>
 
+<<<<<<< HEAD
 }
+=======
+}
+>>>>>>> QuyenNNM_UpdateStaffProfile_new

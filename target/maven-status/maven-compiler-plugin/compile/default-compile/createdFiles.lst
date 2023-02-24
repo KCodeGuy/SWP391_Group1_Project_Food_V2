@@ -51,6 +51,7 @@ controller\EmailAuthenUpdatePasswordController.class
 context\DBContext.class
 controller\AcceptApplicationController.class
 controller\LoadFormApplicationDetailForAdminController.class
+controller\UpdateStaffProfileController.class
 com\example\demo\hash\jni\LibraryLoader.class
 controller\LoadFormApplicationDetailController.class
 controller\LoadUserProfileController.class

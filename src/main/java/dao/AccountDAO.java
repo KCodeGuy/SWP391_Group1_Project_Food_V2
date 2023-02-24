@@ -396,7 +396,7 @@ public class AccountDAO {
 
     /**
      * Returns the Staff associated with a given account ID.
-     *
+     * 
      * @param accountID the ID of the account associated with the Staff
      * @return the Staff object associated with the given account ID, or null if
      * the account ID is invalid
@@ -406,19 +406,86 @@ public class AccountDAO {
             String query = "SELECT AccountID, AccountName, AccountPhone, AccountEmail, AccountAddress, AccountStartDate, AccountBirthDay FROM ACCOUNT WHERE AccountID = ? AND AccountID NOT LIKE 'US%'"; // Database query statement
             con = new DBContext().getConnection();  // open connection to SQL
             ps = con.prepareStatement(query);       // move query from Netbeen to SQl
-            ps.setString(1, accountID);
+            ps.setString(1, accountID);        
             rs = ps.executeQuery();                 // Perform query in database
-            Account staff = null;                     // Assign values ​​in null
-            while (rs.next()) {                     // While loops used to scan via value in the database
-                staff = new Account(rs.getString(1), rs.getString(4), "", AccountStatus.NULL, rs.getString(2), rs.getString(3), rs.getString(4), rs.getString(7), rs.getString(6), "");
-            }
+            Account staff = null;                   // Assign values ​​in null
+            while (rs.next()) { // Loop through creating a new staff and retrieved data
+                if (rs.getString(1).substring(0, 2).equalsIgnoreCase("SP")) { //If-Else statement, if the condition is correct, go to the IF command if it is wrong, then run into the Else
+                    staff = new Account(rs.getString(1), rs.getString(4), "", AccountStatus.NULL, rs.getString(2), rs.getString(3), rs.getString(5), rs.getString(7), rs.getString(6), "Shipper"); // add new item in list
+                } else { // If the condition is wrong
+                    staff = new Account(rs.getString(1), rs.getString(4), "", AccountStatus.NULL, rs.getString(2), rs.getString(3), rs.getString(5), rs.getString(7), rs.getString(6), "Chef"); // add new item in list
+                }
+            } // end while rs.next
             return staff;                           // Return the query value
         } catch (Exception e) {
             e.getMessage();                         // Show an exception error
         }
         return null;                                // Return value null
-    }//end method                           
-
+    }//end method      
+    
+    /**
+     * Returns a list of all active users in the database.
+     *
+     * @return A list of User objects representing active users.
+     */
+    public List<Account> getListStaff() {
+        try {
+            //Define a SQL query to retrieve account details for all active staffs, including role information.
+            String query = "SELECT AccountID, AccountName, AccountEmail FROM ACCOUNT WHERE  AccountID LIKE 'CH%' OR AccountID LIKE 'SP%'";
+            con = new DBContext().getConnection(); //Open a connection to the database.
+            ps = con.prepareStatement(query); //Move query from Netbeen to SQL
+            rs = ps.executeQuery(); //Execute the query and get the result set.
+            //Create a list to hold the Staff objects that will be created from the query results.
+            List<Account> list = new ArrayList<>();
+            //Loop through the result set and create a new Staff object for each row.
+            while (rs.next()) { // Loop through creating a new staff and retrieved data
+                if (rs.getString(1).substring(0, 2).equalsIgnoreCase("SP")) {
+                    list.add(new Account(rs.getString(1), rs.getString(3), "", AccountStatus.NULL, rs.getString(2), "", "", "", "", "Shipper")); // add new item in list
+                } else {
+                    list.add(new Account(rs.getString(1), rs.getString(3), "", AccountStatus.NULL, rs.getString(2), "", "", "", "", "Chef")); // add new item in list
+                }
+            } // end while rs.next
+            return list;  //Return the list of Staff objects.
+        } catch (Exception e) {
+            e.getMessage();
+        } //End trycatch
+        //If an exception is caught or if the list is empty, return null.
+        return null;
+    }
+    /**
+     * Update a staff's profile in the database with the provided information.
+     * @param accountEmail entered email of user(String).
+     * @param accountID The ID of the account whose profile is being updated.
+     * @param accountName The staff's name associated with the account.
+     * @param accountPhone The staff's phone number associated with the account.
+     * @param accountStartDay The staff's phone number associated with the account.
+     * @param roleDescription The staff's phone number associated with the account.
+     * @param accountAddress The staff's address associated with the account.
+     */
+    public void updateStaffProfile(String accountID, String accountName, String accountPhone, String accountAddress, String accountStartDay, String roleDescription) {
+        //SQL query to update the account and staff tables with the new profile information
+        String query = "UPDATE ACCOUNT\n"
+                + "SET AccountName = ?,\n"
+                + "AccountPhone = ?,\n"
+                + "AccountAddress = ?,\n"
+                + "AccountStartDate = ?\n"
+                + "WHERE AccountID = ?";
+        try {
+            con = new DBContext().getConnection(); //Open connection to SQL
+            ps = con.prepareStatement(query); //Move query from Netbeen to SQL
+            //Set the values for the parameters in the SQL query
+            ps.setString(1, accountName); //The staff's name
+            ps.setString(2, accountPhone); //The staff's address
+            ps.setString(3, accountAddress); //The staff's birthday
+            ps.setString(4, accountStartDay); //The staff's birthday
+            ps.setString(5, accountID); //The staff's ID account
+            //Execute the update query to update the staff's profile
+            ps.executeUpdate();
+        } catch (Exception e) {
+            e.getMessage();
+        } //End trycatch
+    }
+    
     /**
      * Returns a list of all active users in the database.
      *
