@@ -128,13 +128,17 @@
         <servlet-name>DeleteProductForManagePageController</servlet-name>
         <servlet-class>controller.DeleteProductForManagePageController</servlet-class>
     </servlet>
-        <servlet>
+    <servlet>
         <servlet-name>loadliststaff</servlet-name>
         <servlet-class>controller.LoadListStaffController</servlet-class>
     </servlet>
-        <servlet>
+    <servlet>
         <servlet-name>LoadListOrderedForManagePageController</servlet-name>
         <servlet-class>controller.LoadListOrderedForManagePageController</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>AddProductController</servlet-name>
+        <servlet-class>controller.AddProductController</servlet-class>
     </servlet>
     <servlet-mapping>
         <servlet-name>HomeController</servlet-name>
@@ -260,13 +264,17 @@
         <servlet-name>DeleteProductForManagePageController</servlet-name>
         <url-pattern>/deleteproduct</url-pattern>
     </servlet-mapping>
-        <servlet-mapping>
+    <servlet-mapping>
         <servlet-name>loadliststaff</servlet-name>
         <url-pattern>/loadliststaff</url-pattern>
     </servlet-mapping>
-        <servlet-mapping>
+    <servlet-mapping>
         <servlet-name>LoadListOrderedForManagePageController</servlet-name>
         <url-pattern>/loadlistorderedformanagepage</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>AddProductController</servlet-name>
+        <url-pattern>/addproduct</url-pattern>
     </servlet-mapping>
     <session-config>
         <session-timeout>
