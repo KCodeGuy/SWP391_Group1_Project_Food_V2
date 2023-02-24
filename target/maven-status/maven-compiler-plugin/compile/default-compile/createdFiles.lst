@@ -6,6 +6,8 @@ controller\ShowOrderDetailsForChefController.class
 controller\AcceptOrderController.class
 controller\LoadListProductInCartController.class
 com\example\demo\hash\jni\Platform.class
+controller\LoadListOrderedForManagePageController.class
+controller\LoadListStaffController.class
 controller\UseVoucherController.class
 com\example\demo\hash\jni\SysLibraryLoader.class
 com\example\demo\hash\codec\Base64.class

@@ -90,7 +90,7 @@ public class OrderDAO {
 
     /**
      * This function get list product have status is pending
-     * 
+     *
      * @return list order
      */
     public ArrayList<Order> getListOrder() {
@@ -124,9 +124,56 @@ public class OrderDAO {
         } // end try catch
         return null; // return null if not order
     }
-    
+
     /**
-     * This function get list product have status is accept reject and successful
+     *
+     * This method retrieves a list of orders that are ready to be shipped from
+     * the database.
+     *
+     * It executes a SELECT query that retrieves order information from the
+     * ORDER and ORDER_DETAIL tables,
+     *
+     * and returns an ArrayList of Order objects containing the retrieved data.
+     *
+     * @return An ArrayList of Order objects that are ready to be shipped, or
+     * null if there are no orders.
+     */
+    public ArrayList<Order> getListOrderShip() {
+        try {
+            String query = "SELECT \n"
+                    + "   [ORDER].OrderID, \n"
+                    + "   [ORDER].BuyerFullName, \n"
+                    + "   [ORDER].OrderDate, \n"
+                    + "   [ORDER].OrderStatus, \n"
+                    + "   SUM([ORDER_DETAIL].OrderDQuantity) AS Quantity, \n"
+                    + "   SUM(([ORDER_DETAIL].OrderDPrice * (100 - [ORDER].ProductSalePercent) / 100) * [ORDER_DETAIL].OrderDQuantity) AS Price \n"
+                    + "FROM [ORDER] \n"
+                    + "INNER JOIN [ORDER_DETAIL] ON [ORDER].OrderID = [ORDER_DETAIL].OrderID \n"
+                    + "WHERE [ORDER].OrderStatus = 'ACCEPT'\n"
+                    + "GROUP BY \n"
+                    + "   [ORDER].OrderID, \n"
+                    + "   [ORDER].BuyerFullName, \n"
+                    + "   [ORDER].OrderDate, \n"
+                    + "   [ORDER].OrderStatus"; //Query select form database
+            con = new DBContext().getConnection(); //Open conect database
+            ps = con.prepareStatement(query); //Set account ID into query
+            rs = ps.executeQuery(); //Execute query
+            ArrayList<Order> listOrder = new ArrayList<>(); //Create list product in order
+            while (rs.next()) {
+                listOrder.add(new Order(rs.getString(1), OrderStatus.valueOf(rs.getString(4)), rs.getString(3), rs.getString(2), rs.getInt(5), rs.getInt(6)));
+                //Add new item into list order
+            } //End while
+            return listOrder; //Return list order
+        } catch (Exception e) {
+            e.getMessage();
+        } //End try catch
+        return null; //If there are no orders to be shipped, return null
+    }
+
+    /**
+     * This function get list product have status is accept reject and
+     * successful
+     *
      * @return list order
      */
     public ArrayList<Order> getListOrderForAdmin() {
@@ -150,10 +197,10 @@ public class OrderDAO {
             rs = ps.executeQuery(); // execute query
             ArrayList<Order> listOrder = new ArrayList<>(); // create list product in order
             while (rs.next()) {
-                listOrder.add(new Order(rs.getString(1), 
+                listOrder.add(new Order(rs.getString(1),
                         OrderStatus.valueOf(rs.getString(4)),
-                        rs.getString(3), 
-                        rs.getString(2), 
+                        rs.getString(3),
+                        rs.getString(2),
                         rs.getInt(5),
                         rs.getInt(6)));
                 // add new item into list order
@@ -164,7 +211,7 @@ public class OrderDAO {
         } // end try catch
         return null; // return null if not order
     }
-    
+
     /**
      * This function get order by order ID
      *
