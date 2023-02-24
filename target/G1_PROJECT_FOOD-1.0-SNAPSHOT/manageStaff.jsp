@@ -87,7 +87,7 @@
                                             <td class="table-btn">
                                                 <a class="table-btn-edit" href="loadstaffprofile?accountID=${ls.accountID}"><i
                                                         class="fa-solid fa-pen-to-square"></i></a>
-                                                <a href="deleteuser?accountID=${ls.accountID}" onclick="return showMessageDelete();"><i
+                                                <a href="deletestaff?accountID=${ls.accountID}" onclick="return showMessageDelete();"><i
                                                         class="fa-solid fa-trash"></i></a>        
                                             </td>
                                         </tr>
