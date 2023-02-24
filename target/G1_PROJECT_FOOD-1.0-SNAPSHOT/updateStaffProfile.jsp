@@ -36,7 +36,7 @@
 
                         <div class="form-control-group">
                                 <h4 class="form-text-label">Staff's ID:</h4>
-                                <input type="text" id="id" name="id" value="${staff.accountName}" readonly>
+                                <input type="text" id="id" name="id" value="${staff.accountID}" readonly>
                         </div>
 
                         <div class="form-control-group">
