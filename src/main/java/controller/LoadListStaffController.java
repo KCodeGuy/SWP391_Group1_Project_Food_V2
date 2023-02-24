@@ -81,10 +81,5 @@ public class LoadListStaffController extends HttpServlet {
     @Override
     public String getServletInfo() {
         return "Short description";
-    }// </editor-fold>
-
-<<<<<<< HEAD
+    }
 }
-=======
-}
->>>>>>> QuyenNNM_UpdateStaffProfile_new
