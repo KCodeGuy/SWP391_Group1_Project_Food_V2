@@ -270,7 +270,13 @@ public class ProductDAO {
         //If an exception is caught or no product is found, return null
         return null;
     }
-  public List<Product> findProductByName(String search) {
+
+    /**
+     * Search product information by name
+     * @param search product name to search
+     * @return Return the product and show the message
+     */
+    public List<Product> findProductByName(String search) {
         List<Product> list = new ArrayList<>(); //list products
         try {
             String query = "SELECT * FROM PRODUCT WHERE ProductStatus <> 'REMOVED' AND ProductName like ?"; //query select product orther than REMOVED
