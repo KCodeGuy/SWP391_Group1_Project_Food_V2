@@ -128,10 +128,14 @@
 <<<<<<< HEAD
         <servlet-name>DeleteProductForManagePageController</servlet-name>
         <servlet-class>controller.DeleteProductForManagePageController</servlet-class>
-=======
+    </servlet>
+        <servlet>
         <servlet-name>LoadListOrderedForManagePageController</servlet-name>
         <servlet-class>controller.LoadListOrderedForManagePageController</servlet-class>
->>>>>>> Uollt_LoadListOrderedForAdmin
+=======
+        <servlet-name>loadliststaff</servlet-name>
+        <servlet-class>controller.LoadListStaffController</servlet-class>
+>>>>>>> QuyenNNM_LoadListStaff
     </servlet>
     <servlet-mapping>
         <servlet-name>HomeController</servlet-name>
@@ -257,10 +261,14 @@
 <<<<<<< HEAD
         <servlet-name>DeleteProductForManagePageController</servlet-name>
         <url-pattern>/deleteproduct</url-pattern>
-=======
+    </servlet-mapping>
+        <servlet-mapping>
         <servlet-name>LoadListOrderedForManagePageController</servlet-name>
         <url-pattern>/loadlistorderedformanagepage</url-pattern>
->>>>>>> Uollt_LoadListOrderedForAdmin
+=======
+        <servlet-name>loadliststaff</servlet-name>
+        <url-pattern>/loadliststaff</url-pattern>
+>>>>>>> QuyenNNM_LoadListStaff
     </servlet-mapping>
     <session-config>
         <session-timeout>
