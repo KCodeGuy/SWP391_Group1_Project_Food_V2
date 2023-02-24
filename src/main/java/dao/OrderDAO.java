@@ -217,16 +217,18 @@ public class OrderDAO {
      * This function to accept order
      *
      * @param orderID ID of order
+     * @param accountID Account ID of chef
      * @return true if accept successful, false if can not accept
      */
-    public boolean acceptOrderByOrderID(String orderID) {
+    public boolean acceptOrderByOrderID(String accountID, String orderID) {
         try {
             String query = "UPDATE [ORDER]\n"
-                    + "SET OrderStatus = 'ACCEPT'\n"
+                    + "SET OrderStatus = 'ACCEPT', AccIDOfChef = ?\n"
                     + "WHERE OrderID = ?"; // query select form database
             con = new DBContext().getConnection(); // open conect database
             ps = con.prepareStatement(query); // set account ID into query
-            ps.setString(1, orderID);
+            ps.setString(1, accountID);
+            ps.setString(2, orderID);
             if (ps.executeUpdate() == 1) {
                 // if accept successfull to return true
                 return true;
@@ -241,16 +243,18 @@ public class OrderDAO {
      * This function to reject order
      *
      * @param orderID ID of order
+     * @param accountID Account ID of chef
      * @return true if reject successful, false if can not reject
      */
-    public boolean rejectOrderByOrderID(String orderID) {
+    public boolean rejectOrderByOrderID(String accountID, String orderID) {
         try {
             String query = "UPDATE [ORDER]\n"
-                    + "SET OrderStatus = 'REJECT'\n"
+                    + "SET OrderStatus = 'REJECT', AccIDOfChef = ?\n"
                     + "WHERE OrderID = ?"; // query select form database
             con = new DBContext().getConnection(); // open conect database
             ps = con.prepareStatement(query); // set account ID into query
-            ps.setString(1, orderID);
+            ps.setString(1, accountID);
+            ps.setString(2, orderID);
             if (ps.executeUpdate() == 1) {
                 // if reject successfull to return true
                 return true;

@@ -120,7 +120,7 @@
                         <div class="col-sm-3">
                             <div class="table-total-group">
                                 <h4 class="table-label">Total:</h4>
-                                <span class="table-total">234.000d</span>
+                                <span class="table-total"><fmt:formatNumber type="number" pattern="###,###" value="${totalPrice}"/>đ</span>
                             </div>
                         </div>
                     </div>

@@ -88,6 +88,9 @@
                             </c:if>
                             <c:if test="${sessionScope.accountSesseion.accountID.startsWith('US')}">
                                 <li class="nav-item">
+                                    <a class="nav-link" aria-current="page" href="loadlistorderedformanagepage">Manage orders</a>
+                                </li>
+                                <li class="nav-item">
                                     <a class="nav-link" aria-current="page" href="loaduserprofile?accountID=${sessionScope.accountSesseion.accountID}">${sessionScope.accountSesseion.accountName}</a>
                                 </li>
                             </c:if>

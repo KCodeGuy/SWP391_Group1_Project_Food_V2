@@ -11,6 +11,7 @@ import jakarta.servlet.ServletException;
 import jakarta.servlet.http.HttpServlet;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
+import java.util.ArrayList;
 import java.util.List;
 import model.Order;
 
@@ -35,7 +36,14 @@ public class LoadListOrderedForManagePageController extends HttpServlet {
         //create a new OrderDAO object to retrieve data
         OrderDAO odao = new OrderDAO(); 
         //pass listOrder object to jsp page
-        request.setAttribute("listOrder", odao.getListOrderForAdmin());
+        ArrayList<Order> listOrder = odao.getListOrderForAdmin();
+        int totalPrice = 0;
+        for (Order order : listOrder) {
+            totalPrice += order.getTotalPrice();
+        }
+        request.setAttribute("totalOrder", listOrder.size());
+        request.setAttribute("totalPrice", totalPrice);
+        request.setAttribute("listOrder", listOrder);
         //forward request and response to jsp page to display listOrder
         request.getRequestDispatcher("manageOrder.jsp").forward(request, response);
     }

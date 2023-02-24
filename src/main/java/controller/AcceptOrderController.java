@@ -29,10 +29,11 @@ public class AcceptOrderController extends HttpServlet {
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
     throws ServletException, IOException {
         response.setContentType("text/html;charset=UTF-8");
+        String accountID = request.getParameter("accountID");
         String orderID = request.getParameter("orderID");
         
         OrderDAO odao = new OrderDAO(); // create orderDAO
-        odao.acceptOrderByOrderID(orderID);
+        odao.acceptOrderByOrderID(accountID,orderID);
         
         response.sendRedirect("loadlistorderedforchef");
     } 

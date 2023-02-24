@@ -12,6 +12,8 @@ import jakarta.servlet.ServletException;
 import jakarta.servlet.http.HttpServlet;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
+import java.util.ArrayList;
+import model.Order;
 
 /**
  *
@@ -31,8 +33,14 @@ public class LoadListOrderedForChefController extends HttpServlet {
         response.setContentType("text/html;charset=UTF-8");
         
         OrderDAO odao = new OrderDAO();
-        
-        request.setAttribute("listOrder", odao.getListOrder());
+        ArrayList<Order> listOrder = odao.getListOrder();
+        int totalPrice = 0;
+        for (Order order : listOrder) {
+            totalPrice += order.getTotalPrice();
+        }
+        request.setAttribute("totalOrder", listOrder.size());
+        request.setAttribute("totalPrice", totalPrice);
+        request.setAttribute("listOrder", listOrder);
         request.getRequestDispatcher("manageOrder.jsp").forward(request, response);
     } 
 

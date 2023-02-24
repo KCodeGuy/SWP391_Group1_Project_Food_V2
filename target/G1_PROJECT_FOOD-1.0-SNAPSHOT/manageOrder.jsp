@@ -44,13 +44,13 @@
                                         <div class="total-quantity-group">
                                             <h6 class="sort-form-label">Total quantity:</h6>
                                             <button class="btn-primary total-quantity">
-                                                150
+                                                ${totalOrder}
                                             </button>
                                         </div>
                                         <div class="total-quantity-group">
                                             <h6 class="sort-form-label">Total revenue:</h6>
                                             <button class="btn-primary total-quantity total-revenue">
-                                                12.000.000đ
+                                                <fmt:formatNumber type="number" pattern="###,###" value="${totalPrice}"/>đ
                                             </button>
                                         </div>
                                     </form>
