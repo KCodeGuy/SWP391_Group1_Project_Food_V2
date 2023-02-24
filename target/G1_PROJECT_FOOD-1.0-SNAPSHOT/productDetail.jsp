@@ -84,158 +84,91 @@
                             <div class="row">
                                 <div class="col-xs-12 col-md-5">
                                     <img class="product-detail-img" src="${product.productLink}" alt="">
-                                </div>
-                                 <div class="col-xs-12 col-md-7">
-                                    <ul class="product-detail-container">
-                                        <li class="product-detail-item heading">
-                                            <h3 class="product-detail-name">${product.productName}</h3>
-                                            <span class="product-detail-sale-percent">${product.productSalePercent}%</span>
-                                        </li> 
-                                        <li class="product-detail-item">
-                                            <span class="product-detail-label">Description:</span>
-                                            <span class="product-detail-descript">${product.productDescription}</span>
-                                        </li>
-                                        <li class="product-detail-item">
-                                            <span class="product-detail-label">Price:</span>
-                                             <span class="product-detail-price"> <fmt:formatNumber type="number" pattern="###,###" value="${product.productPrice * (1-(product.productSalePercent/100))}"/>đ</span>
-                                            <c:if test="${product.productSalePercent != 0}">
+                            </div>
+                            <div class="col-xs-12 col-md-7">
+                                <ul class="product-detail-container">
+                                    <li class="product-detail-item heading">
+                                        <h3 class="product-detail-name">${product.productName}</h3>
+                                        <span class="product-detail-sale-percent">${product.productSalePercent}%</span>
+                                    </li> 
+                                    <li class="product-detail-item">
+                                        <span class="product-detail-label">Description:</span>
+                                        <span class="product-detail-descript">${product.productDescription}</span>
+                                    </li>
+                                    <li class="product-detail-item">
+                                        <span class="product-detail-label">Price:</span>
+                                        <span class="product-detail-price"> <fmt:formatNumber type="number" pattern="###,###" value="${product.productPrice * (1-(product.productSalePercent/100))}"/>đ</span>
+                                        <c:if test="${product.productSalePercent != 0}">
                                         <tr>
-                                            <span class="product-detail-original-price"><fmt:formatNumber type="number" pattern="###,###" value="${product.productPrice}"/>đ</span>
-                                            
+                                        <span class="product-detail-original-price"><fmt:formatNumber type="number" pattern="###,###" value="${product.productPrice}"/>đ</span>
+
                                         </tr>
-                                        </c:if>
-                                           
-                                           
-                                        </li>
+                                    </c:if>
 
-                                        <li class="product-detail-item">
-                                            <span class="product-detail-label">Status:</span>
-                                            <span class="product-detail-status">${product.productStatus}</span>
-                                        </li>
-                                        <li class="product-detail-item">
-                                            <button type="submit" class="btn-main"btn-related-product>
-                                                <a href="">Add to cart</a>
-                                            </button>
-                                            <button type="submit" class="btn-primary"btn-related-product>
-                                                <a href="">Back to home</a>
-                                            </button>
-                                        </li>
-                                    </ul>
-                                </div>
+
+                                    </li>
+
+                                    <li class="product-detail-item">
+                                        <span class="product-detail-label">Status:</span>
+                                        <span class="product-detail-status">${product.productStatus}</span>
+                                    </li>
+                                    <li class="product-detail-item">
+                                        <button type="submit" class="btn-main"btn-related-product>
+                                            <a href="">Add to cart</a>
+                                        </button>
+                                        <button type="submit" class="btn-primary"btn-related-product>
+                                            <a href="">Back to home</a>
+                                        </button>
+                                    </li>
+                                </ul>
                             </div>
-                            <dvi class="row justify-content-center">
-                                <div class="separtor">
-                                </div>
-                            </dvi>
-
-                            <div class="row mb-6 padding">
-                                <h3 class="product-detail-related-heading">List of related products</h3>
-                                <div class="col-xs-12 col-sm-6 col-md-6 col-lg-3">
-                                    <div class="card">
-                                        <img src="./assert/img/Com_suon.jpg" class="card-img-top" alt="...">
-                                        <div class="card-body">
-                                            <div class="card-sale-percent"><span>-35%</span></div>
-                                            <div class="card-sold-out"><span>Sold-out</span></div>
-                                            <h5 class="card-title"><a href="#">Cơm sườg bì chả</a></h5>
-                                            <p class="card-text">1 cơm trắng, thịt, bì chả, trứng bì chả, trứngbì chả, trứng</p>
-                                            <div class="card-group">
-                                                <div class="card-price-group">
-                                                    <span class="card-price">
-                                                        35,000d
-                                                    </span>
-                                                    <span class="card-original-price">
-                                                        35,000d
-                                                    </span>
-                                                </div>
-                                            </div>
-                                            <button class="btn-main btn-related-product">
-                                                <a href="#" class="">BUY NOW</a>
-                                            </button>
-                                        </div>
-                                    </div>
-
-                                </div>
-                                <div class="col-xs-12 col-sm-6 col-md-6 col-lg-3">
-                                    <div class="card">
-                                        <img src="./assert/img/Com_suon.jpg" class="card-img-top" alt="...">
-                                        <div class="card-body">
-                                            <div class="card-sale-percent"><span>-35%</span></div>
-                                            <div class="card-sold-out"><span>Sold-out</span></div>
-                                            <h5 class="card-title"><a href="#">Cơm sườg bì chả</a></h5>
-                                            <p class="card-text">1 cơm trắng, thịt, bì chả, trứng bì chả, trứngbì chả, trứng</p>
-                                            <div class="card-group">
-                                                <div class="card-price-group">
-                                                    <span class="card-price">
-                                                        35,000d
-                                                    </span>
-                                                    <span class="card-original-price">
-                                                        35,000d
-                                                    </span>
-                                                </div>
-                                            </div>
-                                            <button class="btn-main btn-related-product">
-                                                <a href="#" class="">BUY NOW</a>
-                                            </button>
-                                        </div>
-                                    </div>
-
-                                </div>
-                                <div class="col-xs-12 col-sm-6 col-md-6 col-lg-3">
-                                    <div class="card">
-                                        <img src="./assert/img/Com_suon.jpg" class="card-img-top" alt="...">
-                                        <div class="card-body">
-                                            <div class="card-sale-percent"><span>-35%</span></div>
-                                            <div class="card-sold-out"><span>Sold-out</span></div>
-                                            <h5 class="card-title"><a href="#">Cơm sườg bì chả</a></h5>
-                                            <p class="card-text">1 cơm trắng, thịt, bì chả, trứng bì chả, trứngbì chả, trứng</p>
-                                            <div class="card-group">
-                                                <div class="card-price-group">
-                                                    <span class="card-price">
-                                                        35,000d
-                                                    </span>
-                                                    <span class="card-original-price">
-                                                        35,000d
-                                                    </span>
-                                                </div>
-                                            </div>
-                                            <button class="btn-main btn-related-product">
-                                                <a href="#" class="">BUY NOW</a>
-                                            </button>
-                                        </div>
-                                    </div>
-
-                                </div>
-                                <div class="col-xs-12 col-sm-6 col-md-6 col-lg-3">
-                                    <div class="card">
-                                        <img src="./assert/img/Com_suon.jpg" class="card-img-top" alt="...">
-                                        <div class="card-body">
-                                            <div class="card-sale-percent"><span>-35%</span></div>
-                                            <div class="card-sold-out"><span>Sold-out</span></div>
-                                            <h5 class="card-title"><a href="#">Cơm sườg bì chả</a></h5>
-                                            <p class="card-text">1 cơm trắng, thịt, bì chả, trứng bì chả, trứngbì chả, trứng</p>
-                                            <div class="card-group">
-                                                <div class="card-price-group">
-                                                    <span class="card-price">
-                                                        35,000d
-                                                    </span>
-                                                    <span class="card-original-price">
-                                                        35,000d
-                                                    </span>
-                                                </div>
-                                            </div>
-                                            <button class="btn-main btn-related-product">
-                                                <a href="#" class="">BUY NOW</a>
-                                            </button>
-                                        </div>
-                                    </div>
-                                </div>
+                        </div>
+                        <dvi class="row justify-content-center">
+                            <div class="separtor">
                             </div>
-                        </form>
-                    </div>
+                        </dvi>
+
+                        <div class="row mb-6 padding">
+                            <h3 class="product-detail-related-heading">List of related products</h3>
+                            <c:forEach items="${listProduct}" var="pr">
+                                <div class="col-xs-12 col-sm-6 col-md-6 col-lg-3">
+                                    <div class="card">
+                                        <a href="loadproductdetail?productID=${pr.productID}"><img src="${pr.productLink}" class="card-img-top" alt="..."></a>
+                                        <div class="card-body">
+                                            <c:if test="${pr.productSalePercent != 0}">
+                                                <div class="card-sale-percent"><span>-${pr.productSalePercent}%</span></div>
+                                            </c:if>
+
+                                            <h5 class="card-title"><a href="loadproductdetail?productID=${pr.productID}">${pr.productName}</a></h5>
+                                            <p class="card-text">${pr.productDescription}</p>
+                                            <div class="card-group">
+                                                <div class="card-price-group">
+                                                    <span class="card-price">
+                                                        <fmt:formatNumber type="number" pattern="###,###" value="${pr.productPrice * (1-(pr.productSalePercent/100))}"/>đ
+                                                    </span>
+                                                    <c:if test="${pr.productSalePercent != 0}">
+                                                        <span class="card-original-price">
+                                                            <fmt:formatNumber type="number" pattern="###,###" value="${pr.productPrice}"/>đ
+                                                        </span>
+                                                    </c:if>
+                                                </div>
+                                            </div>
+                                            <button class="btn-main btn-related-product">
+                                                <a href="#" class="">BUY NOW</a>
+                                            </button>
+                                        </div>
+                                    </div>
+
+                                </div>
+                            </c:forEach>
+
+                        </div>
+                    </form>
                 </div>
+            </div>
 
 
-                <!-- 5. Footer  -->
+            <!-- 5. Footer  -->
             <jsp:include page="footer.jsp"></jsp:include>
         </div>
     </body>

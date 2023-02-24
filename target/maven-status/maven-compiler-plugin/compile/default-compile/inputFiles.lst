@@ -1,5 +1,6 @@
 <<<<<<< HEAD
 <<<<<<< HEAD
+<<<<<<< HEAD
 D:\2023\[SP23]SWP391\SWP391_Group1_Project_Food_V2\src\main\java\controller\EmaiVerificationController.java
 D:\2023\[SP23]SWP391\SWP391_Group1_Project_Food_V2\src\main\java\controller\AcceptOrderController.java
 D:\2023\[SP23]SWP391\SWP391_Group1_Project_Food_V2\src\main\java\model\AccountStatus.java
@@ -62,6 +63,8 @@ D:\2023\[SP23]SWP391\SWP391_Group1_Project_Food_V2\src\main\java\hash\jni\Librar
 D:\2023\[SP23]SWP391\SWP391_Group1_Project_Food_V2\src\main\java\model\Order.java
 D:\2023\[SP23]SWP391\SWP391_Group1_Project_Food_V2\src\main\java\dao\CartDAO.java
 =======
+=======
+>>>>>>> HieuTTN_showProductDetail-V2
 D:\2023\SPRING2023\SWP391\Project\SWP391_Group1_Project_Food_V2\src\main\java\hash\jni\NilLibraryLoader.java
 D:\2023\SPRING2023\SWP391\Project\SWP391_Group1_Project_Food_V2\src\main\java\controller\LoadListProductInCartController.java
 D:\2023\SPRING2023\SWP391\Project\SWP391_Group1_Project_Food_V2\src\main\java\hash\jni\JarLibraryLoader.java
@@ -70,7 +73,6 @@ D:\2023\SPRING2023\SWP391\Project\SWP391_Group1_Project_Food_V2\src\main\java\co
 D:\2023\SPRING2023\SWP391\Project\SWP391_Group1_Project_Food_V2\src\main\java\hash\jni\SysLibraryLoader.java
 D:\2023\SPRING2023\SWP391\Project\SWP391_Group1_Project_Food_V2\src\main\java\controller\LoginController.java
 D:\2023\SPRING2023\SWP391\Project\SWP391_Group1_Project_Food_V2\src\main\java\hash\jni\Platform.java
-D:\2023\SPRING2023\SWP391\Project\SWP391_Group1_Project_Food_V2\src\main\java\dao\StaffDAO.java
 D:\2023\SPRING2023\SWP391\Project\SWP391_Group1_Project_Food_V2\src\main\java\emailHandler\EmailHandler.java
 D:\2023\SPRING2023\SWP391\Project\SWP391_Group1_Project_Food_V2\src\main\java\model\VoucherStatus.java
 D:\2023\SPRING2023\SWP391\Project\SWP391_Group1_Project_Food_V2\src\main\java\controller\LoadListUserController.java
@@ -81,9 +83,9 @@ D:\2023\SPRING2023\SWP391\Project\SWP391_Group1_Project_Food_V2\src\main\java\mo
 D:\2023\SPRING2023\SWP391\Project\SWP391_Group1_Project_Food_V2\src\main\java\controller\LoadListOrderedForChefController.java
 D:\2023\SPRING2023\SWP391\Project\SWP391_Group1_Project_Food_V2\src\main\java\hash\jni\LibraryLoader.java
 D:\2023\SPRING2023\SWP391\Project\SWP391_Group1_Project_Food_V2\src\main\java\controller\DeleteUserController.java
+D:\2023\SPRING2023\SWP391\Project\SWP391_Group1_Project_Food_V2\src\main\java\controller\ShowOrderDetailsForChefController.java
 D:\2023\SPRING2023\SWP391\Project\SWP391_Group1_Project_Food_V2\src\main\java\hash\jni\UnsupportedPlatformException.java
 D:\2023\SPRING2023\SWP391\Project\SWP391_Group1_Project_Food_V2\src\main\java\controller\LoadFormApplicationDetailForAdminController.java
-D:\2023\SPRING2023\SWP391\Project\SWP391_Group1_Project_Food_V2\src\main\java\model\Staff.java
 D:\2023\SPRING2023\SWP391\Project\SWP391_Group1_Project_Food_V2\src\main\java\controller\DeleteProductInCartController.java
 D:\2023\SPRING2023\SWP391\Project\SWP391_Group1_Project_Food_V2\src\main\java\hash\SCrypt.java
 D:\2023\SPRING2023\SWP391\Project\SWP391_Group1_Project_Food_V2\src\main\java\controller\AddProductIntoCartFromHome.java
@@ -96,13 +98,15 @@ D:\2023\SPRING2023\SWP391\Project\SWP391_Group1_Project_Food_V2\src\main\java\co
 D:\2023\SPRING2023\SWP391\Project\SWP391_Group1_Project_Food_V2\src\main\java\model\Category.java
 D:\2023\SPRING2023\SWP391\Project\SWP391_Group1_Project_Food_V2\src\main\java\controller\UseVoucherController.java
 D:\2023\SPRING2023\SWP391\Project\SWP391_Group1_Project_Food_V2\src\main\java\hash\PBKDF.java
-D:\2023\SPRING2023\SWP391\Project\SWP391_Group1_Project_Food_V2\src\main\java\model\User.java
+D:\2023\SPRING2023\SWP391\Project\SWP391_Group1_Project_Food_V2\src\main\java\controller\AcceptOrderController.java
 D:\2023\SPRING2023\SWP391\Project\SWP391_Group1_Project_Food_V2\src\main\java\controller\LoadFormApplicationDetailController.java
 D:\2023\SPRING2023\SWP391\Project\SWP391_Group1_Project_Food_V2\src\main\java\dao\ProductDAO.java
 D:\2023\SPRING2023\SWP391\Project\SWP391_Group1_Project_Food_V2\src\main\java\controller\LoadProductDetailController.java
 D:\2023\SPRING2023\SWP391\Project\SWP391_Group1_Project_Food_V2\src\main\java\model\OrderStatus.java
 D:\2023\SPRING2023\SWP391\Project\SWP391_Group1_Project_Food_V2\src\main\java\hash\codec\Base64.java
+D:\2023\SPRING2023\SWP391\Project\SWP391_Group1_Project_Food_V2\src\main\java\controller\RejectOrderController.java
 D:\2023\SPRING2023\SWP391\Project\SWP391_Group1_Project_Food_V2\src\main\java\controller\LoadPayingController.java
+D:\2023\SPRING2023\SWP391\Project\SWP391_Group1_Project_Food_V2\src\main\java\hash\GenerateID.java
 D:\2023\SPRING2023\SWP391\Project\SWP391_Group1_Project_Food_V2\src\main\java\controller\LoadUserProfileController.java
 D:\2023\SPRING2023\SWP391\Project\SWP391_Group1_Project_Food_V2\src\main\java\controller\LogoutController.java
 D:\2023\SPRING2023\SWP391\Project\SWP391_Group1_Project_Food_V2\src\main\java\model\AccountStatus.java
@@ -118,12 +122,12 @@ D:\2023\SPRING2023\SWP391\Project\SWP391_Group1_Project_Food_V2\src\main\java\da
 D:\2023\SPRING2023\SWP391\Project\SWP391_Group1_Project_Food_V2\src\main\java\controller\ForgotPasswordController.java
 D:\2023\SPRING2023\SWP391\Project\SWP391_Group1_Project_Food_V2\src\main\java\controller\PayingController.java
 D:\2023\SPRING2023\SWP391\Project\SWP391_Group1_Project_Food_V2\src\main\java\dao\AccountDAO.java
-D:\2023\SPRING2023\SWP391\Project\SWP391_Group1_Project_Food_V2\src\main\java\dao\UserDAO.java
 D:\2023\SPRING2023\SWP391\Project\SWP391_Group1_Project_Food_V2\src\main\java\model\OrderDetail.java
 D:\2023\SPRING2023\SWP391\Project\SWP391_Group1_Project_Food_V2\src\main\java\model\Product.java
 D:\2023\SPRING2023\SWP391\Project\SWP391_Group1_Project_Food_V2\src\main\java\model\Order.java
 D:\2023\SPRING2023\SWP391\Project\SWP391_Group1_Project_Food_V2\src\main\java\dao\OrderDetailDAO.java
 D:\2023\SPRING2023\SWP391\Project\SWP391_Group1_Project_Food_V2\src\main\java\controller\EmaiVerificationController.java
+<<<<<<< HEAD
 >>>>>>> origin/HieuTTN_showProductDetail
 =======
 D:\SWP\SWP391_Group1_Project_Food_V2\src\main\java\dao\ProductDAO.java
@@ -190,3 +194,5 @@ D:\SWP\SWP391_Group1_Project_Food_V2\src\main\java\controller\PayingController.j
 D:\SWP\SWP391_Group1_Project_Food_V2\src\main\java\hash\jni\JarLibraryLoader.java
 D:\SWP\SWP391_Group1_Project_Food_V2\src\main\java\controller\EmaiVerificationController.java
 >>>>>>> add_upVoucher_ThanhND
+=======
+>>>>>>> HieuTTN_showProductDetail-V2
