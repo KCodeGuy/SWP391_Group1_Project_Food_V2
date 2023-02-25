@@ -38,6 +38,7 @@ public class LoadListOrdersShipController extends HttpServlet {
         ArrayList<Order> listOrderShip = odao.getListOrderShip();
         int totalPrice = 0;
         //Calculate the total order count and total price of those orders
+        
         if (!listOrderShip.isEmpty()) {
             for (Order order : listOrderShip) {
                 totalPrice += order.getTotalPrice();
