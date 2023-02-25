@@ -37,8 +37,10 @@ public class LoadListProductInCartController extends HttpServlet {
 
         ArrayList<Cart> listCart = cdao.getListCartByAccountID(accountID);
         int totalPrice = 0;
-        for (Cart c : listCart) {
-            totalPrice += ((c.getProductPrice() * (100 - c.getProductSalePercent())) / 100 * c.getCartQuantity());
+        if (!listCart.isEmpty()) {
+            for (Cart c : listCart) {
+                totalPrice += ((c.getProductPrice() * (100 - c.getProductSalePercent())) / 100 * c.getCartQuantity());
+            }
         }
         request.setAttribute("totalPrice", totalPrice);
         request.setAttribute("listCart", listCart);

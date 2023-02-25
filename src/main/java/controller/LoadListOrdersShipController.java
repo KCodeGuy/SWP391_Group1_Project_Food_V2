@@ -33,13 +33,15 @@ public class LoadListOrdersShipController extends HttpServlet {
             throws ServletException, IOException {
         response.setContentType("text/html;charset=UTF-8");
         //Create an instance of OrderDAO class
-          OrderDAO odao = new OrderDAO();
+        OrderDAO odao = new OrderDAO();
         //Get the list of orders that have been shipped
         ArrayList<Order> listOrderShip = odao.getListOrderShip();
         int totalPrice = 0;
         //Calculate the total order count and total price of those orders
-        for (Order order : listOrderShip) {
-            totalPrice += order.getTotalPrice();
+        if (!listOrderShip.isEmpty()) {
+            for (Order order : listOrderShip) {
+                totalPrice += order.getTotalPrice();
+            }
         }
         //Set the attributes for the request
         request.setAttribute("totalOrder", listOrderShip.size());
