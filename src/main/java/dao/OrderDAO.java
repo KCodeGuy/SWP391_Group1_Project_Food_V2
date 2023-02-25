@@ -42,7 +42,7 @@ public class OrderDAO {
         LocalDateTime now = LocalDateTime.now();
         DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm:ss.SSS");
         String formattedDateTime = now.format(formatter);
-        String query = "INSERT INTO [ORDER] VALUES (?,?,'PENDING',?,?,?,?,?,?,?,null,null)"; // string query insert cart
+        String query = "INSERT INTO [ORDER] VALUES (?,?,'Processing',?,?,?,?,?,?,?,null,null)"; // string query insert cart
         String id = new GenerateID().generateNewID("OR", getLastIDOfOrder());
         try {
             con = new DBContext().getConnection(); // open connect database
@@ -104,7 +104,7 @@ public class OrderDAO {
                     + "   SUM(([ORDER_DETAIL].OrderDPrice * (100 - [ORDER].ProductSalePercent) / 100) * [ORDER_DETAIL].OrderDQuantity) AS Price \n"
                     + "FROM [ORDER] \n"
                     + "INNER JOIN [ORDER_DETAIL] ON [ORDER].OrderID = [ORDER_DETAIL].OrderID \n"
-                    + "WHERE [ORDER].OrderStatus = 'PENDING'\n"
+                    + "WHERE [ORDER].OrderStatus = 'Processing'\n"
                     + "GROUP BY \n"
                     + "   [ORDER].OrderID, \n"
                     + "   [ORDER].BuyerFullName, \n"
@@ -149,7 +149,7 @@ public class OrderDAO {
                     + "   SUM(([ORDER_DETAIL].OrderDPrice * (100 - [ORDER].ProductSalePercent) / 100) * [ORDER_DETAIL].OrderDQuantity) AS Price \n"
                     + "FROM [ORDER] \n"
                     + "INNER JOIN [ORDER_DETAIL] ON [ORDER].OrderID = [ORDER_DETAIL].OrderID \n"
-                    + "WHERE [ORDER].OrderStatus = 'ACCEPT'\n"
+                    + "WHERE [ORDER].OrderStatus = 'Accepted'\n"
                     + "GROUP BY \n"
                     + "   [ORDER].OrderID, \n"
                     + "   [ORDER].BuyerFullName, \n"
@@ -234,7 +234,7 @@ public class OrderDAO {
                     + "   SUM(([ORDER_DETAIL].OrderDPrice * (100 - [ORDER].ProductSalePercent) / 100) * [ORDER_DETAIL].OrderDQuantity) AS Price \n"
                     + "FROM [ORDER] \n"
                     + "INNER JOIN [ORDER_DETAIL] ON [ORDER].OrderID = [ORDER_DETAIL].OrderID \n"
-                    + "WHERE [ORDER].OrderStatus = 'PENDING' AND [ORDER].OrderID = ?\n"
+                    + "WHERE [ORDER].OrderStatus = 'Processing' AND [ORDER].OrderID = ?\n"
                     + "GROUP BY \n"
                     + "   [ORDER].OrderID, \n"
                     + "   [ORDER].AccountID,\n"
@@ -270,7 +270,7 @@ public class OrderDAO {
     public boolean acceptOrderByOrderID(String accountID, String orderID) {
         try {
             String query = "UPDATE [ORDER]\n"
-                    + "SET OrderStatus = 'ACCEPT', AccIDOfChef = ?\n"
+                    + "SET OrderStatus = 'Accepted', AccIDOfChef = ?\n"
                     + "WHERE OrderID = ?"; // query select form database
             con = new DBContext().getConnection(); // open conect database
             ps = con.prepareStatement(query); // set account ID into query
@@ -296,7 +296,7 @@ public class OrderDAO {
     public boolean rejectOrderByOrderID(String accountID, String orderID) {
         try {
             String query = "UPDATE [ORDER]\n"
-                    + "SET OrderStatus = 'REJECT', AccIDOfChef = ?\n"
+                    + "SET OrderStatus = 'Rejected', AccIDOfChef = ?\n"
                     + "WHERE OrderID = ?"; // query select form database
             con = new DBContext().getConnection(); // open conect database
             ps = con.prepareStatement(query); // set account ID into query

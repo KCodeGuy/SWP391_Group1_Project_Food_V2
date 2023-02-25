@@ -13,25 +13,26 @@ public enum OrderStatus {
     /**
      *
      */
-    ACCEPT,
+    ACCEPTED,
 
     /**
      *
      */
-    REJECT,
+    REJECTED,
 
     /**
      *
      */
-    SUCCESSFUL,
+    COMPLETED,
 
     /**
      *
      */
-    PICKUP,
+    PROCESSING,
 
     /**
      *
      */
-    PENDING
+    DELIVERING,
+    DELEVERED
 }
