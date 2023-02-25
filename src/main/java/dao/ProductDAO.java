@@ -5,6 +5,7 @@
 package dao;
 
 import context.DBContext;
+import hash.GenerateID;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
@@ -94,9 +95,10 @@ public class ProductDAO {
      *
      * @return last id
      */
+    //SELECT TOP 1 ProductID FROM [Product] ORDER BY CAST(RIGHT(ProductID, 4) AS INT) DESC;
     public String getLastIDOfProduct() {
         String lastID = null;
-        String query = "SELECT TOP 1 AccountID FROM [Product] ORDER BY CAST(RIGHT(ProductID, 4) AS INT) DESC;";
+        String query = "SELECT TOP 1 ProductID FROM [Product] ORDER BY CAST(RIGHT(ProductID, 4) AS INT) DESC;";
         try {
             con = new DBContext().getConnection(); // open connection to SQL
             ps = con.prepareStatement(query);      // move query from Netbeen to SQl
@@ -303,4 +305,39 @@ public class ProductDAO {
         return list;
     }
 
+    }
+        
+    /**
+     * Method add new product
+     * 
+     * @param productName
+     * @param productPrice
+     * @param productSale
+     * @param categoryID
+     * @param productDescription
+     * @param productImage
+     */
+    public void insertProduct( String productName, int productPrice,
+        int productSale, String categoryID, String productDescription, String productImage) {
+        ProductDAO pdao = new ProductDAO();
+        GenerateID gi = new GenerateID();
+        String prefix = gi.getPrefixFromProductName(productName);
+        String productID = gi.generateNewID(prefix, pdao.getLastIDOfProduct());
+        //query used to add products
+        String query = "INSERT INTO PRODUCT VALUES (?,?,?,?,?,'AVAILABLE',?,?)";
+        try {
+            con = new DBContext().getConnection();   // open connection to SQL
+            ps = con.prepareStatement(query);  // move query from Netbeen to SQl
+            ps.setString(1, productID);
+            ps.setString(2, productName);
+            ps.setString(3, productDescription);
+            ps.setInt(4, productPrice);
+            ps.setInt(5, productSale);  
+            ps.setString(6, productImage);
+            ps.setString(7, categoryID);
+            ps.executeUpdate();                 
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+    }    
 }
