@@ -12,6 +12,7 @@ import jakarta.servlet.ServletException;
 import jakarta.servlet.http.HttpServlet;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
+import jakarta.servlet.http.HttpSession;
 
 /**
  *
@@ -42,6 +43,9 @@ public class AddProductIntoCartFromProductDetail extends HttpServlet {
             cdao.addProductIntoCartFromProductDetails(productQuantity, accountID, productID);
         } // end if
         
+        HttpSession session = request.getSession();
+        int cartSize = cdao.getListCartByAccountID(accountID).size();
+        session.setAttribute("cartSize", cartSize);
         response.sendRedirect("cart?accountID=" + accountID);
     } 
 

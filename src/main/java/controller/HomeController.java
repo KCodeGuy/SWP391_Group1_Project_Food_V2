@@ -7,6 +7,7 @@ import jakarta.servlet.http.HttpServletResponse;
 import java.io.IOException;
 import java.util.List;
 import jakarta.servlet.http.HttpServlet;
+import jakarta.servlet.http.HttpSession;
 import java.util.ArrayList;
 import java.util.stream.Stream;
 import model.Product;

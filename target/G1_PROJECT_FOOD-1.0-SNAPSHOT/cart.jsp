@@ -66,7 +66,7 @@
                                             </button>
                                             <a class="cart" href="cart">
                                                 <i class="fa-solid fa-cart-plus"></i>
-                                                <span class="cart-quantity">2</span>
+                                                <span class="cart-quantity">${sessionScope.cartSize}</span>
                                             </a>
                                         </form>
                                     </div>

@@ -1,6 +1,7 @@
 package controller;
 
 import dao.AccountDAO;
+import dao.CartDAO;
 import java.io.IOException;
 import jakarta.servlet.ServletException;
 import jakarta.servlet.http.HttpServlet;
@@ -36,7 +37,11 @@ public class LoginController extends HttpServlet {
             request.setAttribute("loginFailedMessage", "Account is not exist. Please try again!");
             request.getRequestDispatcher("login.jsp").forward(request, response);
         } else { // account is exist
+            CartDAO cdao = new CartDAO();
+            int cartSize = cdao.getListCartByAccountID(acc.getAccountID()).size();
+            
             HttpSession session = request.getSession();
+            session.setAttribute("cartSize", cartSize);
             session.setAttribute("accountSesseion", acc);
             session.setMaxInactiveInterval(360000000);
             request.getRequestDispatcher("home").forward(request, response);

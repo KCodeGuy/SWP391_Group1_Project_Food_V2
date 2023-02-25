@@ -307,16 +307,16 @@ public class ProductDAO {
 
     
         
-    /**
-     * Method add new product
-     * 
-     * @param productName
-     * @param productPrice
-     * @param productSale
-     * @param categoryID
-     * @param productDescription
-     * @param productImage
-     */
+/**
+       * Method to add new products
+       *
+       * @param productName The name of the new product
+       * @param productPrice The price of the new product
+       * @param productSale The sale percent of new products
+       * @param categoryID The category ID of the new product
+       * @param productDescription The description of the new product
+       * @param productImage The link image of the new product
+       */
     public void insertProduct( String productName, int productPrice,
         int productSale, String categoryID, String productDescription, String productImage) {
         ProductDAO pdao = new ProductDAO();
