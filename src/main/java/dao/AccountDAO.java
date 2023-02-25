@@ -219,9 +219,9 @@ public class AccountDAO {
         } // end try-catch.
     }
 
-    
     /**
      * Update a account's information when user re-register it(pending status).
+     *
      * @param accountID The ID of the account whose profile is being updated.
      * @param userBirthday The user's birthday.
      * @param accountName The user's name associated with the account.
@@ -254,8 +254,7 @@ public class AccountDAO {
             e.getMessage();
         } //End trycatch
     }
-    
-    
+
     /**
      * Create new ID of user
      *
@@ -396,7 +395,7 @@ public class AccountDAO {
 
     /**
      * Returns the Staff associated with a given account ID.
-     * 
+     *
      * @param accountID the ID of the account associated with the Staff
      * @return the Staff object associated with the given account ID, or null if
      * the account ID is invalid
@@ -406,7 +405,7 @@ public class AccountDAO {
             String query = "SELECT AccountID, AccountName, AccountPhone, AccountEmail, AccountAddress, AccountStartDate, AccountBirthDay FROM ACCOUNT WHERE AccountID = ? AND AccountID NOT LIKE 'US%'"; // Database query statement
             con = new DBContext().getConnection();  // open connection to SQL
             ps = con.prepareStatement(query);       // move query from Netbeen to SQl
-            ps.setString(1, accountID);        
+            ps.setString(1, accountID);
             rs = ps.executeQuery();                 // Perform query in database
             Account staff = null;                   // Assign values ​​in null
             while (rs.next()) { // Loop through creating a new staff and retrieved data
@@ -422,7 +421,7 @@ public class AccountDAO {
         }
         return null;                                // Return value null
     }//end method      
-    
+
     /**
      * Returns a list of all active users in the database.
      *
@@ -431,7 +430,7 @@ public class AccountDAO {
     public List<Account> getListStaff() {
         try {
             //Define a SQL query to retrieve account details for all active staffs, including role information.
-            String query = "SELECT AccountID, AccountName, AccountEmail FROM ACCOUNT WHERE  AccountID LIKE 'CH%' OR AccountID LIKE 'SP%'";
+            String query = "SELECT AccountID, AccountName, AccountEmail FROM ACCOUNT WHERE ([AccountID] LIKE 'CH%' OR [AccountID] LIKE 'SP%') AND  AccountStatus NOT LIKE 'REMOVED'";
             con = new DBContext().getConnection(); //Open a connection to the database.
             ps = con.prepareStatement(query); //Move query from Netbeen to SQL
             rs = ps.executeQuery(); //Execute the query and get the result set.
@@ -452,14 +451,18 @@ public class AccountDAO {
         //If an exception is caught or if the list is empty, return null.
         return null;
     }
+
     /**
      * Update a staff's profile in the database with the provided information.
+     *
      * @param accountEmail entered email of user(String).
      * @param accountID The ID of the account whose profile is being updated.
      * @param accountName The staff's name associated with the account.
      * @param accountPhone The staff's phone number associated with the account.
-     * @param accountStartDay The staff's phone number associated with the account.
-     * @param roleDescription The staff's phone number associated with the account.
+     * @param accountStartDay The staff's phone number associated with the
+     * account.
+     * @param roleDescription The staff's phone number associated with the
+     * account.
      * @param accountAddress The staff's address associated with the account.
      */
     public void updateStaffProfile(String accountID, String accountName, String accountPhone, String accountAddress, String accountStartDay, String roleDescription) {
@@ -485,8 +488,33 @@ public class AccountDAO {
             e.getMessage();
         } //End trycatch
     }
-    
 
+    /**
+     * Deletes a staff account and sets their account status to "REMOVED" in the
+     * database.
+     *
+     * @param accountID the ID of the staff account to delete
+     */
+    public void deleteStaff(String accountID) {
+        //Define SQL query to update the account status to "REMOVED" and set the email to empty
+        String query = "UPDATE [ACCOUNT]\n"
+                + "SET AccountStatus = 'REMOVED',\n"
+                + "AccountEmail = ''\n"
+                + "WHERE AccountID = ?";
+        try {
+            //Establish database connection
+            con = new DBContext().getConnection();
+            //Prepare the SQL statement with the query
+            ps = con.prepareStatement(query);
+            //Set the value of the accountID parameter in the SQL statement
+            ps.setString(1, accountID);
+            //Execute the SQL statement to update the account status and email
+            ps.executeUpdate();
+        } catch (SQLException e) {
+            //If an SQL error occurs, print the error message to the console
+            e.getMessage();
+        } //End trycatch
+    }
 
     /**
      * Interact with the database to load staff information by linking account
@@ -504,7 +532,7 @@ public class AccountDAO {
             rs = ps.executeQuery(); // Execute the query and get the result set   
             Account staff = null;// Initialize a new staff object
             while (rs.next()) {  // Loop through creating a new staff and retrieved data
-                if (rs.getString(1).substring(0,2).equalsIgnoreCase("SP")) {
+                if (rs.getString(1).substring(0, 2).equalsIgnoreCase("SP")) {
                     staff = new Account(rs.getString(1), rs.getString(4), "", AccountStatus.PENDING, rs.getString(2), rs.getString(3), "", "", "", "Shipper"); // add new item in list
                 } else {
                     staff = new Account(rs.getString(1), rs.getString(4), "", AccountStatus.PENDING, rs.getString(2), rs.getString(3), "", "", "", "Chef"); // add new item in list

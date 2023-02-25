@@ -85,17 +85,16 @@
                                             </td>
                                             <td class="table-name"><a href="">${ls.roleDescription}</a></td>
                                             <td class="table-btn">
-<<<<<<< HEAD
                                                 <a class="table-btn-edit" href="loaduserprofile?accountID=${ls.accountID}"><i
                                                         class="fa-solid fa-pen-to-square"></i></a>
                                                 <a href="deleteuser?accountID=${ls.accountID}" onclick="return showMessageDelete();"><i
-=======
+
                                                 <a class="table-btn-edit" href="loadstaffprofile?accountID=${ls.accountID}"><i
                                                         class="fa-solid fa-pen-to-square"></i></a>
                                                 <a href="deletestaff?accountID=${ls.accountID}" onclick="return showMessageDelete();"><i
->>>>>>> QuyenNNM_UpdateStaffProfile_new
+
                                                         class="fa-solid fa-trash"></i></a>        
-                                            </td>
+                                            </td> 
                                         </tr>
                                     </c:forEach>
                                     <c:if test="${listStaff.size() == 0}">
@@ -117,10 +116,7 @@
         </div>
         <script src="./bootstap/bootstrap.js"></script>
         <script src="jquery/Jquery.js"></script>
-<<<<<<< HEAD
         <script src="jquery/manageUser.js"></script>
-=======
         <script src="jquery/manageStaff.js"></script>
->>>>>>> QuyenNNM_UpdateStaffProfile_new
     </body>
 </html>

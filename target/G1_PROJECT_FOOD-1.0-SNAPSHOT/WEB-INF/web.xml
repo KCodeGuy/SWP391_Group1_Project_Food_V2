@@ -136,7 +136,7 @@
         <servlet-name>updatestaffprofile</servlet-name>
         <servlet-class>controller.UpdateStaffProfileController</servlet-class>
     </servlet>
-        <servlet>
+    <servlet>
         <servlet-name>LoadListOrderedForManagePageController</servlet-name>
         <servlet-class>controller.LoadListOrderedForManagePageController</servlet-class>
     </servlet>
@@ -144,9 +144,13 @@
         <servlet-name>LoadListOrdersShipController</servlet-name>
         <servlet-class>controller.LoadListOrdersShipController</servlet-class>
     </servlet>
-        <servlet>
+    <servlet>
         <servlet-name>AddProductController</servlet-name>
         <servlet-class>controller.AddProductController</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>deletestaff</servlet-name>
+        <servlet-class>controller.DeleteStaffController</servlet-class>
     </servlet>
     <servlet-mapping>
         <servlet-name>HomeController</servlet-name>
@@ -288,9 +292,13 @@
         <servlet-name>LoadListOrdersShipController</servlet-name>
         <url-pattern>/loadlistordership</url-pattern>
     </servlet-mapping>
-        <servlet-mapping>
+    <servlet-mapping>
         <servlet-name>AddProductController</servlet-name>
         <url-pattern>/addproduct</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>deletestaff</servlet-name>
+        <url-pattern>/deletestaff</url-pattern>
     </servlet-mapping>
     <session-config>
         <session-timeout>
