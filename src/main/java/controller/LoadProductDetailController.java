@@ -44,6 +44,7 @@ public class LoadProductDetailController extends HttpServlet {
         ArrayList<Product> listProduct = pdao.getTop4ProductByCategoryID(categoryID, productID);
         //Set the retrieved Product object as an attribute of the current request object with the key "product".
         request.setAttribute("product", product);
+        request.setAttribute("productID", productID);
         //Set an attribute of a request object with the ArrayList of products obtained from the previous code snippet
         request.setAttribute("listProduct", listProduct);
         //Forward the request and response objects to the productDetail.jsp view for display.

@@ -80,90 +80,99 @@
 
                 <div class="container-fluild container-product-detail">
                     <div class="container">
-                        <form action="" method="">
-                            <div class="row">
-                                <div class="col-xs-12 col-md-5">
-                                    <img class="product-detail-img" src="${product.productLink}" alt="">
-                            </div>
-                            <div class="col-xs-12 col-md-7">
-                                <ul class="product-detail-container">
-                                    <li class="product-detail-item heading">
-                                        <h3 class="product-detail-name">${product.productName}</h3>
-                                        <span class="product-detail-sale-percent">${product.productSalePercent}%</span>
-                                    </li> 
+
+                        <div class="row">
+                            <div class="col-xs-12 col-md-5">
+                                <img class="product-detail-img" src="${product.productLink}" alt="">
+                        </div>
+                        <div class="col-xs-12 col-md-7">
+                            <ul class="product-detail-container">
+                                <li class="product-detail-item heading">
+                                    <h3 class="product-detail-name">${product.productName}</h3>
+                                    <span class="product-detail-sale-percent">${product.productSalePercent}%</span>
+                                </li> 
+                                <li class="product-detail-item">
+                                    <span class="product-detail-label">Description:</span>
+                                    <span class="product-detail-descript">${product.productDescription}</span>
+                                </li>
+                                <li class="product-detail-item">
+                                    <span class="product-detail-label">Price:</span>
+                                    <span class="product-detail-price"> <fmt:formatNumber type="number" pattern="###,###" value="${product.productPrice * (1-(product.productSalePercent/100))}"/>đ</span>
+                                    <c:if test="${product.productSalePercent != 0}">
+                                    <tr>
+                                    <span class="product-detail-original-price"><fmt:formatNumber type="number" pattern="###,###" value="${product.productPrice}"/>đ</span>
+
+                                    </tr>
+                                </c:if>
+
+
+                                </li>
+
+                                <li class="product-detail-item">
+                                    <span class="product-detail-label">Status:</span>
+                                    <span class="product-detail-status">${product.productStatus}</span>
+                                </li>
+                                <form action="addproductintocartfromproductdetails" method="">
                                     <li class="product-detail-item">
-                                        <span class="product-detail-label">Description:</span>
-                                        <span class="product-detail-descript">${product.productDescription}</span>
-                                    </li>
-                                    <li class="product-detail-item">
-                                        <span class="product-detail-label">Price:</span>
-                                        <span class="product-detail-price"> <fmt:formatNumber type="number" pattern="###,###" value="${product.productPrice * (1-(product.productSalePercent/100))}"/>đ</span>
-                                        <c:if test="${product.productSalePercent != 0}">
-                                        <tr>
-                                        <span class="product-detail-original-price"><fmt:formatNumber type="number" pattern="###,###" value="${product.productPrice}"/>đ</span>
-
-                                        </tr>
-                                    </c:if>
-
-
-                                    </li>
-
-                                    <li class="product-detail-item">
-                                        <span class="product-detail-label">Status:</span>
-                                        <span class="product-detail-status">${product.productStatus}</span>
+                                        <button type="button" onclick="increment()">+</button>
+                                        <input type="text" id="number" name="quantity" value="1" readonly> 
+                                        <input name="productID" value="${productID}" hidden="true">
+                                        <input name="accountID" value="${sessionScope.accountSesseion.accountID}" hidden="true">
+                                        <button type="button" onclick="decrement()">-</button>
                                     </li>
                                     <li class="product-detail-item">
                                         <button type="submit" class="btn-main"btn-related-product>
-                                            <a href="">Add to cart</a>
+                                            Add to cart
                                         </button>
-                                        <button type="submit" class="btn-primary"btn-related-product>
-                                            <a href="">Back to home</a>
+                                        <button class="btn-primary"btn-related-product>
+                                            <a href="home">Back to home</a>
                                         </button>
                                     </li>
-                                </ul>
-                            </div>
+                                </form>
+                            </ul>
                         </div>
-                        <dvi class="row justify-content-center">
-                            <div class="separtor">
-                            </div>
-                        </dvi>
+                    </div>
+                    <dvi class="row justify-content-center">
+                        <div class="separtor">
+                        </div>
+                    </dvi>
 
-                        <div class="row mb-6 padding">
-                            <h3 class="product-detail-related-heading">List of related products</h3>
-                            <c:forEach items="${listProduct}" var="pr">
-                                <div class="col-xs-12 col-sm-6 col-md-6 col-lg-3">
-                                    <div class="card">
-                                        <a href="loadproductdetail?productID=${pr.productID}"><img src="${pr.productLink}" class="card-img-top" alt="..."></a>
-                                        <div class="card-body">
-                                            <c:if test="${pr.productSalePercent != 0}">
-                                                <div class="card-sale-percent"><span>-${pr.productSalePercent}%</span></div>
-                                            </c:if>
+                    <div class="row mb-6 padding">
+                        <h3 class="product-detail-related-heading">List of related products</h3>
+                        <c:forEach items="${listProduct}" var="pr">
+                            <div class="col-xs-12 col-sm-6 col-md-6 col-lg-3">
+                                <div class="card">
+                                    <a href="loadproductdetail?productID=${pr.productID}"><img src="${pr.productLink}" class="card-img-top" alt="..."></a>
+                                    <div class="card-body">
+                                        <c:if test="${pr.productSalePercent != 0}">
+                                            <div class="card-sale-percent"><span>-${pr.productSalePercent}%</span></div>
+                                        </c:if>
 
-                                            <h5 class="card-title"><a href="loadproductdetail?productID=${pr.productID}">${pr.productName}</a></h5>
-                                            <p class="card-text">${pr.productDescription}</p>
-                                            <div class="card-group">
-                                                <div class="card-price-group">
-                                                    <span class="card-price">
-                                                        <fmt:formatNumber type="number" pattern="###,###" value="${pr.productPrice * (1-(pr.productSalePercent/100))}"/>đ
+                                        <h5 class="card-title"><a href="loadproductdetail?productID=${pr.productID}">${pr.productName}</a></h5>
+                                        <p class="card-text">${pr.productDescription}</p>
+                                        <div class="card-group">
+                                            <div class="card-price-group">
+                                                <span class="card-price">
+                                                    <fmt:formatNumber type="number" pattern="###,###" value="${pr.productPrice * (1-(pr.productSalePercent/100))}"/>đ
+                                                </span>
+                                                <c:if test="${pr.productSalePercent != 0}">
+                                                    <span class="card-original-price">
+                                                        <fmt:formatNumber type="number" pattern="###,###" value="${pr.productPrice}"/>đ
                                                     </span>
-                                                    <c:if test="${pr.productSalePercent != 0}">
-                                                        <span class="card-original-price">
-                                                            <fmt:formatNumber type="number" pattern="###,###" value="${pr.productPrice}"/>đ
-                                                        </span>
-                                                    </c:if>
-                                                </div>
+                                                </c:if>
                                             </div>
-                                            <button class="btn-main btn-related-product">
-                                                <a href="#" class="">BUY NOW</a>
-                                            </button>
                                         </div>
+                                        <button class="btn-main btn-related-product">
+                                            <a href="#" class="">BUY NOW</a>
+                                        </button>
                                     </div>
-
                                 </div>
-                            </c:forEach>
 
-                        </div>
-                    </form>
+                            </div>
+                        </c:forEach>
+
+                    </div>
+
                 </div>
             </div>
 
@@ -171,6 +180,26 @@
             <!-- 5. Footer  -->
             <jsp:include page="footer.jsp"></jsp:include>
         </div>
+        <script>
+            function increment() {
+                var numberInput = document.getElementById("number");
+                var currentValue = parseInt(numberInput.value);
+
+                if (currentValue < 100) {
+                    numberInput.value = currentValue + 1;
+                }
+            }
+
+            function decrement() {
+                var numberInput = document.getElementById("number");
+                var currentValue = parseInt(numberInput.value);
+
+                if (currentValue > 1) {
+                    numberInput.value = currentValue - 1;
+                }
+            }
+
+        </script>
     </body>
 
 </html>

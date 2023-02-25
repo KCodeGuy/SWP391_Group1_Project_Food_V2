@@ -28,16 +28,11 @@
         <!-- Form update product -->
         <div class="container-fluid container-fluid-form">
             <div class="wrapper-form">
-                <form id="myForm">
+                <form id="myForm" action="addproduct" methob="get">
                     <div class="form-heading-group">
                         <i class="fa-solid fa-plus"></i>
                         <h2 class="form-heading">ADD PRODUCT</h2>
-                    </div>
-                    <div class="form-control-group">
-                        <h4 class="form-text-label">Product's ID: <h4>
-                        <input type="text" id="id" name="id" placeholder="ABCD123" readonly>
-                        <div class="alert-warning" id="txtIDMessage"></div>
-                    </div>
+                    </div>             
                     
                     <div class="form-control-group">
                         <h4 class="form-text-label">Name:</h4>
@@ -57,11 +52,11 @@
                         <div class="alert-warning" id="txtNameMessage2"></div>
                     </div>
                        
-                    <div class="form-control-group">
+                    <div class="form-control-group disabled ">
                         <h4 class="form-text-label">Status:</h4>
-                        <select id="category" name="category" >
+                        <select id="status" name="status" >
                             <option value="SOUL_OUT">SOUL_OUT</option>
-                            <option value="AVAILABLE">AVAILABLE</option>
+                            <option selected="selected" value="AVAILABLE">AVAILABLE</option>
                             <option value="REMOVED">REMOVED</option>
                         </select>
                     </div>
@@ -69,9 +64,10 @@
                     <div class="form-control-group">
                         <h4 class="form-text-label">Category:</h4>
                         <select id="category" name="category">
-                            <option value="category1">Category 1</option>
-                            <option value="category1">Category 1</option>
-                            <option value="category1">Category 1</option>
+                            <option value="FOOD">FOOD</option>
+                            <option value="DRINK">DRINK</option>
+                            <option value="SOUP">SOUP</option> 
+                            <option value="COMBO">COMBO</option>
                         </select>
                     </div>
                     
@@ -80,9 +76,15 @@
                         <input type="text" id="description" name="description" placeholder="Enter description of product">
                         <div class="alert-warning" id="txtDescriptionMessage"></div>
                     </div>
+                    
+                     <div class="form-control-group">
+                        <h4 class="form-text-label">Link Image: <h4>
+                        <input type="text" id="image" name="image" placeholder="http://">
+                        <div class="alert-warning" id="txtImage"></div>
+                    </div>
 
                     <div class="form-btn-group">
-                        <button type="Submit" name="submit" class="btn-primary">Add product</button>
+                        <button type="submit" name="submit" class="btn-primary">Add product</button>
                         <h6 class="form-btn-separator">&nbsp;OR&nbsp;</h6>
                         <button type="button" name="submit" class="btn-main">Cancel</button>
                     </div>
@@ -96,7 +98,7 @@
 
     <script src="./bootstap/bootstrap.js"></script>
     <script src="jquery/Jquery.js"></script>
-    <script src="jquery/updateProduct.js"></script>
+<!--    <script src="jquery/updateProduct.js"></script>-->
 </body>
 
 </html>

@@ -45,14 +45,14 @@
                                 <div class="total-quantity-group">
                                     <h6 class="sort-form-label">Total quantity:</h6>
                                     <button class="btn-primary total-quantity">
-                                        ${size}
+                                        ${productQuantity}
                                     </button>
                                 </div>
                             </form>
                             <div class="btn-group-search-add">
                                 <button class="btn-primary btn-add">
                                     <i class="fa-solid fa-plus"></i>
-                                    <a href="">Add product</a>
+                                    <a href="addProduct.jsp">Add product</a>
                                 </button>
                                 <div class="search-group">
                                     <input type="text" placeholder="Cơm sườn bì chả">
@@ -70,6 +70,7 @@
                             <thead class="table-heading">
                                 <tr>
                                     <th class="table-heading-text" scope="col">No.</th>
+                                    <th class="table-heading-text" scope="col">ID</th>
                                     <th class="table-heading-text" scope="col">Picture</th>
                                     <th class="table-heading-text" scope="col">Name</th>
                                     <th class="table-heading-text" scope="col">Description</th>

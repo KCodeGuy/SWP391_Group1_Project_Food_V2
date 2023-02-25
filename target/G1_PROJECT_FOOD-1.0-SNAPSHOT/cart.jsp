@@ -100,8 +100,8 @@
                                     <c:forEach items="${listCart}" var="cart">
                                         <tr>
                                             <td class="table-order">${cart.cartID}</td>
-                                            <td class="table-img"><img src="${cart.productLink}"></td>
-                                            <td class="table-name"><a href="">${cart.productName}</a></td>
+                                            <td class="table-img"><a href="loadproductdetail?productID=${cart.productID}"><img src="${cart.productLink}"></a></td>
+                                            <td class="table-name"><a href="loadproductdetail?productID=${cart.productID}">${cart.productName}</a></td>
                                             <td class="table-quantity">
                                                 ${cart.cartQuantity}
                                             </td>

@@ -133,16 +133,24 @@
         <servlet-class>controller.LoadListStaffController</servlet-class>
     </servlet>
     <servlet>
+<<<<<<< Updated upstream
         <servlet-name>updatestaffprofile</servlet-name>
         <servlet-class>controller.UpdateStaffProfileController</servlet-class>
     </servlet>
         <servlet>
+=======
+>>>>>>> Stashed changes
         <servlet-name>LoadListOrderedForManagePageController</servlet-name>
         <servlet-class>controller.LoadListOrderedForManagePageController</servlet-class>
     </servlet>
     <servlet>
+<<<<<<< Updated upstream
         <servlet-name>LoadListOrdersShipController</servlet-name>
         <servlet-class>controller.LoadListOrdersShipController</servlet-class>
+=======
+        <servlet-name>AddProductController</servlet-name>
+        <servlet-class>controller.AddProductController</servlet-class>
+>>>>>>> Stashed changes
     </servlet>
     <servlet-mapping>
         <servlet-name>HomeController</servlet-name>
@@ -272,17 +280,25 @@
         <servlet-name>loadliststaff</servlet-name>
         <url-pattern>/loadliststaff</url-pattern>
     </servlet-mapping>
+<<<<<<< Updated upstream
         <servlet-mapping>
         <servlet-name>updatestaffprofile</servlet-name>
         <url-pattern>/updatestaffprofile</url-pattern>
     </servlet-mapping>
+=======
+>>>>>>> Stashed changes
     <servlet-mapping>
         <servlet-name>LoadListOrderedForManagePageController</servlet-name>
         <url-pattern>/loadlistorderedformanagepage</url-pattern>
     </servlet-mapping>
     <servlet-mapping>
+<<<<<<< Updated upstream
         <servlet-name>LoadListOrdersShipController</servlet-name>
         <url-pattern>/loadlistordership</url-pattern>
+=======
+        <servlet-name>AddProductController</servlet-name>
+        <url-pattern>/addproduct</url-pattern>
+>>>>>>> Stashed changes
     </servlet-mapping>
     <session-config>
         <session-timeout>
