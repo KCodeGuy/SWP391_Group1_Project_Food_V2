@@ -305,7 +305,7 @@ public class ProductDAO {
         return list;
     }
 
-    }
+    
         
     /**
      * Method add new product
