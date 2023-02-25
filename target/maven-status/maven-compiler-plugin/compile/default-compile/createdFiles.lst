@@ -4,6 +4,7 @@ controller\HomeController.class
 dao\OrderDAO.class
 controller\ShowOrderDetailsForChefController.class
 controller\AcceptOrderController.class
+controller\AddProductController.class
 controller\LoadListProductInCartController.class
 com\example\demo\hash\jni\Platform.class
 controller\LoadListOrderedForManagePageController.class

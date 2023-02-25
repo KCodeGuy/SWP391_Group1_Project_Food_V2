@@ -7,7 +7,6 @@ import jakarta.servlet.http.HttpServletResponse;
 import java.io.IOException;
 import java.util.List;
 import jakarta.servlet.http.HttpServlet;
-import jakarta.servlet.http.HttpSession;
 import java.util.ArrayList;
 import java.util.stream.Stream;
 import model.Product;
@@ -34,8 +33,15 @@ public class HomeController extends HttpServlet {
         List<Product> listProduct = pdao.getListProduct(); // get list product to load page
 
         String txtSearch = request.getParameter("txtSearch");
-        if (txtSearch != null) {
-            listProduct = pdao.findProductByName(txtSearch);
+        String category = request.getParameter("category");
+        if (txtSearch != null || category != null) {
+            if(txtSearch == null ){
+                txtSearch = "";
+            }
+            listProduct = pdao.findProductByName(txtSearch,category);
+            if (listProduct.isEmpty()) {
+                request.setAttribute("MESSAGE", "Product not found");
+            }
         }
 
         request.setAttribute("listProduct", listProduct);
