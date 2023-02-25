@@ -320,8 +320,7 @@ public class ProductDAO {
         String query = "UPDATE PRODUCT SET ProductName = ?, ProductDescription = ?, ProductPrice = ?, ProductSalePercent = ?, ProductStatus = ?, ProductImage = ? , CategoryID = ? where ProductID = ?";
         try {
             con = new DBContext().getConnection();   // open connection to SQL.
-            ps = con.prepareStatement(query);  // move query from Netbeen to SQl.
-           
+            ps = con.prepareStatement(query);  // move query from Netbeen to SQl. 
             ps.setString(1, productName);
             ps.setString(2, productDescription);
             ps.setInt(3, productPrice);

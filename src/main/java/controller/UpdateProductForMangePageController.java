@@ -79,9 +79,8 @@ public class UpdateProductForMangePageController extends HttpServlet {
      */
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
-            throws ServletException, IOException {
-           
-        String productID = request.getParameter("id");//get data from parameter id
+            throws ServletException, IOException {   
+        String productID = request.getParameter("productID");//get data from parameter id
         String productName = request.getParameter("name");//get data from parameter name
         String productDescription = request.getParameter("description");//get data from parameter description
         int productPrice = Integer.parseInt(request.getParameter("price"));//get data from parameter price

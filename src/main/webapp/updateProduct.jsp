@@ -36,8 +36,8 @@
 
                             <div class="form-control-group">
                                 <h4 class="form-text-label">Name:</h4>
-                                <input type="text" id="name" name="name" placeholder="Enter name of product" value="${product.productName}">
-                            <input type="text" id="accountID" name="accountID" value="${accountID}"hidden="true" >
+                            <input type="text" id="name" name="name" placeholder="Enter name of product" value="${product.productName}">
+                            <input type="text" id="productID" name="productID" value="${productID}" hidden="true" >
                             <div class="alert-warning" id="txtNameMessage"></div>
                         </div>
 
