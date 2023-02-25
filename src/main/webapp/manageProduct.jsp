@@ -94,7 +94,7 @@
                                     <td class="table-btn">
                                         <a class="table-btn-edit" href="updateProduct.html"><i
                                                 class="fa-solid fa-pen-to-square"></i></a>
-                                        <a href="deleteproduct?productID=${pr.productID}" onclick="return showMessageDelete();"><i
+                                        <a href="admin-delete-product?productID=${pr.productID}" onclick="return showMessageDelete();"><i
                                                 class="fa-solid fa-trash"></i></a>
                                     </td>   
                                 </tr>

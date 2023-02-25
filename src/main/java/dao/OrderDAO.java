@@ -42,7 +42,7 @@ public class OrderDAO {
         LocalDateTime now = LocalDateTime.now();
         DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm:ss.SSS");
         String formattedDateTime = now.format(formatter);
-        String query = "INSERT INTO [ORDER] VALUES (?,?,'Processing',?,?,?,?,?,?,?,null,null)"; // string query insert cart
+        String query = "INSERT INTO [ORDER] VALUES (?,?,'PROCESSING',?,?,?,?,?,?,?,null,null)"; // string query insert cart
         String id = new GenerateID().generateNewID("OR", getLastIDOfOrder());
         try {
             con = new DBContext().getConnection(); // open connect database
@@ -93,7 +93,7 @@ public class OrderDAO {
      *
      * @return list order
      */
-    public ArrayList<Order> getListOrder() {
+    public ArrayList<Order> getListOrderForChef() {
         try {
             String query = "SELECT \n"
                     + "   [ORDER].OrderID, \n"
@@ -104,7 +104,7 @@ public class OrderDAO {
                     + "   SUM(([ORDER_DETAIL].OrderDPrice * (100 - [ORDER].ProductSalePercent) / 100) * [ORDER_DETAIL].OrderDQuantity) AS Price \n"
                     + "FROM [ORDER] \n"
                     + "INNER JOIN [ORDER_DETAIL] ON [ORDER].OrderID = [ORDER_DETAIL].OrderID \n"
-                    + "WHERE [ORDER].OrderStatus = 'Processing'\n"
+                    + "WHERE [ORDER].OrderStatus = 'PROCESSING'\n"
                     + "GROUP BY \n"
                     + "   [ORDER].OrderID, \n"
                     + "   [ORDER].BuyerFullName, \n"
@@ -138,7 +138,7 @@ public class OrderDAO {
      * @return An ArrayList of Order objects that are ready to be shipped, or
      * null if there are no orders.
      */
-    public ArrayList<Order> getListOrderShip() {
+    public ArrayList<Order> getListOrderForShip() {
         try {
             String query = "SELECT \n"
                     + "   [ORDER].OrderID, \n"
@@ -149,25 +149,25 @@ public class OrderDAO {
                     + "   SUM(([ORDER_DETAIL].OrderDPrice * (100 - [ORDER].ProductSalePercent) / 100) * [ORDER_DETAIL].OrderDQuantity) AS Price \n"
                     + "FROM [ORDER] \n"
                     + "INNER JOIN [ORDER_DETAIL] ON [ORDER].OrderID = [ORDER_DETAIL].OrderID \n"
-                    + "WHERE [ORDER].OrderStatus = 'Accepted'\n"
+                    + "WHERE [ORDER].OrderStatus = 'ACCEPTED'\n"
                     + "GROUP BY \n"
                     + "   [ORDER].OrderID, \n"
                     + "   [ORDER].BuyerFullName, \n"
                     + "   [ORDER].OrderDate, \n"
-                    + "   [ORDER].OrderStatus"; //Query select form database
-            con = new DBContext().getConnection(); //Open conect database
-            ps = con.prepareStatement(query); //Set account ID into query
-            rs = ps.executeQuery(); //Execute query
-            ArrayList<Order> listOrder = new ArrayList<>(); //Create list product in order
+                    + "   [ORDER].OrderStatus"; // query select form database
+            con = new DBContext().getConnection(); // open conect database
+            ps = con.prepareStatement(query); // set account ID into query
+            rs = ps.executeQuery(); // execute query
+            ArrayList<Order> listOrder = new ArrayList<>(); // create list product in order
             while (rs.next()) {
                 listOrder.add(new Order(rs.getString(1), OrderStatus.valueOf(rs.getString(4)), rs.getString(3), rs.getString(2), rs.getInt(5), rs.getInt(6)));
-                //Add new item into list order
-            } //End while
-            return listOrder; //Return list order
+                // add new item into list order
+            } // end while
+            return listOrder; // return list order
         } catch (Exception e) {
-            e.getMessage();
-        } //End try catch
-        return null; //If there are no orders to be shipped, return null
+            System.out.println(e.getMessage());
+        } // end try catch
+        return null; // return null if not order
     }
 
     /**
@@ -270,7 +270,7 @@ public class OrderDAO {
     public boolean acceptOrderByOrderID(String accountID, String orderID) {
         try {
             String query = "UPDATE [ORDER]\n"
-                    + "SET OrderStatus = 'Accepted', AccIDOfChef = ?\n"
+                    + "SET OrderStatus = 'ACCEPTED', AccIDOfChef = ?\n"
                     + "WHERE OrderID = ?"; // query select form database
             con = new DBContext().getConnection(); // open conect database
             ps = con.prepareStatement(query); // set account ID into query
@@ -296,7 +296,7 @@ public class OrderDAO {
     public boolean rejectOrderByOrderID(String accountID, String orderID) {
         try {
             String query = "UPDATE [ORDER]\n"
-                    + "SET OrderStatus = 'Rejected', AccIDOfChef = ?\n"
+                    + "SET OrderStatus = 'REJECTED', AccIDOfChef = ?\n"
                     + "WHERE OrderID = ?"; // query select form database
             con = new DBContext().getConnection(); // open conect database
             ps = con.prepareStatement(query); // set account ID into query

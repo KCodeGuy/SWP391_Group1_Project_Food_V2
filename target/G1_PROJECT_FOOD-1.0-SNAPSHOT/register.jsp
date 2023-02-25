@@ -26,7 +26,7 @@
             <jsp:include page="navigation.jsp"></jsp:include>
                                 <div class="container-fluid container-fluid-form" style="height: 1000px">
                     <div class="wrapper-form" style="width: 460px">
-                        <form action="registerController" id="myForm" method="POST">
+                        <form action="register" id="myForm" method="POST">
                             <div class="form-heading-group">
                                 <i class="fa-solid fa-user-plus fa-2x"></i>
                                 <h2 class="form-heading">REGISTER</h2>

@@ -35,7 +35,7 @@ public class LoadListOrdersShipController extends HttpServlet {
         //Create an instance of OrderDAO class
         OrderDAO odao = new OrderDAO();
         //Get the list of orders that have been shipped
-        ArrayList<Order> listOrderShip = odao.getListOrderShip();
+        ArrayList<Order> listOrderShip = odao.getListOrderForShip();
         int totalPrice = 0;
         //Calculate the total order count and total price of those orders
         

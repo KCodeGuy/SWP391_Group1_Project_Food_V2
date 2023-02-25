@@ -37,7 +37,7 @@ public class DeleteProductForManagePageController extends HttpServlet {
         //Call delete method from class ProductDAO
         pdao.deleteProduct(productID);
         //Redictect to the page list all product
-        response.sendRedirect("loadlistproductformanageproductpage");
+        response.sendRedirect("admin-manage-product");
     }
 
     // <editor-fold defaultstate="collapsed" desc="HttpServlet methods. Click on the + sign on the left to edit the code.">

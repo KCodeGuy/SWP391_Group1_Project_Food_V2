@@ -89,7 +89,7 @@ public class UpdateUserProfileController extends HttpServlet {
         AccountDAO udao = new AccountDAO();
         udao.updateUserProfile(accountID, userBirthday, accountName, accountPhone, accountAddress);
         //Redirect user to the user profile page with the updated accountID
-        response.sendRedirect("loaduserprofile?accountID=" + accountID);
+        response.sendRedirect("user-profile?accountID=" + accountID);
     }
 
     /**

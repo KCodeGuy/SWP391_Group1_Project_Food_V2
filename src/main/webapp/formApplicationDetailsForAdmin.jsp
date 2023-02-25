@@ -67,8 +67,8 @@
                     <div class="row">
                         <div class="col-xs-12">
                             <div class="detail-table-group">
-                                <button class="btn-primary"><a href="acceptapplication?accountID=${accountID}">Accept</a></button>
-                                <button class="btn-main"><a href="rejectapplication?accountID=${accountID}">Reject</a></button>
+                                <button class="btn-primary"><a href="admin-accept-applicaion?accountID=${accountID}">Accept</a></button>
+                                <button class="btn-main"><a href="admin-reject-application?accountID=${accountID}">Reject</a></button>
                             </div>
                         </div>
                     </div>

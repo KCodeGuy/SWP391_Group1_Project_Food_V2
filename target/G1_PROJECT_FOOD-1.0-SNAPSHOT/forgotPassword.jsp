@@ -27,7 +27,7 @@
 
              <div class="container-fluid-form">
                     <div class="container wrapper-form">
-                        <form action="forgotPasswordController" id="myForm" method="POST">
+                        <form action="forgotpassword" id="myForm" method="POST">
                             <div class="form-heading-group">
                                 <i class="fa-solid fa-lock"></i>
                                 <h2 class="form-heading ">FORGOT PASSWORD</h2>

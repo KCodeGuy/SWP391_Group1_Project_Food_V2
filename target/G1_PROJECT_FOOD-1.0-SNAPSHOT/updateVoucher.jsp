@@ -82,7 +82,7 @@
                         <div class="form-btn-group">
                             <button type="Submit" name="submit" class="btn-primary">Update</button>
                             <h6 class="form-btn-separator">&nbsp;OR&nbsp;</h6>
-                            <button type="button" name="submit" class="btn-main">Cancel</button>
+                            <button type="button" name="submit" class="btn-main"><a href="manageVoucher.jsp">Cancel</a></button>
                         </div>
                     </form>
                 </div>

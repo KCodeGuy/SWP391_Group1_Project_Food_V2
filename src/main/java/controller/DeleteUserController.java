@@ -63,7 +63,7 @@ public class DeleteUserController extends HttpServlet {
         //Call the deleteUser method of the UserDAO object to delete the user with the given ID
         udao.deleteUser(accountID);        
         //Redirect the user to the page that lists all users
-        response.sendRedirect("loadlistuser");
+        response.sendRedirect("admin-manage-user");
     }
 
     /**

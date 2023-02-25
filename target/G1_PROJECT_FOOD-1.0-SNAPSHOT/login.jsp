@@ -26,7 +26,7 @@
                 <!-- Login form -->
                 <div class="container-fluid-form" style="height: 640px">
                     <div class="container wrapper-form">
-                        <form action="loginController" id="myForm" method="post">
+                        <form action="login" id="myForm" method="post">
                             <div class="form-heading-group">
                                 <i class="fa-solid fa-arrow-right-to-bracket fa-2x"></i>
                                 <h2 class="form-heading ">LOGIN</h2>

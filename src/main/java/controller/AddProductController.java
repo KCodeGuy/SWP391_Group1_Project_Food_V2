@@ -40,7 +40,7 @@ public class AddProductController extends HttpServlet {
         String productImage = request.getParameter("image");//get data from parameter image
         ProductDAO pdao = new ProductDAO();// Create a new ProductDAO instance to retrieve infomation
         pdao.insertProduct(productName, productPrice, productSale, categoryID, productDescription, productImage); //add products to database using insertProduct
-        response.sendRedirect("loadlistproductformanageproductpage");//display the list on the page loadlistproductformanagepage
+        response.sendRedirect("admin-manage-product");//display the list on the page loadlistproductformanagepage
         
     }
 

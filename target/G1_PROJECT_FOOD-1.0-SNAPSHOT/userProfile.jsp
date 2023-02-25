@@ -57,7 +57,7 @@
                             </div>
 
                             <div class="form-btn-group">
-                                <button type="button" name="submit" class="btn-primary"><a href="updateuserprofile?accountID=${sessionScope.accountSesseion.accountID}">Update profile</a></button>
+                                <button type="button" name="submit" class="btn-primary"><a href="user-update-profile?accountID=${sessionScope.accountSesseion.accountID}">Update profile</a></button>
                                 <!-- <h6 class="form-btn-separator">&nbsp;OR&nbsp;</h6>
                                 <button type="button" name="submit" class="btn-main">Cancel</button> -->
                             </div>

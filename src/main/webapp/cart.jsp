@@ -100,14 +100,14 @@
                                     <c:forEach items="${listCart}" var="cart">
                                         <tr>
                                             <td class="table-order">${cart.cartID}</td>
-                                            <td class="table-img"><a href="loadproductdetail?productID=${cart.productID}"><img src="${cart.productLink}"></a></td>
-                                            <td class="table-name"><a href="loadproductdetail?productID=${cart.productID}">${cart.productName}</a></td>
+                                            <td class="table-img"><a href="product-detail?productID=${cart.productID}"><img src="${cart.productLink}"></a></td>
+                                            <td class="table-name"><a href="product-detail?productID=${cart.productID}">${cart.productName}</a></td>
                                             <td class="table-quantity">
                                                 ${cart.cartQuantity}
                                             </td>
                                             <td class="table-price"><fmt:formatNumber type="number" pattern="###,###" value="${(cart.productPrice * (1-(cart.productSalePercent/100)))*cart.cartQuantity}"/>đ</td>
                                             <td class="table-btn">
-                                                <a href="deleteproductincart?productID=${cart.productID}&accountID=${sessionScope.accountSesseion.accountID}" onclick="return showMessageDelete();"><i class="fa-solid fa-trash"></i></a>
+                                                <a href="cart-delete?productID=${cart.productID}&accountID=${sessionScope.accountSesseion.accountID}" onclick="return showMessageDelete();"><i class="fa-solid fa-trash"></i></a>
                                             </td>
                                         </tr>
                                     </c:forEach>
@@ -127,7 +127,7 @@
 
                     <div class="row justify-content-end">
                         <div class="col-sm-3">
-                            <a href="loadpaying?accountID=${sessionScope.accountSesseion.accountID}"><button class="btn-primary">Paying</button></a>
+                            <a href="load-paying?accountID=${sessionScope.accountSesseion.accountID}"><button class="btn-primary">Paying</button></a>
                         </div>
                     </div>
                 </div>

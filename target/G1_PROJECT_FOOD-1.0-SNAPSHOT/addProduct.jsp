@@ -28,7 +28,7 @@
         <!-- Form update product -->
         <div class="container-fluid container-fluid-form">
             <div class="wrapper-form">
-                <form id="myForm" action="addproduct" methob="get">
+                <form id="myForm" action="admin-add-product" methob="get">
                     <div class="form-heading-group">
                         <i class="fa-solid fa-plus"></i>
                         <h2 class="form-heading">ADD PRODUCT</h2>
@@ -86,7 +86,7 @@
                     <div class="form-btn-group">
                         <button type="submit" name="submit" class="btn-primary">Add product</button>
                         <h6 class="form-btn-separator">&nbsp;OR&nbsp;</h6>
-                        <button type="button" name="submit" class="btn-main">Cancel</button>
+                        <button type="button" name="submit" class="btn-main"><a href="admin-manage-product">Cancel</a></button>
                     </div>
                 </form>
             </div>

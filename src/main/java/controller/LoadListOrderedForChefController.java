@@ -34,7 +34,7 @@ public class LoadListOrderedForChefController extends HttpServlet {
         response.setContentType("text/html;charset=UTF-8");
 
         OrderDAO odao = new OrderDAO();
-        ArrayList<Order> listOrder = odao.getListOrder();
+        ArrayList<Order> listOrder = odao.getListOrderForChef();
         int totalPrice = 0;
         if (!listOrder.isEmpty()) {
             for (Order order : listOrder) {

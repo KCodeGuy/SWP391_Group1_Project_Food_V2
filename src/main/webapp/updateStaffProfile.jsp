@@ -28,7 +28,7 @@
 
                 <div class="container-fluid container-fluid-form">
                     <div class="wrapper-form">
-                        <form action="updatestaffprofile" id="myForm" method="post">
+                        <form action="staff-update-profile" id="myForm" method="post">
                             <div class="form-heading-group">
                                 <i class="fa-solid fa-file-pen"></i>
                                 <h2 class="form-heading">UPDATE STAFF PROFILE</h2>
@@ -77,7 +77,7 @@
                         <div class="form-btn-group">
                             <button type="Submit" name="submit" class="btn-primary">Update</button>
                             <h6 class="form-btn-separator">&nbsp;OR&nbsp;</h6>
-                            <button type="button" class="btn-main"><a href="loadstaffprofile?accountID=${sessionScope.accountSesseion.accountID}">Cancel</a></button>
+                            <button type="button" class="btn-main"><a href="staff-profile?accountID=${sessionScope.accountSesseion.accountID}">Cancel</a></button>
                         </div>
 
                     </form>

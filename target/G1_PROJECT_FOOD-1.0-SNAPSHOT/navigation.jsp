@@ -39,20 +39,20 @@
                                 <a class="nav-link" href="home">Contact</a>
                             </li>
                             <li class="nav-item">
-                                <a class="nav-link" href="logoutController">Logout</a>
+                                <a class="nav-link" href="logout">Logout</a>
                             </li>
                             <c:if test="${sessionScope.accountSesseion.accountID.startsWith('AD')}">
                                 <li class="nav-item">
-                                    <a class="nav-link" aria-current="page" href="loadlistorderedformanagepage">Manage orders</a>
+                                    <a class="nav-link" aria-current="page" href="admin-manage-order">Manage orders</a>
                                 </li>
                                 <li class="nav-item">
-                                    <a class="nav-link" aria-current="page" href="loadlistproductformanageproductpage">Manage products</a>
+                                    <a class="nav-link" aria-current="page" href="admin-manage-product">Manage products</a>
                                 </li>
                                 <li class="nav-item">
-                                    <a class="nav-link" aria-current="page" href="loadlistuser">Manage users</a>
+                                    <a class="nav-link" aria-current="page" href="admin-manage-user">Manage users</a>
                                 </li>
                                 <li class="nav-item">
-                                    <a class="nav-link" aria-current="page" href="loadliststaff">Manage staff</a>
+                                    <a class="nav-link" aria-current="page" href="admin-manage-staff">Manage staff</a>
                                 </li>
                                 <li class="nav-item">
                                     <a class="nav-link" aria-current="page" href="manageFormApllication.jsp">Manage application</a>
@@ -66,32 +66,32 @@
                             </c:if>
                             <c:if test="${sessionScope.accountSesseion.accountID.startsWith('CH')}">
                                 <li class="nav-item">
-                                    <a class="nav-link" aria-current="page" href="loadlistorderedforchef">Manage orders</a>
+                                    <a class="nav-link" aria-current="page" href="chef-manage-order">Manage orders</a>
                                 </li>
                                 <li class="nav-item">
                                     <a class="nav-link" aria-current="page" href="staffProfile.jsp">Manage accepted orders</a>
                                 </li>
                                 <li class="nav-item">
-                                    <a class="nav-link" aria-current="page" href="loadstaffprofile?accountID=${sessionScope.accountSesseion.accountID}">${sessionScope.accountSesseion.accountName}</a>
+                                    <a class="nav-link" aria-current="page" href="staff-profile?accountID=${sessionScope.accountSesseion.accountID}">${sessionScope.accountSesseion.accountName}</a>
                                 </li>
                             </c:if>
                             <c:if test="${sessionScope.accountSesseion.accountID.startsWith('SP')}">
                                  <li class="nav-item">
-                                    <a class="nav-link" aria-current="page" href="loadlistordership">Manage ship</a>
+                                    <a class="nav-link" aria-current="page" href="shipper-manage-order">Manage ship</a>
                                 </li>
                                 <li class="nav-item">
                                     <a class="nav-link" aria-current="page" href="staffProfile.jsp">Manage pickup orders</a>
                                 </li>
                                 <li class="nav-item">
-                                    <a class="nav-link" aria-current="page" href="loadstaffprofile?accountID=${sessionScope.accountSesseion.accountID}">${sessionScope.accountSesseion.accountName}</a>
+                                    <a class="nav-link" aria-current="page" href="staff-profile?accountID=${sessionScope.accountSesseion.accountID}">${sessionScope.accountSesseion.accountName}</a>
                                 </li>
                             </c:if>
                             <c:if test="${sessionScope.accountSesseion.accountID.startsWith('US')}">
                                 <li class="nav-item">
-                                    <a class="nav-link" aria-current="page" href="loadlistorderedformanagepage">Manage orders</a>
+                                    <a class="nav-link" aria-current="page" href="home">Manage orders</a>
                                 </li>
                                 <li class="nav-item">
-                                    <a class="nav-link" aria-current="page" href="loaduserprofile?accountID=${sessionScope.accountSesseion.accountID}">${sessionScope.accountSesseion.accountName}</a>
+                                    <a class="nav-link" aria-current="page" href="user-profile?accountID=${sessionScope.accountSesseion.accountID}">${sessionScope.accountSesseion.accountName}</a>
                                 </li>
                             </c:if>
                         </c:if>

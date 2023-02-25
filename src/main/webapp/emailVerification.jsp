@@ -27,7 +27,7 @@
             <jsp:include page="navigation.jsp"></jsp:include>
                 <div class="container-fluid container-fluid-form" style="height: 600px">
                     <div class="wrapper-form">
-                        <form action="authenEmailController" method="POST">
+                        <form action="authenemail" method="POST">
                             <div class="form-heading-group">
                                 <i class="fa-solid fa-envelope-open-text fa-2x"></i>
                                 <h2 class="form-heading">EMAIL VERIFICATION</h2>
@@ -71,7 +71,7 @@
                         </c:if>
                         <c:if test="${showSendAgainBtn}">
                             <div class="form-btn-group">
-                                <button class="btn-primary" type="button"><a href="reAuthenEmailController?accountID=${accountID}&timeSendFailed=${timeSendFailed}&featurePage=${featurePage}">Send again</a></button>
+                                <button class="btn-primary" type="button"><a href="reauthenemail?accountID=${accountID}&timeSendFailed=${timeSendFailed}&featurePage=${featurePage}">Send again</a></button>
                                 <!--                                <h6 class="form-btn-separator">&nbsp;OR&nbsp;</h6>
                                                                 <button class="btn-main" type="button"><a href="home">Cancel</a></button>-->
                             </div>

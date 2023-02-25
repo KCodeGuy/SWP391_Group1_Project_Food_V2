@@ -35,7 +35,7 @@ public class AcceptOrderController extends HttpServlet {
         OrderDAO odao = new OrderDAO(); // create orderDAO
         odao.acceptOrderByOrderID(accountID,orderID);
         
-        response.sendRedirect("loadlistorderedforchef");
+        response.sendRedirect("chef-manage-order");
     } 
 
     // <editor-fold defaultstate="collapsed" desc="HttpServlet methods. Click on the + sign on the left to edit the code.">

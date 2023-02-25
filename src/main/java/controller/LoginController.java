@@ -42,6 +42,7 @@ public class LoginController extends HttpServlet {
             
             HttpSession session = request.getSession();
             session.setAttribute("cartSize", cartSize);
+            session.setAttribute("accountID", acc.getAccountID());
             session.setAttribute("accountSesseion", acc);
             session.setMaxInactiveInterval(360000000);
             request.getRequestDispatcher("home").forward(request, response);

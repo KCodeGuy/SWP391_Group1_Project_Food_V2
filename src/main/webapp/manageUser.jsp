@@ -82,9 +82,9 @@
                                                 ${lu.accountEmail}
                                             </td>
                                             <td class="table-btn">
-                                                <a class="table-btn-edit" href="loaduserprofile?accountID=${lu.accountID}"><i
+                                                <a class="table-btn-edit" href="user-profile?accountID=${lu.accountID}"><i
                                                         class="fa-solid fa-pen-to-square"></i></a>
-                                                <a href="deleteuser?accountID=${lu.accountID}" onclick="return showMessageDelete();"><i
+                                                <a href="admin-delete-user?accountID=${lu.accountID}" onclick="return showMessageDelete();"><i
                                                         class="fa-solid fa-trash"></i></a>        
                                             </td>
                                         </tr>

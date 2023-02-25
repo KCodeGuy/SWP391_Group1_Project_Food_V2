@@ -112,7 +112,7 @@
                                     <span class="product-detail-label">Status:</span>
                                     <span class="product-detail-status">${product.productStatus}</span>
                                 </li>
-                                <form action="addproductintocartfromproductdetails" method="">
+                                <form action="add-product-cart-product-details" method="">
                                     <li class="product-detail-item">
                                         <button type="button" onclick="increment()">+</button>
                                         <input type="text" id="number" name="quantity" value="1" readonly> 
@@ -142,13 +142,13 @@
                         <c:forEach items="${listProduct}" var="pr">
                             <div class="col-xs-12 col-sm-6 col-md-6 col-lg-3">
                                 <div class="card">
-                                    <a href="loadproductdetail?productID=${pr.productID}"><img src="${pr.productLink}" class="card-img-top" alt="..."></a>
+                                    <a href="product-detail?productID=${pr.productID}"><img src="${pr.productLink}" class="card-img-top" alt="..."></a>
                                     <div class="card-body">
                                         <c:if test="${pr.productSalePercent != 0}">
                                             <div class="card-sale-percent"><span>-${pr.productSalePercent}%</span></div>
                                         </c:if>
 
-                                        <h5 class="card-title"><a href="loadproductdetail?productID=${pr.productID}">${pr.productName}</a></h5>
+                                        <h5 class="card-title"><a href="product-detail?productID=${pr.productID}">${pr.productName}</a></h5>
                                         <p class="card-text">${pr.productDescription}</p>
                                         <div class="card-group">
                                             <div class="card-price-group">
@@ -163,7 +163,7 @@
                                             </div>
                                         </div>
                                         <button class="btn-main btn-related-product">
-                                            <a href="#" class="">BUY NOW</a>
+                                            <a href="add-product-cart-home" class="">BUY NOW</a>
                                         </button>
                                     </div>
                                 </div>
