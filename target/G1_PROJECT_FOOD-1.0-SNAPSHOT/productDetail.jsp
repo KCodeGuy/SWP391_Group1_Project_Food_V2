@@ -20,6 +20,58 @@
         <link rel="stylesheet" href="./assert/css/productDetail.css">
         <link rel="stylesheet" href="./assert/font/fontawesome-free-6.1.1-web/css/all.css">
         <title>Product-detail</title>
+        <style>
+            .review-header {
+                display: flex;
+                justify-content: space-between;
+                align-items: center;
+                margin-bottom: 20px;
+            }
+
+            .review-title {
+                font-size: 24px;
+                margin: 0;
+            }
+
+            .review-stars {
+                display: flex;
+            }
+
+            .fa {
+                font-size: 20px;
+                color: #f8ce0b;
+            }
+
+            .fa-star-o {
+                color: #ddd;
+            }
+
+            .review-form {
+                margin-bottom: 20px;
+            }
+
+            .form-group {
+                margin-bottom: 10px;
+            }
+
+            label {
+                display: block;
+                font-size: 16px;
+                font-weight: bold;
+                margin-bottom: 5px;
+            }
+
+            textarea {
+                display: block;
+                width: 100%;
+                padding: 10px;
+                border: 1px solid #ddd;
+            }
+            .review-stars i {
+                font-size: 24px;
+                color: #ffd700;
+            }
+        </style>
     </head>
 
     <body>
@@ -132,6 +184,62 @@
                             </ul>
                         </div>
                     </div>
+
+
+                    <div class="product-review">
+                        <form id="rating-form">
+                            <div class="stars">
+                                <input type="radio" id="star5" name="rating" value="5" />
+                                <label for="star5"><i class="fa fa-star"></i></label>
+                                <input type="radio" id="star4" name="rating" value="4" />
+                                <label for="star4"><i class="fa fa-star"></i></label>
+                                <input type="radio" id="star3" name="rating" value="3" />
+                                <label for="star3"><i class="fa fa-star"></i></label>
+                                <input type="radio" id="star2" name="rating" value="2" />
+                                <label for="star2"><i class="fa fa-star"></i></label>
+                                <input type="radio" id="star1" name="rating" value="1" />
+                                <label for="star1"><i class="fa fa-star"></i></label>
+                            </div>
+                            <textarea id="review" name="review" rows="5" placeholder="Nhập bình luận"></textarea>
+                            <button type="submit">Gửi đánh giá</button>
+                        </form>
+                        <div class="review-list">
+                            <h3 class="review-list-title">Đánh giá từ khách hàng</h3>
+                            <ul class="review-items">
+                                <li class="review-item">
+                                    <div class="review-item-header">
+                                        <div class="review-item-stars">
+                                            <i class="fa fa-star"></i>
+                                            <i class="fa fa-star"></i>
+                                            <i class="fa fa-star"></i>
+                                            <i class="fa fa-star"></i>
+                                            <i class="fa fa-star-o"></i>
+                                        </div>
+                                        <div class="review-item-author">Người dùng 1</div>
+                                    </div>
+                                    <div class="review-item-content">
+                                        Sản phẩm rất tốt, giá cả hợp lý.
+                                    </div>
+                                </li>
+                                <li class="review-item">
+                                    <div class="review-item-header">
+                                        <div class="review-item-stars">
+                                            <i class="fa fa-star"></i>
+                                            <i class="fa fa-star"></i>
+                                            <i class="fa fa-star"></i>
+                                            <i class="fa fa-star"></i>
+                                            <i class="fa fa-star"></i>
+                                        </div>
+                                        <div class="review-item-author">Người dùng 2</div>
+                                    </div>
+                                    <div class="review-item-content">
+                                        Sản phẩm rất đẹp và chất lượng tuyệt vời.
+                                    </div>
+                                </li>
+                            </ul>
+                        </div>
+                    </div>
+
                     <dvi class="row justify-content-center">
                         <div class="separtor">
                         </div>
@@ -172,7 +280,6 @@
                         </c:forEach>
 
                     </div>
-
                 </div>
             </div>
 
