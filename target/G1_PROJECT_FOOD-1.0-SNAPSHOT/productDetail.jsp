@@ -71,6 +71,37 @@
                 font-size: 24px;
                 color: #ffd700;
             }
+
+            .rating {
+                display: flex;
+                align-items: center;
+            }
+
+            .stars {
+                font-size: 24px;
+                color: gold;
+            }
+
+            .progress-bar {
+                width: 200px;
+                height: 10px;
+                margin: 0 10px;
+                border: 1px solid #ccc;
+                position: relative;
+            }
+
+            .progress {
+                height: 100%;
+                background-color: gold;
+                position: absolute;
+                top: 0;
+                left: 0;
+            }
+
+            .count {
+                margin-left: 10px;
+            }
+
         </style>
     </head>
 
@@ -185,7 +216,22 @@
                         </div>
                     </div>
 
+                    <div>
+                        <c:forEach var="entry" items="${listRating}">
+                            <div class="rating">
+                                <span class="stars">
+                                    <c:forEach begin="1" end="${entry.key}" step="1" var="counter">
+                                        &#9733;
+                                    </c:forEach>
+                                </span>
+                                <div class="progress-bar">
+                                    <div class="progress" style="width: ${(entry.value / sizeReview) * 100}%;"></div>
+                                </div>
+                                <span class="count">(${entry.value})</span>
+                            </div><br>
+                        </c:forEach>
 
+                    </div>
                     <div class="product-review">
                         <form id="rating-form" action="user-add-review">
                             <div class="stars">
@@ -197,7 +243,7 @@
                                 <label for="star3"><i class="fa fa-star"></i></label>
                                 <input type="radio" id="star2" name="rating" value="4" />
                                 <label for="star2"><i class="fa fa-star"></i></label>
-                                <input type="radio" id="star1" name="rating" value="5" />
+                                <input type="radio" id="star1" name="rating" value="5" checked="true"/>
                                 <label for="star1"><i class="fa fa-star"></i></label>
                             </div>
                             <input name="productID" value="${productID}" hidden="true">
@@ -212,6 +258,13 @@
                                     <c:forEach items="${listReview}" var="rv">
                                         <li class="review-item">
                                             <div class="review-item-header">
+
+                                                <div class="review-item-author">${rv.accountName}  <c:if test="${sessionScope.accountSesseion.accountID == rv.accountID}">
+                                                        <a href="user-delete-review?reviewID=${rv.reviewID}&productID=${rv.productID}" onclick="return showMessageDelete();"><i
+                                                                class="fa-solid fa-trash"></i></a>
+                                                    </c:if></div>
+
+
                                                 <div class="review-item-stars">
                                                     <c:forEach begin="1" end="${rv.rating}" step="1" var="counter">
                                                         <i class="fa fa-star"></i>
@@ -219,12 +272,7 @@
                                                     <c:forEach begin="${rv.rating}" end="5" step="1" var="counter">
                                                         <i class="fa fa-star-o"></i>
                                                     </c:forEach>
-                                                    <c:if test="${sessionScope.accountSesseion.accountID == rv.accountID}">
-                                                        <a href="user-delete-review?reviewID=${rv.reviewID}&productID=${rv.productID}" onclick="return showMessageDelete();"><i
-                                                                class="fa-solid fa-trash"></i></a>
-                                                        </c:if>
                                                 </div>
-                                                <div class="review-item-author">${rv.accountName}</div>
                                             </div>
                                             <div class="review-item-content">
                                                 ${rv.review}

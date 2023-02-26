@@ -13,7 +13,9 @@ import jakarta.servlet.http.HttpServlet;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
 import java.util.ArrayList;
+import java.util.HashMap;
 import model.Product;
+import model.Rating;
 import model.Review;
 
 /**
@@ -47,7 +49,35 @@ public class LoadProductDetailController extends HttpServlet {
         //Set the retrieved Product object as an attribute of the current request object with the key "product".
         ReviewDAO rdao = new ReviewDAO();
         ArrayList<Review> listReview = rdao.getListReviewByProductID(productID);
-        
+
+        HashMap<Integer, Integer> listRating = new HashMap<>();
+        listRating.put(5, 0);
+        listRating.put(4, 0);
+        listRating.put(3, 0);
+        listRating.put(2, 0);
+        listRating.put(1, 0);
+        for (Review r : listReview) {
+            switch (r.getRating()) {
+                case 5:
+                    listRating.put(5, listRating.get(5) + 1);
+                    break;
+                case 4:
+                    listRating.put(4, listRating.get(4) + 1);
+                    break;
+                case 3:
+                    listRating.put(3, listRating.get(3) + 1);
+                    break;
+                case 2:
+                    listRating.put(2, listRating.get(2) + 1);
+                    break;
+                case 1:
+                    listRating.put(1, listRating.get(1) + 1);
+                    break;
+            }
+        }
+
+        request.setAttribute("listRating", listRating);
+        request.setAttribute("sizeReview", listReview.size());
         request.setAttribute("product", product);
         request.setAttribute("listReview", listReview);
         request.setAttribute("productID", productID);

@@ -24,76 +24,98 @@ public class ReviewDAO {
     PreparedStatement ps = null; // move query from Netbeen to SQl.
     ResultSet rs = null;         // save result query.
 
+    /**
+     * Get the list of reviews for a given product ID.
+     *
+     * @param productID The ID of the product to get reviews for.
+     * @return The list of reviews for the product with the given ID.
+     */
     public ArrayList<Review> getListReviewByProductID(String productID) {
         try {
-            String query = "SELECT R.*, A.AccountName FROM [REVIEW] R JOIN [ACCOUNT] A ON R.AccountID = A.AccountID WHERE R.ProductID = ? AND R.ReviewStatus = 'SUCCESS'"; //query select product orther than REMOVED
-            con = new DBContext().getConnection(); // open connection to SQL
-            ps = con.prepareStatement(query); // move query from Netbeen to SQl
-            ps.setString(1, productID);
-            rs = ps.executeQuery(); // the same with click to "excute" btn;
-            ArrayList<Review> list = new ArrayList<>(); //list products
+            // Create the SQL query to get the reviews for the given product ID
+            String query = "SELECT R.*, A.AccountName FROM [REVIEW] R JOIN [ACCOUNT] A ON R.AccountID = A.AccountID WHERE R.ProductID = ? AND R.ReviewStatus = 'SUCCESS'";
+            con = new DBContext().getConnection(); // Open a connection to the SQL database
+            ps = con.prepareStatement(query); // Create a PreparedStatement object and pass in the query
+            ps.setString(1, productID); // Replace the parameter '?' in the query with the productID passed to the method
+            rs = ps.executeQuery(); // Execute the query and store the result in a ResultSet object
+            ArrayList<Review> list = new ArrayList<>(); // Create an ArrayList to store the reviews
             while (rs.next()) {
+                // Add each review returned by the query to the ArrayList
                 list.add(new Review(rs.getString(1), rs.getInt(2), rs.getString(3), rs.getString(5), rs.getString(6), rs.getString(7)));
-            } // end while rs.next
-            return list;// return list product
+            }
+            return list; // Return the ArrayList of reviews
         } catch (Exception e) {
             e.getMessage();
         }
         return null;
     }
 
+    /**
+     * Insert a new review into the database.
+     *
+     * @param rating The rating of the review.
+     * @param review The text of the review.
+     * @param productID The ID of the product being reviewed.
+     * @param accountID The ID of the account that wrote the review.
+     */
     public void insertReview(int rating, String review, String productID, String accountID) {
         GenerateID gi = new GenerateID();
-        String reviewID = gi.generateNewID("RV", getLastIDOfReview());
-        //query used to add products
-        String query = "INSERT INTO [REVIEW] VALUES (?,?,?,'SUCCESS',?,?)";
+        String reviewID = gi.generateNewID("RV", getLastIDOfReview()); // Generate a new ID for the review
+        String query = "INSERT INTO [REVIEW] VALUES (?,?,?,'SUCCESS',?,?)"; // Create the SQL query to insert the new review
         try {
-            con = new DBContext().getConnection();   // open connection to SQL
-            ps = con.prepareStatement(query);  // move query from Netbeen to SQl
-            ps.setString(1, reviewID);
-            ps.setInt(2, rating);
-            ps.setString(3, review);
-            ps.setString(4, productID);
-            ps.setString(5, accountID);
-            ps.executeUpdate();
+            con = new DBContext().getConnection(); // Open a connection to the SQL database
+            ps = con.prepareStatement(query); // Create a PreparedStatement object and pass in the query
+            ps.setString(1, reviewID); // Replace the first parameter '?' in the query with the generated review ID
+            ps.setInt(2, rating); // Replace the second parameter '?' in the query with the review's rating
+            ps.setString(3, review); // Replace the third parameter '?' in the query with the review's text
+            ps.setString(4, productID); // Replace the fourth parameter '?' in the query with the product ID being reviewed
+            ps.setString(5, accountID); // Replace the fifth parameter '?' in the query with the account ID of the reviewer
+            ps.executeUpdate(); // Execute the query to insert the new review into the database
         } catch (Exception e) {
-            e.printStackTrace();
+            e.printStackTrace(); // Print any exceptions that occur during the insertion process
         }
     }
 
+    /**
+     * Delete a review from the database.
+     *
+     * @param reviewID The ID of the review to delete.
+     */
     public void deleteReview(String reviewID) {
-        //Create query update status of the product
-        String query = "Update REVIEW \n"
-                + "   SET ReviewStatus = 'REMOVED'\n"
-                + "   WHERE ReviewID = ?";
+        // Create a SQL query to update the review's status to 'REMOVED'
+        String query = "UPDATE REVIEW\n"
+                + "SET ReviewStatus = 'REMOVED'\n"
+                + "WHERE ReviewID = ?";
         try {
-            // Open connection to database
-            con = new DBContext().getConnection();
-            //Move query from Netbean to SQL
-            ps = con.prepareStatement(query);
-            //Set the value of the productID parameter in the SQL statement
-            ps.setString(1, reviewID);
-            // Excuse query
-            ps.executeUpdate();
+            con = new DBContext().getConnection(); // Open a connection to the database
+            ps = con.prepareStatement(query); // Create a PreparedStatement object and pass in the query
+            ps.setString(1, reviewID); // Replace the first parameter '?' in the query with the review ID to delete
+            ps.executeUpdate(); // Execute the query to update the review's status to 'REMOVED'
         } catch (SQLException e) {
-            System.err.println(e.getMessage());
+            System.err.println(e.getMessage()); // Print any exceptions that occur during the deletion process
         }
     }
 
+    /**
+     * This method retrieves the last Review ID from the REVIEW table in the
+     * database.
+     *
+     * @return String The last Review ID from the REVIEW table.
+     */
     public String getLastIDOfReview() {
-        String lastID = null;
-        String query = "SELECT TOP 1 ReviewID FROM [Review] ORDER BY CAST(RIGHT(ReviewID, 4) AS INT) DESC;";
+        String lastID = null; // initialize variable to hold last Review ID
+        String query = "SELECT TOP 1 ReviewID FROM [Review] ORDER BY CAST(RIGHT(ReviewID, 4) AS INT) DESC;"; // SQL query to get last Review ID
         try {
             con = new DBContext().getConnection(); // open connection to SQL
-            ps = con.prepareStatement(query);      // move query from Netbeen to SQl
-            rs = ps.executeQuery();                // excute query and return result to rs.
+            ps = con.prepareStatement(query); // move query from Netbeans to SQL
+            rs = ps.executeQuery(); // execute query and return result to rs.
             while (rs.next()) {
-                // return an account
-                lastID = rs.getString(1);
-            } // end while loop of table result.
+                lastID = rs.getString(1); // get last Review ID from result set
+            }
         } catch (Exception e) {
-            e.getMessage();
-        } // end try-catch.
-        return lastID;
+            e.getMessage(); // handle exceptions
+        }
+        return lastID; // return last Review ID
     }
+
 }
