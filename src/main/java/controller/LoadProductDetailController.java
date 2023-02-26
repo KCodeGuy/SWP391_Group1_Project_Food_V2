@@ -5,6 +5,7 @@
 package controller;
 
 import dao.ProductDAO;
+import dao.ReviewDAO;
 import java.io.IOException;
 import java.io.PrintWriter;
 import jakarta.servlet.ServletException;
@@ -13,6 +14,7 @@ import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
 import java.util.ArrayList;
 import model.Product;
+import model.Review;
 
 /**
  *
@@ -43,7 +45,11 @@ public class LoadProductDetailController extends HttpServlet {
         //Get the top 4 products in the same category as the given product ID, excluding the given product
         ArrayList<Product> listProduct = pdao.getTop4ProductByCategoryID(categoryID, productID);
         //Set the retrieved Product object as an attribute of the current request object with the key "product".
+        ReviewDAO rdao = new ReviewDAO();
+        ArrayList<Review> listReview = rdao.getListReviewByProductID(productID);
+        
         request.setAttribute("product", product);
+        request.setAttribute("listReview", listReview);
         request.setAttribute("productID", productID);
         //Set an attribute of a request object with the ArrayList of products obtained from the previous code snippet
         request.setAttribute("listProduct", listProduct);

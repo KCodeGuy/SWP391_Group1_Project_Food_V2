@@ -95,7 +95,6 @@ public class ProductDAO {
      *
      * @return last id
      */
-    //SELECT TOP 1 ProductID FROM [Product] ORDER BY CAST(RIGHT(ProductID, 4) AS INT) DESC;
     public String getLastIDOfProduct() {
         String lastID = null;
         String query = "SELECT TOP 1 ProductID FROM [Product] ORDER BY CAST(RIGHT(ProductID, 4) AS INT) DESC;";
@@ -237,7 +236,7 @@ public class ProductDAO {
                     + "    SELECT P.ProductID,P.ProductName, P.ProductDescription, P.ProductImage, P.ProductPrice, P.ProductSalePercent, 0 AS TotalQuantity\n"
                     + "    FROM [PRODUCT] P\n"
                     + "    JOIN [CATEGORY] C ON P.CategoryID = C.CategoryID\n"
-                    + "    WHERE C.CategoryID = ? AND P.ProductID <> ? AND P.ProductID NOT IN (SELECT P.ProductID\n"
+                    + "    WHERE C.CategoryID = ? AND P.ProductID <> ? AND P.ProductStatus <> 'REMOVED' AND P.ProductID NOT IN (SELECT P.ProductID\n"
                     + "    FROM [PRODUCT] P \n"
                     + "    JOIN [ORDER_DETAIL] D ON D.ProductID = P.ProductID\n"
                     + "    JOIN [CATEGORY] C ON P.CategoryID = C.CategoryID\n"

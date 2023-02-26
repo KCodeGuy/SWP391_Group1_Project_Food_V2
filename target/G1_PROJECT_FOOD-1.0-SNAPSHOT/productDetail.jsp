@@ -206,36 +206,25 @@
                         <div class="review-list">
                             <h3 class="review-list-title">Đánh giá từ khách hàng</h3>
                             <ul class="review-items">
-                                <li class="review-item">
-                                    <div class="review-item-header">
-                                        <div class="review-item-stars">
-                                            <i class="fa fa-star"></i>
-                                            <i class="fa fa-star"></i>
-                                            <i class="fa fa-star"></i>
-                                            <i class="fa fa-star"></i>
-                                            <i class="fa fa-star-o"></i>
+                                <c:forEach items="${listReview}" var="rv">
+                                    <li class="review-item">
+                                        <div class="review-item-header">
+                                            <div class="review-item-stars">
+                                                <c:forEach begin="1" end="${rv.rating}" step="1" var="counter">
+                                                    <i class="fa fa-star"></i>
+                                                </c:forEach>
+                                                <c:forEach begin="${rv.rating}" end="5" step="1" var="counter">
+                                                    <i class="fa fa-star-o"></i>
+                                                </c:forEach>
+
+                                            </div>
+                                            <div class="review-item-author">${rv.accountName}</div>
                                         </div>
-                                        <div class="review-item-author">Người dùng 1</div>
-                                    </div>
-                                    <div class="review-item-content">
-                                        Sản phẩm rất tốt, giá cả hợp lý.
-                                    </div>
-                                </li>
-                                <li class="review-item">
-                                    <div class="review-item-header">
-                                        <div class="review-item-stars">
-                                            <i class="fa fa-star"></i>
-                                            <i class="fa fa-star"></i>
-                                            <i class="fa fa-star"></i>
-                                            <i class="fa fa-star"></i>
-                                            <i class="fa fa-star"></i>
+                                        <div class="review-item-content">
+                                            ${rv.review}
                                         </div>
-                                        <div class="review-item-author">Người dùng 2</div>
-                                    </div>
-                                    <div class="review-item-content">
-                                        Sản phẩm rất đẹp và chất lượng tuyệt vời.
-                                    </div>
-                                </li>
+                                    </li>
+                                </c:forEach>
                             </ul>
                         </div>
                     </div>
