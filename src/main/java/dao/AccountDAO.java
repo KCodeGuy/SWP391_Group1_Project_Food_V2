@@ -424,9 +424,9 @@ public class AccountDAO {
     }//end method      
     
     /**
-     * Returns a list of all active users in the database.
+     * Returns a list of all active staffs in the database.
      *
-     * @return A list of User objects representing active users.
+     * @return A list of Staff objects representing active staffs.
      */
     public List<Account> getListStaff() {
         try {
@@ -486,7 +486,35 @@ public class AccountDAO {
         } //End trycatch
     }
     
-
+    /**
+     * Returns a list of User objects with names that match the provided search
+     * text.
+     *
+     * @param txtSearch the search text to match user names against
+     * @return a list of User objects whose names match the provided search
+     * text, or null if no match is found
+     */
+    public List<Account> getListStaffByName(String txtSearch) {
+        try {
+            //Define a SQL query to retrieve account details for all active staffs, including role information.
+            String query = "SELECT AccountID, AccountName, AccountEmail FROM ACCOUNT WHERE  AccountID NOT LIKE 'US%' AND AccountName LIKE ?";
+            con = new DBContext().getConnection(); //Open a connection to the database.
+            ps = con.prepareStatement(query); //Move query from Netbeen to SQL
+            ps.setString(1, "%" + txtSearch + "%");
+            rs = ps.executeQuery(); //Execute the query and get the result set.
+            //Create a list to hold the Staff objects that will be created from the query results.
+            List<Account> list = new ArrayList<>();
+            //Loop through the result set and create a new Staff object for each row.
+            while (rs.next()) {
+                list.add(new Account(rs.getString(1), rs.getString(3), "", AccountStatus.NULL, rs.getString(2), "", "", "", "", ""));  //AccountName
+            } //End while
+            return list;  //Return the list of Staff objects.
+        } catch (Exception e) {
+            e.getMessage();
+        } //End trycatch
+        //If an exception is caught or if the list is empty, return null.
+        return null;
+    }
 
     /**
      * Interact with the database to load staff information by linking account
