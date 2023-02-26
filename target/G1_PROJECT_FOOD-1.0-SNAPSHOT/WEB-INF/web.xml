@@ -156,6 +156,10 @@
         <servlet-name>AddProductController</servlet-name>
         <servlet-class>controller.AddProductController</servlet-class>
     </servlet>
+    <servlet>
+        <servlet-name>ShowOrderDetailForShipperController</servlet-name>
+        <servlet-class>controller.ShowOrderDetailForShipperController</servlet-class>
+    </servlet>
     <servlet-mapping>
         <servlet-name>HomeController</servlet-name>
         <url-pattern>/home</url-pattern>
@@ -299,6 +303,10 @@
     <servlet-mapping>
         <servlet-name>AddProductController</servlet-name>
         <url-pattern>/admin-add-product</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>ShowOrderDetailForShipperController</servlet-name>
+        <url-pattern>/showorderdetailforshipper</url-pattern>
     </servlet-mapping>
     <session-config>
         <session-timeout>

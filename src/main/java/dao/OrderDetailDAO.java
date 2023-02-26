@@ -56,7 +56,6 @@ public class OrderDetailDAO {
         }
     }
 
-
     /**
      * Get last id in table account
      *
@@ -106,6 +105,33 @@ public class OrderDetailDAO {
             e.getMessage();
         } // end try catch
         return null; // return null
+    }
+
+    /**
+     *
+     * Get list of order details by order ID for a shipper.
+     *
+     * @param orderID ID of the order to get details for
+     * @return list of OrderDetail objects for the specified order ID
+     */
+    public ArrayList<OrderDetail> getListOrderDetailByOrderIDForShipper(String orderID) {
+        try {
+            //Query select form database
+            String query = "SELECT D.OrderDQuantity, D.OrderDPrice, P.ProductName, P.ProductImage FROM ORDER_DETAIL D JOIN PRODUCT P ON D.ProductID = P.ProductID WHERE D.OrderID = ?"; 
+            con = new DBContext().getConnection(); //Open conect database
+            ps = con.prepareStatement(query); //Set account ID into query
+            ps.setString(1, orderID); //Set account ID into query
+            rs = ps.executeQuery(); //Execute query
+            ArrayList<OrderDetail> listOrder = new ArrayList<>(); //Create list 
+            while (rs.next()) {
+                listOrder.add(new OrderDetail(rs.getInt(1), rs.getInt(2), rs.getString(3), rs.getString(4)));
+                //Add new item into list 
+            } //End while
+            return listOrder; //Return list 
+        } catch (Exception e) {
+            e.getMessage();
+        } //End try catch
+        return null; //Return null
     }
 
 }

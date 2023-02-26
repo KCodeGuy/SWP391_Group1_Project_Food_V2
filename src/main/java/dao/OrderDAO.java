@@ -234,7 +234,7 @@ public class OrderDAO {
                     + "   SUM(([ORDER_DETAIL].OrderDPrice * (100 - [ORDER].ProductSalePercent) / 100) * [ORDER_DETAIL].OrderDQuantity) AS Price \n"
                     + "FROM [ORDER] \n"
                     + "INNER JOIN [ORDER_DETAIL] ON [ORDER].OrderID = [ORDER_DETAIL].OrderID \n"
-                    + "WHERE [ORDER].OrderStatus = 'Processing' AND [ORDER].OrderID = ?\n"
+                    + "WHERE [ORDER].OrderStatus = 'PROCESSING' AND [ORDER].OrderID = ?\n"
                     + "GROUP BY \n"
                     + "   [ORDER].OrderID, \n"
                     + "   [ORDER].AccountID,\n"
@@ -258,6 +258,59 @@ public class OrderDAO {
             e.getMessage();
         } // end try catch
         return null; // return null if not order
+    }
+
+    /**
+     * This method retrieves an Order object for a given orderID
+     *
+     * @param orderID the ID of the order
+     * @return the Order object associated with the given orderID, or null if an
+     * error occurs
+     */
+    public Order getOrderByOrderIDForShipper(String orderID) {
+        try {
+            //SQL query to select data from the database
+            String query = "SELECT \n"
+                    + "   [ORDER].OrderID, \n"
+                    + "   [ORDER].AccountID,\n"
+                    + "   [ORDER].BuyerFullName, \n"
+                    + "   [ORDER].BuyerPhone,\n"
+                    + "   [ORDER].BuyerAddress,\n"
+                    + "   [ORDER].OrderDate, \n"
+                    + "   [ORDER].OrderNote,\n"
+                    + "   [ORDER].VoucherID,\n"
+                    + "   [ORDER].ProductSalePercent,\n"
+                    + "   SUM([ORDER_DETAIL].OrderDQuantity) AS Quantity, \n"
+                    + "   SUM(([ORDER_DETAIL].OrderDPrice * (100 - [ORDER].ProductSalePercent) / 100) * [ORDER_DETAIL].OrderDQuantity) AS Price \n"
+                    + "FROM [ORDER] \n"
+                    + "INNER JOIN [ORDER_DETAIL] ON [ORDER].OrderID = [ORDER_DETAIL].OrderID \n"
+                    + "WHERE [ORDER].OrderStatus = 'ACCEPTED' AND [ORDER].OrderID = ?\n"
+                    + "GROUP BY \n"
+                    + "   [ORDER].OrderID, \n"
+                    + "   [ORDER].AccountID,\n"
+                    + "   [ORDER].BuyerFullName, \n"
+                    + "   [ORDER].BuyerPhone,\n"
+                    + "   [ORDER].BuyerAddress,\n"
+                    + "   [ORDER].OrderDate, \n"
+                    + "   [ORDER].OrderNote,\n"
+                    + "   [ORDER].VoucherID,\n"
+                    + "   [ORDER].ProductSalePercent";
+            con = new DBContext().getConnection(); //Establish a database connection
+            //Set order ID parameter into the query
+            ps = con.prepareStatement(query);
+            ps.setString(1, orderID);
+            //Execute the query
+            rs = ps.executeQuery();
+            Order order = null;
+            while (rs.next()) {
+                //Create an Order object with the retrieved data
+                order = new Order(rs.getString(1), rs.getString(7), rs.getString(6), rs.getString(2), rs.getString(3), rs.getString(4), rs.getString(5), rs.getString(8), rs.getInt(9), rs.getInt(10), rs.getInt(11));
+            }
+            return order; //Return the Order object
+        } catch (Exception e) {
+            e.getMessage();
+        }
+        return null; //Return null if there is no order found
     }
 
     /**
