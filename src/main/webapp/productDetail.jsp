@@ -187,46 +187,53 @@
 
 
                     <div class="product-review">
-                        <form id="rating-form">
+                        <form id="rating-form" action="user-add-review">
                             <div class="stars">
-                                <input type="radio" id="star5" name="rating" value="5" />
+                                <input type="radio" id="star5" name="rating" value="1" />
                                 <label for="star5"><i class="fa fa-star"></i></label>
-                                <input type="radio" id="star4" name="rating" value="4" />
+                                <input type="radio" id="star4" name="rating" value="2" />
                                 <label for="star4"><i class="fa fa-star"></i></label>
                                 <input type="radio" id="star3" name="rating" value="3" />
                                 <label for="star3"><i class="fa fa-star"></i></label>
-                                <input type="radio" id="star2" name="rating" value="2" />
+                                <input type="radio" id="star2" name="rating" value="4" />
                                 <label for="star2"><i class="fa fa-star"></i></label>
-                                <input type="radio" id="star1" name="rating" value="1" />
+                                <input type="radio" id="star1" name="rating" value="5" />
                                 <label for="star1"><i class="fa fa-star"></i></label>
                             </div>
+                            <input name="productID" value="${productID}" hidden="true">
+                            <input name="accountID" value="${sessionScope.accountSesseion.accountID}" hidden="true">
                             <textarea id="review" name="review" rows="5" placeholder="Nhập bình luận"></textarea>
-                            <button type="submit">Gửi đánh giá</button>
+                            <button type="submit">Send review</button>
                         </form>
-                        <div class="review-list">
-                            <h3 class="review-list-title">Đánh giá từ khách hàng</h3>
-                            <ul class="review-items">
-                                <c:forEach items="${listReview}" var="rv">
-                                    <li class="review-item">
-                                        <div class="review-item-header">
-                                            <div class="review-item-stars">
-                                                <c:forEach begin="1" end="${rv.rating}" step="1" var="counter">
-                                                    <i class="fa fa-star"></i>
-                                                </c:forEach>
-                                                <c:forEach begin="${rv.rating}" end="5" step="1" var="counter">
-                                                    <i class="fa fa-star-o"></i>
-                                                </c:forEach>
-
+                        <c:if test="${listReview.size() > 0}">
+                            <div class="review-list">
+                                <h3 class="review-list-title">Đánh giá từ khách hàng</h3>
+                                <ul class="review-items">
+                                    <c:forEach items="${listReview}" var="rv">
+                                        <li class="review-item">
+                                            <div class="review-item-header">
+                                                <div class="review-item-stars">
+                                                    <c:forEach begin="1" end="${rv.rating}" step="1" var="counter">
+                                                        <i class="fa fa-star"></i>
+                                                    </c:forEach>
+                                                    <c:forEach begin="${rv.rating}" end="5" step="1" var="counter">
+                                                        <i class="fa fa-star-o"></i>
+                                                    </c:forEach>
+                                                    <c:if test="${sessionScope.accountSesseion.accountID == rv.accountID}">
+                                                        <a href="user-delete-review?reviewID=${rv.reviewID}&productID=${rv.productID}" onclick="return showMessageDelete();"><i
+                                                                class="fa-solid fa-trash"></i></a>
+                                                        </c:if>
+                                                </div>
+                                                <div class="review-item-author">${rv.accountName}</div>
                                             </div>
-                                            <div class="review-item-author">${rv.accountName}</div>
-                                        </div>
-                                        <div class="review-item-content">
-                                            ${rv.review}
-                                        </div>
-                                    </li>
-                                </c:forEach>
-                            </ul>
-                        </div>
+                                            <div class="review-item-content">
+                                                ${rv.review}
+                                            </div>
+                                        </li>
+                                    </c:forEach>
+                                </ul>
+                            </div>
+                        </c:if>
                     </div>
 
                     <dvi class="row justify-content-center">
@@ -292,6 +299,15 @@
 
                 if (currentValue > 1) {
                     numberInput.value = currentValue - 1;
+                }
+            }
+
+            function showMessageDelete() {
+                var result = confirm("Are you sure to delete this review?");
+                if (result) {
+                    return true;
+                } else {
+                    return false;
                 }
             }
 

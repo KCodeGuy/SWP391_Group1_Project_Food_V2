@@ -156,6 +156,14 @@
         <servlet-name>AddProductController</servlet-name>
         <servlet-class>controller.AddProductController</servlet-class>
     </servlet>
+    <servlet>
+        <servlet-name>AddNewReviewController</servlet-name>
+        <servlet-class>controller.AddNewReviewController</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>DeleteReviewController</servlet-name>
+        <servlet-class>controller.DeleteReviewController</servlet-class>
+    </servlet>
     <servlet-mapping>
         <servlet-name>HomeController</servlet-name>
         <url-pattern>/home</url-pattern>
@@ -299,6 +307,14 @@
     <servlet-mapping>
         <servlet-name>AddProductController</servlet-name>
         <url-pattern>/admin-add-product</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>AddNewReviewController</servlet-name>
+        <url-pattern>/user-add-review</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>DeleteReviewController</servlet-name>
+        <url-pattern>/user-delete-review</url-pattern>
     </servlet-mapping>
     <session-config>
         <session-timeout>
