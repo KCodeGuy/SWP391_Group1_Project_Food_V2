@@ -46,10 +46,13 @@ public class EmaiVerificationController extends HttpServlet {
                 adao.updateAccountStatus(acc.getAccountID(), String.valueOf(AccountStatus.ACTIVED));
                 request.setAttribute("registerSuccesMessage", "Register successfully! Please login your account!");
                 request.getRequestDispatcher("login.jsp").forward(request, response);
-            } else { // update password feature
+            } else if(featurePage.equalsIgnoreCase("UPDATEPASS")){ // update password feature
                 request.setAttribute("authenEmailSuccess", "Verify email  successfully! Please enter password!");
                 request.setAttribute("email", acc.getAccountEmail());
                 request.getRequestDispatcher("forgotPassword.jsp").forward(request, response);
+            } else if(featurePage.equalsIgnoreCase("FORM-APPLY")) {  // register form application feature
+                adao.updateAccountStatus(acc.getAccountID(), String.valueOf(AccountStatus.PENDING));
+                response.sendRedirect("loadformapplicationdetail?accountID=" + accountID);
             }
         } else { // opt-code is not matched
             // check wrong entering time to back home
@@ -58,8 +61,10 @@ public class EmaiVerificationController extends HttpServlet {
             } else { // wrong entering less than 3 time then back to home
                 if (featurePage.equalsIgnoreCase("AUTHENEMAIL")) { // authen email feature
                     request.setAttribute("featurePage", "AUTHENEMAIL");
-                }else {  // update password feature
+                }else if(featurePage.equalsIgnoreCase("UPDATEPASS")){  // update password feature
                      request.setAttribute("featurePage", "UPDATEPASS");
+                }else if(featurePage.equalsIgnoreCase("FORM-APPLY")) { // register form application feature
+                    request.setAttribute("featurePage", "FORM-APPLY");
                 }
                 request.setAttribute("accountID", accountID);
                 request.setAttribute("timeSendFailed", timeSendingFailed);

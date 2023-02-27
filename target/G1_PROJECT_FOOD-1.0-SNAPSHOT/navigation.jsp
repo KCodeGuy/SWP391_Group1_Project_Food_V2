@@ -106,7 +106,7 @@
                                 <a class="nav-link" href="#">Contact</a>
                             </li>
                             <li class="nav-item">
-                                <a class="nav-link" href="formApplication.jsp">Recriut</a>
+                                <a class="nav-link" href="formApplication.jsp">Recruit</a>
                             </li>
                              <li class="nav-item">
                                 <a class="nav-link" href="register.jsp">Register</a>

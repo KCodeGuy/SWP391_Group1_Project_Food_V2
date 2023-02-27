@@ -136,7 +136,7 @@
         <servlet-name>updatestaffprofile</servlet-name>
         <servlet-class>controller.UpdateStaffProfileController</servlet-class>
     </servlet>
-        <servlet>
+    <servlet>
         <servlet-name>LoadListOrderedForManagePageController</servlet-name>
         <servlet-class>controller.LoadListOrderedForManagePageController</servlet-class>
     </servlet>
@@ -272,7 +272,7 @@
         <servlet-name>loadliststaff</servlet-name>
         <url-pattern>/loadliststaff</url-pattern>
     </servlet-mapping>
-        <servlet-mapping>
+    <servlet-mapping>
         <servlet-name>updatestaffprofile</servlet-name>
         <url-pattern>/updatestaffprofile</url-pattern>
     </servlet-mapping>

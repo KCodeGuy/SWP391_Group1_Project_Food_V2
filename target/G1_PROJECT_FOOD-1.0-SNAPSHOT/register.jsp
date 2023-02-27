@@ -24,9 +24,9 @@
         <div class="container-fluid wrapper">
             <!-- 1. Navigation -->
             <jsp:include page="navigation.jsp"></jsp:include>
-                                <div class="container-fluid container-fluid-form" style="height: 1000px">
+                <div class="container-fluid container-fluid-form" style="height: 1000px">
                     <div class="wrapper-form" style="width: 460px">
-                        <form action="registerController" id="myForm" method="POST">
+                        <form action="registerController" id="myForm" method="GET">
                             <div class="form-heading-group">
                                 <i class="fa-solid fa-user-plus fa-2x"></i>
                                 <h2 class="form-heading">REGISTER</h2>
@@ -73,12 +73,24 @@
                                     <div class="alert-warning" id="txtConfirmMessage"></div>
                                 </div>
                             </div>
+                            <div class="form-control-group disabled" style="display: flex; margin-bottom: 0px">
+                                <div class="form-control-group" style="width: 48%">
+                                    <h4 class="form-text-label">On-Position</h4>
+                                    <input type="" id="position" name="position" value="authen-email"/>
+                                </div>
+
+                                <div class="form-control-group" style="margin-left: 6px; width: 52%">
+                                    <h4 class="form-text-label">Note:</h4>
+                                    <input type="password" id="note" name="note" placeholder="Your note" />
+                                    <div class="alert-warning" id="txtConfirmMessage"></div>
+                                </div>
+                            </div>
                             <div class="form-control-group">
                                 <h4 class="form-text-label">Address:</h4>
                                 <input type="text" id="address" name="address" placeholder="An Binh, Ninh Kieu, Can Tho" />
                                 <div class="alert-warning" id="txtAddressMessage"></div>
                             </div>
-                            
+
                             <div class="form-control-group form-caption">
                                 <div class="form-text-caption">If you have account please click
                                     <a class="form-link" href="login.jsp">login account!</a>
@@ -93,13 +105,11 @@
                     </form>
                 </div>
             </div>
-
-
             <!-- 5. Footer  -->
             <jsp:include page="footer.jsp"></jsp:include>
         </div>
-        <script type="text/javascript" src="jquery/Jquery.js"></script>
-        <script type="text/javascript" src="jquery/register.js"></script>
+        <script src="jquery/Jquery.js" type="text/javascript" ></script>
+        <script src="jquery/register.js" type="text/javascript" ></script>
     </body>
 
 </html>
