@@ -16,7 +16,7 @@ import java.sql.SQLException;
 public class DBContext {
 
     // local host name 
-    private static final String dbPrefix = "jdbc:sqlserver://LAPTOP-F7OGOM4I\\SQLEXPRESS01";
+    private static final String dbPrefix = "jdbc:sqlserver://localhost";
     // set port here
     private static final String dbPort = "1433";
     // database name to connect sql

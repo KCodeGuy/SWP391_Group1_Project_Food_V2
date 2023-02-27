@@ -52,7 +52,7 @@ public class EmaiVerificationController extends HttpServlet {
                 request.getRequestDispatcher("forgotPassword.jsp").forward(request, response);
             } else if(featurePage.equalsIgnoreCase("FORM-APPLY")) {  // register form application feature
                 adao.updateAccountStatus(acc.getAccountID(), String.valueOf(AccountStatus.PENDING));
-                response.sendRedirect("loadformapplicationdetail?accountID=" + accountID);
+                response.sendRedirect("application-detail?accountID=" + accountID);
             }
         } else { // opt-code is not matched
             // check wrong entering time to back home
