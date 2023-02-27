@@ -38,6 +38,9 @@ public class LoadListProductForManageProductPageController extends HttpServlet {
         if (txtSearch != null) {
             listProduct = pdao.findProductByName(txtSearch,null);
         }
+        if(listProduct.isEmpty()){
+            request.setAttribute("MESSAGE", "Product not found!");
+        }
         request.setAttribute("listProduct", listProduct);
         request.setAttribute("productQuantity", listProduct.size());//show the number of products in the list
         request.getRequestDispatcher("manageProduct.jsp").forward(request, response);

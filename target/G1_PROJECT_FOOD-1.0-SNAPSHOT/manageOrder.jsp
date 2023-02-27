@@ -99,6 +99,7 @@
                                     </c:forEach>                                        
                                 </tbody>
                             </table>
+                                   ${requestScope.MESSAGE}
                         </div>
                     </div>
                 </div>
