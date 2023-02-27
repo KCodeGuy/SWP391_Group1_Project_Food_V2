@@ -7,6 +7,7 @@ D:\SWP\SWP391_Group1_Project_Food_V2\src\main\java\controller\DeleteProductInCar
 D:\SWP\SWP391_Group1_Project_Food_V2\src\main\java\hash\GenerateID.java
 D:\SWP\SWP391_Group1_Project_Food_V2\src\main\java\controller\LoadStaffProfileController.java
 D:\SWP\SWP391_Group1_Project_Food_V2\src\main\java\controller\LoadUserProfileController.java
+D:\SWP\SWP391_Group1_Project_Food_V2\src\main\java\controller\G1FOODFilter.java
 D:\SWP\SWP391_Group1_Project_Food_V2\src\main\java\hash\codec\Base64.java
 D:\SWP\SWP391_Group1_Project_Food_V2\src\main\java\dao\OrderDetailDAO.java
 D:\SWP\SWP391_Group1_Project_Food_V2\src\main\java\dao\AccountDAO.java
@@ -14,6 +15,7 @@ D:\SWP\SWP391_Group1_Project_Food_V2\src\main\java\controller\AcceptOrderControl
 D:\SWP\SWP391_Group1_Project_Food_V2\src\main\java\model\OrderDetail.java
 D:\SWP\SWP391_Group1_Project_Food_V2\src\main\java\hash\PBKDF.java
 D:\SWP\SWP391_Group1_Project_Food_V2\src\main\java\model\AccountStatus.java
+D:\SWP\SWP391_Group1_Project_Food_V2\src\main\java\model\Rating.java
 D:\SWP\SWP391_Group1_Project_Food_V2\src\main\java\controller\RejectApplicationController.java
 D:\SWP\SWP391_Group1_Project_Food_V2\src\main\java\hash\jni\LibraryLoader.java
 D:\SWP\SWP391_Group1_Project_Food_V2\src\main\java\controller\LoadListProductForManageProductPageController.java
@@ -29,6 +31,7 @@ D:\SWP\SWP391_Group1_Project_Food_V2\src\main\java\controller\AddProductIntoCart
 D:\SWP\SWP391_Group1_Project_Food_V2\src\main\java\controller\LoadFormApplicationDetailForAdminController.java
 D:\SWP\SWP391_Group1_Project_Food_V2\src\main\java\dao\CartDAO.java
 D:\SWP\SWP391_Group1_Project_Food_V2\src\main\java\controller\HomeController.java
+D:\SWP\SWP391_Group1_Project_Food_V2\src\main\java\dao\ReviewDAO.java
 D:\SWP\SWP391_Group1_Project_Food_V2\src\main\java\controller\LoginController.java
 D:\SWP\SWP391_Group1_Project_Food_V2\src\main\java\controller\AcceptApplicationController.java
 D:\SWP\SWP391_Group1_Project_Food_V2\src\main\java\model\Cart.java
@@ -52,13 +55,17 @@ D:\SWP\SWP391_Group1_Project_Food_V2\src\main\java\hash\jni\NilLibraryLoader.jav
 D:\SWP\SWP391_Group1_Project_Food_V2\src\main\java\model\Account.java
 D:\SWP\SWP391_Group1_Project_Food_V2\src\main\java\controller\DeleteProductForManagePageController.java
 D:\SWP\SWP391_Group1_Project_Food_V2\src\main\java\controller\ReEmailVerificationController.java
+D:\SWP\SWP391_Group1_Project_Food_V2\src\main\java\controller\AddNewReviewController.java
 D:\SWP\SWP391_Group1_Project_Food_V2\src\main\java\hash\jni\LibraryLoaders.java
 D:\SWP\SWP391_Group1_Project_Food_V2\src\main\java\controller\EmailAuthenUpdatePasswordController.java
 D:\SWP\SWP391_Group1_Project_Food_V2\src\main\java\hash\jni\SysLibraryLoader.java
 D:\SWP\SWP391_Group1_Project_Food_V2\src\main\java\dao\OrderDAO.java
+D:\SWP\SWP391_Group1_Project_Food_V2\src\main\java\model\Review.java
 D:\SWP\SWP391_Group1_Project_Food_V2\src\main\java\controller\ForgotPasswordController.java
 D:\SWP\SWP391_Group1_Project_Food_V2\src\main\java\controller\LoadListProductInCartController.java
 D:\SWP\SWP391_Group1_Project_Food_V2\src\main\java\controller\UpdateStaffProfileController.java
+D:\SWP\SWP391_Group1_Project_Food_V2\src\main\java\controller\DeleteReviewController.java
+D:\SWP\SWP391_Group1_Project_Food_V2\src\main\java\controller\AddProductController.java
 D:\SWP\SWP391_Group1_Project_Food_V2\src\main\java\model\OrderStatus.java
 D:\SWP\SWP391_Group1_Project_Food_V2\src\main\java\controller\RejectOrderController.java
 D:\SWP\SWP391_Group1_Project_Food_V2\src\main\java\controller\RegisterController.java

@@ -55,12 +55,14 @@
                                         </div>
                                     </form>
                                     <div class="btn-group-search-add">
+                                        <form action="admin-manage-order">
                                         <div class="search-group">
-                                            <input type="text" placeholder="Enter order's ID">
-                                            <button class="btn-main btn-search">
+                                            <input type="text"  name="txtSearch" value="${param.txtSearch}" placeholder="Enter order's ID">
+                                            <button type="submit" class="btn-main btn-search">
                                                 <i class="fa-solid fa-magnifying-glass"></i>
                                             </button>
                                         </div>
+                                            </form>
                                     </div>
                                 </div>
                             </div>

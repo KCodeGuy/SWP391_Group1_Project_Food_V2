@@ -4,6 +4,7 @@ controller\HomeController.class
 dao\OrderDAO.class
 controller\ShowOrderDetailsForChefController.class
 controller\AcceptOrderController.class
+controller\AddProductController.class
 controller\LoadListProductInCartController.class
 com\example\demo\hash\jni\Platform.class
 controller\LoadListOrderedForManagePageController.class
@@ -29,9 +30,12 @@ controller\RejectOrderController.class
 model\Category.class
 controller\DeleteProductInCartController.class
 controller\DeleteProductForManagePageController.class
+controller\G1FOODFilter.class
+model\Rating.class
 com\example\demo\hash\jni\JarLibraryLoader$1.class
 controller\LogoutController.class
 dao\ProductDAO.class
+controller\AddNewReviewController.class
 model\OrderDetail.class
 model\Cart.class
 dao\CartDAO.class
@@ -39,7 +43,9 @@ dao\AccountDAO.class
 controller\RegisterController.class
 hash\SCryptUtil.class
 controller\ForgotPasswordController.class
+model\Review.class
 controller\LoginController.class
+controller\DeleteReviewController.class
 model\VoucherStatus.class
 controller\LoadStaffProfileController.class
 emailHandler\EmailHandler.class
@@ -55,6 +61,7 @@ controller\AcceptApplicationController.class
 controller\LoadFormApplicationDetailForAdminController.class
 controller\LoadListOrdersShipController.class
 controller\UpdateStaffProfileController.class
+dao\ReviewDAO.class
 com\example\demo\hash\jni\LibraryLoader.class
 controller\LoadFormApplicationDetailController.class
 controller\LoadUserProfileController.class

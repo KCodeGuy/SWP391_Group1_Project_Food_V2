@@ -14,10 +14,10 @@
         <meta charset="UTF-8">
         <meta http-equiv="X-UA-Compatible" content="IE=edge">
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
-        <link rel="stylesheet" href="./bootstap/css/bootstrap.min.css" type="text/css">
-        <link rel="stylesheet" href="./bootstap/js/bootstrap.js" type="text/javascript">
-        <link rel="stylesheet" href="./assert/css/base.css" type="text/css">
-        <link rel="stylesheet" href="./assert/css/home.css" type="text/css">
+        <link rel="stylesheet" href="./bootstap/css/bootstrap.min.css">
+        <link rel="stylesheet" href="./bootstap/js/bootstrap.js">
+        <link rel="stylesheet" href="./assert/css/base.css">
+        <link rel="stylesheet" href="./assert/css/home.css">
         <link rel="stylesheet" href="./assert/font/fontawesome-free-6.1.1-web/css/all.css">
         <title>Home-Page</title>
     </head>
@@ -91,6 +91,16 @@
                                             <li class="nav-item">
                                                 <a href="home.html" class="nav-link">Combo</a>
                                             </li>
+                                            <li class="nav-item">
+                                    <form class="sort-form" action="home">
+                                        <select style="height: 36px; margin-top: 10px;" name="sort" id="sort-product">
+                                            <option value="asc">Price ascending</option>
+                                            <option value="desc">Price descending</option>
+                                        </select>
+                                        <input type="hidden" name="txtSearch" value="${param.txtSearch}" />
+                                        <button type="submit" class="btn-primary btn-sort"><i class="fa-solid fa-arrow-up-a-z"></i>Sort</button>
+                                    </form>
+                                            </li>                      
                                         </ul>
                                         <form class="d-flex" role="search" action="home" method="get">
                                             <input class="form-control me-2" type="search" placeholder="Cơm sườn bì chả" aria-label="Search"

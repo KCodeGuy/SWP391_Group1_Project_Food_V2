@@ -37,9 +37,14 @@ public class LoadListOrderedForManagePageController extends HttpServlet {
         OrderDAO odao = new OrderDAO(); 
         //pass listOrder object to jsp page
         ArrayList<Order> listOrder = odao.getListOrderForAdmin();
+         String txtSearch = request.getParameter("txtSearch");
+       
         int totalPrice = 0;
         for (Order order : listOrder) {
             totalPrice += order.getTotalPrice();
+        }
+         if (txtSearch != null && !txtSearch.isEmpty()) {
+            listOrder = odao.getListOrderForAdmin(txtSearch);
         }
         request.setAttribute("totalOrder", listOrder.size());
         request.setAttribute("totalPrice", totalPrice);
