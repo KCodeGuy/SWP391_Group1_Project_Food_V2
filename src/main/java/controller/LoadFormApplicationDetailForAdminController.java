@@ -37,6 +37,7 @@ public class LoadFormApplicationDetailForAdminController extends HttpServlet {
         AccountDAO sdao = new AccountDAO();
         Account staff = sdao.getApplicationFormByAccountID(accountID);
         // Set the user attribute for the request and forward to the use formApplicationDetailsForAdmin.jsp page
+        request.setAttribute("registerFormApplicationSuccess", "Register form application successfully!");
         request.setAttribute("accountID", accountID);
         request.setAttribute("staff", staff);
         request.getRequestDispatcher("formApplicationDetailsForAdmin.jsp").forward(request, response);

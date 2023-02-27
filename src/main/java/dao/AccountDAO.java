@@ -1,7 +1,3 @@
-/*
- * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
- * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
- */
 package dao;
 
 import context.DBContext;
@@ -14,8 +10,6 @@ import java.util.ArrayList;
 import java.util.List;
 import model.Account;
 import model.AccountStatus;
-import model.Product;
-import model.ProductStatus;
 
 /**
  *
@@ -149,6 +143,47 @@ public class AccountDAO {
     }
 
     /**
+     * To create a new account by user(register account).This function will
+     * insert to database some of parameters as below:
+     *
+     * @param name entered name of user(String).
+     * @param email entered email of user(String).
+     * @param password entered password of user(String).
+     * @param phone entered phone of user(String).
+     * @param address entered address of user(String).
+     * @param dob day of birth of user(String)
+     * @param startDay current date when register(String).
+     * @param onPosition position to apply is shipper or chef.
+     * @author Trần Đăng Khoa - CE160367
+     */
+    public void registerFormApplication(String name, String email, String password, String phone, String address, String dob, String startDay, String onPosition) {
+        // query to insert a new account of user to database. With status is REMOVED.
+        String query = "INSERT INTO [ACCOUNT] VALUES (?,?,?,'REMOVED',?,?,?,?,?)";
+        String idOfChef = createNewChefID(); // create new id of chef.
+        String idOfShipper = createNewShipperID(); // create new id of shipper.
+
+        try {
+            con = new DBContext().getConnection();   // open connection to SQL
+            ps = con.prepareStatement(query);  // move query from Netbeen to SQl
+            if (onPosition.equalsIgnoreCase("chef")) {
+                ps.setString(1, idOfChef);             // pass entered id of chef to the first ?. 
+            } else if (onPosition.equalsIgnoreCase("shipper")) {
+                ps.setString(1, idOfShipper);          // pass entered id of shipper to the first ?. 
+            }
+            ps.setString(2, email);          // pass entered email to the second ?.
+            ps.setString(3, password);       // pass entered password to the third ?.
+            ps.setString(4, name);           // pass entered name to the four ?.
+            ps.setString(5, address);        // pass entered address to the filth ?.
+            ps.setString(6, phone);          // pass entered phone to the 6th ?.
+            ps.setString(7, dob);            // pass entered date of birth to the 7th ?.
+            ps.setString(8, startDay);       // pass entered current date to the 8th ?.
+            ps.executeUpdate();                      // insert a new account of user to database.
+        } catch (Exception e) {
+            e.getMessage();
+        } // end try-catch.
+    }
+
+    /**
      * To get id of a specified account by passed email.
      *
      * @param email entered email of user(String).
@@ -219,9 +254,9 @@ public class AccountDAO {
         } // end try-catch.
     }
 
-    
     /**
      * Update a account's information when user re-register it(pending status).
+     *
      * @param accountID The ID of the account whose profile is being updated.
      * @param userBirthday The user's birthday.
      * @param accountName The user's name associated with the account.
@@ -254,8 +289,7 @@ public class AccountDAO {
             e.getMessage();
         } //End trycatch
     }
-    
-    
+
     /**
      * Create new ID of user
      *
@@ -323,6 +357,7 @@ public class AccountDAO {
      * @param email entered email to checking update(String).
      * @param newPassword entered password from user to update a new
      * password(String).
+     * @author Trần Đăng Khoa - CE160367
      */
     public void updatePassword(String email, String newPassword) {
         // query to update account by passed email.
@@ -396,7 +431,7 @@ public class AccountDAO {
 
     /**
      * Returns the Staff associated with a given account ID.
-     * 
+     *
      * @param accountID the ID of the account associated with the Staff
      * @return the Staff object associated with the given account ID, or null if
      * the account ID is invalid
@@ -406,7 +441,7 @@ public class AccountDAO {
             String query = "SELECT AccountID, AccountName, AccountPhone, AccountEmail, AccountAddress, AccountStartDate, AccountBirthDay FROM ACCOUNT WHERE AccountID = ? AND AccountID NOT LIKE 'US%'"; // Database query statement
             con = new DBContext().getConnection();  // open connection to SQL
             ps = con.prepareStatement(query);       // move query from Netbeen to SQl
-            ps.setString(1, accountID);        
+            ps.setString(1, accountID);
             rs = ps.executeQuery();                 // Perform query in database
             Account staff = null;                   // Assign values ​​in null
             while (rs.next()) { // Loop through creating a new staff and retrieved data
@@ -422,7 +457,7 @@ public class AccountDAO {
         }
         return null;                                // Return value null
     }//end method      
-    
+
     /**
      * Returns a list of all active users in the database.
      *
@@ -452,14 +487,17 @@ public class AccountDAO {
         //If an exception is caught or if the list is empty, return null.
         return null;
     }
+
     /**
      * Update a staff's profile in the database with the provided information.
-     * @param accountEmail entered email of user(String).
+     *
      * @param accountID The ID of the account whose profile is being updated.
      * @param accountName The staff's name associated with the account.
      * @param accountPhone The staff's phone number associated with the account.
-     * @param accountStartDay The staff's phone number associated with the account.
-     * @param roleDescription The staff's phone number associated with the account.
+     * @param accountStartDay The staff's phone number associated with the
+     * account.
+     * @param roleDescription The staff's phone number associated with the
+     * account.
      * @param accountAddress The staff's address associated with the account.
      */
     public void updateStaffProfile(String accountID, String accountName, String accountPhone, String accountAddress, String accountStartDay, String roleDescription) {
@@ -485,15 +523,12 @@ public class AccountDAO {
             e.getMessage();
         } //End trycatch
     }
-    
-
 
     /**
-     * Interact with the database to load staff information by linking account
-     * ID
-     *
+     * To get an account of chef by id to handle.
      * @param accountID of the associated with staff
      * @return staff linked by accountID otherwise return null
+     * @author Trần Đăng Khoa - CE160367
      */
     public Account getApplicationFormByAccountID(String accountID) {
         try {
@@ -504,9 +539,9 @@ public class AccountDAO {
             rs = ps.executeQuery(); // Execute the query and get the result set   
             Account staff = null;// Initialize a new staff object
             while (rs.next()) {  // Loop through creating a new staff and retrieved data
-                if (rs.getString(1).substring(0,2).equalsIgnoreCase("SP")) {
+                if (rs.getString(1).substring(0, 2).equalsIgnoreCase("SP")) { // id is shipper
                     staff = new Account(rs.getString(1), rs.getString(4), "", AccountStatus.PENDING, rs.getString(2), rs.getString(3), "", "", "", "Shipper"); // add new item in list
-                } else {
+                } else { // id is chef
                     staff = new Account(rs.getString(1), rs.getString(4), "", AccountStatus.PENDING, rs.getString(2), rs.getString(3), "", "", "", "Chef"); // add new item in list
                 }
             }//end while    

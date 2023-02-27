@@ -29,13 +29,14 @@ public class RegisterController extends HttpServlet {
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         response.setContentType("text/html;charset=UTF-8");
-         // Get entered data from form to handle.
+        // Get entered data from form to handle.
         String fullName = request.getParameter("name");     // entered full name of account.
         String phone = request.getParameter("phone");       // entered phone of account.
         String email = request.getParameter("email");       // entered email of account.
         String address = request.getParameter("address");   // entered address of account.
         String password = request.getParameter("password"); // entered password of account.
         String birthday = request.getParameter("birthday"); // entered birthday of account.
+        String onPosition = request.getParameter("position");
 
         EmailHandler eh = new EmailHandler();
         AccountDAO adao = new AccountDAO();
@@ -43,7 +44,7 @@ public class RegisterController extends HttpServlet {
         String todayDate = eh.getTodayDate();
         // get id of a secified account by entered email.
         String accountID = adao.getAccountIDByEmail(email);
-
+        boolean checkFeaturePageIsAuthenEmail = true;
         // check whether an account is exist or not by email to hanle
         if (adao.checkAccountIsExist(email)) { // account has been already exist actived status.
             request.setAttribute("accountExistMessage", "Account has been adready exist! Please try again!");
@@ -53,20 +54,32 @@ public class RegisterController extends HttpServlet {
             // get otp code for verify
             String otpCode = eh.generateRandomCode();
             // check whether an account is null or peding to hanle.
-            if(adao.getAccountStatusByEmail(email) == null) { // account is null status - not added in database.
+            if (adao.getAccountStatusByEmail(email) == null) { // account is null status - not added in database.
                 // insert an account to database.
-                adao.registerAccount(fullName, email, password, phone, address, birthday, todayDate);
-            }else if(adao.getAccountStatusByEmail(email).equals(String.valueOf(AccountStatus.PENDING))) { // account is pending status.
+                if (onPosition.equalsIgnoreCase("chef")) { // position is chef
+                    adao.registerFormApplication(fullName, email, password, phone, address, birthday, todayDate, onPosition);
+                    checkFeaturePageIsAuthenEmail = false;
+                } else if (onPosition.equalsIgnoreCase("shipper")) { // position is shipper
+                    adao.registerFormApplication(fullName, email, password, phone, address, birthday, todayDate, onPosition);
+                    checkFeaturePageIsAuthenEmail = false;
+                } else { // position is null
+                    adao.registerAccount(fullName, email, password, phone, address, birthday, todayDate);
+                }
+            } else if (adao.getAccountStatusByEmail(email).equals(String.valueOf(AccountStatus.PENDING))) { // account is pending status.
                 // update account when it is pending status.
                 adao.updateAccountIsPending(accountID, birthday, fullName, phone, address, todayDate);
             }
             // send email verify to user with otp-code
             eh.sendEmailAuthen(email, otpCode);
-            // set necessary attribute to website.
-            request.setAttribute("featurePage", "AUTHENEMAIL");
+            // check whether postion is chef shipper or null to set feature page on form.
+            if (onPosition.equalsIgnoreCase("chef") || onPosition.equalsIgnoreCase("shipper")) { // position is chef or shipper
+                 request.setAttribute("featurePage", "FORM-APPLY");
+            } else { // position is null
+                request.setAttribute("featurePage", "AUTHENEMAIL");
+            }
             request.setAttribute("timeSendFailed", timeSendFailed);
             request.setAttribute("email", email);
-            request.setAttribute("accountID", accountID);
+            request.setAttribute("accountID", adao.getAccountIDByEmail(email));
             request.setAttribute("otpCode", otpCode);
             // forward to emailVerification page.
             request.getRequestDispatcher("emailVerification.jsp").forward(request, response);

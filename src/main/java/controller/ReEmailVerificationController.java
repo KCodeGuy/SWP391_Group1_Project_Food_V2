@@ -48,8 +48,10 @@ public class ReEmailVerificationController extends HttpServlet {
         // check current feature this page is handling (update password or email verification)
         if (featurePage.equalsIgnoreCase("AUTHENEMAIL")) { // feature is authen email
             request.setAttribute("featurePage", "AUTHENEMAIL");
-        } else { // feature is update password.
+        } else if (featurePage.equalsIgnoreCase("UPDATEPASS")) { // feature is update password.
             request.setAttribute("featurePage", "UPDATEPASS");
+        } else if (featurePage.equalsIgnoreCase("FORM-APPLY")) { // register form application feature
+            request.setAttribute("featurePage", "FORM-APPLY");
         }
         request.setAttribute("accountID", accountID);
         request.setAttribute("email", acc.getAccountEmail());

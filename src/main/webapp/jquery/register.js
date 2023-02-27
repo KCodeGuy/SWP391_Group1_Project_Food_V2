@@ -76,11 +76,11 @@ function checkConfirm() {
     password = $("#password").val();
     confirm = $("#confirm").val();
     if (confirm === "") {
-        $("#txtConfirmMessage").html('Confirm password can not be empty!');
+        $("#txtConfirmMessage").html("Password can't be empty!");
     } else if (confirm === password) {
         $("#txtConfirmMessage").html('');
     } else {
-        $("#txtConfirmMessage").html("Password does not match!");
+        $("#txtConfirmMessage").html("Password doesn't match!");
     }
     return confirm === password;
 }
