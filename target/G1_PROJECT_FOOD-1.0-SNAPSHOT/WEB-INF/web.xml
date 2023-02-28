@@ -164,6 +164,10 @@
         <servlet-name>DeleteReviewController</servlet-name>
         <servlet-class>controller.DeleteReviewController</servlet-class>
     </servlet>
+    <servlet>
+        <servlet-name>LoadOrderHistoryForUserController</servlet-name>
+        <servlet-class>controller.LoadOrderHistoryForUserController</servlet-class>
+    </servlet>
     <servlet-mapping>
         <servlet-name>HomeController</servlet-name>
         <url-pattern>/home</url-pattern>
@@ -315,6 +319,10 @@
     <servlet-mapping>
         <servlet-name>DeleteReviewController</servlet-name>
         <url-pattern>/user-delete-review</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>LoadOrderHistoryForUserController</servlet-name>
+        <url-pattern>/loadorderhistoryforuser</url-pattern>
     </servlet-mapping>
     <session-config>
         <session-timeout>

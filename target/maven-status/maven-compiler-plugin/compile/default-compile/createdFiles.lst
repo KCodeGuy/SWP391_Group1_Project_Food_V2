@@ -1,12 +1,8 @@
 com\example\demo\hash\jni\LibraryLoaders.class
 controller\AddVoucherController.class
 controller\HomeController.class
-dao\OrderDAO.class
-controller\ShowOrderDetailsForChefController.class
-controller\AcceptOrderController.class
 controller\LoadListProductInCartController.class
 com\example\demo\hash\jni\Platform.class
-controller\LoadListOrderedForManagePageController.class
 controller\LoadListStaffController.class
 controller\UseVoucherController.class
 com\example\demo\hash\jni\SysLibraryLoader.class
@@ -25,7 +21,6 @@ dao\OrderDetailDAO.class
 controller\AddProductIntoCartFromHome.class
 model\OrderStatus.class
 hash\SCrypt.class
-controller\RejectOrderController.class
 model\Category.class
 controller\DeleteProductInCartController.class
 controller\DeleteProductForManagePageController.class
@@ -53,16 +48,13 @@ controller\EmailAuthenUpdatePasswordController.class
 context\DBContext.class
 controller\AcceptApplicationController.class
 controller\LoadFormApplicationDetailForAdminController.class
-controller\LoadListOrdersShipController.class
 controller\UpdateStaffProfileController.class
 com\example\demo\hash\jni\LibraryLoader.class
 controller\LoadFormApplicationDetailController.class
 controller\LoadUserProfileController.class
 controller\RejectApplicationController.class
 model\ProductStatus.class
-controller\PayingController.class
 controller\ReEmailVerificationController.class
-controller\LoadListOrderedForChefController.class
 model\Order.class
 controller\UpdateVoucherController.class
 controller\LoadListUserController.class

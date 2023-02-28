@@ -88,7 +88,7 @@
                             </c:if>
                             <c:if test="${sessionScope.accountSesseion.accountID.startsWith('US')}">
                                 <li class="nav-item">
-                                    <a class="nav-link" aria-current="page" href="home">Manage orders</a>
+                                    <a class="nav-link" aria-current="page" href="listOrderHistory">Manage orders</a>
                                 </li>
                                 <li class="nav-item">
                                     <a class="nav-link" aria-current="page" href="user-profile?accountID=${sessionScope.accountSesseion.accountID}">${sessionScope.accountSesseion.accountName}</a>
