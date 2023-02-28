@@ -177,7 +177,7 @@
                     </div>
                 </div>
             </form>
-            <form action="usevoucher">
+            <form action="use-voucher">
                 <input type="text" id="accountID" name="accountID" placeholder="" hidden="true" value="${user.accountID}"/>
                 <input type="text" id="voucherID" name="voucherID" placeholder="" />
                 <button type="Submit" class="btn-primary">

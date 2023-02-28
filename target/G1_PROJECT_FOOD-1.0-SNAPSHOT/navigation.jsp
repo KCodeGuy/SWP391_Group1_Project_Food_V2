@@ -122,7 +122,7 @@
                                         </li>
                                         <li class="nav-item">
                                             <i class="fa-sharp fa-solid fa-file-invoice-dollar"></i>
-                                            <a class="nav-link" aria-current="page" href=shipper-manage-order">Manage ship</a>
+                                            <a class="nav-link" aria-current="page" href="shipper-manage-order">Manage ship</a>
                                         </li>
                                         <li class="nav-item">
                                             <i class="fa-sharp fa-solid fa-file-invoice-dollar"></i>
