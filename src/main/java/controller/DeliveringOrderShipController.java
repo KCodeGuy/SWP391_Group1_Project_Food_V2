@@ -36,7 +36,7 @@ public class DeliveringOrderShipController extends HttpServlet {
         //Create an instance of the OrderDAO class
         OrderDAO odao = new OrderDAO();
         //Call the deliveredOrderByOrderID method of the OrderDAO class with the accountID and orderID as parameters
-        odao.deliveredOrderByOrderID(accountID, orderID);
+        odao.deliveringOrderByOrderID(accountID, orderID);
         //Redirect the user to the "shipper-manage-order" page
         response.sendRedirect("shipper-manage-order");
     }
