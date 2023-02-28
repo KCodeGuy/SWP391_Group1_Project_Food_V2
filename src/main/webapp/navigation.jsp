@@ -101,7 +101,7 @@
                                         </li>
                                         <li class="nav-item">
                                             <i class="fa-sharp fa-solid fa-file-invoice-dollar"></i>
-                                            <a class="nav-link" aria-current="page" href="staffProfile.jsp">Accepted orders</a>
+                                            <a class="nav-link" aria-current="page" href="staffProfile.jsp">My orders</a>
                                         </li>
                                         <div class="separator-persional-tab"></div>
                                         <li class="nav-item">
@@ -126,7 +126,7 @@
                                         </li>
                                         <li class="nav-item">
                                             <i class="fa-sharp fa-solid fa-file-invoice-dollar"></i>
-                                            <a class="nav-link" aria-current="page" href="staffProfile.jsp">Pickup orders</a>
+                                            <a class="nav-link" aria-current="page" href="staffProfile.jsp">My orders</a>
                                         </li>
                                         <div class="separator-persional-tab"></div>
                                         <li class="nav-item">
@@ -147,7 +147,7 @@
                                         </li>
                                         <li class="nav-item">
                                             <i class="fa-sharp fa-solid fa-file-invoice-dollar"></i>
-                                            <a class="nav-link" aria-current="page" href="admin-manage-order">My orders</a>
+                                            <a class="nav-link" aria-current="page" href="user-order-history?accountID=${sessionScope.accountSesseion.accountID}">My orders</a>
                                         </li>
                                         <div class="separator-persional-tab"></div>
                                         <li class="nav-item">

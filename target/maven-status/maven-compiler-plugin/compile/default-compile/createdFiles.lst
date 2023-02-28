@@ -1,13 +1,10 @@
 com\example\demo\hash\jni\LibraryLoaders.class
 controller\AddVoucherController.class
 controller\HomeController.class
-<<<<<<< HEAD
 dao\OrderDAO.class
 controller\ShowOrderDetailsForChefController.class
 controller\AcceptOrderController.class
 controller\AddProductController.class
-=======
->>>>>>> origin/QuyenNNM_LoadOrderHistoryForUser
 controller\LoadListProductInCartController.class
 com\example\demo\hash\jni\Platform.class
 controller\LoadListStaffController.class

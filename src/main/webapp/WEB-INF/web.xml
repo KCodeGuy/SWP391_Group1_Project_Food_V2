@@ -330,7 +330,7 @@
     </servlet-mapping>
     <servlet-mapping>
         <servlet-name>LoadOrderHistoryForUserController</servlet-name>
-        <url-pattern>/loadorderhistoryforuser</url-pattern>
+        <url-pattern>/user-order-history</url-pattern>
     </servlet-mapping>
     <session-config>
         <session-timeout>
