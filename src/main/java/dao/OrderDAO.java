@@ -180,11 +180,12 @@ public class OrderDAO {
      *
      * and returns an ArrayList of Order objects containing the retrieved data.
      *
+     * @param accountID ID of order
      * @return An ArrayList of Order objects that are ready to be shipped, or
      * null if there are no orders.
      */
     public ArrayList<Order> getListOrderHistoryForUser(String accountID) {
-        try {
+        try { //Database query statement
             String query = "SELECT \n"
                     + "   [ORDER].OrderID, \n"
                     + "   [ORDER].BuyerFullName,\n"
@@ -205,7 +206,7 @@ public class OrderDAO {
             ps.setString(1, accountID);
             rs = ps.executeQuery(); // execute query
             ArrayList<Order> listOrderHistory = new ArrayList<>(); // create list product in order
-            while (rs.next()) {
+            while (rs.next()) { //Value access loop from the database
                 listOrderHistory.add(new Order(rs.getString(1), OrderStatus.valueOf(rs.getString(4)), rs.getString(3), rs.getString(2), rs.getInt(5), rs.getInt(6)));
                 // add new item into list order
             } // end while
@@ -215,9 +216,7 @@ public class OrderDAO {
         } // end try catch
         return null; // return null if not order
     }
-    public static void main(String[] args) {
-        
-    }
+
     /**
      * This function get list product have status is accept reject and
      * successful

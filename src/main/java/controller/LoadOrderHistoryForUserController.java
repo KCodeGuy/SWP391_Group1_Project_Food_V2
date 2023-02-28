@@ -33,15 +33,15 @@ public class LoadOrderHistoryForUserController extends HttpServlet {
             throws ServletException, IOException {
         response.setContentType("text/html;charset=UTF-8");
         //Create an instance of OrderDAO class
-        String accountID = request.getParameter("accountID");
         OrderDAO odao = new OrderDAO();
+        String accountID = request.getParameter("accountID");
         //Get the list of orders that have been shipped
         ArrayList<Order> listOrderHistory = odao.getListOrderHistoryForUser(accountID);
         int totalPrice = 0;
         //Calculate the total order count and total price of those orders
-
         if (!listOrderHistory.isEmpty()) {
             for (Order order : listOrderHistory) {
+                System.out.println(order.toString());
                 totalPrice += order.getTotalPrice();
             }
         }
@@ -49,7 +49,7 @@ public class LoadOrderHistoryForUserController extends HttpServlet {
         request.setAttribute("totalOrder", listOrderHistory.size());
         request.setAttribute("totalPrice", totalPrice);
         request.setAttribute("listOrderHistory", listOrderHistory);
-        //Forward the request to the manageOrder.jsp page for display
+        //Forward the request to the orderHistory.jsp page for display
         request.getRequestDispatcher("orderHistory.jsp").forward(request, response);
     }
 

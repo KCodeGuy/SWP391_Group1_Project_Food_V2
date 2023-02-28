@@ -3,6 +3,7 @@
     Created on : Feb 12, 2023, 2:14:42 AM
     Author     : PC
 --%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <!DOCTYPE html>
 <html lang="en">
@@ -43,12 +44,14 @@
                                             <h6 class="sort-form-label">Total quantity:</h6>
                                             <button class="btn-primary total-quantity">
                                             ${totalOrder}
+
+
                                         </button>
                                     </div>
                                     <div class="total-quantity-group">
                                         <h6 class="sort-form-label">Total revenue:</h6>
                                         <button class="btn-primary total-quantity total-revenue">
-                                            <fmt:formatNumber type="number" pattern="###,###" value="${totalPrice}"/>đ
+                                            <fmt:formatNumber type="number" pattern="###,###" value="${totalPrice}"/>${totalPrice}đ
                                         </button>
                                     </div>
                                 </form>
@@ -79,20 +82,20 @@
                                     </tr>
                                 </thead>
                                 <tbody>
-                                <c:forEach items="${listOrderHistory}" var="os">
-                                    <tr>
-                                        <td class="table-order">1</td>
-                                        <td class="table-order">${os.orderID}</td>
-                                        <td class="table-name">${os.userFullName}</td>
-                                        <td class="table-quantity">${os.totalQuanityProduct}</td>
-                                        <td class="table-order-date">${os.orderDate}</td>
-                                        <td class="table-status">${os.orderStatus}</td>
-                                        <td class="table-price"><fmt:formatNumber type="number" pattern="###,###" value="${os.totalPrice}"/>đ</td>
-                                        <td class="table-btn">
-                                            <a class="table-btn-edit" href="updateProduct.html"><i class="fa-solid fa-pen-to-square"></i></a>
-                                        </td>
+                                    <c:forEach items="${listOrderHistory}" var="os">
+                                        <tr>
+                                            <td class="table-order">1</td>
+                                            <td class="table-order">${os.orderID}</td>
+                                            <td class="table-name">${os.userFullName}</td>
+                                            <td class="table-quantity">${os.totalQuanityProduct}</td>
+                                            <td class="table-order-date">${os.orderDate}</td>
+                                            <td class="table-status">${os.orderStatus}</td>
+                                            <td class="table-price"><fmt:formatNumber type="number" pattern="###,###" value="${os.totalPrice}"/>${os.totalPrice}đ</td>
+                                    <td class="table-btn">
+                                        <a class="table-btn-edit" href="updateProduct.html"><i class="fa-solid fa-pen-to-square"></i></a>
+                                    </td>
                                     </tr>
-                                   
+
                                 </c:forEach>          
                                 </tbody>
                             </table>
