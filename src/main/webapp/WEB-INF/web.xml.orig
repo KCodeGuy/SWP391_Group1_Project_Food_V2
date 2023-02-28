@@ -157,16 +157,17 @@
         <servlet-class>controller.AddProductController</servlet-class>
     </servlet>
     <servlet>
+<<<<<<< HEAD
         <servlet-name>AddNewReviewController</servlet-name>
         <servlet-class>controller.AddNewReviewController</servlet-class>
-    </servlet>
-        <servlet>
-        <servlet-name>ShowOrderDetailForShipperController</servlet-name>
-        <servlet-class>controller.ShowOrderDetailForShipperController</servlet-class>
     </servlet>
     <servlet>
         <servlet-name>DeleteReviewController</servlet-name>
         <servlet-class>controller.DeleteReviewController</servlet-class>
+=======
+        <servlet-name>ShowOrderDetailForShipperController</servlet-name>
+        <servlet-class>controller.ShowOrderDetailForShipperController</servlet-class>
+>>>>>>> origin/HieuTTN_showOrderDetailForShipper-v2
     </servlet>
     <servlet-mapping>
         <servlet-name>HomeController</servlet-name>
@@ -313,16 +314,17 @@
         <url-pattern>/admin-add-product</url-pattern>
     </servlet-mapping>
     <servlet-mapping>
+<<<<<<< HEAD
         <servlet-name>AddNewReviewController</servlet-name>
         <url-pattern>/user-add-review</url-pattern>
-    </servlet-mapping>
-        <servlet-mapping>
-        <servlet-name>ShowOrderDetailForShipperController</servlet-name>
-        <url-pattern>/showorderdetailforshipper</url-pattern>
     </servlet-mapping>
     <servlet-mapping>
         <servlet-name>DeleteReviewController</servlet-name>
         <url-pattern>/user-delete-review</url-pattern>
+=======
+        <servlet-name>ShowOrderDetailForShipperController</servlet-name>
+        <url-pattern>/showorderdetailforshipper</url-pattern>
+>>>>>>> origin/HieuTTN_showOrderDetailForShipper-v2
     </servlet-mapping>
     <session-config>
         <session-timeout>

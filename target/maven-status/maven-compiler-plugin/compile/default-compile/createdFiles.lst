@@ -4,6 +4,7 @@ controller\HomeController.class
 dao\OrderDAO.class
 controller\ShowOrderDetailsForChefController.class
 controller\AcceptOrderController.class
+controller\AddProductController.class
 controller\LoadListProductInCartController.class
 com\example\demo\hash\jni\Platform.class
 controller\LoadListOrderedForManagePageController.class
@@ -29,11 +30,13 @@ controller\RejectOrderController.class
 model\Category.class
 controller\DeleteProductInCartController.class
 controller\DeleteProductForManagePageController.class
+controller\G1FOODFilter.class
 com\example\demo\hash\jni\JarLibraryLoader$1.class
 controller\LogoutController.class
 dao\ProductDAO.class
 model\OrderDetail.class
 model\Cart.class
+controller\ShowOrderDetailForShipperController.class
 dao\CartDAO.class
 dao\AccountDAO.class
 controller\RegisterController.class

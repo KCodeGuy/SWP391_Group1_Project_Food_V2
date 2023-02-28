@@ -5,6 +5,7 @@
 package controller;
 
 import dao.OrderDAO;
+import dao.OrderDetailDAO;
 import java.io.IOException;
 import java.io.PrintWriter;
 import jakarta.servlet.ServletException;
@@ -13,12 +14,13 @@ import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
 import java.util.ArrayList;
 import model.Order;
+import model.OrderDetail;
 
 /**
  *
  * @author Tran Thi Ngoc Hieu CE161025
  */
-public class LoadListOrdersShipController extends HttpServlet {
+public class ShowOrderDetailForShipperController extends HttpServlet {
 
     /**
      * Processes requests for both HTTP <code>GET</code> and <code>POST</code>
@@ -32,24 +34,23 @@ public class LoadListOrdersShipController extends HttpServlet {
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         response.setContentType("text/html;charset=UTF-8");
-        //Create an instance of OrderDAO class
+        //Get order ID from request parameter
+        String orderID = request.getParameter("orderID");
+        //Create Order object
+        Order order;
+        //Create OrderDAO object
         OrderDAO odao = new OrderDAO();
-        //Get the list of orders that have been shipped
-        ArrayList<Order> listOrderShip = odao.getListOrderForShip();
-        int totalPrice = 0;
-        //Calculate the total order count and total price of those orders
-        
-        if (!listOrderShip.isEmpty()) {
-            for (Order order : listOrderShip) {
-                totalPrice += order.getTotalPrice();
-            }
-        }
-        //Set the attributes for the request
-        request.setAttribute("totalOrder", listOrderShip.size());
-        request.setAttribute("totalPrice", totalPrice);
+        //Get Order object by Order ID using OrderDAO object
+        order = odao.getOrderByOrderIDForShipper(orderID);
+        //Create OrderDetailDAO object
+        OrderDetailDAO ddao = new OrderDetailDAO();
+        //Get list of OrderDetail objects by Order ID using OrderDetailDAO object
+        ArrayList<OrderDetail> listOrderShip = ddao.getListOrderDetailByOrderIDForShipper(orderID);
+        //Set Order object and list of OrderDetail objects as request attributes
+        request.setAttribute("order", order);
         request.setAttribute("listOrderShip", listOrderShip);
-        //Forward the request to the manageOrder.jsp page for display
-        request.getRequestDispatcher("manageOrderShip.jsp").forward(request, response);
+        //Forward the request and response to orderDetailForShipper.jsp page
+        request.getRequestDispatcher("orderDetailForShipper.jsp").forward(request, response);
     }
 
     // <editor-fold defaultstate="collapsed" desc="HttpServlet methods. Click on the + sign on the left to edit the code.">
