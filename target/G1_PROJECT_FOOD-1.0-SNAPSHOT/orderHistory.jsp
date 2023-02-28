@@ -3,6 +3,7 @@
     Created on : Feb 12, 2023, 2:14:42 AM
     Author     : PC
 --%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <!DOCTYPE html>
 <html lang="en">
@@ -31,68 +32,79 @@
                         <div class="row">
                             <div class="col-xs-12">
                                 <h6 class="table-header">ORDER HISTORY</h6>
-                            </div>
-                        </div>
-                        <div class="row">
-                            <div class="col-xs-12">
-                                <table class="table table-striped text-center align-middle">
-                                    <thead class="table-heading">
-                                        <tr>
-                                            <th class="table-heading-text" scope="col">No.</th>
-                                            <th class="table-heading-text" scope="col">ID</th>
-                                            <th class="table-heading-text" scope="col">Customer's name</th>
-                                            <th class="table-heading-text" scope="col">Quantity</th>
-                                            <th class="table-heading-text" scope="col">Order-date</th>
-                                            <th class="table-heading-text" scope="col">Status</th>
-                                            <th class="table-heading-text" scope="col">Total</th>
-                                            <th class="table-heading-text" scope="col">Detail</th>
-                                        </tr>
-                                    </thead>
-                                    <tbody>
-                                        <tr>
-                                            <td class="table-order">1</td>
-                                            <td class="table-order">ABC123</td>
-                                            <td class="table-name">Nguyen Van A</td>
-                                            <td class="table-quantity">4</td>
-                                            <td class="table-order-date">12/01/2023</td>
-                                            <td class="table-status">ACCEPTED</td>
-                                            <td class="table-price">90.000đ</td>
-                                            <td class="table-btn">
-                                                <a class="table-btn-edit" href="updateProduct.html"><i class="fa-solid fa-pen-to-square"></i></a>
-                                            </td>
-                                        </tr>
-                                        <tr>
-                                            <td class="table-order">1</td>
-                                            <td class="table-order">ABC123</td>
-                                            <td class="table-name">Nguyen Van A</td>
-                                            <td class="table-quantity">4</td>
-                                            <td class="table-order-date">12/01/2023</td>
-                                            <td class="table-status">ACCEPTED</td>
-                                            <td class="table-price">90.000đ</td>
-                                            <td class="table-btn">
-                                                <a class="table-btn-edit" href="updateProduct.html"><i class="fa-solid fa-pen-to-square"></i></a>
-                                            </td>
-                                        </tr>
-                                        <tr>
-                                            <td class="table-order">1</td>
-                                            <td class="table-order">ABC123</td>
-                                            <td class="table-name">Nguyen Van A</td>
-                                            <td class="table-quantity">4</td>
-                                            <td class="table-order-date">12/01/2023</td>
-                                            <td class="table-status">ACCEPTED</td>
-                                            <td class="table-price">90.000đ</td>
-                                            <td class="table-btn">
-                                                <a class="table-btn-edit" href="updateProduct.html"><i class="fa-solid fa-pen-to-square"></i></a>
-                                            </td>
-                                        </tr>
-                                    </tbody>
-                                </table>
+                                <div class="table-control-btn-group">
+                                    <form class="sort-form" action="">
+                                        <h6 class="sort-form-label">Sort order:</h6>
+                                        <select style="height: 36px; margin-top: 10px;" name="sort-product" id="sort-product">
+                                            <option value="asc">Price ascending</option>
+                                            <option value="desc">Price descending</option>
+                                        </select>
+                                        <button type="submit" class="btn-primary btn-sort"><i class="fa-solid fa-arrow-up-a-z"></i>Sort</button>
+                                        <div class="total-quantity-group">
+                                            <h6 class="sort-form-label">Total quantity:</h6>
+                                            <button class="btn-primary total-quantity">
+                                            ${totalOrder}
+
+
+                                        </button>
+                                    </div>
+                                    <div class="total-quantity-group">
+                                        <h6 class="sort-form-label">Total revenue:</h6>
+                                        <button class="btn-primary total-quantity total-revenue">
+                                            <fmt:formatNumber type="number" pattern="###,###" value="${totalPrice}"/>${totalPrice}đ
+                                        </button>
+                                    </div>
+                                </form>
+                                <div class="btn-group-search-add">
+                                    <div class="search-group">
+                                        <input type="text" placeholder="Enter order's ID">
+                                        <button class="btn-main btn-search">
+                                            <i class="fa-solid fa-magnifying-glass"></i>
+                                        </button>
+                                    </div>
+                                </div>
                             </div>
                         </div>
                     </div>
-                </div>
+                    <div class="row">
+                        <div class="col-xs-12">
+                            <table class="table table-striped text-center align-middle">
+                                <thead class="table-heading">
+                                    <tr>
+                                        <th class="table-heading-text" scope="col">No.</th>
+                                        <th class="table-heading-text" scope="col">ID</th>
+                                        <th class="table-heading-text" scope="col">Customer's name</th>
+                                        <th class="table-heading-text" scope="col">Quantity</th>
+                                        <th class="table-heading-text" scope="col">Order-date</th>
+                                        <th class="table-heading-text" scope="col">Status</th>
+                                        <th class="table-heading-text" scope="col">Total</th>
+                                        <th class="table-heading-text" scope="col">Detail</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <c:forEach items="${listOrderHistory}" var="os">
+                                        <tr>
+                                            <td class="table-order">1</td>
+                                            <td class="table-order">${os.orderID}</td>
+                                            <td class="table-name">${os.userFullName}</td>
+                                            <td class="table-quantity">${os.totalQuanityProduct}</td>
+                                            <td class="table-order-date">${os.orderDate}</td>
+                                            <td class="table-status">${os.orderStatus}</td>
+                                            <td class="table-price"><fmt:formatNumber type="number" pattern="###,###" value="${os.totalPrice}"/>${os.totalPrice}đ</td>
+                                    <td class="table-btn">
+                                        <a class="table-btn-edit" href="updateProduct.html"><i class="fa-solid fa-pen-to-square"></i></a>
+                                    </td>
+                                    </tr>
 
-                <!-- 5. Footer  -->
+                                </c:forEach>          
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- 5. Footer  -->
             <jsp:include page="footer.jsp"></jsp:include>
         </div>
     </body>

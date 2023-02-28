@@ -171,6 +171,53 @@ public class OrderDAO {
     }
 
     /**
+     *
+     * This method retrieves a list of orders that are ready to be shipped from
+     * the database.
+     *
+     * It executes a SELECT query that retrieves order information from the
+     * ORDER and ORDER_DETAIL tables,
+     *
+     * and returns an ArrayList of Order objects containing the retrieved data.
+     *
+     * @param accountID ID of order
+     * @return An ArrayList of Order objects that are ready to be shipped, or
+     * null if there are no orders.
+     */
+    public ArrayList<Order> getListOrderHistoryForUser(String accountID) {
+        try { //Database query statement
+            String query = "SELECT \n"
+                    + "   [ORDER].OrderID, \n"
+                    + "   [ORDER].BuyerFullName,\n"
+                    + "   [ORDER].OrderDate,\n"
+                    + "   [ORDER].OrderStatus, \n"
+                    + "   SUM([ORDER_DETAIL].OrderDQuantity) AS Quantity, \n"
+                    + "   SUM([ORDER_DETAIL].OrderDPrice * (100 - [ORDER].ProductSalePercent) / 100) AS Price \n"
+                    + "FROM [ORDER] \n"
+                    + "INNER JOIN [ORDER_DETAIL] ON [ORDER].OrderID = [ORDER_DETAIL].OrderID \n"
+                    + "WHERE [ORDER].AccountID = ?\n"
+                    + "GROUP BY \n"
+                    + "   [ORDER].OrderID, \n"
+                    + "   [ORDER].BuyerFullName,\n"
+                    + "   [ORDER].OrderDate,\n"
+                    + "   [ORDER].OrderStatus"; // query select form database
+            con = new DBContext().getConnection(); // open conect database
+            ps = con.prepareStatement(query); // set account ID into query
+            ps.setString(1, accountID);
+            rs = ps.executeQuery(); // execute query
+            ArrayList<Order> listOrderHistory = new ArrayList<>(); // create list product in order
+            while (rs.next()) { //Value access loop from the database
+                listOrderHistory.add(new Order(rs.getString(1), OrderStatus.valueOf(rs.getString(4)), rs.getString(3), rs.getString(2), rs.getInt(5), rs.getInt(6)));
+                // add new item into list order
+            } // end while
+            return listOrderHistory; // return list order
+        } catch (Exception e) {
+            System.out.println(e.getMessage());
+        } // end try catch
+        return null; // return null if not order
+    }
+
+    /**
      * This function get list product have status is accept reject and
      * successful
      *

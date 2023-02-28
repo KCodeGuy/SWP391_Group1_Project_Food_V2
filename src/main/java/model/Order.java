@@ -362,4 +362,11 @@ public class Order {
         this.accountOfIDShipper = accountOfIDShipper;
     }
 
+    @Override
+    public String toString() {
+        return "Order{" + "orderID=" + orderID + ", orderNote=" + orderNote + ", orderStatus=" + orderStatus + ", orderDate=" + orderDate + ", accountID=" + accountID + ", userFullName=" + userFullName + ", userPhone=" + userPhone + ", userAddress=" + userAddress + ", voucherID=" + voucherID + ", productSalePercent=" + productSalePercent + ", accountOfIDChef=" + accountOfIDChef + ", accountOfIDShipper=" + accountOfIDShipper + ", totalQuanityProduct=" + totalQuanityProduct + ", totalPrice=" + totalPrice + '}';
+    }
+    
+    
+
 }
