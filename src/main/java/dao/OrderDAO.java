@@ -215,7 +215,9 @@ public class OrderDAO {
         } // end try catch
         return null; // return null if not order
     }
-
+    public static void main(String[] args) {
+        
+    }
     /**
      * This function get list product have status is accept reject and
      * successful
