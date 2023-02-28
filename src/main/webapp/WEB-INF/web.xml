@@ -318,7 +318,7 @@
     </servlet-mapping>
         <servlet-mapping>
         <servlet-name>ShowOrderDetailForShipperController</servlet-name>
-        <url-pattern>/showorderdetailforshipper</url-pattern>
+        <url-pattern>/shipper-order-detail</url-pattern>
     </servlet-mapping>
     <servlet-mapping>
         <servlet-name>DeleteReviewController</servlet-name>

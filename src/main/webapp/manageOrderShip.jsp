@@ -91,7 +91,7 @@
                                             <td class="table-status">${os.orderStatus}</td>
                                             <td class="table-price"><fmt:formatNumber type="number" pattern="###,###" value="${os.totalPrice}"/>đ</td>
                                             <td class="table-btn">
-                                                <a class="table-btn-edit" href="showorderdetailforshipper?orderID=${os.orderID}"><i class="fa-solid fa-pen-to-square"></i></a>
+                                                <a class="table-btn-edit" href="shipper-order-detail?orderID=${os.orderID}"><i class="fa-solid fa-pen-to-square"></i></a>
                                             </td> 
                                         </tr>
                                     </c:forEach>

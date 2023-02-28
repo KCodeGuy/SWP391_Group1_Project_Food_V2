@@ -139,7 +139,7 @@
                                             <td class="table-quantity">
                                                 ${os.orderQuantity}
                                             </td>
-                                            <td class="table-price"><fmt:formatNumber type="number" pattern="###,###" value="${os.orderPrice * os.orderQuantity}"/>đ</td>
+                                            <td class="table-price"><fmt:formatNumber type="number" pattern="###,###" value="${(os.orderPrice * os.orderQuantity * (100 - os.productSalePercent)) / 100}"/>đ</td>
 
                                         </tr>
                                     </c:forEach>
