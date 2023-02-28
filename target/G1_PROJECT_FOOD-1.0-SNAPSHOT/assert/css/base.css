@@ -1,6 +1,7 @@
 :root {
     /*for main components*/
     --main-color: #8F272D;
+    --persional-option-color: #9a2e33;
     --primary-color: #163C50;
     --background-color: #ECBA57;
     --background-inside-color: #f0c879;
@@ -8,7 +9,7 @@
     /* for buttons */
     --main-btn-hover-color: rgb(224, 152, 16);
     --primary-btn-hover-color: #07486b;
-    --main-btn-shadow-color: #c0111a;
+    --main-btn-shadow-color: #b3353c;
     --main-btn-hover-shadow-color: rgb(241, 166, 80);
 }
 
@@ -108,6 +109,17 @@
     padding: 16px 24px;
 }
 
+.nav-item {
+    display: flex;
+    align-items: center;
+    margin-left: 20px;
+}
+
+.nav-item i {
+    font-size: 12px;
+    color: white;
+}
+
 .navbar-logo {
     width: 146px;
     height: 36px;
@@ -116,7 +128,6 @@
 .nav-link {
     color: white;
     font-weight: bold;
-    margin-left: 8px;
     cursor: pointer;
 }
 
@@ -133,6 +144,84 @@
     text-decoration: none;
     outline: 0;
     box-shadow: 0 0 0 white;
+}
+
+.nav-option-list {
+    position: relative;
+}
+
+.nav-option-list .option-list-user-icon ,.nav-option-list .option-list-user-name {
+    color: var(--background-color);
+}
+
+.nav-item-persinal-tab {
+    --width-box: 200px;
+    position: absolute;
+    background-color: var(--persional-option-color);
+    border-radius: 2px;
+    width: var(--width-box);
+    top: 46px;
+    right: 10px;
+    padding: 12px 6px 12px 6px !important;
+    box-shadow: 4px 6px var(--main-btn-shadow-color);
+    transform-origin: 96% top;
+    animation: headerNotifyAnimation ease-in 0.3s;
+    will-change: opacity, transform;
+    z-index: 10;
+    display: none;
+}
+
+.nav-item-persinal-tab::before {
+    content: "";
+    display: block;
+    position: absolute;
+    top: -32px;
+    right: 2px;
+    border-width: 18px;
+    border-style: solid;
+    border-color: transparent transparent var(--persional-option-color) transparent ;
+    cursor: pointer;
+}
+
+.nav-item-persinal-tab::after {
+    content: "";
+    display: block;
+    position: absolute;
+    top: -20px;
+    right: 0px;
+    width: 200px;
+    height: 22px;
+    background-color: transparent;
+}
+
+.nav-option-list:hover .nav-item-persinal-tab {
+    display: block;
+}
+
+.nav-item-persinal-tab .nav-item  a {}
+
+.separator-persional-tab {
+    height: 2px;
+    width: 120px;
+    background-color: white;
+    margin-left: 18px;
+    margin-top: 6px;
+}
+
+
+@keyframes headerNotifyAnimation {
+    from {
+        opacity: 0;
+        /* Hien len tu tam - 0 */
+        transform: scale(0);
+    }
+    to {
+        opacity: 1;
+        /* Hien len full item - 1 */
+        transform: scale(1);
+
+        /* note: scale(x) ,with x(0 => 1)*/
+    }
 }
 
 /* footer css */

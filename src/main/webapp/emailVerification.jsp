@@ -22,7 +22,6 @@
 
     <body>
         <!-- Wrapper contains all website's components -->
-        <div class="container-fluid wrapper">
             <!-- 1. Navigation -->
             <jsp:include page="navigation.jsp"></jsp:include>
                 <div class="container-fluid container-fluid-form" style="height: 600px">
@@ -83,7 +82,6 @@
 
             <!-- 5. Footer  -->
             <jsp:include page="footer.jsp"></jsp:include>
-        </div>
     </body>
 
 </html>

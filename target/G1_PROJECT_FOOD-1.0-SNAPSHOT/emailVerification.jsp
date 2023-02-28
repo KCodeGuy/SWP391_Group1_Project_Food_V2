@@ -22,7 +22,6 @@
 
     <body>
         <!-- Wrapper contains all website's components -->
-        <div class="container-fluid wrapper">
             <!-- 1. Navigation -->
             <jsp:include page="navigation.jsp"></jsp:include>
                 <div class="container-fluid container-fluid-form" style="height: 600px">
@@ -42,19 +41,19 @@
                         </c:if>
                         <div class="form-control-group disabled">
                             <h4 class="form-text-label ">Orgin-code:</h4>
-                            <input placeholder="123456" id="orginalCode" name="orginalCode" value="${otpCode}"/>
+                            <input placeholder="123456" id="orginalCode" name="orginalCode" value="${otpCode}" readonly/>
                         </div>
                         <div class="form-control-group disabled">
                             <h4 class="form-text-label ">Account ID:</h4>
-                            <input placeholder="123456" id="accountID" name="accountID" value="${accountID}"/>
+                            <input placeholder="123456" id="accountID" name="accountID" value="${accountID}" readonly/>
                         </div>
                         <div class="form-control-group disabled">
                             <h4 class="form-text-label ">Time:</h4>
-                            <input placeholder="" id="timeSendFailed" name="timeSendFailed" value="${timeSendFailed}"/>
+                            <input placeholder="" id="timeSendFailed" name="timeSendFailed" value="${timeSendFailed}" readonly/>
                         </div>
                         <div class="form-control-group disabled">
                             <h4 class="form-text-label ">Feature:</h4>
-                            <input placeholder="" id="featurePage" name="featurePage" value="${featurePage}"/>
+                            <input placeholder="" id="featurePage" name="featurePage" value="${featurePage}" readonly/>
                         </div>
                         <div class="alert-warning error-message">${wrongCodeMessage}</div>
                         <div class="form-control-group form-caption">
@@ -83,7 +82,6 @@
 
             <!-- 5. Footer  -->
             <jsp:include page="footer.jsp"></jsp:include>
-        </div>
     </body>
 
 </html>
