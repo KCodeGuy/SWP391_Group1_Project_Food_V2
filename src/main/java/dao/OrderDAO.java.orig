@@ -468,6 +468,8 @@ public class OrderDAO {
         return false;
     }
 
+<<<<<<< HEAD
+=======
     /**
      *
      * Retrieves the list of order history for a given shipper account ID from
@@ -510,6 +512,7 @@ public class OrderDAO {
         return null; // return null if not order
     }
 
+>>>>>>> origin/HieuTTN_loadListOrderHistoryForShipper
     /**
      * This function to check shipper has order delivering
      *
@@ -533,9 +536,16 @@ public class OrderDAO {
         } // end try catch
         return null; // return null if not order
     }
+<<<<<<< HEAD
+=======
 
     /**
      *
      * @param args
      */
+    public static void main(String[] args) {
+        System.out.println(new OrderDAO().getDelivering("SP0008"));
+    }
+>>>>>>> origin/HieuTTN_loadListOrderHistoryForShipper
+
 }

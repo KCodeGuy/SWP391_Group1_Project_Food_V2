@@ -92,12 +92,12 @@
                                             <td class="table-order-date">${os.orderDate}</td>
                                             <td class="table-status">${os.orderStatus}</td>
                                             <td class="table-price"><fmt:formatNumber type="number" pattern="###,###" value="${os.totalPrice}"/>đ</td>
-                                    <td class="table-btn">
-                                        <a class="table-btn-edit" href="updateProduct.html"><i class="fa-solid fa-pen-to-square"></i></a>
-                                    </td>
-                                    </tr>
+                                            <td class="table-btn">
+                                                <a class="table-btn-edit" href="updateProduct.html"><i class="fa-solid fa-pen-to-square"></i></a>
+                                            </td>
+                                        </tr>
 
-                                </c:forEach>          
+                                    </c:forEach>          
                                 </tbody>
                             </table>
                         </div>
