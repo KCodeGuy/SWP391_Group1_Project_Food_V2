@@ -161,6 +161,10 @@
         <servlet-class>controller.AddNewReviewController</servlet-class>
     </servlet>
         <servlet>
+        <servlet-name>deletestaff</servlet-name>
+        <servlet-class>controller.DeleteStaffController</servlet-class>
+    </servlet>
+        <servlet>
         <servlet-name>ShowOrderDetailForShipperController</servlet-name>
         <servlet-class>controller.ShowOrderDetailForShipperController</servlet-class>
     </servlet>
@@ -319,6 +323,10 @@
     <servlet-mapping>
         <servlet-name>AddNewReviewController</servlet-name>
         <url-pattern>/user-add-review</url-pattern>
+    </servlet-mapping>
+        <servlet-mapping>
+        <servlet-name>deletestaff</servlet-name>
+        <url-pattern>/deletestaff</url-pattern>
     </servlet-mapping>
         <servlet-mapping>
         <servlet-name>ShowOrderDetailForShipperController</servlet-name>

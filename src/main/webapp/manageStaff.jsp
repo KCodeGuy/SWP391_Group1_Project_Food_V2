@@ -89,8 +89,11 @@
                                                 <a class="table-btn-edit" href="staff-profile?accountID=${ls.accountID}"><i
                                                         class="fa-solid fa-pen-to-square"></i></a>
                                                 <a href="admin-delete-staff?accountID=${ls.accountID}" onclick="return showMessageDelete();"><i
+            
+            
+            
                                                         class="fa-solid fa-trash"></i></a>        
-                                            </td>
+                                            </td> 
                                         </tr>
                                     </c:forEach>
                                     <c:if test="${listStaff.size() == 0}">
@@ -112,6 +115,10 @@
         </div>
         <script src="./bootstap/bootstrap.js"></script>
         <script src="jquery/Jquery.js"></script>
+  
+        <script src="jquery/manageUser.js"></script>
+  
         <script src="jquery/manageStaff.js"></script>
+  
     </body>
 </html>

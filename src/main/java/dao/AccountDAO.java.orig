@@ -491,6 +491,10 @@ public class AccountDAO {
     /**
      * Update a staff's profile in the database with the provided information.
      *
+<<<<<<< HEAD
+=======
+     * @param accountEmail entered email of user(String).
+>>>>>>> origin/QuyenNNM_DeleteStaff
      * @param accountID The ID of the account whose profile is being updated.
      * @param accountName The staff's name associated with the account.
      * @param accountPhone The staff's phone number associated with the account.
@@ -523,6 +527,8 @@ public class AccountDAO {
             e.getMessage();
         } //End trycatch
     }
+<<<<<<< HEAD
+=======
 
     /**
      * Deletes a staff account and sets their account status to "REMOVED" in the
@@ -550,12 +556,10 @@ public class AccountDAO {
             e.getMessage();
         } //End trycatch
     }
+>>>>>>> origin/QuyenNNM_DeleteStaff
 
     /**
      * To get an account of chef by id to handle.
-     * Interact with the database to load staff information by linking account
-     * ID
-     *
      * @param accountID of the associated with staff
      * @return staff linked by accountID otherwise return null
      * @author Trần Đăng Khoa - CE160367
@@ -569,7 +573,11 @@ public class AccountDAO {
             rs = ps.executeQuery(); // Execute the query and get the result set   
             Account staff = null;// Initialize a new staff object
             while (rs.next()) {  // Loop through creating a new staff and retrieved data
+<<<<<<< HEAD
                 if (rs.getString(1).substring(0, 2).equalsIgnoreCase("SP")) { // id is shipper
+=======
+                if (rs.getString(1).substring(0, 2).equalsIgnoreCase("SP")) {
+>>>>>>> origin/QuyenNNM_DeleteStaff
                     staff = new Account(rs.getString(1), rs.getString(4), "", AccountStatus.PENDING, rs.getString(2), rs.getString(3), "", "", "", "Shipper"); // add new item in list
                 } else { // id is chef
                     staff = new Account(rs.getString(1), rs.getString(4), "", AccountStatus.PENDING, rs.getString(2), rs.getString(3), "", "", "", "Chef"); // add new item in list

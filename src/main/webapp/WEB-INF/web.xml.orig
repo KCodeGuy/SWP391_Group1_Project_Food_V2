@@ -157,12 +157,9 @@
         <servlet-class>controller.AddProductController</servlet-class>
     </servlet>
     <servlet>
+<<<<<<< HEAD
         <servlet-name>AddNewReviewController</servlet-name>
         <servlet-class>controller.AddNewReviewController</servlet-class>
-    </servlet>
-        <servlet>
-        <servlet-name>deletestaff</servlet-name>
-        <servlet-class>controller.DeleteStaffController</servlet-class>
     </servlet>
         <servlet>
         <servlet-name>ShowOrderDetailForShipperController</servlet-name>
@@ -175,6 +172,10 @@
     <servlet>
         <servlet-name>LoadOrderHistoryForUserController</servlet-name>
         <servlet-class>controller.LoadOrderHistoryForUserController</servlet-class>
+=======
+        <servlet-name>deletestaff</servlet-name>
+        <servlet-class>controller.DeleteStaffController</servlet-class>
+>>>>>>> origin/QuyenNNM_DeleteStaff
     </servlet>
     <servlet-mapping>
         <servlet-name>HomeController</servlet-name>
@@ -324,10 +325,7 @@
         <servlet-name>AddNewReviewController</servlet-name>
         <url-pattern>/user-add-review</url-pattern>
     </servlet-mapping>
-        <servlet-mapping>
-        <servlet-name>deletestaff</servlet-name>
-        <url-pattern>/deletestaff</url-pattern>
-    </servlet-mapping>
+<<<<<<< HEAD
         <servlet-mapping>
         <servlet-name>ShowOrderDetailForShipperController</servlet-name>
         <url-pattern>/shipper-order-detail</url-pattern>
@@ -339,6 +337,15 @@
     <servlet-mapping>
         <servlet-name>LoadOrderHistoryForUserController</servlet-name>
         <url-pattern>/user-order-history</url-pattern>
+=======
+    <servlet-mapping>
+        <servlet-name>AddProductController</servlet-name>
+        <url-pattern>/addproduct</url-pattern>
+>>>>>>> origin/QuyenNNM_DeleteStaff
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>deletestaff</servlet-name>
+        <url-pattern>/deletestaff</url-pattern>
     </servlet-mapping>
     <session-config>
         <session-timeout>
