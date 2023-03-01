@@ -188,6 +188,10 @@
         <servlet-name>DeliveredOrderShipController</servlet-name>
         <servlet-class>controller.DeliveredOrderShipController</servlet-class>
     </servlet>
+    <servlet>
+        <servlet-name>LoadListOrderHistoryForShipperController</servlet-name>
+        <servlet-class>controller.LoadListOrderHistoryForShipperController</servlet-class>
+    </servlet>
     <servlet-mapping>
         <servlet-name>HomeController</servlet-name>
         <url-pattern>/home</url-pattern>
@@ -363,6 +367,10 @@
     <servlet-mapping>
         <servlet-name>DeliveredOrderShipController</servlet-name>
         <url-pattern>/shipper-delivered-order</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>LoadListOrderHistoryForShipperController</servlet-name>
+        <url-pattern>/ship-list-order-history</url-pattern>
     </servlet-mapping>
     <session-config>
         <session-timeout>

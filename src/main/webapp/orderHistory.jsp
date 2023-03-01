@@ -3,6 +3,7 @@
     Created on : Feb 12, 2023, 2:14:42 AM
     Author     : PC
 --%>
+<%@ taglib prefix = "fmt" uri = "http://java.sun.com/jsp/jstl/fmt" %>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <!DOCTYPE html>
@@ -91,12 +92,12 @@
                                             <td class="table-order-date">${os.orderDate}</td>
                                             <td class="table-status">${os.orderStatus}</td>
                                             <td class="table-price"><fmt:formatNumber type="number" pattern="###,###" value="${os.totalPrice}"/>đ</td>
-                                    <td class="table-btn">
-                                        <a class="table-btn-edit" href="updateProduct.html"><i class="fa-solid fa-pen-to-square"></i></a>
-                                    </td>
-                                    </tr>
+                                            <td class="table-btn">
+                                                <a class="table-btn-edit" href="updateProduct.html"><i class="fa-solid fa-pen-to-square"></i></a>
+                                            </td>
+                                        </tr>
 
-                                </c:forEach>          
+                                    </c:forEach>          
                                 </tbody>
                             </table>
                         </div>

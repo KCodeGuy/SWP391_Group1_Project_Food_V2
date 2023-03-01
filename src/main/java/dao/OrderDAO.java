@@ -467,7 +467,49 @@ public class OrderDAO {
         //If the update fails, return false
         return false;
     }
-    
+
+    /**
+     *
+     * Retrieves the list of order history for a given shipper account ID from
+     * the database.
+     *
+     * @param accountOfIDShipper the account ID of the shipper
+     * @return an ArrayList of Order objects representing the order history for
+     * the given shipper
+     */
+    public ArrayList<Order> getListOrderHistoryForShipper(String accountOfIDShipper) {
+        try { //Database query statement
+            String query = " SELECT \n"
+                    + "   [ORDER].OrderID, \n"
+                    + "   [ORDER].BuyerFullName,\n"
+                    + "   [ORDER].OrderDate,\n"
+                    + "   [ORDER].OrderStatus, \n"
+                    + "   SUM([ORDER_DETAIL].OrderDQuantity) AS Quantity, \n"
+                    + "   SUM([ORDER_DETAIL].OrderDPrice * (100 - [ORDER].ProductSalePercent) / 100) AS Price \n"
+                    + "FROM [ORDER] \n"
+                    + "INNER JOIN [ORDER_DETAIL] ON [ORDER].OrderID = [ORDER_DETAIL].OrderID \n"
+                    + "WHERE [ORDER].AccIDOfShipper = ?\n"
+                    + "GROUP BY \n"
+                    + "   [ORDER].OrderID, \n"
+                    + "   [ORDER].BuyerFullName,\n"
+                    + "   [ORDER].OrderDate,\n"
+                    + "   [ORDER].OrderStatus"; // query select form database
+            con = new DBContext().getConnection(); // open conect database
+            ps = con.prepareStatement(query); // set account ID into query
+            ps.setString(1, accountOfIDShipper);
+            rs = ps.executeQuery(); // execute query
+            ArrayList<Order> listOrderHistory = new ArrayList<>(); // create list product in order
+            while (rs.next()) { //Value access loop from the database
+                listOrderHistory.add(new Order(rs.getString(1), OrderStatus.valueOf(rs.getString(4)), rs.getString(3), rs.getString(2), rs.getInt(5), rs.getInt(6)));
+                // add new item into list order
+            } // end while
+            return listOrderHistory; // return list order
+        } catch (Exception e) {
+            System.out.println(e.getMessage());
+        } // end try catch
+        return null; // return null if not order
+    }
+
     /**
      * This function to check shipper has order delivering
      *
@@ -482,7 +524,7 @@ public class OrderDAO {
             ps.setString(1, accountID);
             rs = ps.executeQuery();
             String orderID = null;
-            while (rs.next()) {     
+            while (rs.next()) {
                 orderID = rs.getString(1);
             }
             return orderID;
@@ -491,7 +533,11 @@ public class OrderDAO {
         } // end try catch
         return null; // return null if not order
     }
-    
+
+    /**
+     *
+     * @param args
+     */
     public static void main(String[] args) {
         System.out.println(new OrderDAO().getDelivering("SP0008"));
     }
