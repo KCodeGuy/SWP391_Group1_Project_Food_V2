@@ -342,7 +342,7 @@
     </servlet-mapping>
         <servlet-mapping>
         <servlet-name>UpdateProductForMangePageController</servlet-name>
-        <url-pattern>/updateproduct</url-pattern>
+        <url-pattern>/admin-update-product</url-pattern>
     </servlet-mapping>
     <servlet-mapping>
         <servlet-name>AddNewReviewController</servlet-name>

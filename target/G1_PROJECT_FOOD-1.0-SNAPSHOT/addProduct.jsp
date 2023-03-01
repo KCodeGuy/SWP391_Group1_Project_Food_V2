@@ -28,7 +28,7 @@
         <!-- Form update product -->
         <div class="container-fluid container-fluid-form">
             <div class="wrapper-form">
-                <form id="myForm" action="admin-add-product" methob="get">
+                <form id="myForm" action="admin-add-product" method="get">
                     <div class="form-heading-group">
                         <i class="fa-solid fa-plus"></i>
                         <h2 class="form-heading">ADD PRODUCT</h2>

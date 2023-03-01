@@ -340,15 +340,6 @@ public class ProductDAO {
         } // end try-catch.
     }
     
-    /**
-     *
-     * @param args
-     */
-    public static void main(String[] args) {
-        ProductDAO p = new ProductDAO();
-        p.updateProduct("Banh Bao", 10000, 0, "AVAILABLE", "FOOD", "Banh troi nuoc thom ngon", "ko co hinh", "BC0055");
-        
-    }
 
     /**
      * Method to add new products

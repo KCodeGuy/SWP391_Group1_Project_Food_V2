@@ -28,7 +28,7 @@
                 <!-- Form update product -->
                 <div class="container-fluid container-fluid-form">
                     <div class="wrapper-form">
-                        <form id="myForm" action="updateproduct" method="post">
+                        <form id="myForm" action="admin-update-product" method="post">
                             <div class="form-heading-group">
                                 <i class="fa-solid fa-file-pen"></i>
                                 <h2 class="form-heading">UPDATE PRODUCT</h2>

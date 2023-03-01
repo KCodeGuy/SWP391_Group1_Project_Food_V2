@@ -91,7 +91,7 @@ public class UpdateProductForMangePageController extends HttpServlet {
         
         ProductDAO pdao = new ProductDAO();// Create a new ProductDAO instance to retrieve infomation
         pdao.updateProduct(productName, productPrice, productSalePercent, productStatus, categoryID, productDescription, productImage, productID);
-        response.sendRedirect("loadlistproductformanageproductpage?productID=" + productID);//display the list on the page loadlistproductformanagepage
+        response.sendRedirect("admin-manage-product");//display the list on the page loadlistproductformanagepage
         
     }
     /**
