@@ -41,7 +41,6 @@ public class LoadListOrderHistoryForShipperController extends HttpServlet {
         //Calculate the total order count and total price of those orders
         if (!listOrderHistory.isEmpty()) {
             for (Order order : listOrderHistory) {
-                System.out.println(order.toString());
                 totalPrice += order.getTotalPrice();
             }
         }
