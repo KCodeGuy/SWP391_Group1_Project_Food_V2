@@ -36,6 +36,7 @@ public class ShowOrderDetailForShipperController extends HttpServlet {
         response.setContentType("text/html;charset=UTF-8");
         //Get order ID from request parameter
         String orderID = request.getParameter("orderID");
+        String accountID = request.getParameter("accountID");
         //Create Order object
         Order order;
         //Create OrderDAO object
@@ -48,6 +49,7 @@ public class ShowOrderDetailForShipperController extends HttpServlet {
         ArrayList<OrderDetail> listOrderShip = ddao.getListOrderDetailByOrderIDForShipper(orderID);
         //Set Order object and list of OrderDetail objects as request attributes
         request.setAttribute("order", order);
+        request.setAttribute("isDelivering", odao.getDelivering(accountID) != null);
         request.setAttribute("listOrderShip", listOrderShip);
         //Forward the request and response to orderDetailForShipper.jsp page
         request.getRequestDispatcher("orderDetailForShipper.jsp").forward(request, response);

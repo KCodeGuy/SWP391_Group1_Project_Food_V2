@@ -84,6 +84,7 @@
                                         <div>${order.voucherID}</div>
                                     </div>
                                 </div>
+
                                 <div class="row">
                                     <div class="col-sm-3">
                                         <b class="form-label">Product Sale Percent</b>
@@ -97,7 +98,7 @@
                     </div>
                     <div class="row">
                         <div class="col-xs-12">
-                            <h6 class="table-header">ORDER DETAIL FOR SHIPPER</h6>
+                            <h6 class="table-header">ORDER DETAIL FOR CHEF</h6>
                             <div class="table-control-btn-group">
                                 <form class="sort-form" action="">
 
@@ -131,15 +132,15 @@
                                     </tr>
                                 </thead>
                                 <tbody>
-                                    <c:forEach items="${listOrderShip}" var="os">
+                                    <c:forEach items="${listOrderShip}" var="o">
                                         <tr>
                                             <td class="table-order">1</td>
-                                            <td class="table-img"><img src="${os.productLink}"></td>
-                                            <td class="table-name"><a href="">${os.productName}</a></td>
+                                            <td class="table-img"><img src="${o.productLink}"></td>
+                                            <td class="table-name"><a href="">${o.productName}</a></td>
                                             <td class="table-quantity">
-                                                ${os.orderQuantity}
+                                                ${o.orderQuantity}
                                             </td>
-                                            <td class="table-price"><fmt:formatNumber type="number" pattern="###,###" value="${(os.orderPrice * os.orderQuantity * (100 - os.productSalePercent)) / 100}"/>đ</td>
+                                            <td class="table-price"><fmt:formatNumber type="number" pattern="###,###" value="${o.orderPrice * o.orderQuantity}"/>đ</td>
 
                                         </tr>
                                     </c:forEach>
@@ -150,8 +151,12 @@
                     <div class="row">
                         <div class="col-xs-12">
                             <div class="detail-table-group"> 
-                                <button class="btn-primary"><a href="shipper-delivering-order?accountID=${sessionScope.accountSesseion.accountID}&orderID=${order.orderID}">Delivering</a></button>
-                                <button class="btn-main"><a href="ship-delivered-order?accountID=${sessionScope.accountSesseion.accountID}&orderID=${order.orderID}">Delivered</a></button>
+                                <c:if test="${isDelivering}">
+                                    <button class="btn-main"><a href="shipper-delivered-order?accountID=${sessionScope.accountSesseion.accountID}&orderID=${order.orderID}">Delivered</a></button>
+                                </c:if>
+                                <c:if test="${!isDelivering}">
+                                    <button class="btn-primary"><a href="shipper-delivering-order?accountID=${sessionScope.accountSesseion.accountID}&orderID=${order.orderID}">Delivering</a></button>
+                                </c:if>                                          
                             </div>
                         </div>
                     </div>

@@ -4,6 +4,7 @@
  */
 package controller;
 
+import dao.OrderDAO;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
 import jakarta.servlet.http.HttpSession;
@@ -118,7 +119,21 @@ public class G1FOODFilter implements Filter {
             accountID = (String) session.getAttribute("accountID");
         }
 
+        String orderID = new OrderDAO().getDelivering(accountID);
         if (accountID != null) {
+            if (path.contains("logout")) {
+                res.sendRedirect("logout");
+                return;
+            } else {
+                if (accountID.substring(0, 2).equalsIgnoreCase("SP") && orderID != null && !(path.contains("detail"))) {
+                    String redirectPath = "shipper-order-detail?orderID=" + orderID + "&accountID=" + accountID;
+                    res.reset(); // reset response
+                    res.setStatus(HttpServletResponse.SC_MOVED_PERMANENTLY);
+                    res.setHeader("Location", redirectPath);
+                    return;
+                }
+            }
+
             if (accountID.substring(0, 2).equalsIgnoreCase("US")) {
                 for (String disallowed : userNotAllowedPaths) {
                     if (path.contains(disallowed)) {

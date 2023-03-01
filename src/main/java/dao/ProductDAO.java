@@ -154,14 +154,15 @@ public class ProductDAO {
         //If an exception, return null
         return null;
     }
-    
+
     /**
-     * Create method delete product by productID 
+     * Create method delete product by productID
+     *
      * @param productID
      */
     public void deleteProduct(String productID) {
         //Create query update status of the product
-        String query ="UPDATE PRODUCT SET ProductStatus = 'REMOVED' WHERE ProductID = ?";   
+        String query = "UPDATE PRODUCT SET ProductStatus = 'REMOVED' WHERE ProductID = ?";
         try {
             // Open connection to database
             con = new DBContext().getConnection();
@@ -171,8 +172,7 @@ public class ProductDAO {
             ps.setString(1, productID);
             // Excuse query
             ps.executeUpdate();
-        }
-        catch (SQLException e){
+        } catch (SQLException e) {
             System.err.println(e.getMessage());
         }
     }// End method
@@ -274,6 +274,7 @@ public class ProductDAO {
 
     /**
      * Search product information by name
+     *
      * @param search product name to search
      * @return Return the product and show the message
      */
@@ -304,20 +305,18 @@ public class ProductDAO {
         return list;
     }
 
-    
-        
-/**
-       * Method to add new products
-       *
-       * @param productName The name of the new product
-       * @param productPrice The price of the new product
-       * @param productSale The sale percent of new products
-       * @param categoryID The category ID of the new product
-       * @param productDescription The description of the new product
-       * @param productImage The link image of the new product
-       */
-    public void insertProduct( String productName, int productPrice,
-        int productSale, String categoryID, String productDescription, String productImage) {
+    /**
+     * Method to add new products
+     *
+     * @param productName The name of the new product
+     * @param productPrice The price of the new product
+     * @param productSale The sale percent of new products
+     * @param categoryID The category ID of the new product
+     * @param productDescription The description of the new product
+     * @param productImage The link image of the new product
+     */
+    public void insertProduct(String productName, int productPrice,
+            int productSale, String categoryID, String productDescription, String productImage) {
         ProductDAO pdao = new ProductDAO();
         GenerateID gi = new GenerateID();
         String prefix = gi.getPrefixFromProductName(productName);
@@ -331,12 +330,12 @@ public class ProductDAO {
             ps.setString(2, productName);
             ps.setString(3, productDescription);
             ps.setInt(4, productPrice);
-            ps.setInt(5, productSale);  
+            ps.setInt(5, productSale);
             ps.setString(6, productImage);
             ps.setString(7, categoryID);
-            ps.executeUpdate();                 
+            ps.executeUpdate();
         } catch (Exception e) {
             e.printStackTrace();
         }
-    }    
+    }
 }

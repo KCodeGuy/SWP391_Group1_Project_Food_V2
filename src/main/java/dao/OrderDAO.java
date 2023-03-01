@@ -451,7 +451,7 @@ public class OrderDAO {
     public boolean deliveredOrderByOrderID(String accountID, String orderID) {
         try {
             String query = "UPDATE [ORDER]\n"
-                    + "SET OrderStatus = 'DELEVERED', AccIDOfChef = ?\n"
+                    + "SET OrderStatus = 'DELEVERED', AccIDOfShipper = ?\n"
                     + "WHERE OrderID = ?"; // SQL query to update the order status
             con = new DBContext().getConnection(); //Get a connection to the database
             ps = con.prepareStatement(query); //Create a prepared statement for the query
@@ -466,6 +466,34 @@ public class OrderDAO {
         }
         //If the update fails, return false
         return false;
+    }
+    
+    /**
+     * This function to check shipper has order delivering
+     *
+     * @param accountID Account ID of chef
+     * @return true if accept successful, false if can not accept
+     */
+    public String getDelivering(String accountID) {
+        try {
+            String query = "SELECT OrderID FROM [ORDER] WHERE AccIDOfShipper = ? AND OrderStatus = 'DELIVERING'"; // query select form database
+            con = new DBContext().getConnection(); // open conect database
+            ps = con.prepareStatement(query); // set account ID into query
+            ps.setString(1, accountID);
+            rs = ps.executeQuery();
+            String orderID = null;
+            while (rs.next()) {     
+                orderID = rs.getString(1);
+            }
+            return orderID;
+        } catch (Exception e) {
+            System.out.println(e.getMessage());
+        } // end try catch
+        return null; // return null if not order
+    }
+    
+    public static void main(String[] args) {
+        System.out.println(new OrderDAO().getDelivering("SP0008"));
     }
 
 }
