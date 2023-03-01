@@ -148,25 +148,27 @@
                                             <button class="btn btn-search" type="submit">
                                                 <i class="fa-solid fa-magnifying-glass"></i>
                                             </button>
-                                            <a class="cart" href="home">
+                                        <c:if test="${sessionScope.accountSesseion.accountID.startsWith('US')}">
+                                            <a class="cart" href="cart?accountID=${sessionScope.accountSesseion.accountID}">
                                                 <i class="fa-solid fa-cart-plus"></i>
-                                                <span class="cart-quantity">2</span>
+                                                <span class="cart-quantity">${sessionScope.cartSize}</span>
                                             </a>
-                                        </form>
-                                    </div>
-                                </nav>
-                            </div>
+                                        </c:if>
+                                    </form>
+                                </div>
+                            </nav>
                         </div>
                     </div>
                 </div>
+            </div>
 
 
-                <div class="container-fluild container-product-detail">
-                    <div class="container">
+            <div class="container-fluild container-product-detail">
+                <div class="container">
 
-                        <div class="row">
-                            <div class="col-xs-12 col-md-5">
-                                <img class="product-detail-img" src="${product.productLink}" alt="">
+                    <div class="row">
+                        <div class="col-xs-12 col-md-5">
+                            <img class="product-detail-img" src="${product.productLink}" alt="">
                         </div>
                         <div class="col-xs-12 col-md-7">
                             <ul class="product-detail-container">
@@ -195,23 +197,26 @@
                                     <span class="product-detail-label">Status:</span>
                                     <span class="product-detail-status">${product.productStatus}</span>
                                 </li>
-                                <form action="add-product-cart-product-details" method="">
-                                    <li class="product-detail-item">
-                                        <button type="button" onclick="increment()">+</button>
-                                        <input type="text" id="number" name="quantity" value="1" readonly> 
-                                        <input name="productID" value="${productID}" hidden="true">
-                                        <input name="accountID" value="${sessionScope.accountSesseion.accountID}" hidden="true">
-                                        <button type="button" onclick="decrement()">-</button>
-                                    </li>
-                                    <li class="product-detail-item">
-                                        <button type="submit" class="btn-main"btn-related-product>
-                                            Add to cart
-                                        </button>
-                                        <button class="btn-primary"btn-related-product>
-                                            <a href="home">Back to home</a>
-                                        </button>
-                                    </li>
-                                </form>
+                                <c:if test="${sessionScope.accountSesseion.accountID.startsWith('US')}">
+                                    <form action="add-product-cart-product-details" method="">
+                                        <li class="product-detail-item">
+                                            <button type="button" onclick="increment()">+</button>
+                                            <input type="text" id="number" name="quantity" value="1" readonly> 
+                                            <input name="productID" value="${productID}" hidden="true">
+                                            <input name="accountID" value="${sessionScope.accountSesseion.accountID}" hidden="true">
+                                            <button type="button" onclick="decrement()">-</button>
+                                        </li>
+                                        <li class="product-detail-item">
+                                            <button type="submit" class="btn-main"btn-related-product>
+                                                Add to cart
+                                            </button>
+                                            <button class="btn-primary"btn-related-product>
+                                                <a href="home">Back to home</a>
+                                            </button>
+                                        </li>
+                                    </form>
+                                </c:if>
+
                             </ul>
                         </div>
                     </div>
@@ -233,24 +238,26 @@
 
                     </div>
                     <div class="product-review">
-                        <form id="rating-form" action="user-add-review">
-                            <div class="stars">
-                                <input type="radio" id="star5" name="rating" value="1" />
-                                <label for="star5"><i class="fa fa-star"></i></label>
-                                <input type="radio" id="star4" name="rating" value="2" />
-                                <label for="star4"><i class="fa fa-star"></i></label>
-                                <input type="radio" id="star3" name="rating" value="3" />
-                                <label for="star3"><i class="fa fa-star"></i></label>
-                                <input type="radio" id="star2" name="rating" value="4" />
-                                <label for="star2"><i class="fa fa-star"></i></label>
-                                <input type="radio" id="star1" name="rating" value="5" checked="true"/>
-                                <label for="star1"><i class="fa fa-star"></i></label>
-                            </div>
-                            <input name="productID" value="${productID}" hidden="true">
-                            <input name="accountID" value="${sessionScope.accountSesseion.accountID}" hidden="true">
-                            <textarea id="review" name="review" rows="5" placeholder="Nhập bình luận"></textarea>
-                            <button type="submit">Send review</button>
-                        </form>
+                        <c:if test="${sessionScope.accountSesseion.accountID.startsWith('US')}">
+                            <form id="rating-form" action="user-add-review">
+                                <div class="stars">
+                                    <input type="radio" id="star5" name="rating" value="1" />
+                                    <label for="star5"><i class="fa fa-star"></i></label>
+                                    <input type="radio" id="star4" name="rating" value="2" />
+                                    <label for="star4"><i class="fa fa-star"></i></label>
+                                    <input type="radio" id="star3" name="rating" value="3" />
+                                    <label for="star3"><i class="fa fa-star"></i></label>
+                                    <input type="radio" id="star2" name="rating" value="4" />
+                                    <label for="star2"><i class="fa fa-star"></i></label>
+                                    <input type="radio" id="star1" name="rating" value="5" checked="true"/>
+                                    <label for="star1"><i class="fa fa-star"></i></label>
+                                </div>
+                                <input name="productID" value="${productID}" hidden="true">
+                                <input name="accountID" value="${sessionScope.accountSesseion.accountID}" hidden="true">
+                                <textarea id="review" name="review" rows="5" placeholder="Nhập bình luận"></textarea>
+                                <button type="submit">Send review</button>
+                            </form>
+                        </c:if>
                         <c:if test="${listReview.size() > 0}">
                             <div class="review-list">
                                 <h3 class="review-list-title">Đánh giá từ khách hàng</h3>
@@ -264,7 +271,7 @@
                                                                 class="fa-solid fa-trash"></i></a>
                                                     </c:if></div>
 
-
+                                                <div class="review-item-author">${rv.reviewDay}</div>
                                                 <div class="review-item-stars">
                                                     <c:forEach begin="1" end="${rv.rating}" step="1" var="counter">
                                                         <i class="fa fa-star"></i>

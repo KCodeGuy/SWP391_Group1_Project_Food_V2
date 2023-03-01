@@ -10,6 +10,8 @@ import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.time.LocalDateTime;
+import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
 import java.util.List;
 import model.Review;
@@ -33,7 +35,7 @@ public class ReviewDAO {
     public ArrayList<Review> getListReviewByProductID(String productID) {
         try {
             // Create the SQL query to get the reviews for the given product ID
-            String query = "SELECT R.*, A.AccountName FROM [REVIEW] R JOIN [ACCOUNT] A ON R.AccountID = A.AccountID WHERE R.ProductID = ? AND R.ReviewStatus = 'SUCCESS'";
+            String query = "SELECT R.*, A.AccountName FROM [REVIEW] R JOIN [ACCOUNT] A ON R.AccountID = A.AccountID WHERE R.ProductID = ? AND R.ReplyID is null AND R.ReviewStatus = 'SUCCESS'";
             con = new DBContext().getConnection(); // Open a connection to the SQL database
             ps = con.prepareStatement(query); // Create a PreparedStatement object and pass in the query
             ps.setString(1, productID); // Replace the parameter '?' in the query with the productID passed to the method
@@ -41,7 +43,7 @@ public class ReviewDAO {
             ArrayList<Review> list = new ArrayList<>(); // Create an ArrayList to store the reviews
             while (rs.next()) {
                 // Add each review returned by the query to the ArrayList
-                list.add(new Review(rs.getString(1), rs.getInt(2), rs.getString(3), rs.getString(5), rs.getString(6), rs.getString(7)));
+                list.add(new Review(rs.getString(1), rs.getInt(2), rs.getString(3), rs.getString(5), rs.getString(6), rs.getString(7), rs.getString(9)));
             }
             return list; // Return the ArrayList of reviews
         } catch (Exception e) {
@@ -60,16 +62,20 @@ public class ReviewDAO {
      */
     public void insertReview(int rating, String review, String productID, String accountID) {
         GenerateID gi = new GenerateID();
+        LocalDateTime now = LocalDateTime.now();
+        DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm:ss.SSS");
+        String formattedDateTime = now.format(formatter);
         String reviewID = gi.generateNewID("RV", getLastIDOfReview()); // Generate a new ID for the review
-        String query = "INSERT INTO [REVIEW] VALUES (?,?,?,'SUCCESS',?,?)"; // Create the SQL query to insert the new review
+        String query = "INSERT INTO [REVIEW] VALUES (?,?,?,'SUCCESS',?,?,?,null)"; // Create the SQL query to insert the new review
         try {
             con = new DBContext().getConnection(); // Open a connection to the SQL database
             ps = con.prepareStatement(query); // Create a PreparedStatement object and pass in the query
             ps.setString(1, reviewID); // Replace the first parameter '?' in the query with the generated review ID
             ps.setInt(2, rating); // Replace the second parameter '?' in the query with the review's rating
             ps.setString(3, review); // Replace the third parameter '?' in the query with the review's text
-            ps.setString(4, productID); // Replace the fourth parameter '?' in the query with the product ID being reviewed
-            ps.setString(5, accountID); // Replace the fifth parameter '?' in the query with the account ID of the reviewer
+            ps.setString(4, formattedDateTime); // Replace the fourth parameter '?' in the query with the product ID being reviewed
+            ps.setString(5, productID); // Replace the fifth parameter '?' in the query with the account ID of the reviewer
+            ps.setString(6, accountID); // Replace the sixth parameter '?' in the query with the account ID of the reviewer
             ps.executeUpdate(); // Execute the query to insert the new review into the database
         } catch (Exception e) {
             e.printStackTrace(); // Print any exceptions that occur during the insertion process

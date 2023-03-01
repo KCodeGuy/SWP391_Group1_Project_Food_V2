@@ -3,6 +3,7 @@
     Created on : Feb 12, 2023, 2:14:42 AM
     Author     : PC
 --%>
+<%@ taglib prefix = "fmt" uri = "http://java.sun.com/jsp/jstl/fmt" %>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <!DOCTYPE html>
@@ -51,7 +52,7 @@
                                     <div class="total-quantity-group">
                                         <h6 class="sort-form-label">Total revenue:</h6>
                                         <button class="btn-primary total-quantity total-revenue">
-                                            <fmt:formatNumber type="number" pattern="###,###" value="${totalPrice}"/>${totalPrice}đ
+                                            <fmt:formatNumber type="number" pattern="###,###" value="${totalPrice}"/>đ
                                         </button>
                                     </div>
                                 </form>

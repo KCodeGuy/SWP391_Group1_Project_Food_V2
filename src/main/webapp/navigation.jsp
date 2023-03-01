@@ -101,7 +101,7 @@
                                         </li>
                                         <li class="nav-item">
                                             <i class="fa-sharp fa-solid fa-file-invoice-dollar"></i>
-                                            <a class="nav-link" aria-current="page" href="staffProfile.jsp">My orders</a>
+                                            <a class="nav-link" aria-current="page" href="staffProfile.jsp">Order processed</a>
                                         </li>
                                         <div class="separator-persional-tab"></div>
                                         <li class="nav-item">
@@ -122,11 +122,11 @@
                                         </li>
                                         <li class="nav-item">
                                             <i class="fa-sharp fa-solid fa-file-invoice-dollar"></i>
-                                            <a class="nav-link" aria-current="page" href="shipper-manage-order">Manage ship</a>
+                                            <a class="nav-link" aria-current="page" href="shipper-manage-order?accountID=${sessionScope.accountSesseion.accountID}">Manage ship</a>
                                         </li>
                                         <li class="nav-item">
                                             <i class="fa-sharp fa-solid fa-file-invoice-dollar"></i>
-                                            <a class="nav-link" aria-current="page" href="staffProfile.jsp">My orders</a>
+                                            <a class="nav-link" aria-current="page" href="staffProfile.jsp">Order delivered</a>
                                         </li>
                                         <div class="separator-persional-tab"></div>
                                         <li class="nav-item">
@@ -147,7 +147,7 @@
                                         </li>
                                         <li class="nav-item">
                                             <i class="fa-sharp fa-solid fa-file-invoice-dollar"></i>
-                                            <a class="nav-link" aria-current="page" href="user-order-history?accountID=${sessionScope.accountSesseion.accountID}">My orders</a>
+                                            <a class="nav-link" aria-current="page" href="user-order-history?accountID=${sessionScope.accountSesseion.accountID}">My Order</a>
                                         </li>
                                         <div class="separator-persional-tab"></div>
                                         <li class="nav-item">

@@ -53,7 +53,13 @@ public class LoadPayingController extends HttpServlet {
         CartDAO cdao = new CartDAO();
         
         ArrayList<Cart> listCart = cdao.getListCartByAccountID(accountID);
-        
+        int totalPrice = 0;
+        if (!listCart.isEmpty()) {
+            for (Cart c : listCart) {
+                totalPrice += ((c.getProductPrice() * (100 - c.getProductSalePercent())) / 100 * c.getCartQuantity());
+            }
+        }
+        request.setAttribute("totalPrice", totalPrice);        
         request.setAttribute("listCart", listCart);
         request.setAttribute("user", user);
         request.setAttribute("productSalePercent", discount);

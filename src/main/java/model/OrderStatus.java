@@ -34,5 +34,5 @@ public enum OrderStatus {
      *
      */
     DELIVERING,
-    DELEVERED
+    DELIVERED
 }

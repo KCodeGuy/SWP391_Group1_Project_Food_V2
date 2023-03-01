@@ -13,6 +13,7 @@ import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
 import java.util.ArrayList;
 import model.Order;
+import model.OrderStatus;
 
 /**
  *
@@ -41,8 +42,9 @@ public class LoadOrderHistoryForUserController extends HttpServlet {
         //Calculate the total order count and total price of those orders
         if (!listOrderHistory.isEmpty()) {
             for (Order order : listOrderHistory) {
-                System.out.println(order.toString());
-                totalPrice += order.getTotalPrice();
+                if (order.getOrderStatus() == OrderStatus.COMPLETED || order.getOrderStatus() == OrderStatus.DELIVERED) {
+                    totalPrice += order.getTotalPrice();
+                }
             }
         }
         //Set the attributes for the request

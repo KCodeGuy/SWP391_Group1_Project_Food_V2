@@ -94,7 +94,12 @@
                                                 <a class="table-btn-edit" href="chef-order-detail?orderID=${o.orderID}"><i class="fa-solid fa-pen-to-square"></i></a>
                                             </td>
                                         </tr>
-                                    </c:forEach>                                        
+                                    </c:forEach>  
+                                        <c:if test="${listOrder.size() == 0 }">
+                                            <tr>
+                                                <td colspan="8">There are no orders to process</td>
+                                            </tr>
+                                    </c:if>
                                 </tbody>
                             </table>
                         </div>

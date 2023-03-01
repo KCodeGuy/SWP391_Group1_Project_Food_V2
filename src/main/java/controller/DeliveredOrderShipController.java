@@ -30,7 +30,7 @@ public class DeliveredOrderShipController extends HttpServlet {
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         response.setContentType("text/html;charset=UTF-8");
-       String accountID = request.getParameter("accountID");
+        String accountID = request.getParameter("accountID");
         String orderID = request.getParameter("orderID");
         
         OrderDAO odao = new OrderDAO(); // create orderDAO

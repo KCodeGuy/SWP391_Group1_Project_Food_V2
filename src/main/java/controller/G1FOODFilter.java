@@ -30,9 +30,9 @@ public class G1FOODFilter implements Filter {
 
     private static final boolean debug = true;
     private Set<String> userNotAllowedPaths = new HashSet<>(Arrays.asList("admin", "chef", "shipper"));
-    private Set<String> shipperNotAllowedPaths = new HashSet<>(Arrays.asList("admin", "chef", "user"));
-    private Set<String> chefNotAllowedPaths = new HashSet<>(Arrays.asList("admin", "shipper", "user"));
-    private Set<String> guestNotAllowedPaths = new HashSet<>(Arrays.asList("admin", "shipper", "chef", "user", "cart"));
+    private Set<String> shipperNotAllowedPaths = new HashSet<>(Arrays.asList("admin", "chef", "user", "paying", "cart"));
+    private Set<String> chefNotAllowedPaths = new HashSet<>(Arrays.asList("admin", "shipper", "user", "paying", "cart"));
+    private Set<String> guestNotAllowedPaths = new HashSet<>(Arrays.asList("admin", "shipper", "chef", "user", "cart", "paying"));
 
     // The filter configuration object we are associated with.  If
     // this value is null, this filter instance is not currently
@@ -119,9 +119,7 @@ public class G1FOODFilter implements Filter {
             accountID = (String) session.getAttribute("accountID");
         }
 
-        String orderID = new OrderDAO().getDelivering(accountID);
-        if (accountID != null) {
-            
+        if (accountID != null) {          
 
             if (accountID.substring(0, 2).equalsIgnoreCase("US")) {
                 for (String disallowed : userNotAllowedPaths) {

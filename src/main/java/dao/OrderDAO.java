@@ -192,7 +192,7 @@ public class OrderDAO {
                     + "   [ORDER].OrderDate,\n"
                     + "   [ORDER].OrderStatus, \n"
                     + "   SUM([ORDER_DETAIL].OrderDQuantity) AS Quantity, \n"
-                    + "   SUM([ORDER_DETAIL].OrderDPrice * (100 - [ORDER].ProductSalePercent) / 100) AS Price \n"
+                    + "   SUM(([ORDER_DETAIL].OrderDPrice * (100 - [ORDER].ProductSalePercent) / 100) * [ORDER_DETAIL].OrderDQuantity) AS Price \n"
                     + "FROM [ORDER] \n"
                     + "INNER JOIN [ORDER_DETAIL] ON [ORDER].OrderID = [ORDER_DETAIL].OrderID \n"
                     + "WHERE [ORDER].AccountID = ?\n"
@@ -331,7 +331,7 @@ public class OrderDAO {
                     + "   SUM(([ORDER_DETAIL].OrderDPrice * (100 - [ORDER].ProductSalePercent) / 100) * [ORDER_DETAIL].OrderDQuantity) AS Price \n"
                     + "FROM [ORDER] \n"
                     + "INNER JOIN [ORDER_DETAIL] ON [ORDER].OrderID = [ORDER_DETAIL].OrderID \n"
-                    + "WHERE [ORDER].OrderStatus = 'ACCEPTED' AND [ORDER].OrderID = ?\n"
+                    + "WHERE [ORDER].OrderID = ?\n"
                     + "GROUP BY \n"
                     + "   [ORDER].OrderID, \n"
                     + "   [ORDER].AccountID,\n"
@@ -467,7 +467,7 @@ public class OrderDAO {
         //If the update fails, return false
         return false;
     }
-    
+
     /**
      * This function to check shipper has order delivering
      *
@@ -482,7 +482,7 @@ public class OrderDAO {
             ps.setString(1, accountID);
             rs = ps.executeQuery();
             String orderID = null;
-            while (rs.next()) {     
+            while (rs.next()) {
                 orderID = rs.getString(1);
             }
             return orderID;
@@ -490,10 +490,6 @@ public class OrderDAO {
             System.out.println(e.getMessage());
         } // end try catch
         return null; // return null if not order
-    }
-    
-    public static void main(String[] args) {
-        System.out.println(new OrderDAO().getDelivering("SP0008"));
     }
 
 }

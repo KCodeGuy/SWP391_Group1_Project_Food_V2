@@ -64,10 +64,6 @@
                                             <button class="btn btn-search" type="submit">
                                                 <i class="fa-solid fa-magnifying-glass"></i>
                                             </button>
-                                            <a class="cart" href="cart">
-                                                <i class="fa-solid fa-cart-plus"></i>
-                                                <span class="cart-quantity">${sessionScope.cartSize}</span>
-                                            </a>
                                         </form>
                                     </div>
                                 </nav>
@@ -111,25 +107,33 @@
                                             </td>
                                         </tr>
                                     </c:forEach>
+                                    <c:if test="${listCart.size() == 0}">
+                                        <tr>
+                                            <td colspan="6">There are no items in your cart.</td>
+                                        </tr>
+                                    </c:if>
                                 </tbody>
                             </table>
                         </div>
                     </div>
 
-                    <div class="row justify-content-end">
-                        <div class="col-sm-3">
-                            <div class="table-total-group">
-                                <h4 class="table-label">Total:</h4>
-                                <span class="table-total"><fmt:formatNumber type="number" pattern="###,###" value="${totalPrice}"/>đ</span>
+                    <c:if test="${listCart.size() != 0}">
+                        <div class="row justify-content-end">
+                            <div class="col-sm-3">
+                                <div class="table-total-group">
+                                    <h4 class="table-label">Total:</h4>
+                                    <span class="table-total"><fmt:formatNumber type="number" pattern="###,###" value="${totalPrice}"/>đ</span>
+                                </div>
                             </div>
                         </div>
-                    </div>
 
-                    <div class="row justify-content-end">
-                        <div class="col-sm-3">
-                            <a href="load-paying?accountID=${sessionScope.accountSesseion.accountID}"><button class="btn-primary">Paying</button></a>
+                        <div class="row justify-content-end">
+                            <div class="col-sm-3">
+                                <a href="load-paying?accountID=${sessionScope.accountSesseion.accountID}"><button class="btn-primary">Paying</button></a>
+                            </div>
                         </div>
-                    </div>
+                    </c:if>
+
                 </div>
             </div>
 

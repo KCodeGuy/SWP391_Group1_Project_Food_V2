@@ -105,7 +105,7 @@
                                                         <td class="table-quantity">
                                                             ${cart.cartQuantity}
                                                         </td>
-                                                        <td class="table-price"><fmt:formatNumber type="number" pattern="###,###" value="${(cart.productPrice * (1-((cart.productSalePercent + productSalePercent)/100)))*cart.cartQuantity}"/>đ</td>
+                                                        <td class="table-price"><fmt:formatNumber type="number" pattern="###,###" value="${(cart.productPrice * (1-((cart.productSalePercent)/100)))*cart.cartQuantity}"/>đ</td>
                                                     </tr>
                                                 </c:forEach>
                                             </tbody>
@@ -130,23 +130,23 @@
                                                 <tr>
                                                     <td class="table-voucher-label">Tạm tính:</td>
                                                     <td class="table-number table-voucher-price">
-                                                        35,000d
-                                                        <!-- <fmt:formatNumber type="number" pattern="###,###" value="" />đ -->
+                                                        <fmt:formatNumber type="number" pattern="###,###" value="${totalPrice}"/>đ
                                                     </td>
                                                 </tr>
                                                 <tr>
                                                     <td class="table-voucher-label">Voucher:</td>
-                                                    <td class="table-number table-voucher-tax">- 0đ</td>
+                                                    <td class="table-number table-voucher-tax">
+                                                        <fmt:formatNumber type="number" pattern="###,###" value="${totalPrice * productSalePercent / 100}"/>đ
+                                                    </td>
                                                 </tr>
                                                 <tr>
                                                     <td class="table-voucher-label">Phí ship:</td>
-                                                    <td class="table-number table-voucher-ship">+ 30,000đ</td>
+                                                    <td class="table-number table-voucher-ship">+ 0đ</td>
                                                 </tr>
                                                 <tr>
                                                     <td class="table-voucher-label">Tổng tiền:</td>
                                                     <td class="table-number">
-                                                        <span  class="table-voucher-total">450.000đ</span>
-                                                        <!-- <fmt:formatNumber type="number" pattern="###,###" value="${totalPrice}" />đ -->
+                                                        <fmt:formatNumber type="number" pattern="###,###" value="${((100 - productSalePercent) * totalPrice) / 100}"/>đ
                                                     </td>
                                                 </tr>
                                             </tbody>

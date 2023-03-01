@@ -95,7 +95,11 @@
                                             </td> 
                                         </tr>
                                     </c:forEach>
-
+                                    <c:if test="${listOrderShip.size() == 0 }">
+                                        <tr>
+                                            <td colspan="8">There are no orders to be delivered</td>
+                                        </tr>
+                                    </c:if>
 
                                 </tbody>
                             </table>
