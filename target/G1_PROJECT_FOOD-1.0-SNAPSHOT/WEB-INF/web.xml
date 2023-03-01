@@ -160,7 +160,7 @@
         <servlet-name>AddNewReviewController</servlet-name>
         <servlet-class>controller.AddNewReviewController</servlet-class>
     </servlet>
-        <servlet>
+    <servlet>
         <servlet-name>admin-search-staff</servlet-name>
         <servlet-class>controller.SearchStaffController</servlet-class>
     </servlet>
@@ -179,6 +179,18 @@
     <servlet>
         <servlet-name>LoadOrderHistoryForUserController</servlet-name>
         <servlet-class>controller.LoadOrderHistoryForUserController</servlet-class>
+    </servlet>
+        <servlet>
+        <servlet-name>DeliveringOrderShipController</servlet-name>
+        <servlet-class>controller.DeliveringOrderShipController</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>DeliveredOrderShipController</servlet-name>
+        <servlet-class>controller.DeliveredOrderShipController</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>DeliveredOrderShipController</servlet-name>
+        <servlet-class>controller.DeliveredOrderShipController</servlet-class>
     </servlet>
     <servlet-mapping>
         <servlet-name>HomeController</servlet-name>
@@ -328,7 +340,7 @@
         <servlet-name>AddNewReviewController</servlet-name>
         <url-pattern>/user-add-review</url-pattern>
     </servlet-mapping>
-        <servlet-mapping>
+    <servlet-mapping>
         <servlet-name>admin-search-staff</servlet-name>
         <url-pattern>/admin-search-staff</url-pattern>
     </servlet-mapping>
@@ -347,6 +359,18 @@
     <servlet-mapping>
         <servlet-name>LoadOrderHistoryForUserController</servlet-name>
         <url-pattern>/user-order-history</url-pattern>
+    </servlet-mapping>
+        <servlet-mapping>
+        <servlet-name>DeliveringOrderShipController</servlet-name>
+        <url-pattern>/shipper-delivering-order</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>DeliveredOrderShipController</servlet-name>
+        <url-pattern>/ship-delivered-order</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>DeliveredOrderShipController</servlet-name>
+        <url-pattern>/ship-delivered-order</url-pattern>
     </servlet-mapping>
     <session-config>
         <session-timeout>

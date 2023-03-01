@@ -149,9 +149,9 @@
                     </div>
                     <div class="row">
                         <div class="col-xs-12">
-                            <div class="detail-table-group">
-                                <button class="btn-primary"><a href="acceptorder?accountID=${sessionScope.accountSesseion.accountID}&orderID=${order.orderID}">Accept</a></button>
-                                <button class="btn-main"><a href="rejectorder?accountID=${sessionScope.accountSesseion.accountID}&orderID=${order.orderID}">Reject</a></button>
+                            <div class="detail-table-group"> 
+                                <button class="btn-primary"><a href="shipper-delivering-order?accountID=${sessionScope.accountSesseion.accountID}&orderID=${order.orderID}">Delivering</a></button>
+                                <button class="btn-main"><a href="ship-delivered-order?accountID=${sessionScope.accountSesseion.accountID}&orderID=${order.orderID}">Delivered</a></button>
                             </div>
                         </div>
                     </div>

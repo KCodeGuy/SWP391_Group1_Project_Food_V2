@@ -157,15 +157,22 @@
         <servlet-class>controller.AddProductController</servlet-class>
     </servlet>
     <servlet>
-<<<<<<< HEAD
         <servlet-name>AddNewReviewController</servlet-name>
         <servlet-class>controller.AddNewReviewController</servlet-class>
+    </servlet>
+<<<<<<< HEAD
+        <servlet>
+        <servlet-name>admin-search-staff</servlet-name>
+        <servlet-class>controller.SearchStaffController</servlet-class>
     </servlet>
         <servlet>
         <servlet-name>deletestaff</servlet-name>
         <servlet-class>controller.DeleteStaffController</servlet-class>
     </servlet>
         <servlet>
+=======
+    <servlet>
+>>>>>>> origin/HieuTTN_deliveringOrderShip
         <servlet-name>ShowOrderDetailForShipperController</servlet-name>
         <servlet-class>controller.ShowOrderDetailForShipperController</servlet-class>
     </servlet>
@@ -174,12 +181,17 @@
         <servlet-class>controller.DeleteReviewController</servlet-class>
     </servlet>
     <servlet>
+<<<<<<< HEAD
         <servlet-name>LoadOrderHistoryForUserController</servlet-name>
         <servlet-class>controller.LoadOrderHistoryForUserController</servlet-class>
 =======
-        <servlet-name>admin-search-staff</servlet-name>
-        <servlet-class>controller.SearchStaffController</servlet-class>
->>>>>>> origin/QuyenNNM_SearchStaffByName
+        <servlet-name>DeliveringOrderShipController</servlet-name>
+        <servlet-class>controller.DeliveringOrderShipController</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>DeliveredOrderShipController</servlet-name>
+        <servlet-class>controller.DeliveredOrderShipController</servlet-class>
+>>>>>>> origin/HieuTTN_deliveringOrderShip
     </servlet>
     <servlet-mapping>
         <servlet-name>HomeController</servlet-name>
@@ -326,15 +338,22 @@
         <url-pattern>/admin-add-product</url-pattern>
     </servlet-mapping>
     <servlet-mapping>
-<<<<<<< HEAD
         <servlet-name>AddNewReviewController</servlet-name>
         <url-pattern>/user-add-review</url-pattern>
+    </servlet-mapping>
+<<<<<<< HEAD
+        <servlet-mapping>
+        <servlet-name>admin-search-staff</servlet-name>
+        <url-pattern>/admin-search-staff</url-pattern>
     </servlet-mapping>
         <servlet-mapping>
         <servlet-name>deletestaff</servlet-name>
         <url-pattern>/admin-delete-staff</url-pattern>
     </servlet-mapping>
         <servlet-mapping>
+=======
+    <servlet-mapping>
+>>>>>>> origin/HieuTTN_deliveringOrderShip
         <servlet-name>ShowOrderDetailForShipperController</servlet-name>
         <url-pattern>/shipper-order-detail</url-pattern>
     </servlet-mapping>
@@ -343,12 +362,17 @@
         <url-pattern>/user-delete-review</url-pattern>
     </servlet-mapping>
     <servlet-mapping>
+<<<<<<< HEAD
         <servlet-name>LoadOrderHistoryForUserController</servlet-name>
         <url-pattern>/user-order-history</url-pattern>
 =======
-        <servlet-name>admin-search-staff</servlet-name>
-        <url-pattern>/admin-search-staff</url-pattern>
->>>>>>> origin/QuyenNNM_SearchStaffByName
+        <servlet-name>DeliveringOrderShipController</servlet-name>
+        <url-pattern>/shipper-delivering-order</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>DeliveredOrderShipController</servlet-name>
+        <url-pattern>/ship-delivered-order</url-pattern>
+>>>>>>> origin/HieuTTN_deliveringOrderShip
     </servlet-mapping>
     <session-config>
         <session-timeout>
