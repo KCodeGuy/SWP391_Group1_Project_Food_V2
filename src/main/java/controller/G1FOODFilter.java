@@ -121,7 +121,16 @@ public class G1FOODFilter implements Filter {
 
         String orderID = new OrderDAO().getDelivering(accountID);
         if (accountID != null) {
-            
+            boolean isDelivering = accountID.substring(0, 2).equalsIgnoreCase("SP") && orderID != null;
+            if (path.contains("manage")) {
+                if (isDelivering) {
+                    String redirectPath = "shipper-order-detail?orderID=" + orderID + "&accountID=" + accountID;
+                    res.reset(); // reset response
+                    res.setStatus(HttpServletResponse.SC_MOVED_PERMANENTLY);
+                    res.setHeader("Location", redirectPath);
+                    return;
+                }
+            }
 
             if (accountID.substring(0, 2).equalsIgnoreCase("US")) {
                 for (String disallowed : userNotAllowedPaths) {
