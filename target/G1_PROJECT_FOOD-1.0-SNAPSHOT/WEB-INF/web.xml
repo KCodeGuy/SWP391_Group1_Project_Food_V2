@@ -326,7 +326,7 @@
     </servlet-mapping>
         <servlet-mapping>
         <servlet-name>deletestaff</servlet-name>
-        <url-pattern>/deletestaff</url-pattern>
+        <url-pattern>/admin-delete-staff</url-pattern>
     </servlet-mapping>
         <servlet-mapping>
         <servlet-name>ShowOrderDetailForShipperController</servlet-name>

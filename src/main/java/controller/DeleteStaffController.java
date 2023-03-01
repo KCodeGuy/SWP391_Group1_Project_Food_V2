@@ -63,7 +63,7 @@ public class DeleteStaffController extends HttpServlet {
         //Call the deleteStaff method of the StaffDAO object to delete the staff with the given ID
         sdao.deleteStaff(accountID);
         //Redirect the staff to the page that lists all staffs
-        response.sendRedirect("loadliststaff");
+        response.sendRedirect("admin-manage-staff");
     }
 
     /**
