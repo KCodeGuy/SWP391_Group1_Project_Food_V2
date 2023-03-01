@@ -451,7 +451,7 @@ public class OrderDAO {
     public boolean deliveredOrderByOrderID(String accountID, String orderID) {
         try {
             String query = "UPDATE [ORDER]\n"
-                    + "SET OrderStatus = 'DELEVERED', AccIDOfShipper = ?\n"
+                    + "SET OrderStatus = 'DELIVERED', AccIDOfShipper = ?\n"
                     + "WHERE OrderID = ?"; // SQL query to update the order status
             con = new DBContext().getConnection(); //Get a connection to the database
             ps = con.prepareStatement(query); //Create a prepared statement for the query
