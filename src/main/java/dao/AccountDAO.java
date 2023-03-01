@@ -550,9 +550,6 @@ public class AccountDAO {
             e.getMessage();
         } //End trycatch
     }
-        //If an exception is caught or if the list is empty, return null.
-        return null;
-    }
     
         /**
      * Returns a list of User objects with names that match the provided search
