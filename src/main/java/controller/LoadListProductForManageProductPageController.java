@@ -36,7 +36,7 @@ public class LoadListProductForManageProductPageController extends HttpServlet {
         List<Product> listProduct = pdao.getListProduct(); // get list product to load manageProduct page   
         String txtSearch = request.getParameter("txtSearch");
         if (txtSearch != null) {
-            listProduct = pdao.findProductByName(txtSearch,null);
+            listProduct = pdao.findProductByName(txtSearch);
         }
         if(listProduct.isEmpty()){
             request.setAttribute("MESSAGE", "Product not found!");

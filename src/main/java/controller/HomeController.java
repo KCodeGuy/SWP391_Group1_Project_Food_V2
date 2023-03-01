@@ -35,8 +35,13 @@ public class HomeController extends HttpServlet {
 
         String txtSearch = request.getParameter("txtSearch");
         String sort = request.getParameter("sort");
-        if (txtSearch != null) {
-            listProduct = pdao.findProductByName(txtSearch, sort);
+         if (txtSearch != null) {
+            listProduct = pdao.findProductByName(txtSearch);
+            if (listProduct.isEmpty()) {
+                request.setAttribute("MESSAGE", "Product not found");
+            }
+        }if(sort !=null){
+            listProduct = pdao.sortProduct(sort);
         }
 
         request.setAttribute("listProduct", listProduct);

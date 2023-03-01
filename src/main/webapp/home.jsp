@@ -97,7 +97,6 @@
                                             <option value="asc">Price ascending</option>
                                             <option value="desc">Price descending</option>
                                         </select>
-                                        <input type="hidden" name="txtSearch" value="${param.txtSearch}" />
                                         <button type="submit" class="btn-primary btn-sort"><i class="fa-solid fa-arrow-up-a-z"></i>Sort</button>
                                     </form>
                                             </li>                      
@@ -120,9 +119,9 @@
                 </div>
             </div>
 
-            <!-- separator -->
+             <!-- separator -->
             <div class="container container-sep">
-                <div class="separator"></div>
+                <div class="separator">${requestScope.MESSAGE}</div>
             </div>
 
             <div class="container-fluid container-card">
