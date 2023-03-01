@@ -32,8 +32,15 @@ public class LoadListProductForManageProductPageController extends HttpServlet {
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         response.setContentType("text/html;charset=UTF-8");
-        ProductDAO pdao = new ProductDAO(); 
-        List<Product> listProduct = pdao.getListProduct(); // get list product to load manageProduct page    
+        ProductDAO pdao = new ProductDAO();
+        List<Product> listProduct = pdao.getListProduct(); // get list product to load manageProduct page   
+        String txtSearch = request.getParameter("txtSearch");
+        if (txtSearch != null) {
+            listProduct = pdao.findProductByName(txtSearch,null);
+        }
+        if(listProduct.isEmpty()){
+            request.setAttribute("MESSAGE", "Product not found!");
+        }
         request.setAttribute("listProduct", listProduct);
         request.setAttribute("productQuantity", listProduct.size());//show the number of products in the list
         request.getRequestDispatcher("manageProduct.jsp").forward(request, response);

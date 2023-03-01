@@ -54,18 +54,22 @@
                                     <i class="fa-solid fa-plus"></i>
                                     <a href="addProduct.jsp">Add product</a>
                                 </button>
+                                <form action="admin-manage-product">
                                 <div class="search-group">
-                                    <input type="text" placeholder="Cơm sườn bì chả">
-                                    <button class="btn-main btn-search">
+                                    <input type="text" name="txtSearch" value="${param.txtSearch}" placeholder="Cơm sườn bì chả">
+                                    <button type="submit" class="btn-main btn-search">
                                         <i class="fa-solid fa-magnifying-glass"></i>
                                     </button>
+                                    
                                 </div>
+                                </form>
                             </div>
                         </div>
                     </div>
                 </div>
                 <div class="row">
                     <div class="col-xs-12">
+                      
                         <table class="table table-striped text-center align-middle">
                             <thead class="table-heading">
                                 <tr>
@@ -81,6 +85,7 @@
                                 </tr>
                             </thead>
                             <tbody>
+                                
                               <c:forEach items="${listProduct}" var="pr">
                                 <tr>   
                                     <td class="table-order">1</td>
@@ -101,6 +106,7 @@
                                 </c:forEach>
                             </tbody>
                         </table>
+                         ${requestScope.MESSAGE}
                     </div>
                 </div>
             </div>

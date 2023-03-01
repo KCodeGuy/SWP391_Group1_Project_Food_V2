@@ -34,12 +34,20 @@ public class LoadListOrderedForManagePageController extends HttpServlet {
             throws ServletException, IOException {
         response.setContentType("text/html;charset=UTF-8");
         //create a new OrderDAO object to retrieve data
-        OrderDAO odao = new OrderDAO(); 
+        OrderDAO odao = new OrderDAO();
         //pass listOrder object to jsp page
         ArrayList<Order> listOrder = odao.getListOrderForAdmin();
+        String txtSearch = request.getParameter("txtSearch");
+
         int totalPrice = 0;
         for (Order order : listOrder) {
             totalPrice += order.getTotalPrice();
+        }
+        if (txtSearch != null && !txtSearch.isEmpty()) {
+            listOrder = odao.getListOrderForAdmin(txtSearch);
+        }
+        if (listOrder.isEmpty()) {
+            request.setAttribute("MESSAGE", "Order not found!");
         }
         request.setAttribute("totalOrder", listOrder.size());
         request.setAttribute("totalPrice", totalPrice);

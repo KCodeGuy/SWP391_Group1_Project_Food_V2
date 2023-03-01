@@ -278,11 +278,14 @@ public class ProductDAO {
      * @param search product name to search
      * @return Return the product and show the message
      */
-    public List<Product> findProductByName(String search) {
+    public List<Product> findProductByName(String search ,String sort) {
         List<Product> list = new ArrayList<>(); //list products
         try {
-            String query = "SELECT * FROM PRODUCT WHERE ProductStatus <> 'REMOVED' AND ProductName like ?"; //query select product orther than REMOVED
+            String query = "SELECT * FROM PRODUCT WHERE ProductStatus <> 'REMOVED' AND ProductName like ? ORDER BY ProductPrice "; //query select product orther than REMOVED
             con = new DBContext().getConnection(); // open connection to SQL
+              if(sort!=null){
+                query+=sort;
+            }
             ps = con.prepareStatement(query); // move query from Netbeen to SQl
             ps.setString(1, "%" + search + "%");
             rs = ps.executeQuery(); // the same with click to "excute" btn;

@@ -411,6 +411,50 @@ public class OrderDAO {
         } // end try catch
         return false; // return null if not order
     }
+    
+    /**
+     *  the function list order for Admin
+     * @param search the list in order database SQL
+     * @return list order
+     */
+      public ArrayList<Order> getListOrderForAdmin(String search) {
+          ArrayList<Order> listOrder = new ArrayList<>(); // create list product in order
+        try {
+            String query = "SELECT \n"
+                    + "   [ORDER].OrderID, \n"
+                    + "   [ORDER].BuyerFullName, \n"
+                    + "   [ORDER].OrderDate, \n"
+                    + "   [ORDER].OrderStatus, \n"
+                    + "   SUM([ORDER_DETAIL].OrderDQuantity) AS Quantity, \n"
+                    + "   SUM(([ORDER_DETAIL].OrderDPrice * (100 - [ORDER].ProductSalePercent) / 100) * [ORDER_DETAIL].OrderDQuantity) AS Price \n"
+                    + "FROM [ORDER] \n"
+                    + "INNER JOIN [ORDER_DETAIL] ON [ORDER].OrderID = [ORDER_DETAIL].OrderID \n"
+                    + " WHERE [ORDER].BuyerFullName like ?  "
+                    + "GROUP BY \n"
+                    + "   [ORDER].OrderID, \n"
+                    + "   [ORDER].BuyerFullName, \n"
+                    + "   [ORDER].OrderDate, \n"
+                    + "   [ORDER].OrderStatus"; // query select form database
+            con = new DBContext().getConnection(); // open conect database
+            ps = con.prepareStatement(query); // set account ID into query
+            ps.setString(1,"%"+ search +"%");
+            rs = ps.executeQuery(); // execute query
+           
+            while (rs.next()) {
+                listOrder.add(new Order(rs.getString(1),
+                        OrderStatus.valueOf(rs.getString(4)),
+                        rs.getString(3),
+                        rs.getString(2),
+                        rs.getInt(5),
+                        rs.getInt(6)));
+                // add new item into list order
+            } // end while
+           
+        } catch (Exception e) {
+            e.getMessage();
+        } // end try catch
+        return listOrder; // return list order
+    }
 
     /**
      *

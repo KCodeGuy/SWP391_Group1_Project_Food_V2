@@ -34,8 +34,9 @@ public class HomeController extends HttpServlet {
         List<Product> listProduct = pdao.getListProduct(); // get list product to load page
 
         String txtSearch = request.getParameter("txtSearch");
+        String sort = request.getParameter("sort");
         if (txtSearch != null) {
-            listProduct = pdao.findProductByName(txtSearch);
+            listProduct = pdao.findProductByName(txtSearch, sort);
         }
 
         request.setAttribute("listProduct", listProduct);
