@@ -28,7 +28,7 @@
                 <!-- Form update product -->
                 <div class="container-fluid container-fluid-form">
                     <div class="wrapper-form">
-                        <form id="myForm">
+                        <form id="myForm" action="updateproduct" method="post">
                             <div class="form-heading-group">
                                 <i class="fa-solid fa-file-pen"></i>
                                 <h2 class="form-heading">UPDATE PRODUCT</h2>
@@ -36,60 +36,68 @@
 
                             <div class="form-control-group">
                                 <h4 class="form-text-label">Name:</h4>
-                                <input type="text" id="name" name="name" placeholder="Enter name of product">
-                                <div class="alert-warning" id="txtNameMessage"></div>
-                            </div>
+                            <input type="text" id="name" name="name" placeholder="Enter name of product" value="${product.productName}">
+                            <input type="text" id="productID" name="productID" value="${productID}" hidden="true" >
+                            <div class="alert-warning" id="txtNameMessage"></div>
+                        </div>
 
-                            <div class="form-control-group">
-                                <h4 class="form-text-label">Price of product:</h4>
-                                <input type="number" id="price" name="price" placeholder="Enter price of product">
-                                <div class="alert-warning" id="txtNameMessage1"></div>
-                            </div>
+                        <div class="form-control-group">
+                            <h4 class="form-text-label">Price of product:</h4>
+                            <input type="number" id="price" name="price" placeholder="Enter price of product" value="${product.productPrice}">
+                            <div class="alert-warning" id="txtNameMessage1"></div>
+                        </div>
 
-                            <div class="form-control-group">
-                                <h4 class="form-text-label">Sale-Percent:</h4>
-                                <input type="number" id="salesoff" name="salesoff" placeholder="Enter sales of product">
-                                <div class="alert-warning" id="txtNameMessage2"></div>
-                            </div>
+                        <div class="form-control-group">
+                            <h4 class="form-text-label">Sale-Percent:</h4>
+                            <input type="number" id="salesoff" name="salesoff" placeholder="Enter sales of product" value="${product.productSalePercent}">
+                            <div class="alert-warning" id="txtNameMessage2"></div>
+                        </div>
 
-                            <div class="form-control-group">
-                                <h4 class="form-text-label">Status:</h4>
-                                <select id="category" name="category" >
-                                    <option value="SOUL_OUT">SOUL_OUT</option>
-                                    <option value="AVAILABLE">AVAILABLE</option>
-                                    <option value="REMOVED">REMOVED</option>
-                                </select>
-                            </div>
+                        <div class="form-control-group">
+                            <h4 class="form-text-label">Status:</h4>
+                            <select id="status" name="status" value="${product.productStatus}">
+                                <option value="SOUL_OUT">SOUL_OUT</option>
+                                <option value="AVAILABLE">AVAILABLE</option>
+                                <option value="REMOVED">REMOVED</option>
+                            </select>
+                        </div>
 
-                            <div class="form-control-group">
-                                <h4 class="form-text-label">Category:</h4>
-                                <select id="category" name="category">
-                                    <option value="category1">Category 1</option>
-                                    <option value="category1">Category 1</option>
-                                    <option value="category1">Category 1</option>
-                                </select>
-                            </div>
+                        <div class="form-control-group">
+                            <h4 class="form-text-label">Category:</h4>
+                            <select id="category" name="category" value="${product.categoryID}">
+                                <option value="FOOD">FOOD</option>
+                                <option value="DRINK">DRINK</option>
+                                <option value="SOUP">SOUP</option> 
+                                <option value="COMBO">COMBO</option>
+                            </select>
+                        </div>
 
-                            <div class="form-control-group">
-                                <h4 class="form-text-label">Description:</h4>
-                                <input type="text" id="description" name="description" placeholder="Enter description of product">
-                                <div class="alert-warning" id="txtDescriptionMessage"></div>
-                            </div>
+                        <div class="form-control-group">
+                            <h4 class="form-text-label">Description:</h4>
+                            <input type="text" id="description" name="description" placeholder="Enter description of product" value="${product.productDescription}">
+                            <div class="alert-warning" id="txtDescriptionMessage"></div>
+                        </div>
 
-                            <div class="form-btn-group">
-                                <button type="Submit" name="submit" class="btn-primary">Update</button>
-                                <h6 class="form-btn-separator">&nbsp;OR&nbsp;</h6>
-                                <button type="button" name="submit" class="btn-main">Cancel</button>
-                            </div>
-                        </form>
-                    </div>
+                        <div class="form-control-group">
+                            <h4 class="form-text-label">Image:</h4>
+                            <input type="text" id="image" name="image" placeholder="http://............" value="${product.productLink}">
+                            <div class="alert-warning" id="txtDescriptionMessage"></div>
+                        </div>
+
+                        <div class="form-btn-group">
+                            <button type="Submit" name="submit" class="btn-primary">Update</button>
+                            <h6 class="form-btn-separator">&nbsp;OR&nbsp;</h6>
+                            <button type="button" name="submit" class="btn-main">Cancel</button>
+                        </div>
+                    </form>
                 </div>
-                <!-- 5. Footer  -->
+            </div>
+            <!-- 5. Footer  -->
             <jsp:include page="footer.jsp"></jsp:include>
         </div>
         <script src="./bootstap/bootstrap.js"></script>
         <script src="jquery/Jquery.js"></script>
-        <script src="jquery/updateProduct.js"></script>
+        <!--        <script src="jquery/updateProduct.js"></script>-->
     </body>
 
 </html>

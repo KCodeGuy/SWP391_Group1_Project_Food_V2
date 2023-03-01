@@ -307,6 +307,48 @@ public class ProductDAO {
         }
         return list;
     }
+    
+    /**
+     * Method update product 
+     * @param productName The name of product
+     * @param productPrice The price of product
+     * @param productSalePercent The SalePercent of product
+     * @param productStatus The Status of product
+     * @param categoryID The categoryID of product
+     * @param productDescription The Description of product
+     * @param productImage The link image of product
+     * @param productID The ID of product
+     */
+    public void updateProduct(String productName, int productPrice,
+        int productSalePercent,String productStatus, String categoryID, String productDescription, String productImage, String productID) {
+        // query to update new information of the product.
+        String query = "UPDATE PRODUCT SET ProductName = ?, ProductDescription = ?, ProductPrice = ?, ProductSalePercent = ?, ProductStatus = ?, ProductImage = ? , CategoryID = ? where ProductID = ?";
+        try {
+            con = new DBContext().getConnection();   // open connection to SQL.
+            ps = con.prepareStatement(query);  // move query from Netbeen to SQl. 
+            ps.setString(1, productName);
+            ps.setString(2, productDescription);
+            ps.setInt(3, productPrice);
+            ps.setInt(4, productSalePercent);  
+            ps.setString(5, productStatus); 
+            ps.setString(6, productImage);
+            ps.setString(7, categoryID);
+             ps.setString(8, productID);
+            ps.executeUpdate();     // update a new password into database.                 
+        } catch (Exception e) {
+            e.getMessage();
+        } // end try-catch.
+    }
+    
+    /**
+     *
+     * @param args
+     */
+    public static void main(String[] args) {
+        ProductDAO p = new ProductDAO();
+        p.updateProduct("Banh Bao", 10000, 0, "AVAILABLE", "FOOD", "Banh troi nuoc thom ngon", "ko co hinh", "BC0055");
+        
+    }
 
     /**
      * Method to add new products
