@@ -47,7 +47,7 @@
                                         </button>
                                     </div>
                                 </form>
-                                <form action="searchuser">
+                                <form action="admin-search-user">
                                     <div class="btn-group-search-add">
                                         <div class="search-group">
                                             <input type="text" name="txtSearch" placeholder="Enter user's name">
@@ -69,6 +69,7 @@
                                         <th class="table-heading-text" scope="col">ID</th>
                                         <th class="table-heading-text" scope="col">Name</th>
                                         <th class="table-heading-text" scope="col">Email</th>
+                                        <th class="table-heading-text" scope="col">Status</th>
                                         <th class="table-heading-text" scope="col">Detail</th>
                                     </tr>
                                 </thead>
@@ -81,6 +82,7 @@
                                             <td class="table-email">
                                                 ${lu.accountEmail}
                                             </td>
+                                            <td class="table-name"><a href="">${lu.accountStatus}</a></td>
                                             <td class="table-btn">
                                                 <a class="table-btn-edit" href="user-profile?accountID=${lu.accountID}"><i
                                                         class="fa-solid fa-pen-to-square"></i></a>

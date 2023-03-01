@@ -71,6 +71,7 @@
                                         <th class="table-heading-text" scope="col">Name</th>
                                         <th class="table-heading-text" scope="col">Email</th>
                                         <th class="table-heading-text" scope="col">Role</th>
+                                        <th class="table-heading-text" scope="col">Status</th>
                                         <th class="table-heading-text" scope="col">Detail</th>
                                     </tr>
                                 </thead>
@@ -84,6 +85,7 @@
                                                 ${ls.accountEmail}
                                             </td>
                                             <td class="table-name"><a href="">${ls.roleDescription}</a></td>
+                                            <td class="table-name"><a href="">${ls.accountStatus}</a></td>
                                             <td class="table-btn">
 
                                                 <a class="table-btn-edit" href="staff-profile?accountID=${ls.accountID}"><i
@@ -98,7 +100,7 @@
                                     </c:forEach>
                                     <c:if test="${listStaff.size() == 0}">
                                         <tr>
-                                            <td class="table-row-no-product" colspan="5" >
+                                            <td class="table-row-no-product" colspan="7" >
                                                 ${message}
                                             </td>
                                         </tr>

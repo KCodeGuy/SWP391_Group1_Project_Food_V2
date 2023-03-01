@@ -466,7 +466,7 @@ public class AccountDAO {
     public List<Account> getListStaff() {
         try {
             //Define a SQL query to retrieve account details for all active staffs, including role information.
-            String query = "SELECT AccountID, AccountName, AccountEmail FROM ACCOUNT WHERE ([AccountID] LIKE 'CH%' OR [AccountID] LIKE 'SP%') AND  AccountStatus NOT LIKE 'REMOVED'";
+            String query = "SELECT AccountID, AccountName, AccountEmail, AccountStatus FROM ACCOUNT WHERE [AccountID] LIKE 'CH%' OR [AccountID] LIKE 'SP%'";
             con = new DBContext().getConnection(); //Open a connection to the database.
             ps = con.prepareStatement(query); //Move query from Netbeen to SQL
             rs = ps.executeQuery(); //Execute the query and get the result set.
@@ -475,9 +475,9 @@ public class AccountDAO {
             //Loop through the result set and create a new Staff object for each row.
             while (rs.next()) { // Loop through creating a new staff and retrieved data
                 if (rs.getString(1).substring(0, 2).equalsIgnoreCase("SP")) {
-                    list.add(new Account(rs.getString(1), rs.getString(3), "", AccountStatus.NULL, rs.getString(2), "", "", "", "", "Shipper")); // add new item in list
+                    list.add(new Account(rs.getString(1), rs.getString(3), "", AccountStatus.valueOf(rs.getString(4)), rs.getString(2), "", "", "", "", "Shipper")); // add new item in list
                 } else {
-                    list.add(new Account(rs.getString(1), rs.getString(3), "", AccountStatus.NULL, rs.getString(2), "", "", "", "", "Chef")); // add new item in list
+                    list.add(new Account(rs.getString(1), rs.getString(3), "", AccountStatus.valueOf(rs.getString(4)), rs.getString(2), "", "", "", "", "Chef")); // add new item in list
                 }
             } // end while rs.next
             return list;  //Return the list of Staff objects.
@@ -550,8 +550,8 @@ public class AccountDAO {
             e.getMessage();
         } //End trycatch
     }
-    
-        /**
+
+    /**
      * Returns a list of User objects with names that match the provided search
      * text.
      *
@@ -562,7 +562,7 @@ public class AccountDAO {
     public List<Account> getListStaffByName(String txtSearch) {
         try {
             //Define a SQL query to retrieve account details for all active staffs, including role information.
-            String query = "SELECT AccountID, AccountName, AccountEmail FROM ACCOUNT WHERE  AccountID NOT LIKE 'US%' AND AccountName LIKE ?";
+            String query = "SELECT AccountID, AccountName, AccountEmail, AccountStatus FROM ACCOUNT WHERE  (AccountID LIKE 'SP%' OR AccountID LIKE 'CH%') AND AccountName LIKE ?";
             con = new DBContext().getConnection(); //Open a connection to the database.
             ps = con.prepareStatement(query); //Move query from Netbeen to SQL
             ps.setString(1, "%" + txtSearch + "%");
@@ -571,7 +571,11 @@ public class AccountDAO {
             List<Account> list = new ArrayList<>();
             //Loop through the result set and create a new Staff object for each row.
             while (rs.next()) {
-                list.add(new Account(rs.getString(1), rs.getString(3), "", AccountStatus.NULL, rs.getString(2), "", "", "", "", ""));  //AccountName
+                if (rs.getString(1).substring(0, 2).equalsIgnoreCase("SP")) {
+                    list.add(new Account(rs.getString(1), rs.getString(3), "", AccountStatus.valueOf(rs.getString(4)), rs.getString(2), "", "", "", "", "Shipper")); // add new item in list
+                } else {
+                    list.add(new Account(rs.getString(1), rs.getString(3), "", AccountStatus.valueOf(rs.getString(4)), rs.getString(2), "", "", "", "", "Chef")); // add new item in list
+                }
             } //End while
             return list;  //Return the list of Staff objects.
         } catch (Exception e) {
@@ -582,9 +586,8 @@ public class AccountDAO {
     }
 
     /**
-     * To get an account of chef by id to handle.
-     * Interact with the database to load staff information by linking account
-     * ID
+     * To get an account of chef by id to handle. Interact with the database to
+     * load staff information by linking account ID
      *
      * @param accountID of the associated with staff
      * @return staff linked by accountID otherwise return null
@@ -720,7 +723,7 @@ public class AccountDAO {
     public List<Account> getListUser() {
         try {
             //Define a SQL query to retrieve account details for all active users, including role information.
-            String query = "SELECT AccountID, AccountName, AccountEmail FROM ACCOUNT WHERE  AccountID LIKE 'US%'";
+            String query = "SELECT AccountID, AccountName, AccountEmail, AccountStatus FROM ACCOUNT WHERE  AccountID LIKE 'US%'";
             con = new DBContext().getConnection(); //Open a connection to the database.
             ps = con.prepareStatement(query); //Move query from Netbeen to SQL
             rs = ps.executeQuery(); //Execute the query and get the result set.
@@ -728,7 +731,7 @@ public class AccountDAO {
             List<Account> list = new ArrayList<>();
             //Loop through the result set and create a new User object for each row.
             while (rs.next()) {
-                list.add(new Account(rs.getString(1), rs.getString(3), "", AccountStatus.NULL, rs.getString(2), "", "", "", "", ""));  //AccountName
+                list.add(new Account(rs.getString(1), rs.getString(3), "", AccountStatus.valueOf(rs.getString(4)), rs.getString(2), "", "", "", "", ""));  //AccountName
             } //End while
             return list;  //Return the list of User objects.
         } catch (Exception e) {
@@ -776,7 +779,7 @@ public class AccountDAO {
     public List<Account> getListUserByName(String txtSearch) {
         try {
             //Define a SQL query to retrieve account details for all active users, including role information.
-            String query = "SELECT AccountID, AccountName, AccountEmail FROM ACCOUNT WHERE  AccountID LIKE 'US%' AND AccountName LIKE ?";
+            String query = "SELECT AccountID, AccountName, AccountEmail, AccountStatus FROM ACCOUNT WHERE  AccountID LIKE 'US%' AND AccountName LIKE ?";
             con = new DBContext().getConnection(); //Open a connection to the database.
             ps = con.prepareStatement(query); //Move query from Netbeen to SQL
             ps.setString(1, "%" + txtSearch + "%");
@@ -785,7 +788,7 @@ public class AccountDAO {
             List<Account> list = new ArrayList<>();
             //Loop through the result set and create a new User object for each row.
             while (rs.next()) {
-                list.add(new Account(rs.getString(1), rs.getString(3), "", AccountStatus.NULL, rs.getString(2), "", "", "", "", ""));  //AccountName
+                list.add(new Account(rs.getString(1), rs.getString(3), "", AccountStatus.valueOf(rs.getString(4)), rs.getString(2), "", "", "", "", ""));  //AccountName
             } //End while
             return list;  //Return the list of User objects.
         } catch (Exception e) {
