@@ -44,37 +44,37 @@
                                         <div class="total-quantity-group">
                                             <h6 class="sort-form-label">Total quantity:</h6>
                                             <button class="btn-primary total-quantity">
-                                                150
+                                            ${size}
+                                        </button>
+                                    </div>
+                                </form>
+                                <form action="admin-search-staff">
+                                    <div class="btn-group-search-add">
+                                        <div class="search-group">
+                                            <input type="text" name="txtSearch" placeholder="Enter staff's name">
+                                            <button type="submit" class="btn-main btn-search">
+                                                <i class="fa-solid fa-magnifying-glass"></i>
                                             </button>
                                         </div>
-                                    </form>
-                                    <form action="searchuser">
-                                        <div class="btn-group-search-add">
-                                            <div class="search-group">
-                                                <input type="text" name="txtSearch" placeholder="Enter staff's name">
-                                                <button type="submit" class="btn-main btn-search">
-                                                    <i class="fa-solid fa-magnifying-glass"></i>
-                                                </button>
-                                            </div>
-                                        </div>
-                                    </form>
-                                </div>
+                                    </div>
+                                </form>
                             </div>
                         </div>
-                        <div class="row">
-                            <div class="col-xs-12">
-                                <table class="table table-striped text-center align-middle">
-                                    <thead class="table-heading">
-                                        <tr>
-                                            <th class="table-heading-text" scope="col">No.</th>
-                                            <th class="table-heading-text" scope="col">ID</th>
-                                            <th class="table-heading-text" scope="col">Name</th>
-                                            <th class="table-heading-text" scope="col">Email</th>
-                                            <th class="table-heading-text" scope="col">Role</th>
-                                            <th class="table-heading-text" scope="col">Detail</th>
-                                        </tr>
-                                    </thead>
-                                    <tbody>
+                    </div>
+                    <div class="row">
+                        <div class="col-xs-12">
+                            <table class="table table-striped text-center align-middle">
+                                <thead class="table-heading">
+                                    <tr>
+                                        <th class="table-heading-text" scope="col">No.</th>
+                                        <th class="table-heading-text" scope="col">ID</th>
+                                        <th class="table-heading-text" scope="col">Name</th>
+                                        <th class="table-heading-text" scope="col">Email</th>
+                                        <th class="table-heading-text" scope="col">Role</th>
+                                        <th class="table-heading-text" scope="col">Detail</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
                                     <c:forEach items="${listStaff}" var="ls">
                                         <tr>
                                             <td class="table-order">1</td>
@@ -85,7 +85,7 @@
                                             </td>
                                             <td class="table-name"><a href="">${ls.roleDescription}</a></td>
                                             <td class="table-btn">
-                             
+
                                                 <a class="table-btn-edit" href="staff-profile?accountID=${ls.accountID}"><i
                                                         class="fa-solid fa-pen-to-square"></i></a>
                                                 <a href="admin-delete-staff?accountID=${ls.accountID}" onclick="return showMessageDelete();"><i

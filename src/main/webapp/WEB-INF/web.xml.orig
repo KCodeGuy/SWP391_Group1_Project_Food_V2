@@ -157,12 +157,9 @@
         <servlet-class>controller.AddProductController</servlet-class>
     </servlet>
     <servlet>
+<<<<<<< HEAD
         <servlet-name>AddNewReviewController</servlet-name>
         <servlet-class>controller.AddNewReviewController</servlet-class>
-    </servlet>
-        <servlet>
-        <servlet-name>admin-search-staff</servlet-name>
-        <servlet-class>controller.SearchStaffController</servlet-class>
     </servlet>
         <servlet>
         <servlet-name>deletestaff</servlet-name>
@@ -179,6 +176,10 @@
     <servlet>
         <servlet-name>LoadOrderHistoryForUserController</servlet-name>
         <servlet-class>controller.LoadOrderHistoryForUserController</servlet-class>
+=======
+        <servlet-name>admin-search-staff</servlet-name>
+        <servlet-class>controller.SearchStaffController</servlet-class>
+>>>>>>> origin/QuyenNNM_SearchStaffByName
     </servlet>
     <servlet-mapping>
         <servlet-name>HomeController</servlet-name>
@@ -325,12 +326,9 @@
         <url-pattern>/admin-add-product</url-pattern>
     </servlet-mapping>
     <servlet-mapping>
+<<<<<<< HEAD
         <servlet-name>AddNewReviewController</servlet-name>
         <url-pattern>/user-add-review</url-pattern>
-    </servlet-mapping>
-        <servlet-mapping>
-        <servlet-name>admin-search-staff</servlet-name>
-        <url-pattern>/admin-search-staff</url-pattern>
     </servlet-mapping>
         <servlet-mapping>
         <servlet-name>deletestaff</servlet-name>
@@ -347,6 +345,10 @@
     <servlet-mapping>
         <servlet-name>LoadOrderHistoryForUserController</servlet-name>
         <url-pattern>/user-order-history</url-pattern>
+=======
+        <servlet-name>admin-search-staff</servlet-name>
+        <url-pattern>/admin-search-staff</url-pattern>
+>>>>>>> origin/QuyenNNM_SearchStaffByName
     </servlet-mapping>
     <session-config>
         <session-timeout>

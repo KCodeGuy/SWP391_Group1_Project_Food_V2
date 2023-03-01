@@ -523,38 +523,10 @@ public class AccountDAO {
             e.getMessage();
         } //End trycatch
     }
-
-    /**
-     * Deletes a staff account and sets their account status to "REMOVED" in the
-     * database.
-     *
-     * @param accountID the ID of the staff account to delete
-     */
-    public void deleteStaff(String accountID) {
-        //Define SQL query to update the account status to "REMOVED" and set the email to empty
-        String query = "UPDATE [ACCOUNT]\n"
-                + "SET AccountStatus = 'REMOVED',\n"
-                + "AccountEmail = ''\n"
-                + "WHERE AccountID = ?";
-        try {
-            //Establish database connection
-            con = new DBContext().getConnection();
-            //Prepare the SQL statement with the query
-            ps = con.prepareStatement(query);
-            //Set the value of the accountID parameter in the SQL statement
-            ps.setString(1, accountID);
-            //Execute the SQL statement to update the account status and email
-            ps.executeUpdate();
-        } catch (SQLException e) {
-            //If an SQL error occurs, print the error message to the console
-            e.getMessage();
-        } //End trycatch
-    }
-        //If an exception is caught or if the list is empty, return null.
-        return null;
-    }
+<<<<<<< HEAD
+=======
     
-        /**
+    /**
      * Returns a list of User objects with names that match the provided search
      * text.
      *
@@ -582,6 +554,34 @@ public class AccountDAO {
         } //End trycatch
         //If an exception is caught or if the list is empty, return null.
         return null;
+    }
+>>>>>>> origin/QuyenNNM_SearchStaffByName
+
+    /**
+     * Deletes a staff account and sets their account status to "REMOVED" in the
+     * database.
+     *
+     * @param accountID the ID of the staff account to delete
+     */
+    public void deleteStaff(String accountID) {
+        //Define SQL query to update the account status to "REMOVED" and set the email to empty
+        String query = "UPDATE [ACCOUNT]\n"
+                + "SET AccountStatus = 'REMOVED',\n"
+                + "AccountEmail = ''\n"
+                + "WHERE AccountID = ?";
+        try {
+            //Establish database connection
+            con = new DBContext().getConnection();
+            //Prepare the SQL statement with the query
+            ps = con.prepareStatement(query);
+            //Set the value of the accountID parameter in the SQL statement
+            ps.setString(1, accountID);
+            //Execute the SQL statement to update the account status and email
+            ps.executeUpdate();
+        } catch (SQLException e) {
+            //If an SQL error occurs, print the error message to the console
+            e.getMessage();
+        } //End trycatch
     }
 
     /**
