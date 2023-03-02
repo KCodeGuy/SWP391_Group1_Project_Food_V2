@@ -10,6 +10,7 @@ import jakarta.servlet.http.HttpServlet;
 import java.util.ArrayList;
 import java.util.stream.Stream;
 import model.Product;
+import paging.PagingUtil;
 
 /**
  *
@@ -29,24 +30,33 @@ public class HomeController extends HttpServlet {
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         response.setContentType("text/html;charset=UTF-8");
+        int pageNo = 1;
+        if (request.getParameter("pageNo") != null) {
+            pageNo = Integer.parseInt(request.getParameter("pageNo"));
+        }
+        int pageSize = 8;
+
         ProductDAO pdao = new ProductDAO();
-        List<Product> listProduct = pdao.getListProduct(); // get list product to load page
+        List<Product> listAllProduct = pdao.getListProduct();
+        List<Product> listProduct = PagingUtil.getPagingProducts(listAllProduct, pageNo, pageSize); // get list product to load page
 
         String txtSearch = request.getParameter("txtSearch");
-String category = request.getParameter("category");
+        String category = request.getParameter("category");
         if (txtSearch != null || category != null) {
-            if(txtSearch == null ){
+            if (txtSearch == null) {
                 txtSearch = "";
             }
-            listProduct = pdao.findProductByName(txtSearch,category);
+            listProduct = pdao.findProductByName(txtSearch, category);
             if (listProduct.isEmpty()) {
                 request.setAttribute("MESSAGE", "Product not found");
             }
         }
 
-    
-    
+        int totalPages = PagingUtil.getTotalPages(listAllProduct, pageSize);
 
+        request.setAttribute("page", "home");
+        request.setAttribute("totalPages", totalPages);
+        request.setAttribute("pageNo", pageNo);
         request.setAttribute("listProduct", listProduct);
         request.getRequestDispatcher("home.jsp").forward(request, response);
     }

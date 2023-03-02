@@ -200,6 +200,14 @@
         <servlet-name>LoadListOrderHistoryForChefController</servlet-name>
         <servlet-class>controller.LoadListOrderHistoryForChefController</servlet-class>
     </servlet>
+    <servlet>
+        <servlet-name>LoadProductByCategoryIDController</servlet-name>
+        <servlet-class>controller.LoadProductByCategoryIDController</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>SearchProductInHomePage</servlet-name>
+        <servlet-class>controller.SearchProductInHomePage</servlet-class>
+    </servlet>
     <servlet-mapping>
         <servlet-name>HomeController</servlet-name>
         <url-pattern>/home</url-pattern>
@@ -387,6 +395,14 @@
     <servlet-mapping>
         <servlet-name>LoadListOrderHistoryForChefController</servlet-name>
         <url-pattern>/chef-order-history</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>LoadProductByCategoryIDController</servlet-name>
+        <url-pattern>/category</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>SearchProductInHomePage</servlet-name>
+        <url-pattern>/search-product-home</url-pattern>
     </servlet-mapping>
     <session-config>
         <session-timeout>

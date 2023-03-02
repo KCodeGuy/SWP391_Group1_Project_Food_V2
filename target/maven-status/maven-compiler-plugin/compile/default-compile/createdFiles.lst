@@ -2,6 +2,7 @@ com\example\demo\hash\jni\LibraryLoaders.class
 controller\AddVoucherController.class
 controller\HomeController.class
 dao\OrderDAO.class
+controller\LoadListOrderHistoryForChefController.class
 controller\ShowOrderDetailsForChefController.class
 controller\AcceptOrderController.class
 controller\AddProductController.class
@@ -38,6 +39,7 @@ model\Rating.class
 com\example\demo\hash\jni\JarLibraryLoader$1.class
 controller\LogoutController.class
 dao\ProductDAO.class
+controller\LoadListOrderHistoryForShipperController.class
 controller\AddNewReviewController.class
 model\OrderDetail.class
 model\Cart.class
@@ -46,6 +48,7 @@ dao\CartDAO.class
 controller\DeleteStaffController.class
 dao\AccountDAO.class
 controller\RegisterController.class
+controller\UpdateProductForMangePageController.class
 hash\SCryptUtil.class
 controller\ForgotPasswordController.class
 model\Review.class
@@ -73,6 +76,7 @@ controller\LoadUserProfileController.class
 controller\RejectApplicationController.class
 model\ProductStatus.class
 controller\SearchStaffController.class
+paging\PagingUtil.class
 controller\PayingController.class
 controller\ReEmailVerificationController.class
 controller\LoadListOrderedForChefController.class

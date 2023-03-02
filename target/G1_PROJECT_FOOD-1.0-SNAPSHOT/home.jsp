@@ -78,18 +78,18 @@
                                                 Menu:
                                             </li>
                                             <li class="nav-item">
-                                                <a href="home.html" class="nav-link" aria-current="page">Food</a>
+                                                <a href="category?categoryID=FOOD" class="nav-link" aria-current="page">Food</a>
                                             </li>
                                             <li class="nav-item">
-                                                <a href="home.html" class="nav-link">Drink</a>
-                                            </li>
-
-                                            <li class="nav-item">
-                                                <a href="home.html" class="nav-link">Soup</a>
+                                                <a href="category?categoryID=DRINK" class="nav-link">Drink</a>
                                             </li>
 
                                             <li class="nav-item">
-                                                <a href="home.html" class="nav-link">Combo</a>
+                                                <a href="category?categoryID=SOUP" class="nav-link">Soup</a>
+                                            </li>
+
+                                            <li class="nav-item">
+                                                <a href="category?categoryID=COMBO" class="nav-link">Combo</a>
                                             </li>
                                             <li class="nav-item">
                                                 <form class="sort-form" action="home">
@@ -182,9 +182,21 @@
                                         <span aria-hidden="true">&laquo;</span>
                                     </a>
                                 </li>
-                                <li class="page-item"><a class="page-link" href="#">1</a></li>
-                                <li class="page-item"><a class="page-link" href="#">2</a></li>
-                                <li class="page-item"><a class="page-link" href="#">3</a></li>
+                                <c:if test="${page eq 'home'}">
+                                    <c:forEach begin="1" end="${totalPages}" step="1" var="i">
+                                        <li class="page-item">
+                                            <a class="page-link" href="home?pageNo=${i}">${i}</a>
+                                        </li>
+                                    </c:forEach>
+                                </c:if>
+                                <c:if test="${page eq 'category'}">
+                                    <c:forEach begin="1" end="${totalPages}" step="1" var="i">
+                                        <li class="page-item">
+                                            <a class="page-link" href="category?pageNo=${i}&categoryID=${categoryID}">${i}</a>
+                                        </li>
+                                    </c:forEach>
+                                </c:if>
+
                                 <li class="page-item">
                                     <a class="page-link" href="#" aria-label="Next">
                                         <span aria-hidden="true">&raquo;</span>
