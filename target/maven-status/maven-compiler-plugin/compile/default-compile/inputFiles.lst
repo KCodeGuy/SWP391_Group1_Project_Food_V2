@@ -148,7 +148,10 @@ D:\SWP\SWP391_Group1_Project_Food_V2\src\main\java\model\Review.java
 D:\SWP\SWP391_Group1_Project_Food_V2\src\main\java\controller\ForgotPasswordController.java
 D:\SWP\SWP391_Group1_Project_Food_V2\src\main\java\controller\LoadListProductInCartController.java
 D:\SWP\SWP391_Group1_Project_Food_V2\src\main\java\controller\UpdateStaffProfileController.java
+<<<<<<< HEAD
 D:\SWP\SWP391_Group1_Project_Food_V2\src\main\java\controller\DeleteReviewController.java
+=======
+>>>>>>> ThanhND_List
 D:\SWP\SWP391_Group1_Project_Food_V2\src\main\java\controller\AddProductController.java
 D:\SWP\SWP391_Group1_Project_Food_V2\src\main\java\model\OrderStatus.java
 D:\SWP\SWP391_Group1_Project_Food_V2\src\main\java\controller\RejectOrderController.java

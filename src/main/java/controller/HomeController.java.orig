@@ -33,7 +33,12 @@ public class HomeController extends HttpServlet {
         List<Product> listProduct = pdao.getListProduct(); // get list product to load page
 
         String txtSearch = request.getParameter("txtSearch");
-String category = request.getParameter("category");
+<<<<<<< HEAD
+        String sort = request.getParameter("sort");
+        if (txtSearch != null) {
+            listProduct = pdao.findProductByName(txtSearch, sort);
+=======
+        String category = request.getParameter("category");
         if (txtSearch != null || category != null) {
             if(txtSearch == null ){
                 txtSearch = "";
@@ -42,10 +47,8 @@ String category = request.getParameter("category");
             if (listProduct.isEmpty()) {
                 request.setAttribute("MESSAGE", "Product not found");
             }
+>>>>>>> ThanhND_List
         }
-
-    
-    
 
         request.setAttribute("listProduct", listProduct);
         request.getRequestDispatcher("home.jsp").forward(request, response);

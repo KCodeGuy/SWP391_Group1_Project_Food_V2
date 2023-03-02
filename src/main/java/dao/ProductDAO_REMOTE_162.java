@@ -95,6 +95,7 @@ public class ProductDAO {
      *
      * @return last id
      */
+    //SELECT TOP 1 ProductID FROM [Product] ORDER BY CAST(RIGHT(ProductID, 4) AS INT) DESC;
     public String getLastIDOfProduct() {
         String lastID = null;
         String query = "SELECT TOP 1 ProductID FROM [Product] ORDER BY CAST(RIGHT(ProductID, 4) AS INT) DESC;";
@@ -154,15 +155,14 @@ public class ProductDAO {
         //If an exception, return null
         return null;
     }
-
+    
     /**
-     * Create method delete product by productID
-     *
+     * Create method delete product by productID 
      * @param productID
      */
     public void deleteProduct(String productID) {
         //Create query update status of the product
-        String query = "UPDATE PRODUCT SET ProductStatus = 'REMOVED' WHERE ProductID = ?";
+        String query ="UPDATE PRODUCT SET ProductStatus = 'REMOVED' WHERE ProductID = ?";   
         try {
             // Open connection to database
             con = new DBContext().getConnection();
@@ -172,7 +172,8 @@ public class ProductDAO {
             ps.setString(1, productID);
             // Excuse query
             ps.executeUpdate();
-        } catch (SQLException e) {
+        }
+        catch (SQLException e){
             System.err.println(e.getMessage());
         }
     }// End method
@@ -236,7 +237,7 @@ public class ProductDAO {
                     + "    SELECT P.ProductID,P.ProductName, P.ProductDescription, P.ProductImage, P.ProductPrice, P.ProductSalePercent, 0 AS TotalQuantity\n"
                     + "    FROM [PRODUCT] P\n"
                     + "    JOIN [CATEGORY] C ON P.CategoryID = C.CategoryID\n"
-                    + "    WHERE C.CategoryID = ? AND P.ProductID <> ? AND P.ProductStatus <> 'REMOVED' AND P.ProductID NOT IN (SELECT P.ProductID\n"
+                    + "    WHERE C.CategoryID = ? AND P.ProductID <> ? AND P.ProductID NOT IN (SELECT P.ProductID\n"
                     + "    FROM [PRODUCT] P \n"
                     + "    JOIN [ORDER_DETAIL] D ON D.ProductID = P.ProductID\n"
                     + "    JOIN [CATEGORY] C ON P.CategoryID = C.CategoryID\n"
@@ -274,18 +275,14 @@ public class ProductDAO {
 
     /**
      * Search product information by name
-     *
      * @param search product name to search
      * @return Return the product and show the message
      */
-    public List<Product> findProductByName(String search ,String sort) {
+    public List<Product> findProductByName(String search) {
         List<Product> list = new ArrayList<>(); //list products
         try {
-            String query = "SELECT * FROM PRODUCT WHERE ProductStatus <> 'REMOVED' AND ProductName like ? ORDER BY ProductPrice "; //query select product orther than REMOVED
+            String query = "SELECT * FROM PRODUCT WHERE ProductStatus <> 'REMOVED' AND ProductName like ?"; //query select product orther than REMOVED
             con = new DBContext().getConnection(); // open connection to SQL
-              if(sort!=null){
-                query+=sort;
-            }
             ps = con.prepareStatement(query); // move query from Netbeen to SQl
             ps.setString(1, "%" + search + "%");
             rs = ps.executeQuery(); // the same with click to "excute" btn;
@@ -307,52 +304,21 @@ public class ProductDAO {
         }
         return list;
     }
-    
-    /**
-     * Method update product 
-     * @param productName The name of product
-     * @param productPrice The price of product
-     * @param productSalePercent The SalePercent of product
-     * @param productStatus The Status of product
-     * @param categoryID The categoryID of product
-     * @param productDescription The Description of product
-     * @param productImage The link image of product
-     * @param productID The ID of product
-     */
-    public void updateProduct(String productName, int productPrice,
-        int productSalePercent,String productStatus, String categoryID, String productDescription, String productImage, String productID) {
-        // query to update new information of the product.
-        String query = "UPDATE PRODUCT SET ProductName = ?, ProductDescription = ?, ProductPrice = ?, ProductSalePercent = ?, ProductStatus = ?, ProductImage = ? , CategoryID = ? where ProductID = ?";
-        try {
-            con = new DBContext().getConnection();   // open connection to SQL.
-            ps = con.prepareStatement(query);  // move query from Netbeen to SQl. 
-            ps.setString(1, productName);
-            ps.setString(2, productDescription);
-            ps.setInt(3, productPrice);
-            ps.setInt(4, productSalePercent);  
-            ps.setString(5, productStatus); 
-            ps.setString(6, productImage);
-            ps.setString(7, categoryID);
-             ps.setString(8, productID);
-            ps.executeUpdate();     // update a new password into database.                 
-        } catch (Exception e) {
-            e.getMessage();
-        } // end try-catch.
-    }
-    
 
-    /**
-     * Method to add new products
-     *
-     * @param productName The name of the new product
-     * @param productPrice The price of the new product
-     * @param productSale The sale percent of new products
-     * @param categoryID The category ID of the new product
-     * @param productDescription The description of the new product
-     * @param productImage The link image of the new product
-     */
-    public void insertProduct(String productName, int productPrice,
-            int productSale, String categoryID, String productDescription, String productImage) {
+    
+        
+/**
+       * Method to add new products
+       *
+       * @param productName The name of the new product
+       * @param productPrice The price of the new product
+       * @param productSale The sale percent of new products
+       * @param categoryID The category ID of the new product
+       * @param productDescription The description of the new product
+       * @param productImage The link image of the new product
+       */
+    public void insertProduct( String productName, int productPrice,
+        int productSale, String categoryID, String productDescription, String productImage) {
         ProductDAO pdao = new ProductDAO();
         GenerateID gi = new GenerateID();
         String prefix = gi.getPrefixFromProductName(productName);
@@ -366,14 +332,14 @@ public class ProductDAO {
             ps.setString(2, productName);
             ps.setString(3, productDescription);
             ps.setInt(4, productPrice);
-            ps.setInt(5, productSale);
+            ps.setInt(5, productSale);  
             ps.setString(6, productImage);
             ps.setString(7, categoryID);
-            ps.executeUpdate();
+            ps.executeUpdate();                 
         } catch (Exception e) {
             e.printStackTrace();
         }
-    }
+    }    
 
     /**
      * Search by product name in database

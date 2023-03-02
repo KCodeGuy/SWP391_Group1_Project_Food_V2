@@ -78,18 +78,18 @@
                                                 Menu:
                                             </li>
                                             <li class="nav-item">
-                                                <a href="home.html" class="nav-link" aria-current="page">Food</a>
+                                                <a href="home?category=food" class="nav-link" aria-current="page">Food</a>
                                             </li>
                                             <li class="nav-item">
-                                                <a href="home.html" class="nav-link">Drink</a>
-                                            </li>
-
-                                            <li class="nav-item">
-                                                <a href="home.html" class="nav-link">Soup</a>
+                                                <a href="home?category=drink" class="nav-link">Drink</a>
                                             </li>
 
                                             <li class="nav-item">
-                                                <a href="home.html" class="nav-link">Combo</a>
+                                                <a href="home?category=soup" class="nav-link">Soup</a>
+                                            </li>
+
+                                            <li class="nav-item">
+                                                <a href="home?category=combo" class="nav-link">Combo</a>
                                             </li>
                                             <li class="nav-item">
                                     <form class="sort-form" action="home">
@@ -105,15 +105,23 @@
                                         <form class="d-flex" role="search" action="home" method="get">
                                             <input class="form-control me-2" type="search" placeholder="Cơm sườn bì chả" aria-label="Search"
                                                    name="txtSearch" value="${param.txtSearch}" />
+                                        <input type="hidden" name="category" value="${param.category}" />
                                         <button class="btn btn-search" type="submit">
                                             <i class="fa-solid fa-magnifying-glass"></i>
                                         </button>
+<<<<<<< HEAD
                                         <c:if test="${sessionScope.accountSesseion.accountID.startsWith('US')}">
                                             <a class="cart" href="cart?accountID=${sessionScope.accountSesseion.accountID}">
                                                 <i class="fa-solid fa-cart-plus"></i>
                                                 <span class="cart-quantity">${sessionScope.cartSize}</span>
                                             </a>
                                         </c:if>
+=======
+                                        <a class="cart" href="cart?accountID=${sessionScope.accountSesseion.accountID}">
+                                            <i class="fa-solid fa-cart-plus"></i>
+                                            <span class="cart-quantity">2</span>
+                                        </a>
+>>>>>>> ThanhND_List
                                     </form>
                                 </div>
                             </nav>
@@ -124,7 +132,7 @@
 
             <!-- separator -->
             <div class="container container-sep">
-                <div class="separator"></div>
+                <div class="separator">${requestScope.MESSAGE}</div>
             </div>
 
             <div class="container-fluid container-card">
@@ -133,15 +141,23 @@
                         <c:forEach items="${listProduct}" var="pr">
                             <div class="col-xs-12 col-sm-6 col-md-6 col-lg-3">
                                 <div class="card">
+<<<<<<< HEAD
                                     <a href="product-detail?productID=${pr.productID}">
                                         <img src="${pr.productLink}" class="card-img-top" alt="...">
                                     </a>
+=======
+                                    <img src="${pr.productLink}" class="card-img-top" alt="...">
+>>>>>>> ThanhND_List
                                     <div class="card-body">
                                         <c:if test="${pr.productSalePercent != 0}">
                                             <div class="card-sale-percent"><span>-${pr.productSalePercent}%</span></div>
                                         </c:if>
                                         <div class="card-sold-out"><span>${pr.productStatus}</span></div>
+<<<<<<< HEAD
                                         <h5 class="card-title"><a href="product-detail?productID=${pr.productID}">${pr.productName}</a></h5>
+=======
+                                        <h5 class="card-title"><a href="#">${pr.productName}</a></h5>
+>>>>>>> ThanhND_List
                                         <p class="card-text">${pr.productDescription}</p>
                                         <div class="card-group">
                                             <div class="card-price-group">

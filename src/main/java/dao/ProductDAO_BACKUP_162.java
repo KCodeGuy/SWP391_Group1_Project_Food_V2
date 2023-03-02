@@ -373,7 +373,10 @@ public class ProductDAO {
         } catch (Exception e) {
             e.printStackTrace();
         }
+<<<<<<< HEAD
     }
+=======
+    }    
 
     /**
      * Search by product name in database
@@ -414,5 +417,6 @@ public class ProductDAO {
         return list;
     }
 
+>>>>>>> ThanhND_List
 }
 
