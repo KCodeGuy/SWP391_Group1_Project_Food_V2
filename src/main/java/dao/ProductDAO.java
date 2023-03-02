@@ -377,7 +377,7 @@ public class ProductDAO {
     }
 
     /**
-     * Search by product name in database
+     * Search by category in database
      * @param category string Category 
      * @return Product name to search
      */
@@ -388,6 +388,71 @@ public class ProductDAO {
             con = new DBContext().getConnection(); // open connection to SQL           
             ps = con.prepareStatement(query); // move query from Netbeen to SQl
             ps.setString(1, category);
+            rs = ps.executeQuery(); // the same with click to "excute" btn;
+
+            while (rs.next()) {
+                // add new product
+                list.add(new Product(
+                        rs.getString(1),
+                        rs.getString(2),
+                        rs.getString(3),
+                        rs.getInt(4),
+                        rs.getInt(5),
+                        ProductStatus.valueOf(rs.getString(6)),
+                        rs.getString(7),
+                        rs.getString(8))
+                ); // add new item in list
+            } // end while rs.next
+        } catch (Exception e) {
+            e.getMessage();
+        }
+        return list;
+    }
+    
+    /**
+     * Search by name in database
+     * @param category string Category 
+     * @return Product name to search
+     */
+    public List<Product> getListProductByName(String txtSearch) {
+        List<Product> list = new ArrayList<>(); //list products
+        try {
+            String query = "SELECT * FROM PRODUCT WHERE ProductStatus <> 'REMOVED' AND ProductName LIKE ?"; //query select product orther than REMOVED
+            con = new DBContext().getConnection(); // open connection to SQL           
+            ps = con.prepareStatement(query); // move query from Netbeen to SQl
+            ps.setString(1, "%" + txtSearch + "%");
+            rs = ps.executeQuery(); // the same with click to "excute" btn;
+
+            while (rs.next()) {
+                // add new product
+                list.add(new Product(
+                        rs.getString(1),
+                        rs.getString(2),
+                        rs.getString(3),
+                        rs.getInt(4),
+                        rs.getInt(5),
+                        ProductStatus.valueOf(rs.getString(6)),
+                        rs.getString(7),
+                        rs.getString(8))
+                ); // add new item in list
+            } // end while rs.next
+        } catch (Exception e) {
+            e.getMessage();
+        }
+        return list;
+    }
+    
+    /**
+     * Sort by price in database
+     * @param category string Category 
+     * @return Product name to search
+     */
+    public List<Product> getListProductOrderByPrice(String txtSort) {
+        List<Product> list = new ArrayList<>(); //list products
+        try {
+            String query = "   SELECT * FROM PRODUCT WHERE ProductStatus <> 'REMOVED' ORDER BY ((ProductPrice * (100 - ProductSalePercent)) / 100)" + txtSort; //query select product orther than REMOVED
+            con = new DBContext().getConnection(); // open connection to SQL           
+            ps = con.prepareStatement(query); // move query from Netbeen to SQl
             rs = ps.executeQuery(); // the same with click to "excute" btn;
 
             while (rs.next()) {

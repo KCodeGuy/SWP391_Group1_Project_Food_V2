@@ -92,19 +92,18 @@
                                                 <a href="category?categoryID=COMBO" class="nav-link">Combo</a>
                                             </li>
                                             <li class="nav-item">
-                                                <form class="sort-form" action="home">
-                                                    <select style="height: 36px; margin-top: 10px;" name="sort" id="sort-product">
-                                                        <option value="asc">Price ascending</option>
-                                                        <option value="desc">Price descending</option>
+                                                <form class="sort-form" action="sort-product-home">
+                                                    <select style="height: 36px; margin-top: 10px;" name="txtSort" id="sort-product">
+                                                        <option value="asc" selected="${txtSort eq 'asc'}">Price ascending</option>
+                                                        <option value="desc" selected="${txtSort eq 'asc'}">Price descending</option>
                                                     </select>
-                                                    <input type="hidden" name="txtSearch" value="${param.txtSearch}" />
                                                 <button type="submit" class="btn-primary btn-sort"><i class="fa-solid fa-arrow-up-a-z"></i>Sort</button>
                                             </form>
                                         </li>                      
                                     </ul>
-                                    <form class="d-flex" role="search" action="home" method="get">
+                                    <form class="d-flex"action="search-product-home" method="get">
                                         <input class="form-control me-2" type="search" placeholder="Cơm sườn bì chả" aria-label="Search"
-                                               name="txtSearch" value="${param.txtSearch}" />
+                                               name="txtSearch" value="${txtSearch}" />
                                         <button class="btn btn-search" type="submit">
                                             <i class="fa-solid fa-magnifying-glass"></i>
                                         </button>
@@ -185,7 +184,7 @@
                                 <c:if test="${page eq 'home'}">
                                     <c:forEach begin="1" end="${totalPages}" step="1" var="i">
                                         <li class="page-item">
-                                            <a class="page-link" href="home?pageNo=${i}">${i}</a>
+                                            <a class="page-link" href="home?pageNo=${i}&listAllProduct=${listAllProduct}">${i}</a>
                                         </li>
                                     </c:forEach>
                                 </c:if>
@@ -196,7 +195,20 @@
                                         </li>
                                     </c:forEach>
                                 </c:if>
-
+                                <c:if test="${page eq 'search'}">
+                                    <c:forEach begin="1" end="${totalPages}" step="1" var="i">
+                                        <li class="page-item">
+                                            <a class="page-link" href="search-product-home?pageNo=${i}&txtSearch=${txtSearch}">${i}</a>
+                                        </li>
+                                    </c:forEach>
+                                </c:if>
+                                <c:if test="${page eq 'sort'}">
+                                    <c:forEach begin="1" end="${totalPages}" step="1" var="i">
+                                        <li class="page-item">
+                                            <a class="page-link" href="sort-product-home?pageNo=${i}&txtSort=${txtSort}">${i}</a>
+                                        </li>
+                                    </c:forEach>
+                                </c:if>
                                 <li class="page-item">
                                     <a class="page-link" href="#" aria-label="Next">
                                         <span aria-hidden="true">&raquo;</span>

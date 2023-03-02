@@ -35,12 +35,14 @@ model\Category.class
 controller\DeleteProductInCartController.class
 controller\DeleteProductForManagePageController.class
 controller\G1FOODFilter.class
+controller\SearchProductInHomePage.class
 model\Rating.class
 com\example\demo\hash\jni\JarLibraryLoader$1.class
 controller\LogoutController.class
 dao\ProductDAO.class
 controller\LoadListOrderHistoryForShipperController.class
 controller\AddNewReviewController.class
+controller\LoadProductByCategoryIDController.class
 model\OrderDetail.class
 model\Cart.class
 controller\ShowOrderDetailForShipperController.class
@@ -88,4 +90,5 @@ controller\SearchUserController.class
 emailHandler\EmailHandler$2.class
 com\example\demo\hash\jni\NilLibraryLoader.class
 controller\EmaiVerificationController.class
+controller\SortProductInHomeController.class
 com\example\demo\hash\jni\UnsupportedPlatformException.class

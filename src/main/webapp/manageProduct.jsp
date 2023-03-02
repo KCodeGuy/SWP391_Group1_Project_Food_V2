@@ -112,6 +112,55 @@
                 </div>
             </div>
 
+            <div class="container-fluid pagination-container">
+                <div class="row">
+                    <div class="col-xs-12">
+                        <nav aria-label="Page navigation example">
+                            <ul class="pagination">
+                                <li class="page-item">
+                                    <a class="page-link" href="#" aria-label="Previous">
+                                        <span aria-hidden="true">&laquo;</span>
+                                    </a>
+                                </li>
+                                <c:if test="${page eq 'home'}">
+                                    <c:forEach begin="1" end="${totalPages}" step="1" var="i">
+                                        <li class="page-item">
+                                            <a class="page-link" href="home?pageNo=${i}&listAllProduct=${listAllProduct}">${i}</a>
+                                        </li>
+                                    </c:forEach>
+                                </c:if>
+                                <c:if test="${page eq 'category'}">
+                                    <c:forEach begin="1" end="${totalPages}" step="1" var="i">
+                                        <li class="page-item">
+                                            <a class="page-link" href="category?pageNo=${i}&categoryID=${categoryID}">${i}</a>
+                                        </li>
+                                    </c:forEach>
+                                </c:if>
+                                <c:if test="${page eq 'search'}">
+                                    <c:forEach begin="1" end="${totalPages}" step="1" var="i">
+                                        <li class="page-item">
+                                            <a class="page-link" href="search-product-home?pageNo=${i}&txtSearch=${txtSearch}">${i}</a>
+                                        </li>
+                                    </c:forEach>
+                                </c:if>
+                                <c:if test="${page eq 'sort'}">
+                                    <c:forEach begin="1" end="${totalPages}" step="1" var="i">
+                                        <li class="page-item">
+                                            <a class="page-link" href="sort-product-home?pageNo=${i}&txtSort=${txtSort}">${i}</a>
+                                        </li>
+                                    </c:forEach>
+                                </c:if>
+                                <li class="page-item">
+                                    <a class="page-link" href="#" aria-label="Next">
+                                        <span aria-hidden="true">&raquo;</span>
+                                    </a>
+                                </li>
+                            </ul>
+                        </nav>
+                    </div>
+                </div>
+            </div>
+
             <!-- 5. Footer  -->
             <jsp:include page="footer.jsp"></jsp:include>
         </div>

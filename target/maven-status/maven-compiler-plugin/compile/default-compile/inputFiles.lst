@@ -25,6 +25,7 @@ D:\2023\[SP23]SWP391\SWP391_Group1_Project_Food_V2\src\main\java\controller\Sear
 D:\2023\[SP23]SWP391\SWP391_Group1_Project_Food_V2\src\main\java\controller\ShowOrderDetailsForChefController.java
 D:\2023\[SP23]SWP391\SWP391_Group1_Project_Food_V2\src\main\java\hash\jni\Platform.java
 D:\2023\[SP23]SWP391\SWP391_Group1_Project_Food_V2\src\main\java\controller\LoadListProductInCartController.java
+D:\2023\[SP23]SWP391\SWP391_Group1_Project_Food_V2\src\main\java\controller\SearchProductInHomePage.java
 D:\2023\[SP23]SWP391\SWP391_Group1_Project_Food_V2\src\main\java\controller\LogoutController.java
 D:\2023\[SP23]SWP391\SWP391_Group1_Project_Food_V2\src\main\java\controller\EmailAuthenUpdatePasswordController.java
 D:\2023\[SP23]SWP391\SWP391_Group1_Project_Food_V2\src\main\java\controller\DeliveringOrderShipController.java
@@ -54,6 +55,8 @@ D:\2023\[SP23]SWP391\SWP391_Group1_Project_Food_V2\src\main\java\hash\SCrypt.jav
 D:\2023\[SP23]SWP391\SWP391_Group1_Project_Food_V2\src\main\java\hash\SCryptUtil.java
 D:\2023\[SP23]SWP391\SWP391_Group1_Project_Food_V2\src\main\java\controller\AddProductController.java
 D:\2023\[SP23]SWP391\SWP391_Group1_Project_Food_V2\src\main\java\model\OrderDetail.java
+D:\2023\[SP23]SWP391\SWP391_Group1_Project_Food_V2\src\main\java\controller\LoadProductByCategoryIDController.java
+D:\2023\[SP23]SWP391\SWP391_Group1_Project_Food_V2\src\main\java\controller\SortProductInHomeController.java
 D:\2023\[SP23]SWP391\SWP391_Group1_Project_Food_V2\src\main\java\controller\LoadListStaffController.java
 D:\2023\[SP23]SWP391\SWP391_Group1_Project_Food_V2\src\main\java\controller\RejectApplicationController.java
 D:\2023\[SP23]SWP391\SWP391_Group1_Project_Food_V2\src\main\java\controller\UpdateStaffProfileController.java

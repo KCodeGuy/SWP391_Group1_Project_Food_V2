@@ -20,7 +20,7 @@ import paging.PagingUtil;
  *
  * @author NghiaHHCE160343@fpt.edu.vn
  */
-public class SearchProductInHomePage extends HttpServlet {
+public class SortProductInHomeController extends HttpServlet {
    
     /** 
      * Processes requests for both HTTP <code>GET</code> and <code>POST</code> methods.
@@ -32,7 +32,7 @@ public class SearchProductInHomePage extends HttpServlet {
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
     throws ServletException, IOException {
         response.setContentType("text/html;charset=UTF-8");
-        String txtSearch = request.getParameter("txtSearch");
+        String txtSort = request.getParameter("txtSort");
         
         int pageNo = 1;
         if (request.getParameter("pageNo") != null) {
@@ -41,12 +41,12 @@ public class SearchProductInHomePage extends HttpServlet {
         int pageSize = 8;
         
         ProductDAO pdao = new ProductDAO();
-        List<Product> listAllProduct = pdao.getListProductByName(txtSearch);
+        List<Product> listAllProduct = pdao.getListProductOrderByPrice(txtSort);
         List<Product> listProduct = PagingUtil.getPagingProducts(listAllProduct, pageNo, pageSize); // get list product to load page      
         int totalPages = PagingUtil.getTotalPages(listAllProduct, pageSize);
 
-        request.setAttribute("page", "search");
-        request.setAttribute("txtSearch", txtSearch);
+        request.setAttribute("page", "sort");
+        request.setAttribute("txtSort", txtSort);
         request.setAttribute("totalPages", totalPages);
         request.setAttribute("pageNo", pageNo);
         request.setAttribute("listProduct", listProduct);

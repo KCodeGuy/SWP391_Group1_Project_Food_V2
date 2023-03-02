@@ -208,6 +208,10 @@
         <servlet-name>SearchProductInHomePage</servlet-name>
         <servlet-class>controller.SearchProductInHomePage</servlet-class>
     </servlet>
+    <servlet>
+        <servlet-name>SortProductInHomeController</servlet-name>
+        <servlet-class>controller.SortProductInHomeController</servlet-class>
+    </servlet>
     <servlet-mapping>
         <servlet-name>HomeController</servlet-name>
         <url-pattern>/home</url-pattern>
@@ -403,6 +407,10 @@
     <servlet-mapping>
         <servlet-name>SearchProductInHomePage</servlet-name>
         <url-pattern>/search-product-home</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>SortProductInHomeController</servlet-name>
+        <url-pattern>/sort-product-home</url-pattern>
     </servlet-mapping>
     <session-config>
         <session-timeout>
