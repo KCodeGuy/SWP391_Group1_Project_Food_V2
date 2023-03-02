@@ -382,7 +382,7 @@
     </servlet-mapping>
     <servlet-mapping>
         <servlet-name>LoadListOrderHistoryForShipperController</servlet-name>
-        <url-pattern>/ship-list-order-history</url-pattern>
+        <url-pattern>/ship-order-history</url-pattern>
     </servlet-mapping>
     <servlet-mapping>
         <servlet-name>LoadListOrderHistoryForChefController</servlet-name>

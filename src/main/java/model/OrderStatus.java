@@ -23,7 +23,7 @@ public enum OrderStatus {
     /**
      *
      */
-    COMPLETED,
+    DELIVERED,
 
     /**
      *
@@ -33,6 +33,6 @@ public enum OrderStatus {
     /**
      *
      */
-    DELIVERING,
-    DELIVERED
+    DELIVERING
+    
 }

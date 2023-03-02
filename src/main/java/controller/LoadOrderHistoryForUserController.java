@@ -42,7 +42,7 @@ public class LoadOrderHistoryForUserController extends HttpServlet {
         //Calculate the total order count and total price of those orders
         if (!listOrderHistory.isEmpty()) {
             for (Order order : listOrderHistory) {
-                if (order.getOrderStatus() == OrderStatus.COMPLETED || order.getOrderStatus() == OrderStatus.DELIVERED) {
+                if (order.getOrderStatus() == OrderStatus.DELIVERED) {
                     totalPrice += order.getTotalPrice();
                 }
             }
