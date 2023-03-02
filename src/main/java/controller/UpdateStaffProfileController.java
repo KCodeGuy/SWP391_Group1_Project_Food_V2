@@ -94,7 +94,7 @@ public class UpdateStaffProfileController extends HttpServlet {
         //Redirect staff to the staff profile page with the updated accountID
         request.setAttribute("email", accountEmail);
         //Forward the request and response objects to the updateStaffProfile.jsp view for display.
-        request.getRequestDispatcher("loadstaffprofile?accountID=" + accountID).forward(request, response);
+        request.getRequestDispatcher("staff-profile?accountID=" + accountID).forward(request, response);
     }
 
     /**

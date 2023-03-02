@@ -66,12 +66,12 @@
 
                         <div class="form-control-group">
                             <h4 class="form-text-label">Staff's start date:</h4>
-                            <input type="date" id="start-date" name="start-date" value="${staff.accountStartDay}">
+                            <input type="date" id="start-date" name="start-date" value="${staff.accountStartDay}" readonly="">
                         </div>
 
                         <div class="form-control-group">
                             <h4 class="form-text-label">Staff's role:</h4>
-                            <input type="text" id="role" name="role" value="${staff.roleDescription}">
+                            <input type="text" id="role" name="role" value="${staff.roleDescription}" readonly="">
                         </div>
 
                         <div class="form-btn-group">
