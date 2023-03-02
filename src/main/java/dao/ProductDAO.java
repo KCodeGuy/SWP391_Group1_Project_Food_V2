@@ -276,6 +276,7 @@ public class ProductDAO {
      * Search product information by name
      *
      * @param search product name to search
+     * @param sort 
      * @return Return the product and show the message
      */
     public List<Product> findProductByName(String search ,String sort) {
@@ -381,7 +382,7 @@ public class ProductDAO {
      * @param category string Category 
      * @return Product name to search
      */
-    public List<Product> findProductByName(String search,String category) {
+    public List<Product> findProductByCategory(String search,String category) {
         List<Product> list = new ArrayList<>(); //list products
         try {
             String query = "SELECT * FROM PRODUCT WHERE ProductStatus <> 'REMOVED' AND ProductName like ?"; //query select product orther than REMOVED
