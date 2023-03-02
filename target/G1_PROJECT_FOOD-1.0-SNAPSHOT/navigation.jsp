@@ -101,7 +101,7 @@
                                         </li>
                                         <li class="nav-item">
                                             <i class="fa-sharp fa-solid fa-file-invoice-dollar"></i>
-                                            <a class="nav-link" aria-current="page" href="staffProfile.jsp">Order processed</a>
+                                            <a class="nav-link" aria-current="page" href="chef-order-history?accountID=${sessionScope.accountSesseion.accountID}">Order processed</a>
                                         </li>
                                         <div class="separator-persional-tab"></div>
                                         <li class="nav-item">
