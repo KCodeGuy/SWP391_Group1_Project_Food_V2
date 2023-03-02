@@ -13,6 +13,7 @@ import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
 import java.util.List;
 import model.Product;
+import paging.PagingUtil;
 
 /**
  *
@@ -32,14 +33,25 @@ public class LoadListProductForManageProductPageController extends HttpServlet {
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         response.setContentType("text/html;charset=UTF-8");
-        ProductDAO pdao = new ProductDAO();
-        List<Product> listProduct = pdao.getListProduct(); // get list product to load manageProduct page   
+        int pageNo = 1;
+        if (request.getParameter("pageNo") != null) {
+            pageNo = Integer.parseInt(request.getParameter("pageNo"));
+        }
+        int pageSize = 10;
 
+        ProductDAO pdao = new ProductDAO();
+        List<Product> listAllProduct = pdao.getListProduct();
+        List<Product> listProduct = PagingUtil.getPagingProducts(listAllProduct, pageNo, pageSize); // get list product to load page
+
+        int totalPages = PagingUtil.getTotalPages(listAllProduct, pageSize);
+
+        request.setAttribute("page", "home");
+        request.setAttribute("totalPages", totalPages);
         if(listProduct.isEmpty()){
             request.setAttribute("MESSAGE", "Product not found!");
         }
         request.setAttribute("listProduct", listProduct);
-        request.setAttribute("productQuantity", listProduct.size());//show the number of products in the list
+        request.setAttribute("productQuantity", listAllProduct.size());//show the number of products in the list
         request.getRequestDispatcher("manageProduct.jsp").forward(request, response);
     }
 

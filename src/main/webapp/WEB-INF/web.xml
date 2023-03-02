@@ -212,6 +212,18 @@
         <servlet-name>SortProductInHomeController</servlet-name>
         <servlet-class>controller.SortProductInHomeController</servlet-class>
     </servlet>
+    <servlet>
+        <servlet-name>SearchProductInManageProductController</servlet-name>
+        <servlet-class>controller.SearchProductInManageProductController</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>SortProductInManageProductController</servlet-name>
+        <servlet-class>controller.SortProductInManageProductController</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>LoadListProductByCatorogyIDForAdminController</servlet-name>
+        <servlet-class>controller.LoadListProductByCatorogyIDForAdminController</servlet-class>
+    </servlet>
     <servlet-mapping>
         <servlet-name>HomeController</servlet-name>
         <url-pattern>/home</url-pattern>
@@ -411,6 +423,18 @@
     <servlet-mapping>
         <servlet-name>SortProductInHomeController</servlet-name>
         <url-pattern>/sort-product-home</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>SearchProductInManageProductController</servlet-name>
+        <url-pattern>/admin-search-product</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>SortProductInManageProductController</servlet-name>
+        <url-pattern>/admin-sort-product</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>LoadListProductByCatorogyIDForAdminController</servlet-name>
+        <url-pattern>/admin-category</url-pattern>
     </servlet-mapping>
     <session-config>
         <session-timeout>

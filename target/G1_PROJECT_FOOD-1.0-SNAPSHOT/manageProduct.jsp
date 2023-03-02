@@ -34,17 +34,31 @@
                             <div class="col-xs-12">
                                 <h6 class="table-header">MANAGE PRODUCT</h6>
                                 <div class="table-control-btn-group">
-                                    <form class="sort-form" action="">
+                                    <li class="nav-item">
+                                        <a href="admin-category?categoryID=FOOD" class="nav-link" aria-current="page">Food</a>
+                                    </li>
+                                    <li class="nav-item">
+                                        <a href="admin-category?categoryID=DRINK" class="nav-link">Drink</a>
+                                    </li>
+
+                                    <li class="nav-item">
+                                        <a href="admin-category?categoryID=SOUP" class="nav-link">Soup</a>
+                                    </li>
+
+                                    <li class="nav-item">
+                                        <a href="admin-category?categoryID=COMBO" class="nav-link">Combo</a>
+                                    </li>
+                                    <form class="sort-form" action="admin-sort-product">
                                         <h6 class="sort-form-label">Sort staff:</h6>
-                                        <select style="height: 36px; margin-top: 10px;" name="sort-product" id="sort-product">
-                                            <option value="asc">Name ascending</option>
-                                            <option value="desc">Name descending</option>
-                                        </select>
-                                        <button type="submit" class="btn-primary btn-sort"><i
-                                                class="fa-solid fa-arrow-up-a-z"></i>Sort</button>
-                                        <div class="total-quantity-group">
-                                            <h6 class="sort-form-label">Total quantity:</h6>
-                                            <button class="btn-primary total-quantity">
+                                        <select style="height: 36px; margin-top: 10px;" name="txtSort" id="sort-product">
+                                            <option value="asc" selected="${txtSort eq 'asc'}">Price ascending</option>
+                                        <option value="desc" selected="${txtSort eq 'desc'}">Price descending</option>
+                                    </select>
+                                    <button type="submit" class="btn-primary btn-sort"><i
+                                            class="fa-solid fa-arrow-up-a-z"></i>Sort</button>
+                                    <div class="total-quantity-group">
+                                        <h6 class="sort-form-label">Total quantity:</h6>
+                                        <button class="btn-primary total-quantity">
                                             ${productQuantity}
                                         </button>
                                     </div>
@@ -54,9 +68,9 @@
                                         <i class="fa-solid fa-plus"></i>
                                         <a href="addProduct.jsp">Add product</a>
                                     </button>
-                                    <form action="admin-manage-product">
+                                    <form action="admin-search-product">
                                         <div class="search-group">
-                                            <input type="text" name="txtSearch" value="${param.txtSearch}" placeholder="Cơm sườn bì chả">
+                                            <input type="text" name="txtSearch" value="${txtSearch}" placeholder="Cơm sườn bì chả">
                                             <button type="submit" class="btn-main btn-search">
                                                 <i class="fa-solid fa-magnifying-glass"></i>
                                             </button>
@@ -125,28 +139,28 @@
                                 <c:if test="${page eq 'home'}">
                                     <c:forEach begin="1" end="${totalPages}" step="1" var="i">
                                         <li class="page-item">
-                                            <a class="page-link" href="home?pageNo=${i}&listAllProduct=${listAllProduct}">${i}</a>
+                                            <a class="page-link" href="admin-manage-product?pageNo=${i}">${i}</a>
                                         </li>
                                     </c:forEach>
                                 </c:if>
                                 <c:if test="${page eq 'category'}">
                                     <c:forEach begin="1" end="${totalPages}" step="1" var="i">
                                         <li class="page-item">
-                                            <a class="page-link" href="category?pageNo=${i}&categoryID=${categoryID}">${i}</a>
+                                            <a class="page-link" href="admin-category?pageNo=${i}&categoryID=${categoryID}">${i}</a>
                                         </li>
                                     </c:forEach>
                                 </c:if>
                                 <c:if test="${page eq 'search'}">
                                     <c:forEach begin="1" end="${totalPages}" step="1" var="i">
                                         <li class="page-item">
-                                            <a class="page-link" href="search-product-home?pageNo=${i}&txtSearch=${txtSearch}">${i}</a>
+                                            <a class="page-link" href="admin-search-product?pageNo=${i}&txtSearch=${txtSearch}">${i}</a>
                                         </li>
                                     </c:forEach>
                                 </c:if>
                                 <c:if test="${page eq 'sort'}">
                                     <c:forEach begin="1" end="${totalPages}" step="1" var="i">
                                         <li class="page-item">
-                                            <a class="page-link" href="sort-product-home?pageNo=${i}&txtSort=${txtSort}">${i}</a>
+                                            <a class="page-link" href="admin-sort-product?pageNo=${i}&txtSort=${txtSort}">${i}</a>
                                         </li>
                                     </c:forEach>
                                 </c:if>

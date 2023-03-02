@@ -184,7 +184,7 @@
                                 <c:if test="${page eq 'home'}">
                                     <c:forEach begin="1" end="${totalPages}" step="1" var="i">
                                         <li class="page-item">
-                                            <a class="page-link" href="home?pageNo=${i}&listAllProduct=${listAllProduct}">${i}</a>
+                                            <a class="page-link" href="home?pageNo=${i}">${i}</a>
                                         </li>
                                     </c:forEach>
                                 </c:if>
