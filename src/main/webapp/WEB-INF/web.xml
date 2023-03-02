@@ -156,7 +156,7 @@
         <servlet-name>AddProductController</servlet-name>
         <servlet-class>controller.AddProductController</servlet-class>
     </servlet>
-        <servlet>
+    <servlet>
         <servlet-name>UpdateProductForMangePageController</servlet-name>
         <servlet-class>controller.UpdateProductForMangePageController</servlet-class>
     </servlet>
@@ -195,6 +195,10 @@
     <servlet>
         <servlet-name>LoadListOrderHistoryForShipperController</servlet-name>
         <servlet-class>controller.LoadListOrderHistoryForShipperController</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>LoadListOrderHistoryForChefController</servlet-name>
+        <servlet-class>controller.LoadListOrderHistoryForChefController</servlet-class>
     </servlet>
     <servlet-mapping>
         <servlet-name>HomeController</servlet-name>
@@ -340,7 +344,7 @@
         <servlet-name>AddProductController</servlet-name>
         <url-pattern>/admin-add-product</url-pattern>
     </servlet-mapping>
-        <servlet-mapping>
+    <servlet-mapping>
         <servlet-name>UpdateProductForMangePageController</servlet-name>
         <url-pattern>/admin-update-product</url-pattern>
     </servlet-mapping>
@@ -379,6 +383,10 @@
     <servlet-mapping>
         <servlet-name>LoadListOrderHistoryForShipperController</servlet-name>
         <url-pattern>/ship-list-order-history</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>LoadListOrderHistoryForChefController</servlet-name>
+        <url-pattern>/chef-order-history</url-pattern>
     </servlet-mapping>
     <session-config>
         <session-timeout>

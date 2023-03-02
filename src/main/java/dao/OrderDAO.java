@@ -124,7 +124,48 @@ public class OrderDAO {
         } // end try catch
         return null; // return null if not order
     }
-
+    
+    /**
+     *
+     * Retrieves the list of order history for a given shipper account ID from
+     * the database.
+     *
+     * @param accountOfIDChef the account ID of the chef
+     * @return an ArrayList of Order objects representing the order history for
+     * the given chef
+     */
+    public ArrayList<Order> getListOrderHistoryForChef(String accountOfIDChef) {
+        try { //Database query statement
+            String query = " SELECT \n"
+                    + "   [ORDER].OrderID, \n"
+                    + "   [ORDER].BuyerFullName,\n"
+                    + "   [ORDER].OrderDate,\n"
+                    + "   [ORDER].OrderStatus, \n"
+                    + "   SUM([ORDER_DETAIL].OrderDQuantity) AS Quantity, \n"
+                    + "   SUM([ORDER_DETAIL].OrderDPrice * (100 - [ORDER].ProductSalePercent) / 100) AS Price \n"
+                    + "FROM [ORDER] \n"
+                    + "INNER JOIN [ORDER_DETAIL] ON [ORDER].OrderID = [ORDER_DETAIL].OrderID \n"
+                    + "WHERE [ORDER].AccIDOfChef = ?\n"
+                    + "GROUP BY \n"
+                    + "   [ORDER].OrderID, \n"
+                    + "   [ORDER].BuyerFullName,\n"
+                    + "   [ORDER].OrderDate,\n"
+                    + "   [ORDER].OrderStatus"; // query select form database
+            con = new DBContext().getConnection(); // open conect database
+            ps = con.prepareStatement(query); // set account ID into query
+            ps.setString(1, accountOfIDChef);
+            rs = ps.executeQuery(); // execute query
+            ArrayList<Order> listOrderHistory = new ArrayList<>(); // create list product in order
+            while (rs.next()) { //Value access loop from the database
+                listOrderHistory.add(new Order(rs.getString(1), OrderStatus.valueOf(rs.getString(4)), rs.getString(3), rs.getString(2), rs.getInt(5), rs.getInt(6)));
+                // add new item into list order
+            } // end while
+            return listOrderHistory; // return list order
+        } catch (Exception e) {
+            System.out.println(e.getMessage());
+        } // end try catch
+        return null; // return null if not order
+    }
     /**
      *
      * This method retrieves a list of orders that are ready to be shipped from
