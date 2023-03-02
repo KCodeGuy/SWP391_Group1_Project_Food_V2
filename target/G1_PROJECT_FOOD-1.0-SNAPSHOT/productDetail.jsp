@@ -174,7 +174,10 @@
                             <ul class="product-detail-container">
                                 <li class="product-detail-item heading">
                                     <h3 class="product-detail-name">${product.productName}</h3>
-                                    <span class="product-detail-sale-percent">${product.productSalePercent}%</span>
+                                    <c:if test="${product.productSalePercent != 0}">
+                                        <span class="product-detail-sale-percent">${product.productSalePercent}%</span>
+                                    </c:if>
+                                    
                                 </li> 
                                 <li class="product-detail-item">
                                     <span class="product-detail-label">Description:</span>

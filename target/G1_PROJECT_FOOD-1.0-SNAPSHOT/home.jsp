@@ -92,19 +92,19 @@
                                                 <a href="home.html" class="nav-link">Combo</a>
                                             </li>
                                             <li class="nav-item">
-                                    <form class="sort-form" action="home">
-                                        <select style="height: 36px; margin-top: 10px;" name="sort" id="sort-product">
-                                            <option value="asc">Price ascending</option>
-                                            <option value="desc">Price descending</option>
-                                        </select>
-                                        <input type="hidden" name="txtSearch" value="${param.txtSearch}" />
-                                        <button type="submit" class="btn-primary btn-sort"><i class="fa-solid fa-arrow-up-a-z"></i>Sort</button>
-                                    </form>
-                                            </li>                      
-                                        </ul>
-                                        <form class="d-flex" role="search" action="home" method="get">
-                                            <input class="form-control me-2" type="search" placeholder="Cơm sườn bì chả" aria-label="Search"
-                                                   name="txtSearch" value="${param.txtSearch}" />
+                                                <form class="sort-form" action="home">
+                                                    <select style="height: 36px; margin-top: 10px;" name="sort" id="sort-product">
+                                                        <option value="asc">Price ascending</option>
+                                                        <option value="desc">Price descending</option>
+                                                    </select>
+                                                    <input type="hidden" name="txtSearch" value="${param.txtSearch}" />
+                                                <button type="submit" class="btn-primary btn-sort"><i class="fa-solid fa-arrow-up-a-z"></i>Sort</button>
+                                            </form>
+                                        </li>                      
+                                    </ul>
+                                    <form class="d-flex" role="search" action="home" method="get">
+                                        <input class="form-control me-2" type="search" placeholder="Cơm sườn bì chả" aria-label="Search"
+                                               name="txtSearch" value="${param.txtSearch}" />
                                         <button class="btn btn-search" type="submit">
                                             <i class="fa-solid fa-magnifying-glass"></i>
                                         </button>
@@ -156,9 +156,11 @@
 
                                             </div>
                                         </div>
-                                        <button class="btn-main ">
-                                            <a href="add-product-cart-home?accountID=${sessionScope.accountSesseion.accountID}&productID=${pr.productID}">BUY NOW</a>
-                                        </button>
+                                        <c:if test="${sessionScope.accountSesseion.accountID.startsWith('US')}">
+                                            <button class="btn-main ">
+                                                <a href="add-product-cart-home?accountID=${sessionScope.accountSesseion.accountID}&productID=${pr.productID}">BUY NOW</a>
+                                            </button>
+                                        </c:if>
                                     </div>
                                 </div>
 
