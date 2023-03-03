@@ -10,7 +10,7 @@
     <head>
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
         <link rel="stylesheet" href="./bootstap/css/bootstrap.min.css" type="text/css">
-        <link rel="stylesheet" href="./assert/css/base.css"  type="text/css">
+        <link rel="stylesheet" href="./assert/css/style.css"  type="text/css">
         <link rel="stylesheet" href="./assert/css/home.css"  type="text/css">
         <title>JSP Page</title>
     </head>
@@ -36,6 +36,11 @@
                     <h2 class="footer-heading">Address</h2>
                     <p class="footer-info">Store 1: 600, đường Nguyễn Văn Cừ nối dài, An Bình, Ninh Kiều, Cần Thơ</p>
                     <p class="footer-info">Store 2: 123/1A Hai Bà Trưng, Thủ Đức, Tp.HCM</p>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-xs-12">
+                    <span class="footer-copycript">© 2023 GROUP1-FOOD - a software of group1 students in FPT university </span>
                 </div>
             </div>
         </div>

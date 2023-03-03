@@ -11,10 +11,10 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="./bootstap/css/bootstrap.min.css">
-    <link rel="stylesheet" href="./bootstap/js/bootstrap.js">
-    <link rel="stylesheet" href="./assert/css/base.css">
-    <link rel="stylesheet" href="./assert/css/updateProduct.css">
+    <link rel="stylesheet" href="./bootstap/css/bootstrap.min.css" type="text/css">
+    <link rel="stylesheet" href="./bootstap/js/bootstrap.js" type="text/javascript">
+    <link rel="stylesheet" href="./assert/css/style.css" type="text/css">
+    <link rel="stylesheet" href="./assert/css/updateProduct.css" type="text/css">
     <link rel="stylesheet" href="./assert/font/fontawesome-free-6.1.1-web/css/all.css">
     <title> Add-Product</title>
 </head>
@@ -95,10 +95,8 @@
         <!-- 5. Footer  -->
         <jsp:include page="footer.jsp"></jsp:include>
     </div>
-
-    <script src="./bootstap/bootstrap.js"></script>
-    <script src="jquery/Jquery.js"></script>
-<!--    <script src="jquery/updateProduct.js"></script>-->
+    <script src="jquery/Jquery.js" type="text/javascript"></script>
+    <script src="jquery/updateProduct.js" type="text/javascript"></script>
 </body>
 
 </html>

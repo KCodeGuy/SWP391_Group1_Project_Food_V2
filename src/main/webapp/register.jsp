@@ -11,28 +11,29 @@
         <meta charset="UTF-8">
         <meta http-equiv="X-UA-Compatible" content="IE=edge">
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
-        <link rel="stylesheet" href="./bootstap/css/bootstrap.min.css">
-        <link rel="stylesheet" href="./bootstap/js/bootstrap.js">
-        <link rel="stylesheet" href="./assert/css/base.css">
-        <link rel="stylesheet" href="./assert/css/register.css">
-        <link rel="stylesheet" href="./assert/font/fontawesome-free-6.1.1-web/css/all.css">
+        <link rel="stylesheet" href="./bootstap/css/bootstrap.min.css" type="text/css">
+        <link rel="stylesheet" href="./bootstap/js/bootstrap.js" type="text/javascript">
+        <link rel="stylesheet" href="./assert/css/style.css" type="text/css">
+        <link rel="stylesheet" href="./assert/css/registerPage.css" type="text/css">
+        <link rel="stylesheet" href="./assert/font/fontawesome-free-6.1.1-web/css/all.css" type="text/css">
         <title>Register</title>
     </head>
 
     <body>
         <!-- Wrapper contains all website's components -->
         <div class="container-fluid wrapper">
+            
             <!-- 1. Navigation -->
             <jsp:include page="navigation.jsp"></jsp:include>
-                <div class="container-fluid container-fluid-form" style="height: 1000px">
-                    <div class="wrapper-form" style="width: 460px">
+            
+            <div class="container-fluid container-fluid-form">
+                    <div class="wrapper-form">
                         <form action="register" id="myForm" method="POST">
                             <div class="form-heading-group">
                                 <i class="fa-solid fa-user-plus fa-2x"></i>
                                 <h2 class="form-heading">REGISTER</h2>
                                 <p class="form-text-caption">Please register to save your information!</p>
                             </div>
-
                             <div class="form-control-group" style="display: flex; margin-bottom: 0px">
                                 <div class="form-control-group" style="width: 48%">
                                     <h4 class="form-text-label">Full name:</h4>
@@ -45,7 +46,6 @@
                                     <div class="alert-warning" id="txtNameMessage"></div>
                                 </div>
                             </div>
-
                             <div class="form-control-group" style="display: flex; margin-bottom: 0px">
                                 <div class="form-control-group" style="width: 48%">
                                     <h4 class="form-text-label">Phone number:</h4>
@@ -59,14 +59,12 @@
                                     <div class="alert-warning" id="txtEmailMessage"></div>
                                 </div>
                             </div>
-
                             <div class="form-control-group" style="display: flex; margin-bottom: 0px">
                                 <div class="form-control-group" style="width: 48%">
                                     <h4 class="form-text-label">Password:</h4>
                                     <input type="password" id="password" name="password" placeholder="Your password" />
                                     <div class="alert-warning" id="txtPasswordMessage"></div>
                                 </div>
-
                                 <div class="form-control-group" style="margin-left: 6px; width: 52%">
                                     <h4 class="form-text-label">Confirm password:</h4>
                                     <input type="password" id="confirm" name="confirm" placeholder="Your password" />
@@ -78,7 +76,6 @@
                                     <h4 class="form-text-label">On-Position</h4>
                                     <input type="" id="position" name="position" value="authen-email"/>
                                 </div>
-
                                 <div class="form-control-group" style="margin-left: 6px; width: 52%">
                                     <h4 class="form-text-label">Note:</h4>
                                     <input type="password" id="note" name="note" placeholder="Your note" />
@@ -90,7 +87,6 @@
                                 <input type="text" id="address" name="address" placeholder="An Binh, Ninh Kieu, Can Tho" />
                                 <div class="alert-warning" id="txtAddressMessage"></div>
                             </div>
-
                             <div class="form-control-group form-caption">
                                 <div class="form-text-caption">If you have account please click
                                     <a class="form-link" href="login.jsp">login account!</a>
@@ -105,6 +101,7 @@
                     </form>
                 </div>
             </div>
+                        
             <!-- 5. Footer  -->
             <jsp:include page="footer.jsp"></jsp:include>
         </div>

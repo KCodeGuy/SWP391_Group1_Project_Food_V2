@@ -13,96 +13,14 @@
         <meta charset="UTF-8">
         <meta http-equiv="X-UA-Compatible" content="IE=edge">
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
-        <link rel="stylesheet" href="./bootstap/css/bootstrap.min.css">
-        <link rel="stylesheet" href="./bootstap/js/bootstrap.js">
-        <link rel="stylesheet" href="./assert/css/base.css">
-        <link rel="stylesheet" href="./assert/css/home.css">
-        <link rel="stylesheet" href="./assert/css/productDetail.css">
+        <link rel="stylesheet" href="./bootstap/css/bootstrap.min.css" type="text/css">
+        <link rel="stylesheet" href="./bootstap/js/bootstrap.js" type="text/javascript">
+        <link rel="stylesheet" href="./assert/css/style.css" type="text/css">
+        <link rel="stylesheet" href="./assert/css/home.css" type="text/css">
+        <link rel="stylesheet" href="./assert/css/productOfDetail.css" type="text/css">
         <link rel="stylesheet" href="./assert/font/fontawesome-free-6.1.1-web/css/all.css">
         <title>Product-detail</title>
-        <style>
-            .review-header {
-                display: flex;
-                justify-content: space-between;
-                align-items: center;
-                margin-bottom: 20px;
-            }
 
-            .review-title {
-                font-size: 24px;
-                margin: 0;
-            }
-
-            .review-stars {
-                display: flex;
-            }
-
-            .fa {
-                font-size: 20px;
-                color: #f8ce0b;
-            }
-
-            .fa-star-o {
-                color: #ddd;
-            }
-
-            .review-form {
-                margin-bottom: 20px;
-            }
-
-            .form-group {
-                margin-bottom: 10px;
-            }
-
-            label {
-                display: block;
-                font-size: 16px;
-                font-weight: bold;
-                margin-bottom: 5px;
-            }
-
-            textarea {
-                display: block;
-                width: 100%;
-                padding: 10px;
-                border: 1px solid #ddd;
-            }
-            .review-stars i {
-                font-size: 24px;
-                color: #ffd700;
-            }
-
-            .rating {
-                display: flex;
-                align-items: center;
-            }
-
-            .stars {
-                font-size: 24px;
-                color: gold;
-            }
-
-            .progress-bar {
-                width: 200px;
-                height: 10px;
-                margin: 0 10px;
-                border: 1px solid #ccc;
-                position: relative;
-            }
-
-            .progress {
-                height: 100%;
-                background-color: gold;
-                position: absolute;
-                top: 0;
-                left: 0;
-            }
-
-            .count {
-                margin-left: 10px;
-            }
-
-        </style>
     </head>
 
     <body>
@@ -111,59 +29,8 @@
             <!-- 1. Navigation -->
             <jsp:include page="navigation.jsp"></jsp:include>
 
-                <!-- 3. Product body -->
-                <div class="container-fluid home-filter">
-                    <div class="container">
-                        <div class="row">
-                            <div class="col-sm-12">
-                                <nav class="navbar navbar-expand-lg">
-                                    <button class="navbar-toggler" type="button" data-bs-toggle="collapse"
-                                            data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent"
-                                            aria-expanded="false" aria-label="Toggle navigation">
-                                        <span class="navbar-toggler-icon"></span>
-                                    </button>
-                                    <div class="collapse navbar-collapse" id="navbarSupportedContent">
-                                        <ul class="navbar-nav me-auto mb-2 mb-lg-0">
-                                            <li class="nav-link">
-                                                Menu:
-                                            </li>
-                                            <li class="nav-item">
-                                                <a href="home.html" class="nav-link" aria-current="page">Food</a>
-                                            </li>
-                                            <li class="nav-item">
-                                                <a href="home.html" class="nav-link">Drink</a>
-                                            </li>
-
-                                            <li class="nav-item">
-                                                <a href="home.html" class="nav-link">Soup</a>
-                                            </li>
-
-                                            <li class="nav-item">
-                                                <a href="home.html" class="nav-link">Combo</a>
-                                            </li>
-                                        </ul>
-                                        <form class="d-flex" role="search" action="search" method="get">
-                                            <input class="form-control me-2" type="search" placeholder="Cơm sườn bì chả"
-                                                   aria-label="Search" name="txtSearch" value="" />
-                                            <button class="btn btn-search" type="submit">
-                                                <i class="fa-solid fa-magnifying-glass"></i>
-                                            </button>
-                                            <a class="cart" href="home">
-                                                <i class="fa-solid fa-cart-plus"></i>
-                                                <span class="cart-quantity">2</span>
-                                            </a>
-                                        </form>
-                                    </div>
-                                </nav>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-
-
                 <div class="container-fluild container-product-detail">
                     <div class="container">
-
                         <div class="row">
                             <div class="col-xs-12 col-md-5">
                                 <img class="product-detail-img" src="${product.productLink}" alt="">
@@ -171,6 +38,7 @@
                         <div class="col-xs-12 col-md-7">
                             <ul class="product-detail-container">
                                 <li class="product-detail-item heading">
+                                    <img class="product-detail-tag" src="./assert/img/tag.png" alt="alt"/>
                                     <h3 class="product-detail-name">${product.productName}</h3>
                                     <span class="product-detail-sale-percent">${product.productSalePercent}%</span>
                                 </li> 
@@ -184,11 +52,8 @@
                                     <c:if test="${product.productSalePercent != 0}">
                                     <tr>
                                     <span class="product-detail-original-price"><fmt:formatNumber type="number" pattern="###,###" value="${product.productPrice}"/>đ</span>
-
                                     </tr>
                                 </c:if>
-
-
                                 </li>
 
                                 <li class="product-detail-item">
@@ -197,17 +62,19 @@
                                 </li>
                                 <form action="add-product-cart-product-details" method="">
                                     <li class="product-detail-item">
-                                        <button type="button" onclick="increment()">+</button>
-                                        <input type="text" id="number" name="quantity" value="1" readonly> 
+                                        <div class="product-detail-btn-group">
+                                            <button class="btn-primary btn-change-quantity" type="button" onclick="decrement()">-</button>
+                                            <input class="product-detail-quantity" type="text" id="number" name="quantity" value="1" readonly min="0" max="50"> 
+                                            <button class="btn-primary btn-change-quantity" type="button" onclick="increment()">+</button>
+                                        </div>
                                         <input name="productID" value="${productID}" hidden="true">
                                         <input name="accountID" value="${sessionScope.accountSesseion.accountID}" hidden="true">
-                                        <button type="button" onclick="decrement()">-</button>
                                     </li>
                                     <li class="product-detail-item">
-                                        <button type="submit" class="btn-main"btn-related-product>
+                                        <button type="submit" class="btn-main">
                                             Add to cart
                                         </button>
-                                        <button class="btn-primary"btn-related-product>
+                                        <button type="button" class="btn-primary" >
                                             <a href="home">Back to home</a>
                                         </button>
                                     </li>
@@ -216,55 +83,81 @@
                         </div>
                     </div>
 
-                    <div>
-                        <c:forEach var="entry" items="${listRating}">
-                            <div class="rating">
-                                <span class="stars">
-                                    <c:forEach begin="1" end="${entry.key}" step="1" var="counter">
-                                        &#9733;
-                                    </c:forEach>
-                                </span>
-                                <div class="progress-bar">
-                                    <div class="progress" style="width: ${(entry.value / sizeReview) * 100}%;"></div>
+                    <div class="row rating-progress-container">
+                        <div class="col-xs-12 col-lg-5">
+                            <h3 class="product-detail-heading">
+                                <i class="fa-sharp fa-solid fa-chart-simple"></i>
+                                Rating quantity of product
+                            </h3>
+                            <c:forEach var="entry" items="${listRating}">
+                                <div class="rating">
+                                    <span class="stars">
+                                        <c:forEach begin="1" end="${entry.key}" step="1" var="counter">
+                                            &#9733;
+                                        </c:forEach>
+                                    </span>
+                                    <div class="progress-bar">
+                                        <div class="progress" style="width: ${(entry.value / sizeReview) * 100}%;"></div>
+                                    </div>
+                                    <span class="count">(${entry.value})</span>
+                                </div><br>
+                            </c:forEach>
+                        </div>
+                        <div class="col-xs-12 col-lg-7">
+                            <h3 class="product-detail-heading">
+                                <i class="fa-solid fa-comments"></i>
+                                Your comment</h3>
+                            <form id="rating-form" action="user-add-review">
+                                <div class="stars">
+                                    <input type="radio" id="star5" name="rating" value="1" />
+                                    <label for="star5"><i class="fa fa-star"></i></label>
+                                    <input type="radio" id="star4" name="rating" value="2" />
+                                    <label for="star4"><i class="fa fa-star"></i></label>
+                                    <input type="radio" id="star3" name="rating" value="3" />
+                                    <label for="star3"><i class="fa fa-star"></i></label>
+                                    <input type="radio" id="star2" name="rating" value="4" />
+                                    <label for="star2"><i class="fa fa-star"></i></label>
+                                    <input type="radio" id="star1" name="rating" value="5" checked="true"/>
+                                    <label for="star1"><i class="fa fa-star"></i></label>
                                 </div>
-                                <span class="count">(${entry.value})</span>
-                            </div><br>
-                        </c:forEach>
-
+                                <input name="productID" value="${productID}" hidden="true">
+                                <input name="accountID" value="${sessionScope.accountSesseion.accountID}" hidden="true">
+                                <textarea id="review" name="review" rows="5" placeholder="Enter your feeback here!"></textarea>
+                                <div class="rating-btn-group">
+                                    <button type="submit" class="btn-primary">Comment</button>
+                                    <button type="reset" class="btn-main"btn-related-product>
+                                        Cancel
+                                    </button>
+                                </div>
+                            </form> 
+                        </div>
                     </div>
-                    <div class="product-review">
-                        <form id="rating-form" action="user-add-review">
-                            <div class="stars">
-                                <input type="radio" id="star5" name="rating" value="1" />
-                                <label for="star5"><i class="fa fa-star"></i></label>
-                                <input type="radio" id="star4" name="rating" value="2" />
-                                <label for="star4"><i class="fa fa-star"></i></label>
-                                <input type="radio" id="star3" name="rating" value="3" />
-                                <label for="star3"><i class="fa fa-star"></i></label>
-                                <input type="radio" id="star2" name="rating" value="4" />
-                                <label for="star2"><i class="fa fa-star"></i></label>
-                                <input type="radio" id="star1" name="rating" value="5" checked="true"/>
-                                <label for="star1"><i class="fa fa-star"></i></label>
-                            </div>
-                            <input name="productID" value="${productID}" hidden="true">
-                            <input name="accountID" value="${sessionScope.accountSesseion.accountID}" hidden="true">
-                            <textarea id="review" name="review" rows="5" placeholder="Nhập bình luận"></textarea>
-                            <button type="submit">Send review</button>
-                        </form>
+
+                    <div class="row product-review">
                         <c:if test="${listReview.size() > 0}">
                             <div class="review-list">
-                                <h3 class="review-list-title">Đánh giá từ khách hàng</h3>
+                                <div class="review-item-group">
+                                     <h3 class="product-detail-heading">
+                                    <i class="fa-solid fa-comments"></i>
+                                    Other's comments
+                                </h3>
+                                <button class="btn-main btn-see-all"><a class="" href="home">See all<i class="fa-solid fa-arrow-right-long"></i></i></a></button>
+                                </div>
                                 <ul class="review-items">
                                     <c:forEach items="${listReview}" var="rv">
                                         <li class="review-item">
                                             <div class="review-item-header">
-
-                                                <div class="review-item-author">${rv.accountName}  <c:if test="${sessionScope.accountSesseion.accountID == rv.accountID}">
-                                                        <a href="user-delete-review?reviewID=${rv.reviewID}&productID=${rv.productID}" onclick="return showMessageDelete();"><i
-                                                                class="fa-solid fa-trash"></i></a>
-                                                    </c:if></div>
-
-
+                                                <div class="review-item-group">
+                                                    <div class="review-item-sub-group">
+                                                        <i class="fa-solid fa-user option-list-user-icon"></i>
+                                                        ${rv.accountName}
+                                                    </div>
+                                                    <c:if test="${sessionScope.accountSesseion.accountID == rv.accountID}">
+                                                        <a class="btn-delete-comment" href="user-delete-review?reviewID=${rv.reviewID}&productID=${rv.productID}" onclick="return showMessageDelete();"><i
+                                                                class="fa-solid fa-trash"></i>
+                                                        </a>
+                                                    </c:if>
+                                                </div>
                                                 <div class="review-item-stars">
                                                     <c:forEach begin="1" end="${rv.rating}" step="1" var="counter">
                                                         <i class="fa fa-star"></i>
@@ -274,8 +167,13 @@
                                                     </c:forEach>
                                                 </div>
                                             </div>
-                                            <div class="review-item-content">
-                                                ${rv.review}
+
+                                            <div class="review-item-group">
+                                                <div class="review-item-content">${rv.review}</div>
+                                                <div class="review-item-date">
+                                                    <i class="fa-sharp fa-regular fa-clock"></i>
+                                                    21/122023
+                                                </div>
                                             </div>
                                         </li>
                                     </c:forEach>
@@ -284,13 +182,16 @@
                         </c:if>
                     </div>
 
-                    <dvi class="row justify-content-center">
-                        <div class="separtor">
+                    <div class="row justify-content-center">
+                        <div class="col-xs-12 separator-container">
+                            <div class="separtor"></div>
                         </div>
-                    </dvi>
+                    </div>
 
                     <div class="row mb-6 padding">
-                        <h3 class="product-detail-related-heading">List of related products</h3>
+                        <h3 class="product-detail-heading"><i class="fa-solid fa-french-fries"></i>
+                            List of related products
+                        </h3>
                         <c:forEach items="${listProduct}" var="pr">
                             <div class="col-xs-12 col-sm-6 col-md-6 col-lg-3">
                                 <div class="card">
@@ -319,10 +220,8 @@
                                         </button>
                                     </div>
                                 </div>
-
                             </div>
                         </c:forEach>
-
                     </div>
                 </div>
             </div>
@@ -358,7 +257,6 @@
                     return false;
                 }
             }
-
         </script>
     </body>
 
