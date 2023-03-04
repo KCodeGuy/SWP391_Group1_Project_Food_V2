@@ -13,8 +13,9 @@
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
         <link rel="stylesheet" href="./bootstap/css/bootstrap.min.css" type="text/css">
         <link rel="stylesheet" href="./bootstap/js/bootstrap.js" type="text/javascript">
-        <link rel="stylesheet" href="./assert/css/base.css" type="text/css">
+        <link rel="stylesheet" href="./assert/css/style.css" type="text/css">
         <link rel="stylesheet" href="./assert/css/home.css" type="text/css">
+        <link rel="stylesheet" href="./assert/css/registerPage.css" type="text/css">
         <link rel="stylesheet" href="./assert/font/fontawesome-free-6.1.1-web/css/all.css">
         <title>Form-application</title>
     </head>
@@ -24,9 +25,9 @@
         <div class="container-fluid wrapper">
             <!-- 1. Navigation -->
             <jsp:include page="navigation.jsp"></jsp:include>
-                <div class="container-fluid container-fluid-form" style="height: 1000px">
-                    <div class="wrapper-form" style="width: 460px">
-                        <form action="register" id="myForm" method="get">
+                <div class="container-fluid container-fluid-form">
+                    <div class="wrapper-form">
+                        <form action="register" id="myForm" method="POST">
                             <div class="form-heading-group">
                                 <i class="fa-solid fa-user-pen fa-circle"></i>
                                 <h2 class="form-heading">FORM APPLICATION</h2>
@@ -43,28 +44,24 @@
                                     <div class="alert-warning" id="txtNameMessage"></div>
                                 </div>
                             </div>
-
                             <div class="form-control-group" style="display: flex; margin-bottom: 0px">
                                 <div class="form-control-group" style="width: 48%">
                                     <h4 class="form-text-label">Phone number:</h4>
                                     <input type="text" id="phone" name="phone" placeholder="0932987654" />
                                     <div class="alert-warning" id="txtPhoneMessage"></div>
                                 </div>
-
                                 <div class="form-control-group" style="margin-left: 6px; width: 52%">
                                     <h4 class="form-text-label">Email address:</h4>
                                     <input type="email" id="email" name="email" placeholder="levana@gmail.com" />
                                     <div class="alert-warning" id="txtEmailMessage"></div>
                                 </div>
                             </div>
-
                             <div class="form-control-group" style="display: flex; margin-bottom: 0px">
                                 <div class="form-control-group" style="width: 48%">
                                     <h4 class="form-text-label">Password:</h4>
                                     <input type="password" id="password" name="password" placeholder="Your password" />
                                     <div class="alert-warning" id="txtPasswordMessage"></div>
                                 </div>
-
                                 <div class="form-control-group" style="margin-left: 6px; width: 52%">
                                     <h4 class="form-text-label">Confirm password:</h4>
                                     <input type="password" id="confirm" name="confirm" placeholder="Your password" />
@@ -72,7 +69,7 @@
                                 </div>
                             </div>
                             <div class="form-control-group" style="display: flex; margin-bottom: 0px">
-                                <div class="form-control-group" style="width: 48%">
+                                <div class="form-control-group" style="width: 100%">
                                     <h4 class="form-text-label">On-Position</h4>
                                     <select id="position" name="position">
                                         <option value="chef">Chef-Staff</option>
@@ -80,13 +77,11 @@
                                     </select>
                                 </div>
                             </div>
-
                             <div class="form-control-group">
                                 <h4 class="form-text-label">Address:</h4>
                                 <input type="text" id="address" name="address" placeholder="An Binh, Ninh Kieu, Can Tho" />
                                 <div class="alert-warning" id="txtAddressMessage"></div>
                             </div>
-
                             <div class="form-control-group form-caption">
                                 <div class="form-text-caption">Please check your entered carefully before submitting!</div>
                             </div>

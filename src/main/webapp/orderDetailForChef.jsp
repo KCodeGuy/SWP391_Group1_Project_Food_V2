@@ -13,11 +13,11 @@
         <meta charset="UTF-8">
         <meta http-equiv="X-UA-Compatible" content="IE=edge">
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
-        <link rel="stylesheet" href="./bootstap/css/bootstrap.min.css">
-        <link rel="stylesheet" href="./bootstap/js/bootstrap.js">
-        <link rel="stylesheet" href="./assert/css/base.css">
-        <link rel="stylesheet" href="./assert/css/orderDetailForChef.css">
-        <link rel="stylesheet" href="./assert/font/fontawesome-free-6.1.1-web/css/all.css">
+        <link rel="stylesheet" href="./bootstap/css/bootstrap.min.css" type="text/css">
+        <link rel="stylesheet" href="./bootstap/js/bootstrap.js" type="text/javascript">
+        <link rel="stylesheet" href="./assert/css/style.css" type="text/css">
+        <link rel="stylesheet" href="./assert/css/orderDetailForChefPage.css" type="text/css">
+        <link rel="stylesheet" href="./assert/font/fontawesome-free-6.1.1-web/css/all.css" type="text/css">
         <title>Order Detail For Chef</title>
     </head>
 
@@ -35,15 +35,15 @@
                                 <form id="myForm">
                                     <div class="row">
                                         <div class="col-sm-3">
-                                            <b class="form-label">Full name</b>
+                                            <b class="form-label">Full name:</b>
                                         </div>
                                         <div class="col-sm-9">
-                                            <div>${order.userFullName}</div>
+                                            <div><b>${order.userFullName}</b></div>
                                     </div>
                                 </div>
                                 <div class="row">
                                     <div class="col-sm-3">
-                                        <b class="form-label">Phone number</b>
+                                        <b class="form-label">Phone number:</b>
                                     </div>
                                     <div class="col-sm-9">
                                         <div>${order.userPhone}</div>
@@ -51,7 +51,7 @@
                                 </div>
                                 <div class="row">
                                     <div class="col-sm-3">
-                                        <b class="form-label">Order date</b>
+                                        <b class="form-label">Order date:</b>
                                     </div>
                                     <div class="col-sm-9">
                                         <div>${order.orderDate}</div>
@@ -60,7 +60,7 @@
 
                                 <div class="row">
                                     <div class="col-sm-3">
-                                        <b class="form-label">Address</b>
+                                        <b class="form-label">Address:</b>
                                     </div>
                                     <div class="col-sm-9">
                                         <div>${order.userAddress}</div>
@@ -69,7 +69,7 @@
 
                                 <div class="row">
                                     <div class="col-sm-3">
-                                        <b class="form-label">Note</b>
+                                        <b class="form-label">Note:</b>
                                     </div>
                                     <div class="col-sm-9">
                                         <div>${order.orderNote}</div>
@@ -78,7 +78,7 @@
 
                                 <div class="row">
                                     <div class="col-sm-3">
-                                        <b class="form-label">Voucher</b>
+                                        <b class="form-label">Voucher:</b>
                                     </div>
                                     <div class="col-sm-9">
                                         <div>${order.voucherID}</div>
@@ -87,7 +87,7 @@
 
                                 <div class="row">
                                     <div class="col-sm-3">
-                                        <b class="form-label">Product Sale Percent</b>
+                                        <b class="form-label">Product's Sale Percent:</b>
                                     </div>
                                     <div class="col-sm-9">
                                         <div>${order.productSalePercent}%</div>
@@ -162,9 +162,6 @@
             <!-- 5. Footer  -->
             <jsp:include page="footer.jsp"></jsp:include>
         </div>
-        <script src="./bootstap/bootstrap.js"></script>
-        <script src="jquery/Jquery.js"></script>
-        <script src="jquery/orderDetail.js"></script>
     </body>
 
 </html>

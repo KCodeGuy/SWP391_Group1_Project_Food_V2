@@ -25,7 +25,7 @@ public class ForgotPasswordController extends HttpServlet {
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         response.setContentType("text/html;charset=UTF-8");
-      // get parameter on input for handle.
+        // get parameter on input for handle.
         // get email of account.
         String email = request.getParameter("email");
         // get new password of account.

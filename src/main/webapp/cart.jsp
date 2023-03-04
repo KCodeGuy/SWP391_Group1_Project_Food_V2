@@ -13,13 +13,12 @@
         <meta charset="UTF-8">
         <meta http-equiv="X-UA-Compatible" content="IE=edge">
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
-        <link rel="stylesheet" href="./bootstap/css/bootstrap.min.css">
-        <link rel="stylesheet" href="./bootstap/js/bootstrap.js">
-        <link rel="stylesheet" href="./assert/css/base.css">
-        <link rel="stylesheet" href="./assert/css/home.css">
-        <link rel="stylesheet" href="./assert/css/cart.css">
+        <link rel="stylesheet" href="./bootstap/css/bootstrap.min.css" type="text/css">
+        <link rel="stylesheet" href="./bootstap/js/bootstrap.js" type="text/javascript">
+        <link rel="stylesheet" href="./assert/css/style.css" type="text/css">
+        <link rel="stylesheet" href="./assert/css/cartPage.css" type="text/css">
         <link rel="stylesheet" href="./assert/font/fontawesome-free-6.1.1-web/css/all.css">
-        <title> Add-Product</title>
+        <title>Cart</title>
     </head>
 
     <body>
@@ -27,52 +26,7 @@
         <div class="container-fluid wrapper">
             <!-- 1. Navigation -->
             <jsp:include page="navigation.jsp"></jsp:include>
-                <!-- 3. Product body -->
-                <div class="container-fluid home-filter">
-                    <div class="container">
-                        <div class="row">
-                            <div class="col-sm-12">
-                                <nav class="navbar navbar-expand-lg">
-                                    <button class="navbar-toggler" type="button" data-bs-toggle="collapse"
-                                            data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent"
-                                            aria-expanded="false" aria-label="Toggle navigation">
-                                        <span class="navbar-toggler-icon"></span>
-                                    </button>
-                                    <div class="collapse navbar-collapse" id="navbarSupportedContent">
-                                        <ul class="navbar-nav me-auto mb-2 mb-lg-0">
-                                            <li class="nav-link">
-                                                Menu:
-                                            </li>
-                                            <li class="nav-item">
-                                                <a href="home.html" class="nav-link" aria-current="page">Food</a>
-                                            </li>
-                                            <li class="nav-item">
-                                                <a href="home.html" class="nav-link">Drink</a>
-                                            </li>
-
-                                            <li class="nav-item">
-                                                <a href="home.html" class="nav-link">Soup</a>
-                                            </li>
-
-                                            <li class="nav-item">
-                                                <a href="home.html" class="nav-link">Combo</a>
-                                            </li>
-                                        </ul>
-                                        <form class="d-flex" role="search" action="search" method="get">
-                                            <input class="form-control me-2" type="search" placeholder="Cơm sườn bì chả"
-                                                   aria-label="Search" name="txtSearch" value="" />
-                                            <button class="btn btn-search" type="submit">
-                                                <i class="fa-solid fa-magnifying-glass"></i>
-                                            </button>
-                                        </form>
-                                    </div>
-                                </nav>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-
-                <div class="container-fluid table-container">
+                <div class="container-fluid table-container margin-nav-fixed">
                     <div class="container">
                         <div class="row">
                             <div class="col-xs-12">
@@ -117,33 +71,34 @@
                         </div>
                     </div>
 
-                    <c:if test="${listCart.size() != 0}">
-                        <div class="row justify-content-end">
-                            <div class="col-sm-3">
-                                <div class="table-total-group">
+                    <div class="row cart-btn-group">
+                        <div class="col-xs-12 col-md-2">
+                            <button type="button" class="btn-primary" >
+                                <a href="home">Back to home</a>
+                            </button>
+                        </div>
+                        <div class="col-xs-12 col-md-3">
+                            <div class="table-total-group">
+                                <div class="table-total-sub-group">
                                     <h4 class="table-label">Total:</h4>
                                     <span class="table-total"><fmt:formatNumber type="number" pattern="###,###" value="${totalPrice}"/>đ</span>
                                 </div>
-                            </div>
-                        </div>
-
-                        <div class="row justify-content-end">
-                            <div class="col-sm-3">
-                                <a href="load-paying?accountID=${sessionScope.accountSesseion.accountID}"><button class="btn-primary">Paying</button></a>
+                                <button class="btn-primary btn-paying">
+                                    <a href="load-paying?accountID=${sessionScope.accountSesseion.accountID}">Paying</a>
+                                </button>
                             </div>
                         </div>
                     </c:if>
 
                 </div>
             </div>
-
-            <!-- 5. Footer  -->
-            <jsp:include page="footer.jsp"></jsp:include>
         </div>
 
-        <script src="./bootstap/bootstrap.js"></script>
-        <script src="jquery/Jquery.js"></script>
-        <script src="jquery/cart.js"></script>
-    </body>
+        <!-- 5. Footer  -->
+        <jsp:include page="footer.jsp"></jsp:include>
+    </div>
+    <script src="jquery/Jquery.js" type="text/javascript"></script>
+    <script src="jquery/cart.js" type="text/javascript"></script>
+</body>
 
 </html>

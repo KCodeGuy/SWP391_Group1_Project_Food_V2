@@ -9,17 +9,17 @@
 <!DOCTYPE html>
 <html lang="en">
 
-    <head>
-        <meta charset="UTF-8">
-        <meta http-equiv="X-UA-Compatible" content="IE=edge">
-        <meta name="viewport" content="width=device-width, initial-scale=1.0">
-        <link rel="stylesheet" href="./bootstap/css/bootstrap.min.css">
-        <link rel="stylesheet" href="./bootstap/js/bootstrap.js">
-        <link rel="stylesheet" href="./assert/css/base.css">
-        <link rel="stylesheet" href="./assert/css/manageProduct.css">
-        <link rel="stylesheet" href="./assert/font/fontawesome-free-6.1.1-web/css/all.css">
-        <title>Manage-product</title>
-    </head>
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="./bootstap/css/bootstrap.min.css" type="text/css">
+    <link rel="stylesheet" href="./bootstap/js/bootstrap.js" type="text/javascript">
+    <link rel="stylesheet" href="./assert/css/style.css" type="text/css">
+    <link rel="stylesheet" href="./assert/css/manageProduct.css" type="text/css">
+    <link rel="stylesheet" href="./assert/font/fontawesome-free-6.1.1-web/css/all.css" type="text/css">
+    <title>Manage-product</title>
+</head>
 
     <body>
         <!-- Wrapper contains all website's components -->
@@ -178,9 +178,12 @@
             <!-- 5. Footer  -->
             <jsp:include page="footer.jsp"></jsp:include>
         </div>
-        <script src="./bootstap/bootstrap.js"></script>
-        <script src="jquery/Jquery.js"></script>
-        <script src="jquery/manageVoucher.js"></script>
-    </body>
+        
+        <!-- 5. Footer  -->
+        <jsp:include page="footer.jsp"></jsp:include>
+    </div>
+    <script src="jquery/Jquery.js" type="text/javascript"></script>
+    <script src="jquery/manageVoucher.js" type="text/javascript"></script>
+</body>
 
 </html>

@@ -1,82 +1,118 @@
 
-
 /* 2. Slider css */
-.slider-large {
-    padding: 0px;
+#carouselExampleIndicators {
+    margin-top: var(--margin-nav-fixed-height);
 }
 
-.carousel-caption {
-    margin-bottom: 203px;
-    margin-right: 654px;
-}
-
-/* 3. Home filter */
-.home-filter {
-    padding-top: 56px;
-    /* margin-top: 36px; */
+.container-voucher {
+    padding-top: 36px;
     background-color: var(--background-color);
 }
 
-.home-filter .container .row .col-sm-12 .navbar{
-    background-color: var(--primary-color);
-}
-.navbar-collapse {
-    display: flex;
-    align-items: center;
-}
-
-.cart {
-    margin-left: 24px;
-    margin-right: 16px;
-    display: flex;
-    align-items: center;
-    text-decoration: none;
-    position: relative;
-}
-
-.cart i {
-    font-size: 26px;
-    color: var(--background-color);
-}
-
-.cart-quantity {
-    display: block;
-    width: 22px;
-    height: 22px;
+.vocher-item {
+    background-color: var(--background-color);
+    padding: 12px;
     border-radius: 6px;
-    background-color: var(--background-color);
-    color: white;
-    text-align: center;
-    line-height: 20px;
-    font-size: 14px;
+    color: var(--text-primary-color);
+    box-shadow: 2px 2px 4px 4px #999;
+    transition: transform linear 0.2s;
+    margin-bottom: 8px;
+}
+
+.vocher-item:hover {
+    transform: translateX(-10px);
+    opacity: 0.9;
+}
+
+.vocher-item .voucher-img {
+    width: 100px;
+    height: 100px;
+}
+
+.voucher-header-container {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 12px;
+}
+
+.voucher-header-container .col-md-4 {
+    display: flex;
+}
+
+.voucher-header-container .col-md-8 {
+    display: flex;
+    justify-content: end;
+}
+
+.voucher-header {
+    font-size: 24px;
     font-weight: bold;
-    position: absolute;
-    top: -10px;
-    right: -12px;
 }
 
-.form-control:active {
-    outline: none;
-    border: none;
+.voucher-header-container .voucher-header-group {
+    display: flex;
+    align-items: start;
 }
 
-.btn-search {
-    /* width: 54px; */
-    padding-left: 14px;
-    padding-right: 15px;
+.voucher-header-img {
+    width: 36px;
+    height: 36px;
+}
+
+.voucher-group {
+    display: flex;
+    justify-content: space-between;
+    align-items: start;
+    margin-bottom: 2px;
+}
+
+.voucher-discount {
+    width: max-content;
+    height: max-content;
+    padding: 0px 6px;
+    background-color: var(--main-color);
+    border-radius: 4px;
     color: white;
-    background-color: var(--background-color);
 }
 
-.btn-search:hover {
-    color: white;
-    background-color: var(--main-btn-hover-shadow-color);
-    border-color: var(--main-btn-hover-shadow-color);
+.voucher-group .id-icon {
+    font-size: 14px;
+    margin-right: 4px;
+    margin-top: 7px;
 }
 
-.btn-main-slider {
-    width: fit-content;
-    margin-bottom: 4px;
+.voucher-name {
+    font-size: 19px;
+    text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.3),
+        0px -4px 10px rgba(255, 255, 255, 0.3);
+    color: var(--main-color);
+    font-weight: bold;
+}
+.voucher-id {
+    font-weight: bold;
+}
+.voucher-end-date {
+    margin-top: 4px;
+
+}
+.voucher-descript ,.voucher-end-date {
+    font-size: 17px;
+    color: black;
+}
+
+.btn-see-all-voucher {
+    display: flex;
+    justify-content: end;
+    align-items: center;
+}
+
+.btn-see-all {
+    width: max-content;
+}
+
+.btn-see-all a i{
+    margin-left: 6px;
 }
 
 
@@ -91,14 +127,13 @@
     margin-bottom: 28px;
     border-radius: 2px;
     position: relative;
-    /* box-shadow: 12px 12px var(--main-btn-hover-shadow-color); */
+    box-shadow: 1px 1px 2px 2px #999;
     transition: transform linear 0.2s;
 }
 
 .card:hover {
     transform: translateY(-10px);
     opacity: 0.9;
-    /* cursor: pointer; */
 }
 
 .card img {
@@ -111,7 +146,7 @@
     width: 46px;
     --line-height: 46px;
     border-radius: 2px;
-    background-color: var(--main-color);
+    background-color: var(--primary-color);
     color: white;
     line-height: var(--line-height);
     text-align: center;
@@ -122,10 +157,9 @@
 
 
 .card-sold-out {
-    width: 120px;
-    height: 28px;
-    /* border-radius: 2px; */
-    background-color: var(--main-color);
+    width: 130px;
+    height: 30px;
+    background-color: var(--primary-color);
     position: absolute;
     top: 18px;
     left: -8px;
@@ -137,7 +171,7 @@
     content: "";
     display: block;
     position: absolute;
-    border-top: 8px solid rgb(100, 12, 12);
+    border-top: 8px solid var(--primary-btn-hover-color);
     border-left: 8px solid transparent;
     top: 100%;
     left: 0;
@@ -147,20 +181,32 @@
     display: flex;
     justify-content: space-between;
     align-items: center;
-    margin-bottom: 6px;
+    margin-bottom: 12px;
 }
 
 .card-title a,
 .card-price {
     text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.3),
         0px -4px 10px rgba(255, 255, 255, 0.3);
-    color: var(--main-color);
     font-weight: bold;
+    color: black;
+    font-size: 20px;
+}
+
+.card-price-group {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+.card-price img {
+    width: 28px;
+    height: 28px;
 }
 
 .card-title a {
     font-size: 20px;
     text-decoration: none;
+    color: var(--main-color);
 }
 
 .card-text {
@@ -175,16 +221,17 @@
 }
 
 .card-original-price {
-    margin-left: 4px;
+    margin-left: 12px;
     text-decoration: line-through;
-    font-size: 14px;
+    font-size: 18px;
+    opacity: 0.6;
 }
 
 /* pagination-container */
 .pagination-container {
     background-color: var(--background-color);
     margin: 0;
-    padding: 26px 0px 36px 0px;
+    padding: 20px 0px 20px 0px;
 }
 
 .pagination {
@@ -198,12 +245,11 @@
 
 .page-item .page-link {
     width: 64px;
-    /* height: 48px; */
-    color: var(--background-color);
-    background-color: var(--primary-color);
+    color: white;
+    background-color: var(--main-color);
     border: none;
-    border: 1px solid var(--primary-color);
-    line-height: 48px;;
+    border: 1px solid var(--main-color);
+    line-height: 42px;
     font-weight: bold;
 }
 
