@@ -15,7 +15,7 @@
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
         <link rel="stylesheet" href="./bootstap/css/bootstrap.min.css" type="text/css">
         <link rel="stylesheet" href="./assert/css/style.css" type="text/css">
-        <link rel="stylesheet" href="./assert/css/home.css" type="text/css">
+        <link rel="stylesheet" href="./assert/css/homePage.css" type="text/css">
         <link rel="stylesheet" href="./assert/font/fontawesome-free-6.1.1-web/css/all.css" type="text/css">
         <title>Home-Page</title>
     </head>
@@ -62,7 +62,7 @@
                     </button>
                 </div>
 
-
+            <c:if test="${listTop4Voucher != null}">
                 <div class="container-fluid container-voucher ">
                     <div class="container ">
                         <div class="row voucher-header-container">
@@ -71,106 +71,43 @@
                                 <h4 class="voucher-header">Top vouchers</h4>
                             </div>
                             <div class="col-xs-6 col-md-8">
-                                <button class="btn-primary btn-see-all"><a class="" href="home">See more<i class="fa-solid fa-arrow-right-long"></i></i></a></button>
+                                <button class="btn-primary btn-see-all"><a class="" href="loadAllVoucher">See more<i class="fa-solid fa-arrow-right-long"></i></a></button>
                             </div>
                         </div>
                         <div class="row mb-6 padding">
-                            <div class="col-xs-12 col-sm-6 col-md-6 col-lg-3">
-                                <div class="vocher-item">
-                                    <div class="voucher-group"> 
+                            <c:forEach items="${listTop4Voucher}" var="list4Voucher">
+                                <div class="col-xs-12 col-sm-6 col-md-6 col-lg-3">
+                                    <div class="vocher-item">
                                         <div class="voucher-group"> 
-                                            <img class="voucher-img" src="./assert/img/voucher.png " alt="alt"/>
-                                            <div class="voucher-sub-group">
-                                                <h5 class="voucher-name">Bất khả chiến bại</h5>
-                                                <div class="voucher-group">
+                                            <div class="voucher-group"> 
+                                                <img class="voucher-img" src="./assert/img/voucher.png " alt="alt"/>
+                                                <div class="voucher-sub-group">
+                                                    <h5 class="voucher-name">Woman day voucher</h5>
                                                     <div class="voucher-group">
-                                                        <i class="fa-sharp fa-solid fa-key id-icon"></i>
-                                                        <span class="voucher-id">abxxyz</span>
+                                                        <div class="voucher-group">
+                                                            <i class="fa-sharp fa-solid fa-key id-icon"></i>
+                                                            <span class="voucher-id">${list4Voucher.voucherID}</span>
+                                                        </div>
+                                                        <span class="voucher-discount">-${list4Voucher.productSalePercent}k</span>
                                                     </div>
-                                                    <span class="voucher-discount">-50k</span>
+                                                    <h6 class="voucher-end-date">
+                                                        To: <b>${list4Voucher.voucherEndDay} -12PM</b>
+                                                    </h6>
+                                                    <h6 class="voucher-end-date">
+                                                        Remain quantity: ${list4Voucher.voucherQuantity}
+                                                    </h6>
                                                 </div>
-                                                <h6 class="voucher-end-date">
-                                                    To: 20/12/20220-12PM
-                                                </h6>
                                             </div>
                                         </div>
+                                        <span class="voucher-descript">${list4Voucher.voucherDescription}</span>
                                     </div>
-                                    <span class="voucher-descript">Giảm 50K cho đơn giá trị trên 300K</span>
                                 </div>
-                            </div>
-                            <div class="col-xs-12 col-sm-6 col-md-6 col-lg-3">
-                                <div class="vocher-item">
-                                    <div class="voucher-group"> 
-                                        <div class="voucher-group"> 
-                                            <img class="voucher-img" src="./assert/img/voucher.png " alt="alt"/>
-                                            <div class="voucher-sub-group">
-                                                <h5 class="voucher-name">Bất khả chiến bại</h5>
-                                                <div class="voucher-group">
-                                                    <div class="voucher-group">
-                                                        <i class="fa-sharp fa-solid fa-key id-icon"></i>
-                                                        <span class="voucher-id">abxxyz</span>
-                                                    </div>
-                                                    <span class="voucher-discount">-140k</span>
-                                                </div>
-                                                <h6 class="voucher-end-date">
-                                                    To: 20/12/20220-12PM
-                                                </h6>
-                                            </div>
-                                        </div>
-                                    </div>
-                                    <span class="voucher-descript">Giảm 50K cho đơn giá trị trên 300K</span>
-                                </div>
-                            </div>
-                            <div class="col-xs-12 col-sm-6 col-md-6 col-lg-3">
-                                <div class="vocher-item">
-                                    <div class="voucher-group"> 
-                                        <div class="voucher-group"> 
-                                            <img class="voucher-img" src="./assert/img/voucher.png " alt="alt"/>
-                                            <div class="voucher-sub-group">
-                                                <h5 class="voucher-name">Bất khả chiến bại</h5>
-                                                <div class="voucher-group">
-                                                    <div class="voucher-group">
-                                                        <i class="fa-sharp fa-solid fa-key id-icon"></i>
-                                                        <span class="voucher-id">abxxyz</span>
-                                                    </div>
-                                                    <span class="voucher-discount">-100k</span>
-                                                </div>
-                                                <h6 class="voucher-end-date">
-                                                    To: 20/12/20220-12PM
-                                                </h6>
-                                            </div>
-                                        </div>
-                                    </div>
-                                    <span class="voucher-descript">Giảm 50K cho đơn giá trị trên 300K</span>
-                                </div>
-                            </div>
-                            <div class="col-xs-12 col-sm-6 col-md-6 col-lg-3">
-                                <div class="vocher-item">
-                                    <div class="voucher-group"> 
-                                        <div class="voucher-group"> 
-                                            <img class="voucher-img" src="./assert/img/voucher.png " alt="alt"/>
-                                            <div class="voucher-sub-group">
-                                                <h5 class="voucher-name">Bất khả chiến bại</h5>
-                                                <div class="voucher-group">
-                                                    <div class="voucher-group">
-                                                        <i class="fa-sharp fa-solid fa-key id-icon"></i>
-                                                        <span class="voucher-id">abxxyz</span>
-                                                    </div>
-                                                    <span class="voucher-discount">-50k</span>
-                                                </div>
-                                                <h6 class="voucher-end-date">
-                                                    To: 20/12/20220-12PM
-                                                </h6>
-                                            </div>
-                                        </div>
-                                    </div>
-                                    <span class="voucher-descript">Giảm 50K cho đơn giá trị trên 300K</span>
-                                </div>
-                            </div>
+                            </c:forEach>
                         </div>
                     </div>
                 </div>
-                
+            </c:if>
+
             <jsp:include page="homeFilter.jsp"></jsp:include>
                 <!-- separator -->
                 <div class="container container-sep">
@@ -192,7 +129,7 @@
                                         </c:if>
                                         <div class="card-sold-out"><span>${pr.productStatus}</span></div>
                                         <h5 class="card-title"><a href="product-detail?productID=${pr.productID}">
-                                                
+
                                                 ${pr.productName}</a>
                                         </h5>
                                         <p class="card-text">${pr.productDescription}</p>
@@ -209,6 +146,11 @@
                                                 </c:if>
                                             </div>
                                         </div>
+                                        <c:if test="${sessionScope.accountSesseion.accountID == null}">
+                                            <button class="btn-main ">
+                                                <a href="login.jsp">BUY NOW</a>
+                                            </button>
+                                        </c:if>
                                         <c:if test="${sessionScope.accountSesseion.accountID.startsWith('US')}">
                                             <button class="btn-main ">
                                                 <a href="add-product-cart-home?accountID=${sessionScope.accountSesseion.accountID}&productID=${pr.productID}">BUY NOW</a>
@@ -216,7 +158,6 @@
                                         </c:if>
                                     </div>
                                 </div>
-
                             </div>
                         </c:forEach>
 
@@ -238,28 +179,36 @@
                                 <c:if test="${page eq 'home'}">
                                     <c:forEach begin="1" end="${totalPages}" step="1" var="i">
                                         <li class="page-item">
-                                            <a class="page-link" href="home?pageNo=${i}">${i}</a>
+                                            <a class="page-link ${i == pageNo ? "acctivePage" : ""}" href="home?pageNo=${i}">${i}</a>
                                         </li>
                                     </c:forEach>
                                 </c:if>
+                                <c:if test="${page eq 'top-sale'}">
+                                    <c:forEach begin="1" end="${totalPages}" step="1" var="i">
+                                        <li class="page-item">
+                                            <a class="page-link ${i == pageNo ? "acctivePage" : ""}" href="loadProductIsSale?pageNo=${i}">${i}</a>
+                                        </li>
+                                    </c:forEach>
+                                </c:if>
+
                                 <c:if test="${page eq 'category'}">
                                     <c:forEach begin="1" end="${totalPages}" step="1" var="i">
                                         <li class="page-item">
-                                            <a class="page-link" href="category?pageNo=${i}&categoryID=${categoryID}">${i}</a>
+                                            <a class="page-link ${i == pageNo ? "acctivePage" : ""}" href="category?pageNo=${i}&categoryID=${categoryID}">${i}</a>
                                         </li>
                                     </c:forEach>
                                 </c:if>
                                 <c:if test="${page eq 'search'}">
                                     <c:forEach begin="1" end="${totalPages}" step="1" var="i">
                                         <li class="page-item">
-                                            <a class="page-link" href="search-product-home?pageNo=${i}&txtSearch=${txtSearch}">${i}</a>
+                                            <a class="page-link ${i == pageNo ? "acctivePage" : ""}" href="search-product-home?pageNo=${i}&txtSearch=${txtSearch}">${i}</a>
                                         </li>
                                     </c:forEach>
                                 </c:if>
                                 <c:if test="${page eq 'sort'}">
                                     <c:forEach begin="1" end="${totalPages}" step="1" var="i">
                                         <li class="page-item">
-                                            <a class="page-link" href="sort-product-home?pageNo=${i}&txtSort=${txtSort}">${i}</a>
+                                            <a class="page-link ${i == pageNo ? "acctivePage" : ""}" href="sort-product-home?pageNo=${i}&txtSort=${txtSort}">${i}</a>
                                         </li>
                                     </c:forEach>
                                 </c:if>

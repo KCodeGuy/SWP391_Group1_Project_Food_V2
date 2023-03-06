@@ -56,23 +56,25 @@ public class LoadProductDetailController extends HttpServlet {
         listRating.put(3, 0);
         listRating.put(2, 0);
         listRating.put(1, 0);
-        for (Review r : listReview) {
-            switch (r.getRating()) {
-                case 5:
-                    listRating.put(5, listRating.get(5) + 1);
-                    break;
-                case 4:
-                    listRating.put(4, listRating.get(4) + 1);
-                    break;
-                case 3:
-                    listRating.put(3, listRating.get(3) + 1);
-                    break;
-                case 2:
-                    listRating.put(2, listRating.get(2) + 1);
-                    break;
-                case 1:
-                    listRating.put(1, listRating.get(1) + 1);
-                    break;
+        if (listReview != null) {
+            for (Review r : listReview) {
+                switch (r.getRating()) {
+                    case 5:
+                        listRating.put(5, listRating.get(5) + 1);
+                        break;
+                    case 4:
+                        listRating.put(4, listRating.get(4) + 1);
+                        break;
+                    case 3:
+                        listRating.put(3, listRating.get(3) + 1);
+                        break;
+                    case 2:
+                        listRating.put(2, listRating.get(2) + 1);
+                        break;
+                    case 1:
+                        listRating.put(1, listRating.get(1) + 1);
+                        break;
+                }
             }
         }
 

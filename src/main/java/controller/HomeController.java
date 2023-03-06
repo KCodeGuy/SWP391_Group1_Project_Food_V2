@@ -1,6 +1,7 @@
 package controller;
 
 import dao.ProductDAO;
+import dao.VoucherDAO;
 import jakarta.servlet.ServletException;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
@@ -10,6 +11,7 @@ import jakarta.servlet.http.HttpServlet;
 import java.util.ArrayList;
 import java.util.stream.Stream;
 import model.Product;
+import model.Voucher;
 import paging.PagingUtil;
 
 /**
@@ -54,10 +56,14 @@ public class HomeController extends HttpServlet {
 
         int totalPages = PagingUtil.getTotalPages(listAllProduct, pageSize);
 
+        VoucherDAO vdao = new VoucherDAO();
+        List<Voucher> listTop4Voucher = vdao.getTop4Voucher();
+
         request.setAttribute("page", "home");
         request.setAttribute("totalPages", totalPages);
         request.setAttribute("pageNo", pageNo);
         request.setAttribute("listProduct", listProduct);
+        request.setAttribute("listTop4Voucher", listTop4Voucher);
         request.getRequestDispatcher("home.jsp").forward(request, response);
     }
 

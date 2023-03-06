@@ -79,7 +79,7 @@
                     
                      <div class="form-control-group">
                         <h4 class="form-text-label">Link Image: <h4>
-                        <input type="text" id="image" name="image" placeholder="http://">
+                        <input type="text" id="image" name="image" placeholder="http://imgagelink">
                         <div class="alert-warning" id="txtImage"></div>
                     </div>
 

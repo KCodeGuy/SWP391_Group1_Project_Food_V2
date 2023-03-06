@@ -16,7 +16,7 @@
         <link rel="stylesheet" href="./bootstap/css/bootstrap.min.css" type="text/css">
         <link rel="stylesheet" href="./bootstap/js/bootstrap.js" type="text/javascript">
         <link rel="stylesheet" href="./assert/css/style.css" type="text/css">
-        <link rel="stylesheet" href="./assert/css/home.css" type="text/css">
+        <link rel="stylesheet" href="./assert/css/homePage.css" type="text/css">
         <link rel="stylesheet" href="./assert/css/productOfDetail.css" type="text/css">
         <link rel="stylesheet" href="./assert/font/fontawesome-free-6.1.1-web/css/all.css">
         <title>Product-detail</title>
@@ -43,7 +43,7 @@
                                     <c:if test="${product.productSalePercent != 0}">
                                         <span class="product-detail-sale-percent">${product.productSalePercent}%</span>
                                     </c:if>
-                                    
+
                                 </li> 
                                 <li class="product-detail-item">
                                     <span class="product-detail-label">Description:</span>
@@ -74,9 +74,16 @@
                                         <input name="accountID" value="${sessionScope.accountSesseion.accountID}" hidden="true">
                                     </li>
                                     <li class="product-detail-item">
-                                        <button type="submit" class="btn-main">
-                                            Add to cart
-                                        </button>
+                                        <c:if test="${sessionScope.accountSesseion.accountID.startsWith('US')}">
+                                            <button type="submit" class="btn-main">
+                                                Add to cart
+                                            </button>
+                                        </c:if>
+                                        <c:if test="${sessionScope.accountSesseion.accountID == null}">
+                                            <button type="button" class="btn-main">
+                                                <a href="login.jsp">Add to cart</a>
+                                            </button>
+                                        </c:if>
                                         <button type="button" class="btn-primary" >
                                             <a href="home">Back to home</a>
                                         </button>
@@ -124,10 +131,12 @@
                                     <label for="star1"><i class="fa fa-star"></i></label>
                                 </div>
                                 <input name="productID" value="${productID}" hidden="true">
-                                <input name="accountID" value="${sessionScope.accountSesseion.accountID}" hidden="true">
+                                <input name="accountID" value="${sessionScope.accountSesseion.accountID.startsWith('AD')}" hidden="true">
                                 <textarea id="review" name="review" rows="5" placeholder="Enter your feeback here!"></textarea>
                                 <div class="rating-btn-group">
-                                    <button type="submit" class="btn-primary">Comment</button>
+                                    <c:if test="${sessionScope.accountSesseion.accountID.startsWith('US') || sessionScope.accountSesseion.accountID.startsWith('AD')}">
+                                        <button type="submit" class="btn-primary">Comment</button>
+                                    </c:if>
                                     <button type="reset" class="btn-main"btn-related-product>
                                         Cancel
                                     </button>
@@ -140,11 +149,11 @@
                         <c:if test="${listReview.size() > 0}">
                             <div class="review-list">
                                 <div class="review-item-group">
-                                     <h3 class="product-detail-heading">
-                                    <i class="fa-solid fa-comments"></i>
-                                    Other's comments
-                                </h3>
-                                <button class="btn-main btn-see-all"><a class="" href="home">See all<i class="fa-solid fa-arrow-right-long"></i></i></a></button>
+                                    <h3 class="product-detail-heading">
+                                        <i class="fa-solid fa-comments"></i>
+                                        Other's comments
+                                    </h3>
+                                    <button class="btn-primary btn-see-all"><a class="" href="home">See all<i class="fa-solid fa-arrow-right-long"></i></i></a></button>
                                 </div>
                                 <ul class="review-items">
                                     <c:forEach items="${listReview}" var="rv">
@@ -155,7 +164,7 @@
                                                         <i class="fa-solid fa-user option-list-user-icon"></i>
                                                         ${rv.accountName}
                                                     </div>
-                                                    <c:if test="${sessionScope.accountSesseion.accountID == rv.accountID}">
+                                                    <c:if test="${sessionScope.accountSesseion.accountID.startsWith('AD')}">
                                                         <a class="btn-delete-comment" href="user-delete-review?reviewID=${rv.reviewID}&productID=${rv.productID}" onclick="return showMessageDelete();"><i
                                                                 class="fa-solid fa-trash"></i>
                                                         </a>
@@ -170,12 +179,11 @@
                                                     </c:forEach>
                                                 </div>
                                             </div>
-
                                             <div class="review-item-group">
                                                 <div class="review-item-content">${rv.review}</div>
                                                 <div class="review-item-date">
                                                     <i class="fa-sharp fa-regular fa-clock"></i>
-                                                    21/122023
+                                                    ${rv.reviewDay}
                                                 </div>
                                             </div>
                                         </li>
@@ -192,7 +200,7 @@
                     </div>
 
                     <div class="row mb-6 padding">
-                        <h3 class="product-detail-heading"><i class="fa-solid fa-french-fries"></i>
+                        <h3 class="product-detail-heading">
                             List of related products
                         </h3>
                         <c:forEach items="${listProduct}" var="pr">
@@ -203,7 +211,6 @@
                                         <c:if test="${pr.productSalePercent != 0}">
                                             <div class="card-sale-percent"><span>-${pr.productSalePercent}%</span></div>
                                         </c:if>
-
                                         <h5 class="card-title"><a href="product-detail?productID=${pr.productID}">${pr.productName}</a></h5>
                                         <p class="card-text">${pr.productDescription}</p>
                                         <div class="card-group">
@@ -228,8 +235,6 @@
                     </div>
                 </div>
             </div>
-
-
             <!-- 5. Footer  -->
             <jsp:include page="footer.jsp"></jsp:include>
         </div>

@@ -11,7 +11,7 @@
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
         <link rel="stylesheet" href="./bootstap/css/bootstrap.min.css" type="text/css">
         <link rel="stylesheet" href="./assert/css/style.css"  type="text/css">
-        <link rel="stylesheet" href="./assert/css/home.css"  type="text/css">
+        <link rel="stylesheet" href="./assert/css/homePage.css"  type="text/css">
         <title>JSP Page</title>
     </head>
     <body>

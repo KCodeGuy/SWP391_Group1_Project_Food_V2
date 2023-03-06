@@ -26,7 +26,6 @@
         <div class="container-fluid wrapper">
             <!-- 1. Navigation -->
             <jsp:include page="navigation.jsp"></jsp:include>
-
                 <div class="container-fluid table-container margin-nav-fixed">
                     <div class="container">
                         <div class="row">
@@ -89,7 +88,6 @@
                                 </button>
                             </div>
                         </div>
-                    </c:if>
 
                 </div>
             </div>

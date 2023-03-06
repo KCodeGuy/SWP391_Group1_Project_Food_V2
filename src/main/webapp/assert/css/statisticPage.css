@@ -1,0 +1,89 @@
+.wrapper {
+    background-color: var(--background-color);
+    padding: 56px 0;
+}
+
+.wrapper-inside {
+    border-radius: 4px;
+    padding: 36px;
+    background-color: var(--background-inside-color);
+    box-shadow: 1px 1px 4px 2px rgb(107, 107, 116);
+    box-sizing: border-box;
+}
+.btn-satistic {
+    width: max-content !important;
+    margin-left: 18px;
+}
+
+.container {
+    background-color: var(--background-inside-color);
+    padding: 36px;
+}
+
+.statistic-container {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 0;
+    margin-bottom: 28px; 
+}
+
+.statistic-table {
+    margin-top: 24px !important;
+}
+
+.statistic-group {
+    display: flex;
+    align-items: center;
+}
+.statistic-end-date-group {
+    margin-left: 24px;
+}
+.satistic-row {
+    margin-top: 54px !important;  
+}
+
+.statistic-group input {
+    padding: 4px 12px;
+    border: 2px solid #ddd;
+    border-radius: 2px;
+    margin-left: 4px;
+    color:var(--primary-color);
+    font-weight: bold;
+}
+
+.statistic-group-label {
+    font-size: 18px;
+    font-weight: bold;
+}
+
+.statistic-number {
+    width: 100%;
+    background-color: var(--background-color);
+    padding: 36px 24px;
+}
+
+.statistic-number-group {
+    margin-bottom: 12px;
+}
+
+.statistic-number-label {
+    font-weight: bold;
+    font-size: 18px;
+    margin-right: 8px;
+}
+
+.statistic-number-separator {
+    border-bottom: 2px solid black;
+    margin: 24px 0;
+}
+
+.statistic-number-total {
+    font-size: 18px;
+    font-weight: bold;
+    color: var(--main-color);
+}
+
+.table-header {
+    font-size: 30px;
+}

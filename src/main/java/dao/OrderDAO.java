@@ -12,9 +12,12 @@ import java.sql.ResultSet;
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
+import java.util.List;
+import model.Account;
 import model.Cart;
 import model.Order;
 import model.OrderStatus;
+import model.Product;
 
 /**
  *
@@ -64,6 +67,287 @@ public class OrderDAO {
             e.getMessage();
         } // end try catch
         return false; // if can not insert
+    }
+
+    /**
+     * This function get list product have status is pending
+     *
+     * @param startDate start date in range passed to statistic -(String).
+     * @param endDate end date in range passed to statistic -(String).
+     * @return list of 5 products is bought at most in range. 
+     * @author Trần Đăng Khoa - CE160367
+     */
+    public ArrayList<Product> getTop5BestSellerProducts(String startDate, String endDate) {
+        try {
+            String query = "SELECT TOP 5\n"
+                    + "    P.ProductID,\n"
+                    + "    P.ProductName,\n"
+                    + "	P.ProductImage,\n"
+                    + "	P.CategoryID,\n"
+                    + "	P.ProductPrice,\n"
+                    + "    SUM(OD.OrderDQuantity) AS TotalQuantitySold\n"
+                    + "FROM\n"
+                    + "    [PRODUCT] AS P\n"
+                    + "    INNER JOIN [ORDER_DETAIL] AS OD\n"
+                    + "        ON P.ProductID = OD.ProductID\n"
+                    + "    INNER JOIN [ORDER] AS O\n"
+                    + "        ON OD.OrderID = O.OrderID\n"
+                    + "WHERE\n"
+                    + "    O.OrderStatus = 'COMPLETED'\n"
+                    + "	AND O.OrderDate BETWEEN ? and ?\n"
+                    + "GROUP BY\n"
+                    + "    P.ProductID,\n"
+                    + "    P.ProductName,\n"
+                    + "	P.ProductImage,\n"
+                    + "	P.CategoryID,\n"
+                    + "	P.ProductPrice\n"
+                    + "ORDER BY\n"
+                    + "    TotalQuantitySold DESC;"; // query select form database
+            con = new DBContext().getConnection();  // open conect database
+            ps = con.prepareStatement(query); // set account ID into query
+            ps.setString(1, startDate); 
+            ps.setString(2, endDate);
+            rs = ps.executeQuery(); // execute query
+            ArrayList<Product> listProduct = new ArrayList<>(); // create list product in order
+            while (rs.next()) {
+                listProduct.add(new Product(rs.getString(1), rs.getString(2), rs.getString(3), rs.getString(4), Integer.parseInt(rs.getString(5)), Integer.parseInt(rs.getString(6))));
+                // add new item into list order
+            } // end while
+            return listProduct; // return list order
+        } catch (Exception e) {
+            e.getMessage();
+        } // end try catch
+        return null; // return null if not order
+    }
+
+    /**
+     * This function get list product have status is pending
+     *
+     * @param startDate
+     * @param endDate
+     * @return list order
+     * @author Trần Đăng Khoa - CE160367
+     */
+    public ArrayList<Account> getTop5BesTCustomers(String startDate, String endDate) {
+        try {
+            String query = "SELECT TOP 5\n"
+                    + "    A.AccountID,\n"
+                    + "    A.AccountName,\n"
+                    + "    SUM(OD.OrderDPrice) AS TotalSpending\n"
+                    + "FROM \n"
+                    + "    [ACCOUNT] A\n"
+                    + "    INNER JOIN [ORDER] O ON A.AccountID = O.AccountID\n"
+                    + "    INNER JOIN [ORDER_DETAIL] OD ON O.OrderID = OD.OrderID\n"
+                    + "WHERE\n"
+                    + "    O.OrderStatus = 'COMPLETED'\n"
+                    + "	AND O.OrderDate BETWEEN ? and ?\n"
+                    + "GROUP BY \n"
+                    + "    A.AccountID, \n"
+                    + "    A.AccountName\n"
+                    + "ORDER BY \n"
+                    + "    TotalSpending DESC;"; // query select form database
+            con = new DBContext().getConnection(); // open conect database
+            ps = con.prepareStatement(query); // set account ID into query
+            ps.setString(1, startDate);
+            ps.setString(2, endDate);
+            rs = ps.executeQuery(); // execute query
+            ArrayList<Account> list5BestCutomers = new ArrayList<>(); // create list product in order
+            while (rs.next()) {
+                list5BestCutomers.add(new Account(rs.getString(1), rs.getString(2), String.valueOf(rs.getInt(3))));
+                // add new item into list order
+            } // end while
+            return list5BestCutomers; // return list order
+        } catch (Exception e) {
+            e.getMessage();
+        } // end try catch
+        return null; // return null if not order
+    }
+
+    public int getTotalQuantityFoodSelled(String startDate, String endDate) {
+        try {
+            String query = "SELECT c.CategoryDescription, SUM(od.OrderDQuantity) AS Quantity\n"
+                    + "FROM CATEGORY c\n"
+                    + "JOIN PRODUCT p ON c.CategoryID = p.CategoryID\n"
+                    + "JOIN ORDER_DETAIL od ON p.ProductID = od.ProductID\n"
+                    + "JOIN [ORDER] o ON od.OrderID = o.OrderID\n"
+                    + "WHERE (O.OrderDate BETWEEN ? AND ?) AND\n"
+                    + "(O.OrderStatus = 'COMPLETED') AND \n"
+                    + "(c.CategoryDescription = 'Food') \n"
+                    + "GROUP BY c.CategoryDescription"; // query select form database
+            con = new DBContext().getConnection(); // open conect database
+            ps = con.prepareStatement(query); // set account ID into query
+            ps.setString(1, startDate);
+            ps.setString(2, endDate);
+            rs = ps.executeQuery(); // execute query
+            while (rs.next()) {
+                return rs.getInt(2);
+            } // end while
+        } catch (Exception e) {
+            e.getMessage();
+        } // end try catch
+        return 0; // return null if not order
+    }
+
+    public int getTotalQuantityDrinkSelled(String startDate, String endDate) {
+        try {
+            String query = "SELECT c.CategoryDescription, SUM(od.OrderDQuantity) AS Quantity\n"
+                    + "FROM CATEGORY c\n"
+                    + "JOIN PRODUCT p ON c.CategoryID = p.CategoryID\n"
+                    + "JOIN ORDER_DETAIL od ON p.ProductID = od.ProductID\n"
+                    + "JOIN [ORDER] o ON od.OrderID = o.OrderID\n"
+                    + "WHERE (O.OrderDate BETWEEN ? AND ?) AND\n"
+                    + "(O.OrderStatus = 'COMPLETED') AND \n"
+                    + "(c.CategoryDescription = 'Drink') \n"
+                    + "GROUP BY c.CategoryDescription"; // query select form database
+            con = new DBContext().getConnection(); // open conect database
+            ps = con.prepareStatement(query); // set account ID into query
+            ps.setString(1, startDate);
+            ps.setString(2, endDate);
+            rs = ps.executeQuery(); // execute query
+            while (rs.next()) {
+                return rs.getInt(2);
+            } // end while
+        } catch (Exception e) {
+            e.getMessage();
+        } // end try catch
+        return 0; // return null if not order
+    }
+
+    public int getTotalQuantityComboSelled(String startDate, String endDate) {
+        try {
+            String query = "SELECT c.CategoryDescription, SUM(od.OrderDQuantity) AS Quantity\n"
+                    + "FROM CATEGORY c\n"
+                    + "JOIN PRODUCT p ON c.CategoryID = p.CategoryID\n"
+                    + "JOIN ORDER_DETAIL od ON p.ProductID = od.ProductID\n"
+                    + "JOIN [ORDER] o ON od.OrderID = o.OrderID\n"
+                    + "WHERE (O.OrderDate BETWEEN ? AND ?) AND\n"
+                    + "(O.OrderStatus = 'COMPLETED') AND \n"
+                    + "(c.CategoryDescription = 'Combo') \n"
+                    + "GROUP BY c.CategoryDescription"; // query select form database
+            con = new DBContext().getConnection(); // open conect database
+            ps = con.prepareStatement(query); // set account ID into query
+            ps.setString(1, startDate);
+            ps.setString(2, endDate);
+            rs = ps.executeQuery(); // execute query
+            while (rs.next()) {
+                return rs.getInt(2);
+            } // end while
+        } catch (Exception e) {
+            e.getMessage();
+        } // end try catch
+        return 0; // return null if not order
+    }
+
+    public int getTotalQuantitySoupSelled(String startDate, String endDate) {
+        try {
+            String query = "SELECT c.CategoryDescription, SUM(od.OrderDQuantity) AS Quantity\n"
+                    + "FROM CATEGORY c\n"
+                    + "JOIN PRODUCT p ON c.CategoryID = p.CategoryID\n"
+                    + "JOIN ORDER_DETAIL od ON p.ProductID = od.ProductID\n"
+                    + "JOIN [ORDER] o ON od.OrderID = o.OrderID\n"
+                    + "WHERE (O.OrderDate BETWEEN ? AND ?) AND\n"
+                    + "(O.OrderStatus = 'COMPLETED') AND \n"
+                    + "(c.CategoryDescription = 'Soup') \n"
+                    + "GROUP BY c.CategoryDescription"; // query select form database
+            con = new DBContext().getConnection(); // open conect database
+            ps = con.prepareStatement(query); // set account ID into query
+            ps.setString(1, startDate);
+            ps.setString(2, endDate);
+            rs = ps.executeQuery(); // execute query
+            while (rs.next()) {
+                return rs.getInt(2);
+            } // end while
+        } catch (Exception e) {
+            e.getMessage();
+        } // end try catch
+        return 0; // return null if not order
+    }
+
+    public long getTotalRevenue(String startDate, String endDate) {
+        try {
+            // query select form database
+            String query = "SELECT SUM(od.OrderDPrice * od.OrderDQuantity) \n"
+                    + "FROM [ORDER] AS o, ORDER_DETAIL AS od \n"
+                    + "WHERE o.OrderID = od.OrderID \n"
+                    + "AND o.OrderStatus = 'COMPLETED'\n"
+                    + "AND o.OrderDate BETWEEN ? AND ?;";
+            con = new DBContext().getConnection(); // open conect database
+            ps = con.prepareStatement(query); // set account ID into query
+            ps.setString(1, startDate);
+            ps.setString(2, endDate);
+            rs = ps.executeQuery(); // execute query
+            while (rs.next()) {
+                return rs.getLong(1);
+            } // end while
+        } catch (Exception e) {
+            e.getMessage();
+        } // end try catch
+        return 0; // return null if not order
+    }
+
+    public int getTotalOrderByStatus(String startDate, String endDate, String status) {
+        try {
+            // query select form database
+            String query = "SELECT COUNT(*) FROM [ORDER] \n"
+                    + "WHERE OrderDate BETWEEN ? AND ? AND \n"
+                    + "OrderStatus = ?;";
+            con = new DBContext().getConnection(); // open conect database
+            ps = con.prepareStatement(query); // set account ID into query
+            ps.setString(1, startDate);
+            ps.setString(2, endDate);
+            ps.setString(3, status);
+            rs = ps.executeQuery(); // execute query
+            while (rs.next()) {
+                return rs.getInt(1);
+            } // end while
+        } catch (Exception e) {
+            e.getMessage();
+        } // end try catch
+        return 0; // return null if not order
+    }
+
+    public long getTotalOfProductSelled(String startDate, String endDate) {
+        try {
+            // query select form database
+            String query = "SELECT COUNT(OrderDID) AS NumOfProducts\n"
+                    + "FROM [ORDER_DETAIL] od\n"
+                    + "INNER JOIN [ORDER] o ON od.OrderID = o.OrderID\n"
+                    + "WHERE o.OrderDate BETWEEN ? AND ? AND\n"
+                    + "o.OrderStatus = 'COMPLETED';";
+            con = new DBContext().getConnection(); // open conect database
+            ps = con.prepareStatement(query); // set account ID into query
+            ps.setString(1, startDate);
+            ps.setString(2, endDate);
+            rs = ps.executeQuery(); // execute query
+            while (rs.next()) {
+                return rs.getLong(1);
+            } // end while
+        } catch (Exception e) {
+            e.getMessage();
+        } // end try catch
+        return 0; // return null if not order
+    }
+
+    public int getTotalOfCustomerBought(String startDate, String endDate) {
+        try {
+            // query select form database
+            String query = "SELECT COUNT(DISTINCT [ORDER].AccountID) AS NumCustomers\n"
+                    + "FROM [ORDER]\n"
+                    + "JOIN ACCOUNT ON [ORDER].AccountID = ACCOUNT.AccountID\n"
+                    + "WHERE [ORDER].OrderDate BETWEEN ? AND ? AND\n"
+                    + "OrderStatus = 'COMPLETED';";
+            con = new DBContext().getConnection(); // open conect database
+            ps = con.prepareStatement(query); // set account ID into query
+            ps.setString(1, startDate);
+            ps.setString(2, endDate);
+            rs = ps.executeQuery(); // execute query
+            while (rs.next()) {
+                return rs.getInt(1);
+            } // end while
+        } catch (Exception e) {
+            e.getMessage();
+        } // end try catch
+        return 0; // return null if not order
     }
 
     /**
@@ -124,7 +408,7 @@ public class OrderDAO {
         } // end try catch
         return null; // return null if not order
     }
-    
+
     /**
      *
      * Retrieves the list of order history for a given shipper account ID from
@@ -166,6 +450,7 @@ public class OrderDAO {
         } // end try catch
         return null; // return null if not order
     }
+
     /**
      *
      * This method retrieves a list of orders that are ready to be shipped from
@@ -452,14 +737,15 @@ public class OrderDAO {
         } // end try catch
         return false; // return null if not order
     }
-    
+
     /**
-     *  the function list order for Admin
+     * the function list order for Admin
+     *
      * @param search the list in order database SQL
      * @return list order
      */
-      public ArrayList<Order> getListOrderForAdmin(String search) {
-          ArrayList<Order> listOrder = new ArrayList<>(); // create list product in order
+    public ArrayList<Order> getListOrderForAdmin(String search) {
+        ArrayList<Order> listOrder = new ArrayList<>(); // create list product in order
         try {
             String query = "SELECT \n"
                     + "   [ORDER].OrderID, \n"
@@ -478,9 +764,9 @@ public class OrderDAO {
                     + "   [ORDER].OrderStatus"; // query select form database
             con = new DBContext().getConnection(); // open conect database
             ps = con.prepareStatement(query); // set account ID into query
-            ps.setString(1,"%"+ search +"%");
+            ps.setString(1, "%" + search + "%");
             rs = ps.executeQuery(); // execute query
-           
+
             while (rs.next()) {
                 listOrder.add(new Order(rs.getString(1),
                         OrderStatus.valueOf(rs.getString(4)),
@@ -490,7 +776,7 @@ public class OrderDAO {
                         rs.getInt(6)));
                 // add new item into list order
             } // end while
-           
+
         } catch (Exception e) {
             e.getMessage();
         } // end try catch
@@ -619,8 +905,14 @@ public class OrderDAO {
         return null; // return null if not order
     }
 
-    /**
-     *
-     * @param args
-     */
+    public static void main(String[] args) {
+        OrderDAO odao = new OrderDAO();
+//        List<Account> listBestSellerProduct = odao.getTop5BesTCustomers("2023-03-01 21:29:33.050", "2023-03-06 21:29:33.050");
+//        for (Account product : listBestSellerProduct) {
+//            System.out.println("ID:" + product.getAccountID());
+//            System.out.println("Name:" + product.getAccountName());
+//            System.out.println("Img:" + product.getRoleDescription());
+//        }
+        System.out.println("Revenue: " + odao.getTotalOfProductSelled("2023-03-05 01:29:33.050", "2023-03-05 23:29:33.050"));
+    }
 }

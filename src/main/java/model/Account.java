@@ -28,6 +28,12 @@ public class Account {
     public Account() {
     }
 
+    public Account(String accountID, String accountName, String roleDescription) {
+        this.accountID = accountID;
+        this.accountName = accountName;
+        this.roleDescription = roleDescription;
+    }
+
     /**
      * Constructor with all parameter
      * 

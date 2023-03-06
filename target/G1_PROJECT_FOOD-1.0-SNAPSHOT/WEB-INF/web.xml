@@ -224,6 +224,18 @@
         <servlet-name>LoadListProductByCatorogyIDForAdminController</servlet-name>
         <servlet-class>controller.LoadListProductByCatorogyIDForAdminController</servlet-class>
     </servlet>
+    <servlet>
+        <servlet-name>TopSaleController</servlet-name>
+        <servlet-class>controller.TopSaleController</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>LoadListVouchersController</servlet-name>
+        <servlet-class>controller.LoadListVouchersController</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>SatisticController</servlet-name>
+        <servlet-class>controller.SatisticController</servlet-class>
+    </servlet>
     <servlet-mapping>
         <servlet-name>HomeController</servlet-name>
         <url-pattern>/home</url-pattern>
@@ -435,6 +447,18 @@
     <servlet-mapping>
         <servlet-name>LoadListProductByCatorogyIDForAdminController</servlet-name>
         <url-pattern>/admin-category</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>TopSaleController</servlet-name>
+        <url-pattern>/loadProductIsSale</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>LoadListVouchersController</servlet-name>
+        <url-pattern>/loadAllVoucher</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>SatisticController</servlet-name>
+        <url-pattern>/satistic</url-pattern>
     </servlet-mapping>
     <session-config>
         <session-timeout>

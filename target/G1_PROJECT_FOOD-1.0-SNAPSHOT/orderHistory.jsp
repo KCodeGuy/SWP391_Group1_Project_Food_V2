@@ -45,8 +45,6 @@
                                             <h6 class="sort-form-label">Total quantity:</h6>
                                             <button class="btn-primary total-quantity">
                                             ${totalOrder}
-
-
                                         </button>
                                     </div>
                                     <div class="total-quantity-group">

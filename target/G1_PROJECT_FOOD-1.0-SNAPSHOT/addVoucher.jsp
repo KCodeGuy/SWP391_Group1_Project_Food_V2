@@ -13,7 +13,7 @@ Author : PC --%>
         <link rel="stylesheet" href="./bootstap/css/bootstrap.min.css" type="text/css" />
         <link rel="stylesheet" href="./bootstap/js/bootstrap.js" type="text/javascript" />
         <link rel="stylesheet" href="./assert/css/style.css" type="text/css" />
-        <link rel="stylesheet" href="./assert/css/home.css" type="text/css" />
+        <link rel="stylesheet" href="./assert/css/homePage.css" type="text/css" />
         <link rel="stylesheet" href="./assert/css/cartPage.css" type="text/css" />
         <link rel="stylesheet" href="./assert/font/fontawesome-free-6.1.1-web/css/all.css" type="text/css" />
         <title>Add-voucher</title>
@@ -54,7 +54,7 @@ Author : PC --%>
 
                         <div class="form-control-group">
                             <h4 class="form-text-label">Voucher's quantity:</h4>
-                            <input type="number" id="voucherPercent" name="voucherQuantity" placeholder="50" required="" min="0" />
+                            <input type="number" id="voucherPercent" name="voucherQuantity" placeholder="50" required="" min="1" />
                             <div class="alert-warning" id="txtVoucherPercentMessage"></div>
                         </div>
 

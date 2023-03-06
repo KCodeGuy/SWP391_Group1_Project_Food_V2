@@ -26,6 +26,17 @@ public class Product {
     public Product() {
     }
 
+    public Product(String productID, String productName, String productLink, String categoryID,  int productPrice, int productSalePercent) {
+        this.productID = productID;
+        this.productName = productName;
+        this.productPrice = productPrice;
+        this.productSalePercent = productSalePercent;
+        this.productLink = productLink;
+        this.categoryID = categoryID;
+    }
+    
+    
+    
     /**
      * Constructor with parameters productID, productLink,
      * productName,productDescription, productSalePercent,peoductPrice,

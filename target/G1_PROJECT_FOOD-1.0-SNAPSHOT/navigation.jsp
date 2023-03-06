@@ -12,7 +12,7 @@
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
         <link rel="stylesheet" href="./bootstap/css/bootstrap.min.css" type="text/css">
         <link rel="stylesheet" href="./assert/css/style.css"  type="text/css">
-        <link rel="stylesheet" href="./assert/css/home.css" type="text/css">
+        <link rel="stylesheet" href="./assert/css/homePage.css" type="text/css">
         <title>Navigation</title>
     </head>
     <body>
@@ -28,10 +28,12 @@
                     <button class="btn-search" type="submit">
                         <i class="fa-solid fa-magnifying-glass"></i>
                     </button>
-                    <a class="cart" href="cart?accountID=${sessionScope.accountSesseion.accountID}">
-                        <i class="fa-solid fa-cart-plus"></i>
-                        <span class="cart-quantity">4</span>
-                    </a>
+                    <c:if test="${sessionScope.accountSesseion.accountID.startsWith('US')}">
+                        <a class="cart" href="cart?accountID=${sessionScope.accountSesseion.accountID}">
+                            <i class="fa-solid fa-cart-plus"></i>
+                            <span class="cart-quantity">${sessionScope.cartSize}</span>
+                        </a>
+                    </c:if>
                 </form>
                 <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarScroll"
                         aria-controls="navbarScroll" aria-expanded="false" aria-label="Toggle navigation">
@@ -47,23 +49,18 @@
                                 </a>
                             </li>
                             <li class="nav-item">
-                                <a class="nav-link" href="#">
+                                <a class="nav-link" href="loadProductIsSale?pageNo=1">
                                     <i class="fa-solid fa-tags"></i>
                                     Top-sale
                                 </a>
                             </li>
                             <li class="nav-item">
-                                <a class="nav-link" href="#">
+                                <a class="nav-link" href="contactUs.jsp">
                                     <i class="fa-solid fa-envelope"></i>
                                     Contact
                                 </a>
                             </li>
-                            <li class="nav-item">
-                                <a class="nav-link" href="formApplication.jsp">
-                                    <i class="fa-solid fa-clipboard-user"></i>
-                                    Recruit
-                                </a>
-                            </li>
+
                             <c:if test="${sessionScope.accountSesseion.accountID.startsWith('AD')}">
                                 <li class="nav-item nav-option-list">
                                     <a class="nav-link option-list-user-name" aria-current="page" href="home">
@@ -125,7 +122,7 @@
                             </c:if>
                             <c:if test="${sessionScope.accountSesseion.accountID.startsWith('CH')}">
                                 <li class="nav-item nav-option-list">
-                                     <a class="nav-link option-list-user-name" aria-current="page" href="home">
+                                    <a class="nav-link option-list-user-name" aria-current="page" href="home">
                                         <i class="fa-solid fa-user option-list-user-icon"></i>
                                         ${sessionScope.accountSesseion.accountName}
                                     </a>
@@ -160,7 +157,7 @@
                             </c:if>
                             <c:if test="${sessionScope.accountSesseion.accountID.startsWith('SP')}">
                                 <li class="nav-item nav-option-list">
-                                     <a class="nav-link option-list-user-name" aria-current="page" href="home">
+                                    <a class="nav-link option-list-user-name" aria-current="page" href="home">
                                         <i class="fa-solid fa-user option-list-user-icon"></i>
                                         ${sessionScope.accountSesseion.accountName}
                                     </a>
@@ -207,7 +204,7 @@
                                             </a>
                                         </li>
                                         <li class="nav-item">
-                                            <a class="nav-link" aria-current="page" href="admin-manage-order">
+                                            <a class="nav-link" aria-current="page" href="user-order-history?accountID=${sessionScope.accountSesseion.accountID}">
                                                 <i class="fa-sharp fa-solid fa-file-invoice-dollar"></i>
                                                 My orders
                                             </a>
@@ -231,13 +228,13 @@
                                 </a>
                             </li>
                             <li class="nav-item">
-                                <a class="nav-link" href="#">
+                                <a class="nav-link" href="loadProductIsSale?pageNo=1">
                                     <i class="fa-solid fa-tags"></i>
                                     Top-sale
                                 </a>
                             </li>
                             <li class="nav-item">
-                                <a class="nav-link" href="#">
+                                <a class="nav-link" href="contactUs.jsp">
                                     <i class="fa-solid fa-envelope"></i>
                                     Contact
                                 </a>
@@ -259,5 +256,12 @@
                 </div>
             </div>
         </nav>
+        <c:if test="${sessionScope.accountSesseion.accountID.startsWith('US') || sessionScope.accountSesseion.accountID == null}"> 
+            <div class="nav-connect-mess">
+                <a href="https://www.facebook.com/profile.php?id=100090626209292">
+                    <img class="rotate-scale" src="https://www.lotteria.vn/grs-static/images/icon-staff.svg" alt="alt"/>
+                </a>
+            </div>
+        </c:if>
     </body>
 </html>

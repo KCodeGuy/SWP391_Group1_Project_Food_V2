@@ -33,10 +33,47 @@ public class ProductDAO {
      * to upload to the home page
      *
      * @return List<Product> list of product
+     * @author Trần Dăng Khoa -  CE160367.
      */
     public List<Product> getListProduct() {
         try {
             String query = "SELECT * FROM PRODUCT WHERE ProductStatus <> 'REMOVED'"; //query select product orther than REMOVED
+            con = new DBContext().getConnection(); // open connection to SQL
+            ps = con.prepareStatement(query); // move query from Netbeen to SQl
+            rs = ps.executeQuery(); // the same with click to "excute" btn;
+            List<Product> list = new ArrayList<>(); //list products
+            while (rs.next()) {
+                list.add(new Product(
+                        rs.getString(1),
+                        rs.getString(2),
+                        rs.getString(3),
+                        rs.getInt(4),
+                        rs.getInt(5),
+                        ProductStatus.valueOf(rs.getString(6)),
+                        rs.getString(7),
+                        rs.getString(8))
+                ); // add new item in list
+            } // end while rs.next
+            return list;// return list product
+        } catch (Exception e) {
+            e.getMessage();
+        }
+        return null;
+    }
+
+    /**
+     * Function get list product
+     *
+     * This function use to take all products in a condition other than REMOVED
+     * to upload to the home page
+     *
+     * @return List<Product> list of product
+     */
+    public List<Product> getIsSaledProduct() {
+        try {
+            String query = "select * from PRODUCT \n"
+                    + "where ProductSalePercent > 0 \n"
+                    + "Order by ProductSalePercent Desc;"; //query select products are saled.
             con = new DBContext().getConnection(); // open connection to SQL
             ps = con.prepareStatement(query); // move query from Netbeen to SQl
             rs = ps.executeQuery(); // the same with click to "excute" btn;
@@ -276,16 +313,16 @@ public class ProductDAO {
      * Search product information by name
      *
      * @param search product name to search
-     * @param sort 
+     * @param sort
      * @return Return the product and show the message
      */
-    public List<Product> findProductByName(String search ,String sort) {
+    public List<Product> findProductByName(String search, String sort) {
         List<Product> list = new ArrayList<>(); //list products
         try {
             String query = "SELECT * FROM PRODUCT WHERE ProductStatus <> 'REMOVED' AND ProductName like ? ORDER BY ProductPrice "; //query select product orther than REMOVED
             con = new DBContext().getConnection(); // open connection to SQL
-              if(sort!=null){
-                query+=sort;
+            if (sort != null) {
+                query += sort;
             }
             ps = con.prepareStatement(query); // move query from Netbeen to SQl
             ps.setString(1, "%" + search + "%");
@@ -308,9 +345,10 @@ public class ProductDAO {
         }
         return list;
     }
-    
+
     /**
-     * Method update product 
+     * Method update product
+     *
      * @param productName The name of product
      * @param productPrice The price of product
      * @param productSalePercent The SalePercent of product
@@ -321,7 +359,7 @@ public class ProductDAO {
      * @param productID The ID of product
      */
     public void updateProduct(String productName, int productPrice,
-        int productSalePercent,String productStatus, String categoryID, String productDescription, String productImage, String productID) {
+            int productSalePercent, String productStatus, String categoryID, String productDescription, String productImage, String productID) {
         // query to update new information of the product.
         String query = "UPDATE PRODUCT SET ProductName = ?, ProductDescription = ?, ProductPrice = ?, ProductSalePercent = ?, ProductStatus = ?, ProductImage = ? , CategoryID = ? where ProductID = ?";
         try {
@@ -330,17 +368,16 @@ public class ProductDAO {
             ps.setString(1, productName);
             ps.setString(2, productDescription);
             ps.setInt(3, productPrice);
-            ps.setInt(4, productSalePercent);  
-            ps.setString(5, productStatus); 
+            ps.setInt(4, productSalePercent);
+            ps.setString(5, productStatus);
             ps.setString(6, productImage);
             ps.setString(7, categoryID);
-             ps.setString(8, productID);
+            ps.setString(8, productID);
             ps.executeUpdate();     // update a new password into database.                 
         } catch (Exception e) {
             e.getMessage();
         } // end try-catch.
     }
-    
 
     /**
      * Method to add new products
@@ -378,7 +415,8 @@ public class ProductDAO {
 
     /**
      * Search by category in database
-     * @param category string Category 
+     *
+     * @param category string Category
      * @return Product name to search
      */
     public List<Product> getListProductByCategory(String category) {
@@ -408,10 +446,11 @@ public class ProductDAO {
         }
         return list;
     }
-    
+
     /**
      * Search by name in database
-     * @param category string Category 
+     *
+     * @param category string Category
      * @return Product name to search
      */
     public List<Product> getListProductByName(String txtSearch) {
@@ -441,10 +480,11 @@ public class ProductDAO {
         }
         return list;
     }
-    
+
     /**
      * Sort by price in database
-     * @param category string Category 
+     *
+     * @param category string Category
      * @return Product name to search
      */
     public List<Product> getListProductOrderByPrice(String txtSort) {
@@ -473,6 +513,13 @@ public class ProductDAO {
         }
         return list;
     }
+    
+    public static void main(String[] args) {
+        ProductDAO pdao = new ProductDAO();
+        List<Product> list = pdao.getIsSaledProduct();
+        for (Product product : list) {
+            System.out.println(product.getProductID());
+        }
+    }
 
 }
-

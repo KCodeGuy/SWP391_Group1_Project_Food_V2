@@ -22,33 +22,35 @@
                                 <h4>Menu:</h4>
                             </li>
                             <li class="nav-item nav-item-home-filter">
-                                <a href="home.html" class="nav-link" aria-current="page">
+                                <a href="category?categoryID=FOOD" class="nav-link" aria-current="page">
                                     <img class="home-filter-icon" src="./assert/img/food.png" alt="alt"/>    
                                     Food
                                 </a>
                             </li>
                             <li class="nav-item nav-item-home-filter">
                                 <img class="home-filter-icon" src="./assert/img/drink.png" alt="alt"/> 
-                                <a href="home" class="nav-link">Drink</a>
+                                <a href="category?categoryID=DRINK" class="nav-link">Drink</a>
                             </li>
 
                             <li class="nav-item nav-item-home-filter">
                                 <img class="home-filter-icon" src="./assert/img/soup.png" alt="alt"/> 
-                                <a href="home" class="nav-link">Soup</a>
+                                <a href="category?categoryID=SOUP" class="nav-link">Soup</a>
                             </li>
 
                             <li class="nav-item nav-item-home-filter">
                                 <img class="home-filter-icon" src="./assert/img/conmbo.png" alt="alt"/> 
-                                <a href="home" class="nav-link">Combo</a>
+                                <a href="category?categoryID=COMBO" class="nav-link">Combo</a>
                             </li>
                         </ul>
                         <div class="sort-form">
-                            <span class="sort-form-label">ORDER BY:</span>
-                            <select name="sort-product" id="sort-product">
-                                <option value="asc">Price ascending</option>
-                                <option value="desc">Price descending</option>
-                            </select>
-                            <button type="submit" class="btn-main btn-sort"><i class="fa-solid fa-arrow-up-a-z"></i>Sort</button>
+                            <form class="sort-form" action="sort-product-home">
+                                <span class="sort-form-label">ORDER BY:</span>
+                                <select  name="txtSort" id="sort-product">
+                                    <option value="asc" selected="${txtSort eq 'asc'}">Price ascending</option>
+                                    <option value="desc" selected="${txtSort eq 'asc'}">Price descending</option>
+                                </select>
+                                <button type="submit" class="btn-primary btn-sort"><i class="fa-solid fa-arrow-up-a-z"></i>Sort</button>
+                            </form>
                         </div>
                     </div>
                 </nav>

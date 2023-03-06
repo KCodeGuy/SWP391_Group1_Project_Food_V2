@@ -34,13 +34,14 @@
                     <div class="container">
                         <div class="row">
                             <div class="col-xs-12">
+                                <% List<Voucher> list = VoucherDAO.getAllVoucher();%>
                                 <h6 class="table-header">MANAGE VOUCHER</h6>
                                 <div class="table-control-btn-group">
                                     <form class="sort-form" action="">
                                         <div class="total-quantity-control">
                                             <h6 class="sort-form-label">Total quantity:</h6>
                                             <button class="btn-primary total-quantity">
-                                                150
+                                                <%=list.size()%>
                                             </button>
                                         </div>
                                     </form>
@@ -73,7 +74,7 @@
                                         </tr>
                                     </thead>
                                     <tbody>
-                                    <% List<Voucher> list = VoucherDAO.getAllVoucher();%>
+                                    
                                     <c:forEach var="vc" items="<%=list%>" varStatus="count">
                                         <tr>
                                             <td class="table-order">${count.count}</td>
