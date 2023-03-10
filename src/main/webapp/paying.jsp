@@ -39,8 +39,6 @@
                                         <h4 class="form-text-label">Full name:</h4>
                                         <input type="text" id="name" name="name" placeholder="Huỳnh Hữu Nghĩa" value="${user.accountName}">
                                     <input type="text" id="accountID" name="accountID" placeholder="Huỳnh Hữu Nghĩa" value="${user.accountID}" hidden="true">
-                                    <input type="text" id="voucherID" name="voucherID" placeholder="Huỳnh Hữu Nghĩa" value="${voucherID}" hidden="true">
-                                    <input type="text" id="productSalePercent" name="productSalePercent" placeholder="Huỳnh Hữu Nghĩa" value="${productSalePercent}" hidden="true">
                                     <div class="alert-warning" id="txtNameMessage"></div>
                                 </div>
 

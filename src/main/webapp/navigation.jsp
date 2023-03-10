@@ -169,7 +169,7 @@
                                             </a>
                                         </li>
                                         <li class="nav-item">
-                                            <a class="nav-link" aria-current="page" href=shipper-manage-order?accountID=${sessionScope.accountSesseion.accountID}">
+                                            <a class="nav-link" aria-current="page" href="shipper-manage-order?accountID=${sessionScope.accountSesseion.accountID}">
                                                 <i class="fa-sharp fa-solid fa-file-invoice-dollar"></i>
                                                 Pickup orders
                                             </a>

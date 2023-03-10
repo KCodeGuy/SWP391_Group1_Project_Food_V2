@@ -139,7 +139,7 @@ public class EmailHandler {
                     + "_Mã đơn hàng: " + oID
                     + "<br>_Trạng thái: " + status
                     + "<br>_Số lượng sản phẩm: " + quantity
-                    + "<br>_Phí vận chuyển: " + 25000 + " đ"
+                    + "<br>_Phí vận chuyển: " + 0 + " đ"
                     + "<br>_Hình thức thanh toán: Ship code(Thanh toán khi nhận hàng)"
                     + "<br><span>_Tổng tiền: <b><font color=red> " + (total) + " đ</font></b></span><br>"
                     + "<br><span>G1-FOOD rất cảm ơn quí khách đã tin tưởng và đặt hàng. Đơn hàng sẽ được xử lí và giao đến quí khác trong ít phút."

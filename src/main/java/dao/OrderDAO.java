@@ -387,7 +387,7 @@ public class OrderDAO {
                     + "INNER JOIN [ORDER_DETAIL] ON [ORDER].OrderID = [ORDER_DETAIL].OrderID\n"
                     + "WHERE [ORDER].OrderStatus = 'PROCESSING'\n"
                     + "GROUP BY [ORDER].OrderID, [ORDER].BuyerFullName,[ORDER].OrderDate,[ORDER].OrderStatus\n"
-                    + "ORDER BY [ORDER].OrderDate DESC;"; // query select form database
+                    + "ORDER BY [ORDER].OrderDate ASC;"; // query select form database
 
             con = new DBContext().getConnection(); // open conect database
             ps = con.prepareStatement(query); // set account ID into query
