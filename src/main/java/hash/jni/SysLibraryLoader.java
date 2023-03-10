@@ -1,6 +1,6 @@
 // Copyright (C) 2011 - Will Glozer.  All rights reserved.
 
-package com.example.demo.hash.jni;
+package hash.jni;
 
 /**
  * A native library loader that simply invokes {@link System#loadLibrary}. The shared

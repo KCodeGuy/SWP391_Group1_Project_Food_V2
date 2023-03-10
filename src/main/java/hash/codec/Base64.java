@@ -1,6 +1,6 @@
 // Copyright (C) 2011 - Will Glozer.  All rights reserved.
 
-package com.example.demo.hash.codec;
+package hash.codec;
 
 import java.util.Arrays;
 

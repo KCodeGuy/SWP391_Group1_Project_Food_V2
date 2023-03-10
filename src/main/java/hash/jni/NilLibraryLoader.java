@@ -1,6 +1,6 @@
 // Copyright (C) 2013 - Will Glozer.  All rights reserved.
 
-package com.example.demo.hash.jni;
+package hash.jni;
 
 /**
  * A native library loader that refuses to load libraries.

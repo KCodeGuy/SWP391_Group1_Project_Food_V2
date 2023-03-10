@@ -1,6 +1,6 @@
 // Copyright (C) 2011 - Will Glozer.  All rights reserved.
 
-package com.example.demo.hash.jni;
+package hash.jni;
 
 /**
  * Exception thrown when the current platform cannot be detected.

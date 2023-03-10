@@ -2,6 +2,7 @@ package dao;
 
 import context.DBContext;
 import hash.GenerateID;
+import hash.SCryptUtil;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
@@ -21,6 +22,7 @@ public class AccountDAO {
     Connection con = null;       // connect to SQL server.
     PreparedStatement ps = null; // move query from Netbeen to SQl.
     ResultSet rs = null;         // save result query.
+    SCryptUtil scrypt = new SCryptUtil();
 
     /**
      * For all actors of system login an account to system. This function will
@@ -33,22 +35,42 @@ public class AccountDAO {
      * @author Trần Đăng Khoa - CE160367
      */
     public Account loginAccount(String email, String password) {
+        String scryptPass = null;
         // query to check whether passed email and password is exist or not.
-        String query = "SELECT AccountEmail, AccountPassword, AccountName, AccountID FROM ACCOUNT WHERE AccountEmail=? AND AccountPassword=? AND AccountStatus = 'ACTIVED'";
+        String query = "SELECT AccountPassword FROM ACCOUNT WHERE AccountEmail=? AND AccountStatus = 'ACTIVED'";
         try {
             con = new DBContext().getConnection();  // open connection to SQL
             ps = con.prepareStatement(query); // move query from Netbeen to SQl
             ps.setString(1, email);         // pass entered email to the first ?.
-            ps.setString(2, password);      // pass entered password to the second ?.
             rs = ps.executeQuery();                 // excute query and return result to rs.
             while (rs.next()) {
                 // return an account
-                return new Account(rs.getString(4), rs.getString(1), rs.getString(2), AccountStatus.ACTIVED, rs.getString(3), "", "", "", "", "");
+                scryptPass = rs.getString(1);
             } // end while loop of table result.
         } catch (Exception e) {
             e.getMessage();
         } // end try-catch.
-        return null;
+
+        if (scrypt.check(password, scryptPass)) {
+            // query to check whether passed email and password is exist or not.
+            query = "SELECT AccountEmail, AccountName, AccountID FROM ACCOUNT WHERE AccountEmail=? AND AccountStatus = 'ACTIVED'";
+            try {
+                con = new DBContext().getConnection();  // open connection to SQL
+                ps = con.prepareStatement(query); // move query from Netbeen to SQl
+                ps.setString(1, email);         // pass entered email to the first ?.
+                rs = ps.executeQuery();                 // excute query and return result to rs.
+                while (rs.next()) {
+                    // return an account
+                    return new Account(rs.getString(3), rs.getString(1), "", AccountStatus.ACTIVED, rs.getString(2), "", "", "", "", "");
+                } // end while loop of table result.
+            } catch (Exception e) {
+                e.getMessage();
+            } // end try-catch.
+            return null;
+        } else {
+            return null;
+        }
+
     }
 
     /**
@@ -61,7 +83,7 @@ public class AccountDAO {
      */
     public boolean checkAccountIsExist(String email) {
         // query to check whether passed email is exist or not.
-        String query = "select AccountEmail, AccountPassword, AccountName, AccountID, AccountStatus\n"
+        String query = "select AccountEmail, AccountName, AccountID, AccountStatus\n"
                 + "from ACCOUNT \n"
                 + "where AccountEmail = ? and AccountStatus = 'ACTIVED';";
         Account acc = null; // initilize an account.
@@ -71,7 +93,7 @@ public class AccountDAO {
             ps.setString(1, email);          // pass entered email to the first ?.
             rs = ps.executeQuery();                  // excute query and return result to rs.
             while (rs.next()) {
-                acc = new Account(rs.getString(4), rs.getString(1), rs.getString(2), AccountStatus.valueOf(rs.getString(5)), rs.getString(3), "", "", "", "", "");
+                acc = new Account(rs.getString(3), rs.getString(1), "", AccountStatus.valueOf(rs.getString(4)), rs.getString(2), "", "", "", "", "");
             } // end while loop of table result.
             // check whether accoutn is null or not to return.
             if (acc != null) {
@@ -122,6 +144,7 @@ public class AccountDAO {
      * @author Trần Đăng Khoa - CE160367
      */
     public void registerAccount(String name, String email, String password, String phone, String address, String dob, String startDay) {
+        String scryptPass = scrypt.scrypt(password, 16, 16, 16);
         // query to insert a new account of user to database. With status is ACTIVED and role's id is USER default.
         String query = "INSERT INTO [ACCOUNT] VALUES (?,?,?,'PENDING',?,?,?,?,?)";
         String id = createNewUserID(); // get account's id of user.
@@ -130,7 +153,7 @@ public class AccountDAO {
             ps = con.prepareStatement(query);  // move query from Netbeen to SQl
             ps.setString(1, id);             // pass entered id to the first ?. 
             ps.setString(2, email);          // pass entered email to the second ?.
-            ps.setString(3, password);       // pass entered password to the third ?.
+            ps.setString(3, scryptPass);       // pass entered password to the third ?.
             ps.setString(4, name);           // pass entered name to the four ?.
             ps.setString(5, address);        // pass entered address to the filth ?.
             ps.setString(6, phone);          // pass entered phone to the 6th ?.
@@ -157,6 +180,7 @@ public class AccountDAO {
      * @author Trần Đăng Khoa - CE160367
      */
     public void registerFormApplication(String name, String email, String password, String phone, String address, String dob, String startDay, String onPosition) {
+        String scryptPass = scrypt.scrypt(password, 16, 16, 16);
         // query to insert a new account of user to database. With status is REMOVED.
         String query = "INSERT INTO [ACCOUNT] VALUES (?,?,?,'REMOVED',?,?,?,?,?)";
         String idOfChef = createNewChefID(); // create new id of chef.
@@ -171,7 +195,7 @@ public class AccountDAO {
                 ps.setString(1, idOfShipper);          // pass entered id of shipper to the first ?. 
             }
             ps.setString(2, email);          // pass entered email to the second ?.
-            ps.setString(3, password);       // pass entered password to the third ?.
+            ps.setString(3, scryptPass);       // pass entered password to the third ?.
             ps.setString(4, name);           // pass entered name to the four ?.
             ps.setString(5, address);        // pass entered address to the filth ?.
             ps.setString(6, phone);          // pass entered phone to the 6th ?.
@@ -360,12 +384,13 @@ public class AccountDAO {
      * @author Trần Đăng Khoa - CE160367
      */
     public void updatePassword(String email, String newPassword) {
+        String scryptPass = scrypt.scrypt(newPassword, 16, 16, 16);
         // query to update account by passed email.
         String query = "update ACCOUNT set AccountPassword = ? where AccountEmail = ?;";
         try {
             con = new DBContext().getConnection();   // open connection to SQL.
             ps = con.prepareStatement(query);        // move query from Netbeen to SQl.
-            ps.setString(1, newPassword);            // pass entered newPassword to the first ?. 
+            ps.setString(1, scryptPass);            // pass entered newPassword to the first ?. 
             ps.setString(2, email);                  // pass entered email to the second ?. 
             ps.executeUpdate();                      // update a new password into database.                 
         } catch (Exception e) {
