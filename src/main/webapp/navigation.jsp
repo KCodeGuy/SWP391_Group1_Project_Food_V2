@@ -253,7 +253,7 @@
                                 </a>
                             </li>
                             <li class="nav-item">
-                                <a class="nav-link" href="register.jsp">
+                                <a class="nav-link" href="register-account">
                                     <i class="fa-solid fa-clipboard-user"></i>
                                     Register
                                 </a>

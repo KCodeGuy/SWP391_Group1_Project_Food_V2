@@ -52,7 +52,7 @@
                         <div class="form-btn-group">
                             <button class="btn-primary" type="submit">Login</button>
                             <h6 class="form-btn-separator">&nbsp;OR&nbsp;</h6>
-                            <button class="btn-main" type="button"><a href="register.jsp">Register</a></button>
+                            <button class="btn-main" type="button"><a href="register-account">Register</a></button>
                         </div>
                     </form>
                 </div>

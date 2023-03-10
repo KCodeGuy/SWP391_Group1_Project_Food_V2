@@ -73,7 +73,7 @@
                                 <div class="btn-group-search-add">
                                     <button class="btn-primary btn-add">
                                         <i class="fa-solid fa-plus"></i>
-                                        <a href="addProduct.jsp">Add product</a>
+                                        <a href="add-product">Add product</a>
                                     </button>
                                     <form action="admin-search-product">
                                         <div class="search-group">
