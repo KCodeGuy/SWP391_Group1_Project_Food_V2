@@ -9,6 +9,7 @@ import dao.AccountDAO;
 import dao.CartDAO;
 import dao.OrderDAO;
 import dao.OrderDetailDAO;
+import dao.VoucherDAO;
 import emailHandler.EmailHandler;
 import java.io.IOException;
 import java.io.PrintWriter;
@@ -37,15 +38,12 @@ public class PayingController extends HttpServlet {
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
     throws ServletException, IOException {
         response.setContentType("text/html;charset=UTF-8");
-       String accountID = request.getParameter("accountID");
+        String accountID = request.getParameter("accountID");
         String voucherID = request.getParameter("voucherID");
-        String productSalePercent = request.getParameter("productSalePercent");
-        int discount;
-        if (productSalePercent == null) {
-            discount = 0;
-        } else {
-            discount = Integer.parseInt(productSalePercent);
-        }
+        
+        VoucherDAO vdao = new VoucherDAO();
+        int discount = vdao.getProductSalePrecent(voucherID);
+        
         String note = request.getParameter("note");
         String name = request.getParameter("name");
         String phone = request.getParameter("phone");
