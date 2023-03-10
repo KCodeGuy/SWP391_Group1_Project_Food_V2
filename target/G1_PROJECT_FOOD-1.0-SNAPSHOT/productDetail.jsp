@@ -16,8 +16,8 @@
         <link rel="stylesheet" href="./bootstap/css/bootstrap.min.css" type="text/css">
         <link rel="stylesheet" href="./bootstap/js/bootstrap.js" type="text/javascript">
         <link rel="stylesheet" href="./assert/css/style.css" type="text/css">
-        <link rel="stylesheet" href="./assert/css/homePage.css" type="text/css">
-        <link rel="stylesheet" href="./assert/css/productOfDetail.css" type="text/css">
+        <link rel="stylesheet" href="./assert/css/home.css" type="text/css">
+        <link rel="stylesheet" href="./assert/css/productDetailPage.css" type="text/css">
         <link rel="stylesheet" href="./assert/font/fontawesome-free-6.1.1-web/css/all.css">
         <title>Product-detail</title>
 
@@ -106,10 +106,12 @@
                                             &#9733;
                                         </c:forEach>
                                     </span>
-                                    <div class="progress-bar">
-                                        <div class="progress" style="width: ${(entry.value / sizeReview) * 100}%;"></div>
+                                    <div class="progress-bar-group">
+                                        <div class="progress-bar">
+                                            <div class="progress" style="width: ${(entry.value / sizeReview) * 100}%;"></div>
+                                        </div>
+                                        <span class="count">(${entry.value})</span>
                                     </div>
-                                    <span class="count">(${entry.value})</span>
                                 </div><br>
                             </c:forEach>
                         </div>
@@ -153,7 +155,6 @@
                                         <i class="fa-solid fa-comments"></i>
                                         Other's comments
                                     </h3>
-                                    <button class="btn-primary btn-see-all"><a class="" href="home">See all<i class="fa-solid fa-arrow-right-long"></i></i></a></button>
                                 </div>
                                 <ul class="review-items">
                                     <c:forEach items="${listReview}" var="rv">
@@ -186,6 +187,11 @@
                                                     ${rv.reviewDay}
                                                 </div>
                                             </div>
+                                            <div class="review-item-group">
+                                                <!--<a href="" class="reply-link"> <i class="fa-solid fa-reply"></i> Reply comment</a>-->
+                                                
+                                            </div>
+                                            
                                         </li>
                                     </c:forEach>
                                 </ul>
@@ -216,6 +222,7 @@
                                         <div class="card-group">
                                             <div class="card-price-group">
                                                 <span class="card-price">
+                                                    <img src="./assert/img/tag.png" alt="alt"/>
                                                     <fmt:formatNumber type="number" pattern="###,###" value="${pr.productPrice * (1-(pr.productSalePercent/100))}"/>đ
                                                 </span>
                                                 <c:if test="${pr.productSalePercent != 0}">

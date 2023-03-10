@@ -102,7 +102,7 @@ public class EmailHandler {
      * @param shipFee fee of ship
      * @param total total order value
      */
-    public void sendEmailOrderSuccess(String fulllName, String toEmail, String phone, String address, String oID, String status, int quantity, int shipFee, long total) {
+    public void sendEmailOrderSuccess(String fulllName, String toEmail, String phone, String address, String oID, String status, int quantity, long total) {
         final String formEmail = "group1shop.fpt@gmail.com";
         final String password = "gzqoghcnqnoqmsxa";
 
@@ -139,9 +139,9 @@ public class EmailHandler {
                     + "_Mã đơn hàng: " + oID
                     + "<br>_Trạng thái: " + status
                     + "<br>_Số lượng sản phẩm: " + quantity
-                    + "<br>_Phí vận chuyển: " + shipFee + " đ"
+                    + "<br>_Phí vận chuyển: " + 25000 + " đ"
                     + "<br>_Hình thức thanh toán: Ship code(Thanh toán khi nhận hàng)"
-                    + "<br><span>_Tổng tiền: <b><font color=red> " + (total + shipFee) + " đ</font></b></span><br>"
+                    + "<br><span>_Tổng tiền: <b><font color=red> " + (total) + " đ</font></b></span><br>"
                     + "<br><span>G1-FOOD rất cảm ơn quí khách đã tin tưởng và đặt hàng. Đơn hàng sẽ được xử lí và giao đến quí khác trong ít phút."
                     + " Lưu ý: Mọi thắc mắc cần tư vấn về sản phẩm hay đơn hàng. Xin vui lòng liên hệ <b>Hotline: 0933.782.768.</b></h4>"
                     + "<h4>Trân trọng,</span>"

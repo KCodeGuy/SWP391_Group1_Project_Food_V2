@@ -40,16 +40,18 @@ public class LoadListOrderedForManagePageController extends HttpServlet {
         String txtSearch = request.getParameter("txtSearch");
 
         int totalPrice = 0;
-        for (Order order : listOrder) {
-            totalPrice += order.getTotalPrice();
+        if (listOrder != null) {
+            for (Order order : listOrder) {
+                totalPrice += order.getTotalPrice();
+            }
+            if (txtSearch != null && !txtSearch.isEmpty()) {
+                listOrder = odao.getListOrderForAdmin(txtSearch);
+            }
+            request.setAttribute("totalOrder", listOrder.size());
+        }else {
+             request.setAttribute("totalOrder", 0);
         }
-        if (txtSearch != null && !txtSearch.isEmpty()) {
-            listOrder = odao.getListOrderForAdmin(txtSearch);
-        }
-        if (listOrder.isEmpty()) {
-            request.setAttribute("MESSAGE", "Order not found!");
-        }
-        request.setAttribute("totalOrder", listOrder.size());
+        
         request.setAttribute("totalPrice", totalPrice);
         request.setAttribute("listOrder", listOrder);
         //forward request and response to jsp page to display listOrder

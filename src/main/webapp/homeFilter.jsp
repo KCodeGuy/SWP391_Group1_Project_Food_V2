@@ -46,8 +46,8 @@
                             <form class="sort-form" action="sort-product-home">
                                 <span class="sort-form-label">ORDER BY:</span>
                                 <select  name="txtSort" id="sort-product">
-                                    <option value="asc" selected="${txtSort eq 'asc'}">Price ascending</option>
-                                    <option value="desc" selected="${txtSort eq 'asc'}">Price descending</option>
+                                    <option value="asc" selected>Price ascending</option>
+                                    <option value="desc" ${txtSort eq 'desc' ? selected:""}>Price descending</option>
                                 </select>
                                 <button type="submit" class="btn-primary btn-sort"><i class="fa-solid fa-arrow-up-a-z"></i>Sort</button>
                             </form>

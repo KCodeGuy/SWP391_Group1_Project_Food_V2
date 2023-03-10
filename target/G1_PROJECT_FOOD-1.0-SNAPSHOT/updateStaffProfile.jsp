@@ -15,7 +15,7 @@
         <link rel="stylesheet" href="./bootstap/css/bootstrap.min.css" type="text/css">
         <link rel="stylesheet" href="./bootstap/js/bootstrap.js" type="text/javascript">
         <link rel="stylesheet" href="./assert/css/style.css" type="text/css">
-        <link rel="stylesheet" href="./assert/css/updateStaffProfile.css" type="text/css">
+        <link rel="stylesheet" href="./assert/css/updateStaffProfilePage.css" type="text/css">
         <link rel="stylesheet" href="./assert/font/fontawesome-free-6.1.1-web/css/all.css" type="text/css">
         <title> Update-staff-profile</title>
     </head>

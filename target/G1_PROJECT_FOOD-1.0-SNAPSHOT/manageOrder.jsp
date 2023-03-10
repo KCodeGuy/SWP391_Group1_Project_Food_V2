@@ -16,7 +16,7 @@
         <link rel="stylesheet" href="./bootstap/css/bootstrap.min.css" type="text/css">
         <link rel="stylesheet" href="./bootstap/js/bootstrap.js" type="text/javascript">
         <link rel="stylesheet" href="./assert/css/style.css" type="text/css">
-        <link rel="stylesheet" href="./assert/css/manageOrderPage.css" type="text/css">
+        <link rel="stylesheet" href="./assert/css/manageOrder.css" type="text/css">
         <link rel="stylesheet" href="./assert/font/fontawesome-free-6.1.1-web/css/all.css" type="text/css">
         <title>Manage-Ordered</title>
     </head>
@@ -34,58 +34,59 @@
                             <div class="col-xs-12">
                                 <h6 class="table-header">MANAGE ORDER</h6>
                                 <div class="table-control-btn-group">
-                                    <form class="sort-form" action="">
+                                    <form class="sort-form" action="chef-manage-order" method="GET">
                                         <h6 class="sort-form-label">Sort order:</h6>
                                         <select style="height: 36px; margin-top: 10px;" name="sort-product" id="sort-product">
-                                            <option value="asc">Price ascending</option>
-                                            <option value="desc">Price descending</option>
+                                            <option value="asc" selected="${txtSort eq 'asc'}" >Price ascending</option>
+                                            <option  value="desc"selected="${txtSort eq 'desc'}" >Price descending</option>
                                         </select>
                                         <button type="submit" class="btn-primary btn-sort"><i class="fa-solid fa-arrow-up-a-z"></i>Sort</button>
                                         <div class="total-quantity-group">
                                             <h6 class="sort-form-label">Total quantity:</h6>
                                             <button class="btn-primary total-quantity">
-                                                ${totalOrder}
-                                            </button>
-                                        </div>
-                                        <div class="total-quantity-group">
-                                            <h6 class="sort-form-label">Total revenue:</h6>
-                                            <button class="btn-primary total-quantity">
-                                                <fmt:formatNumber type="number" pattern="###,###" value="${totalPrice}"/>đ
-                                            </button>
-                                        </div>
-                                    </form>
-                                    <div class="btn-group-search-add">
-                                        <form action="admin-manage-order">
+                                            ${totalOrder}
+                                        </button>
+                                    </div>
+                                    <div class="total-quantity-group">
+                                        <h6 class="sort-form-label">Total revenue:</h6>
+                                        <button type="button" class="btn-primary total-quantity">
+                                            <fmt:formatNumber type="number" pattern="###,###" value="${totalPrice}"/>đ
+                                        </button>
+                                    </div>
+                                </form>
+                                <div class="btn-group-search-add">
+                                    <form action="search-order-chef" method="GET">
                                         <div class="search-group">
-                                            <input type="text"  name="txtSearch" value="${param.txtSearch}" placeholder="Enter order's ID">
+                                            <input required="" type="text"  name="txtSearch" value="${txtSearchOrder}" placeholder="Enter user's full name">
                                             <button type="submit" class="btn-main btn-search">
                                                 <i class="fa-solid fa-magnifying-glass"></i>
                                             </button>
                                         </div>
-                                            </form>
-                                    </div>
+                                    </form>
                                 </div>
                             </div>
                         </div>
-                        <div class="row">
-                            <div class="col-xs-12">
-                                <table class="table table-striped text-center align-middle">
-                                    <thead class="table-heading">
-                                        <tr>
-                                            <th class="table-heading-text" scope="col">No.</th>
-                                            <th class="table-heading-text" scope="col">ID</th>
-                                            <th class="table-heading-text" scope="col">Customer's name</th>
-                                            <th class="table-heading-text" scope="col">Quantity</th>
-                                            <th class="table-heading-text" scope="col">Order-date</th>
-                                            <th class="table-heading-text" scope="col">Status</th>
-                                            <th class="table-heading-text" scope="col">Total</th>
-                                            <th class="table-heading-text" scope="col">Detail</th>
-                                        </tr>
-                                    </thead>
-                                    <tbody>
+                    </div>
+                    <div class="row">
+                        <div class="col-xs-12">
+                            <table class="table table-striped text-center align-middle">
+                                <thead class="table-heading">
+                                    <tr>
+                                        <th class="table-heading-text" scope="col">No.</th>
+                                        <th class="table-heading-text" scope="col">ID</th>
+                                        <th class="table-heading-text" scope="col">Customer's name</th>
+                                        <th class="table-heading-text" scope="col">Quantity</th>
+                                        <th class="table-heading-text" scope="col">Order-date</th>
+                                        <th class="table-heading-text" scope="col">Status</th>
+                                        <th class="table-heading-text" scope="col">Total</th>
+                                        <th class="table-heading-text" scope="col">Detail</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <c:set var="no" value="1" />
                                     <c:forEach items="${listOrder}" var="o">
                                         <tr>
-                                            <td class="table-order">1</td>
+                                            <td class="table-order">${no}</td>
                                             <td class="table-order">${o.orderID}</td>
                                             <td class="table-name">${o.userFullName}</td>
                                             <td class="table-quantity">${o.totalQuanityProduct}</td>
@@ -93,22 +94,22 @@
                                             <td class="table-status">${o.orderStatus}</td>
                                             <td class="table-price"><fmt:formatNumber type="number" pattern="###,###" value="${o.totalPrice}"/>đ</td>
                                             <td class="table-btn">
-                                                <a class="table-btn-edit" href="chef-order-detail?orderID=${o.orderID}"><i class="fa-solid fa-pen-to-square"></i></a>
+                                                <a class="table-btn-edit" href="chef-order-detail?orderID=${o.orderID}&option=accept"><i class="fa-solid fa-pen-to-square"></i></a>
                                             </td>
                                         </tr>
+                                        <c:set var="no" value="${no + 1}" />
                                     </c:forEach>  
-                                        <c:if test="${listOrder.size() == 0 }">
-                                            <tr>
-                                                <td colspan="8">There are no orders to process</td>
-                                            </tr>
+                                    <c:if test="${listOrder.size() == 0 }">
+                                        <tr>
+                                            <td colspan="8" class="table-row-no-product">There are no order is collected!</td>
+                                        </tr>
                                     </c:if>
                                 </tbody>
                             </table>
-                                   ${requestScope.MESSAGE}
                         </div>
                     </div>
                 </div>
-                </div>
+            </div>
 
             <!-- 5. Footer  -->
             <jsp:include page="footer.jsp"></jsp:include>

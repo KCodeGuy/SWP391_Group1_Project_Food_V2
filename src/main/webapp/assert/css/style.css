@@ -27,8 +27,11 @@
 .active {
     display: block !important;
 }
+.active-nav-link {
+    color: var(--text-primary-color);
+}
 .acctivePage {
-    background-color: var(--main-color) !important;
+    background-color: var(--text-primary-color) !important;
 }
 .disabled {
     display: none !important;
@@ -200,6 +203,7 @@
     color: var(--text-color);
     opacity: 0.6;
 }
+
 
 .navbar-toggler {
     border: 2px solid black;
@@ -433,7 +437,8 @@
 }
 
 .footer-heading {
-    font-size: 24px;
+    font-size: 20px;
+    text-transform: uppercase;
     font-weight: bold;
     color: var(--text-primary-color);
 }

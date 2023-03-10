@@ -14,9 +14,8 @@
         <link rel="stylesheet" href="./bootstap/css/bootstrap.min.css" type="text/css">
         <link rel="stylesheet" href="./bootstap/js/bootstrap.js" type="text/javascript">
         <link rel="stylesheet" href="./assert/css/style.css" type="text/css">
-        <link rel="stylesheet" href="./assert/css/homePage.css" type="text/css">
         <link rel="stylesheet" href="./assert/font/fontawesome-free-6.1.1-web/css/all.css" type="text/css">
-        <link rel="stylesheet" href="./assert/css/updateVoucher.css" type="text/css">
+        <link rel="stylesheet" href="./assert/css/updateVoucherPage.css" type="text/css">
         <title>Update Voucher</title>
     </head>
 

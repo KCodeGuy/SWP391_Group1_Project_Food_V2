@@ -15,7 +15,7 @@
         <link rel="stylesheet" href="./bootstap/css/bootstrap.min.css" type="text/css">
         <link rel="stylesheet" href="./bootstap/js/bootstrap.js" type="text/javascript">
         <link rel="stylesheet" href="./assert/css/style.css" type="text/css">
-        <link rel="stylesheet" href="./assert/css/payingPage.css" type="text/css">
+        <link rel="stylesheet" href="./assert/css/paying.css" type="text/css">
         <link rel="stylesheet" href="./assert/font/fontawesome-free-6.1.1-web/css/all.css" type="text/css">
         <title>Paying</title>
     </head>
@@ -96,16 +96,20 @@
                                         </thead>
 
                                         <tbody>
+                                            <c:set var="no" value="1" />
                                             <c:forEach items="${listCart}" var="cart">
                                                 <tr>
-                                                    <td class="table-order">${cart.cartID}</td>
+                                                    <td class="table-order">${no}</td>
                                                     <td class="table-img"><a href="product-detail?productID=${cart.productID}"><img src="${cart.productLink}"></a></td>
                                                     <td class="table-name"><a href="product-detail?productID=${cart.productID}">${cart.productName}</a></td>
                                                     <td class="table-quantity">
                                                         ${cart.cartQuantity}
                                                     </td>
-                                                    <td class="table-price"><fmt:formatNumber type="number" pattern="###,###" value="${(cart.productPrice * (1-((cart.productSalePercent + productSalePercent)/100)))*cart.cartQuantity}"/>đ</td>
+                                                    <td class="table-price">
+                                                        <fmt:formatNumber type="number" pattern="###,###" value="${(cart.productPrice * (1-(cart.productSalePercent/100)))*cart.cartQuantity}"/>đ
+                                                    </td>
                                                 </tr>
+                                                <c:set var="no" value="${no+1}" />
                                             </c:forEach>
                                         </tbody>
                                     </table>
@@ -113,34 +117,35 @@
                             </div>
                             <div class="row">
                                 <div class="col-xs-12 col-lg-7">
-                                    <div class="voucher-container">
-                                        <div class="voucher-form-group">
-                                            <span class="voucher-form-label">Mã giảm:</span>
-                                            <div class="voucher-form-sub-group">
-                                                <form action="usevoucher">
-                                                    <input class="voucher-from-input" type="text" id="accountID" name="accountID" placeholder="" hidden="true" value="${user.accountID}"/>
-                                                    <input class="voucher-from-input" type="text" id="voucherID" name="voucherID" placeholder="" />
-                                                    <button type="submit" class="btn-primary btn-apply">
-                                                        Apply
-                                                    </button>
-                                                </form>
+                                    <c:set var="shipFee" value="25000"></c:set>
+                                        <div class="voucher-container">
+                                            <div class="voucher-form-group">
+                                                <span class="voucher-form-label">Voucher:</span>
+                                                <div class="voucher-form-sub-group">
+                                                </div>
                                             </div>
+                                            <div class="voucher-form-group">
+                                                <span class="voucher-form-label">Pre-total:</span>
+                                                <span class="voucher-number">
+                                                <fmt:formatNumber type="number" pattern="###,###" value="${totalPrice}"/>đ
+                                            </span>
                                         </div>
                                         <div class="voucher-form-group">
-                                            <span class="voucher-form-label">Tạm tính:</span>
-                                            <span class="voucher-number">130.000đ</span>
+                                            <span class="voucher-form-label">Ship fee:</span>
+                                            <span class="voucher-number">+${shipFee}đ</span>
                                         </div>
                                         <div class="voucher-form-group">
-                                            <span class="voucher-form-label">Phí ship:</span>
-                                            <span class="voucher-number">+30.000đ</span>
-                                        </div>
-                                        <div class="voucher-form-group">
-                                            <span class="voucher-form-label">Voucher:</span>
-                                            <span class="voucher-number">-50.000đ</span>
+                                            <span class="voucher-form-label">Voucher discount: (-${productSalePercent}%)</span>
+                                            <span class="voucher-number">
+
+                                                -<fmt:formatNumber type="number" pattern="###,###" value="${totalPrice * productSalePercent / 100}"/>đ
+                                            </span>
                                         </div>
                                         <div class="voucher-form-group">
                                             <span class="voucher-form-label">Total:</span>
-                                            <span class="voucher-number voucher-total">130.000đ</span>
+                                            <span class="voucher-number voucher-total"> 
+                                                <fmt:formatNumber type="number" pattern="###,###" value="${(((100 - productSalePercent) * totalPrice) / 100) + shipFee}"/>đ
+                                            </span>
                                         </div>
                                     </div>
 
@@ -148,18 +153,16 @@
                                 <div class="col-xs-12 col-lg-5">
                                     <div class="form-paying-btn">
                                         <p>
-                                            <strong>Note:</strong> Quý khách vui lòng kiểm tra lại đúng
-                                            thông tin khách hàng và thông tin sản phẩm trước khi tiến hành
-                                            đặt hàng. Rất cảm ơn quí khách đã quan đặt hàng tại
-                                            <strong>Group-1-food
-                                            </strong> store. Mọi thắc mắc xin liên hệ hotline <strong>0366.777.999</strong>. Chúc quí khách may mắn!.
+                                            <strong>Note: </strong>Please check the your information and product to paying carefully before proceeding with the order. 
+                                            Thank you very much for choosing to place an order at Group-1-food store.
+                                            If you have any questions, please contact our hotline at 0366.777.999. We wish you good luck!
                                         </p>
                                         <div class="form-paying-btn-group">
                                             <button type="Submit" class="btn-primary">
                                                 Paying
                                             </button>
                                             <button type="button" class="btn-main">
-                                                <a href="">Cancel</a>
+                                                <a href="home">Cancel</a>
                                             </button>
                                         </div>
                                     </div>
@@ -170,11 +173,46 @@
                 </div>
             </div>
         </form>
-
-
         <!-- 5. Footer  -->
-        <jsp:include page="footer.jsp"></jsp:include>
+        <div class="container-fluid footer">
+            <form action="use-voucher" class="voucher-form" id="voucher-form-id">
+                <input class="voucher-from-input" type="text" id="accountID" name="accountID" placeholder="" hidden="true" value="${user.accountID}" readonly=""/>
+                <input class="voucher-from-input" type="text" id="voucherID" name="voucherID" placeholder="ABC123" required="" value="${voucherID}"/>
+                <button type="submit" class="btn-primary btn-apply">
+                    Apply
+                </button>
+            </form>
+            <div class="row">
+                <div class="col-sm-12 col-md-4">
+                    <i class="fa-solid fa-phone footer-icon"></i>
+                    <h2 class="footer-heading">Phone</h2>
+                    <p class="footer-info">(0292) 730 363</p>
+                    <p class="footer-info">(0292) 730 364</p>
+                    <p class="footer-info">(0292) 730 365</p>
+                </div>
+                <div class="col-sm-12 col-md-4">
+                    <i class="fa-solid fa-envelope footer-icon"></i>
+                    <h2 class="footer-heading">Email</h2>
+                    <p class="footer-info">group1shop@gmail.com</p>
+                    <p class="footer-info">group1food@gmail.com</p>
+                </div>
+                <div class="col-sm-12 col-md-4">
+                    <i class="fa-solid fa-location-dot footer-icon"></i>
+                    <h2 class="footer-heading">Address</h2>
+                    <p class="footer-info">Store 1: 600, đường Nguyễn Văn Cừ nối dài, An Bình, Ninh Kiều, Cần Thơ</p>
+                    <p class="footer-info">Store 2: 123/1A Hai Bà Trưng, Thủ Đức, Tp.HCM</p>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-xs-12">
+                    <span class="footer-copycript">© 2023 GROUP1-FOOD - a software of group1 students in FPT university </span>
+                </div>
+            </div>
+        </div>
+
+
         <script src="jquery/Jquery.js" type="text/javascript"></script>
+
     </body>
 
 </html>

@@ -32,15 +32,20 @@ public class LoadListOrderedForChefController extends HttpServlet {
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         response.setContentType("text/html;charset=UTF-8");
-
+        String sortOption = request.getParameter("sort-product");
         OrderDAO odao = new OrderDAO();
-        ArrayList<Order> listOrder = odao.getListOrderForChef();
-        int totalPrice = 0;
-        if (!listOrder.isEmpty()) {
-            for (Order order : listOrder) {
-                totalPrice += order.getTotalPrice();
+        ArrayList<Order> listOrder;
+        if (!sortOption.equals("none")) {
+            if (sortOption.equals("desc")) {
+                listOrder = odao.getListSortedOrderForChefByPriceDesc();
+            } else {
+                listOrder = odao.getListSortedOrderForChefByPriceAsc();
             }
+        } else {
+            listOrder = odao.getListOrderForChef();
         }
+        long totalPrice = odao.sumOfOrderPrice(listOrder);
+        request.setAttribute("txtSort", sortOption);
         request.setAttribute("totalOrder", listOrder.size());
         request.setAttribute("totalPrice", totalPrice);
         request.setAttribute("listOrder", listOrder);

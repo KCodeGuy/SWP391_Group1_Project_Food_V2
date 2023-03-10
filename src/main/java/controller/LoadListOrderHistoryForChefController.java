@@ -37,7 +37,7 @@ public class LoadListOrderHistoryForChefController extends HttpServlet {
         String accountID = request.getParameter("accountID");
         //Get the list of orders that have been chef
         ArrayList<Order> listOrderHistory = odao.getListOrderHistoryForChef(accountID);
-        int totalPrice = 0;
+        long totalPrice = 0;
         //Calculate the total order count and total price of those orders
         if (!listOrderHistory.isEmpty()) {
             for (Order order : listOrderHistory) {

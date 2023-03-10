@@ -14,7 +14,7 @@
         <link rel="stylesheet" href="./bootstap/css/bootstrap.min.css" type="text/css">
         <link rel="stylesheet" href="./bootstap/js/bootstrap.js" type="text/javascript">
         <link rel="stylesheet" href="./assert/css/style.css" type="text/css">
-        <link rel="stylesheet" href="./assert/css/updateProduct.css" type="text/css">
+        <link rel="stylesheet" href="./assert/css/updateProductPage.css" type="text/css">
         <link rel="stylesheet" href="./assert/font/fontawesome-free-6.1.1-web/css/all.css" type="text/css">
         <title> Update product</title>
     </head>
@@ -49,10 +49,9 @@
 
                         <div class="form-control-group">
                             <h4 class="form-text-label">Sale-Percent:</h4>
-                            <input type="number" id="salesoff" name="salesoff" placeholder="Enter sales of product" value="${product.productSalePercent}">
+                            <input type="number" id="salesoff" name="salesoff" placeholder="Enter sales of product" min="1" max="100" value="${product.productSalePercent}">
                             <div class="alert-warning" id="txtNameMessage2"></div>
                         </div>
-
                         <div class="form-control-group">
                             <h4 class="form-text-label">Status:</h4>
                             <select id="status" name="status" value="${product.productStatus}">
@@ -61,7 +60,6 @@
                                 <option value="REMOVED">REMOVED</option>
                             </select>
                         </div>
-
                         <div class="form-control-group">
                             <h4 class="form-text-label">Category:</h4>
                             <select id="category" name="category" value="${product.categoryID}">
@@ -71,7 +69,6 @@
                                 <option value="COMBO">COMBO</option>
                             </select>
                         </div>
-
                         <div class="form-control-group">
                             <h4 class="form-text-label">Description:</h4>
                             <input type="text" id="description" name="description" placeholder="Enter description of product" value="${product.productDescription}">
@@ -83,11 +80,12 @@
                             <input type="text" id="image" name="image" placeholder="http://............" value="${product.productLink}">
                             <div class="alert-warning" id="txtDescriptionMessage"></div>
                         </div>
-
                         <div class="form-btn-group">
                             <button type="Submit" name="submit" class="btn-primary">Update</button>
                             <h6 class="form-btn-separator">&nbsp;OR&nbsp;</h6>
-                            <button type="button" name="submit" class="btn-main">Cancel</button>
+                            <button type="button" name="button" class="btn-main">
+                                <a href="admin-manage-product" target="target">Cancel</a>
+                            </button>
                         </div>
                     </form>
                 </div>
@@ -96,7 +94,7 @@
             <jsp:include page="footer.jsp"></jsp:include>
         </div>
         <script src="jquery/Jquery.js" type="text/javascript"></script>
-        <script src="jquery/updateProduct.js" type="text/javascript"></script>
+        <!--<script src="jquery/updateProduct.js" type="text/javascript"></script>-->
     </body>
 
 </html>

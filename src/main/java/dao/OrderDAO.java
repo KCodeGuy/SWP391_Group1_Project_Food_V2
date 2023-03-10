@@ -1,7 +1,3 @@
-/*
- * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
- * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
- */
 package dao;
 
 import context.DBContext;
@@ -12,6 +8,8 @@ import java.sql.ResultSet;
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
+import java.util.Collections;
+import java.util.Comparator;
 import java.util.List;
 import model.Account;
 import model.Cart;
@@ -74,7 +72,7 @@ public class OrderDAO {
      *
      * @param startDate start date in range passed to statistic -(String).
      * @param endDate end date in range passed to statistic -(String).
-     * @return list of 5 products is bought at most in range. 
+     * @return list of 5 products is bought at most in range.
      * @author Trần Đăng Khoa - CE160367
      */
     public ArrayList<Product> getTop5BestSellerProducts(String startDate, String endDate) {
@@ -93,7 +91,7 @@ public class OrderDAO {
                     + "    INNER JOIN [ORDER] AS O\n"
                     + "        ON OD.OrderID = O.OrderID\n"
                     + "WHERE\n"
-                    + "    O.OrderStatus = 'COMPLETED'\n"
+                    + "    O.OrderStatus = 'DELIVERED'\n"
                     + "	AND O.OrderDate BETWEEN ? and ?\n"
                     + "GROUP BY\n"
                     + "    P.ProductID,\n"
@@ -105,7 +103,7 @@ public class OrderDAO {
                     + "    TotalQuantitySold DESC;"; // query select form database
             con = new DBContext().getConnection();  // open conect database
             ps = con.prepareStatement(query); // set account ID into query
-            ps.setString(1, startDate); 
+            ps.setString(1, startDate);
             ps.setString(2, endDate);
             rs = ps.executeQuery(); // execute query
             ArrayList<Product> listProduct = new ArrayList<>(); // create list product in order
@@ -133,13 +131,13 @@ public class OrderDAO {
             String query = "SELECT TOP 5\n"
                     + "    A.AccountID,\n"
                     + "    A.AccountName,\n"
-                    + "    SUM(OD.OrderDPrice) AS TotalSpending\n"
+                    + "    SUM(OD.OrderDPrice * OD.OrderDQuantity) AS TotalSpending\n"
                     + "FROM \n"
                     + "    [ACCOUNT] A\n"
                     + "    INNER JOIN [ORDER] O ON A.AccountID = O.AccountID\n"
                     + "    INNER JOIN [ORDER_DETAIL] OD ON O.OrderID = OD.OrderID\n"
                     + "WHERE\n"
-                    + "    O.OrderStatus = 'COMPLETED'\n"
+                    + "    O.OrderStatus = 'DELIVERED'\n"
                     + "	AND O.OrderDate BETWEEN ? and ?\n"
                     + "GROUP BY \n"
                     + "    A.AccountID, \n"
@@ -171,7 +169,7 @@ public class OrderDAO {
                     + "JOIN ORDER_DETAIL od ON p.ProductID = od.ProductID\n"
                     + "JOIN [ORDER] o ON od.OrderID = o.OrderID\n"
                     + "WHERE (O.OrderDate BETWEEN ? AND ?) AND\n"
-                    + "(O.OrderStatus = 'COMPLETED') AND \n"
+                    + "(O.OrderStatus = 'DELIVERED') AND \n"
                     + "(c.CategoryDescription = 'Food') \n"
                     + "GROUP BY c.CategoryDescription"; // query select form database
             con = new DBContext().getConnection(); // open conect database
@@ -196,7 +194,7 @@ public class OrderDAO {
                     + "JOIN ORDER_DETAIL od ON p.ProductID = od.ProductID\n"
                     + "JOIN [ORDER] o ON od.OrderID = o.OrderID\n"
                     + "WHERE (O.OrderDate BETWEEN ? AND ?) AND\n"
-                    + "(O.OrderStatus = 'COMPLETED') AND \n"
+                    + "(O.OrderStatus = 'DELIVERED') AND \n"
                     + "(c.CategoryDescription = 'Drink') \n"
                     + "GROUP BY c.CategoryDescription"; // query select form database
             con = new DBContext().getConnection(); // open conect database
@@ -221,7 +219,7 @@ public class OrderDAO {
                     + "JOIN ORDER_DETAIL od ON p.ProductID = od.ProductID\n"
                     + "JOIN [ORDER] o ON od.OrderID = o.OrderID\n"
                     + "WHERE (O.OrderDate BETWEEN ? AND ?) AND\n"
-                    + "(O.OrderStatus = 'COMPLETED') AND \n"
+                    + "(O.OrderStatus = 'DELIVERED') AND \n"
                     + "(c.CategoryDescription = 'Combo') \n"
                     + "GROUP BY c.CategoryDescription"; // query select form database
             con = new DBContext().getConnection(); // open conect database
@@ -246,7 +244,7 @@ public class OrderDAO {
                     + "JOIN ORDER_DETAIL od ON p.ProductID = od.ProductID\n"
                     + "JOIN [ORDER] o ON od.OrderID = o.OrderID\n"
                     + "WHERE (O.OrderDate BETWEEN ? AND ?) AND\n"
-                    + "(O.OrderStatus = 'COMPLETED') AND \n"
+                    + "(O.OrderStatus = 'DELIVERED') AND \n"
                     + "(c.CategoryDescription = 'Soup') \n"
                     + "GROUP BY c.CategoryDescription"; // query select form database
             con = new DBContext().getConnection(); // open conect database
@@ -269,7 +267,7 @@ public class OrderDAO {
             String query = "SELECT SUM(od.OrderDPrice * od.OrderDQuantity) \n"
                     + "FROM [ORDER] AS o, ORDER_DETAIL AS od \n"
                     + "WHERE o.OrderID = od.OrderID \n"
-                    + "AND o.OrderStatus = 'COMPLETED'\n"
+                    + "AND o.OrderStatus = 'DELIVERED'\n"
                     + "AND o.OrderDate BETWEEN ? AND ?;";
             con = new DBContext().getConnection(); // open conect database
             ps = con.prepareStatement(query); // set account ID into query
@@ -313,7 +311,7 @@ public class OrderDAO {
                     + "FROM [ORDER_DETAIL] od\n"
                     + "INNER JOIN [ORDER] o ON od.OrderID = o.OrderID\n"
                     + "WHERE o.OrderDate BETWEEN ? AND ? AND\n"
-                    + "o.OrderStatus = 'COMPLETED';";
+                    + "o.OrderStatus = 'DELIVERED';";
             con = new DBContext().getConnection(); // open conect database
             ps = con.prepareStatement(query); // set account ID into query
             ps.setString(1, startDate);
@@ -335,7 +333,7 @@ public class OrderDAO {
                     + "FROM [ORDER]\n"
                     + "JOIN ACCOUNT ON [ORDER].AccountID = ACCOUNT.AccountID\n"
                     + "WHERE [ORDER].OrderDate BETWEEN ? AND ? AND\n"
-                    + "OrderStatus = 'COMPLETED';";
+                    + "OrderStatus = 'DELIVERED';";
             con = new DBContext().getConnection(); // open conect database
             ps = con.prepareStatement(query); // set account ID into query
             ps.setString(1, startDate);
@@ -379,21 +377,18 @@ public class OrderDAO {
      */
     public ArrayList<Order> getListOrderForChef() {
         try {
-            String query = "SELECT \n"
-                    + "   [ORDER].OrderID, \n"
-                    + "   [ORDER].BuyerFullName, \n"
-                    + "   [ORDER].OrderDate, \n"
-                    + "   [ORDER].OrderStatus, \n"
-                    + "   SUM([ORDER_DETAIL].OrderDQuantity) AS Quantity, \n"
-                    + "   SUM(([ORDER_DETAIL].OrderDPrice * (100 - [ORDER].ProductSalePercent) / 100) * [ORDER_DETAIL].OrderDQuantity) AS Price \n"
-                    + "FROM [ORDER] \n"
-                    + "INNER JOIN [ORDER_DETAIL] ON [ORDER].OrderID = [ORDER_DETAIL].OrderID \n"
+            String query = "SELECT [ORDER].OrderID\n"
+                    + ", [ORDER].BuyerFullName\n"
+                    + ", [ORDER].OrderDate\n"
+                    + ", [ORDER].OrderStatus\n"
+                    + ",SUM([ORDER_DETAIL].OrderDQuantity) AS Quantity, \n"
+                    + " SUM(([ORDER_DETAIL].OrderDPrice * (100 - [ORDER].ProductSalePercent) / 100) * [ORDER_DETAIL].OrderDQuantity) AS Price \n"
+                    + "FROM [ORDER]\n"
+                    + "INNER JOIN [ORDER_DETAIL] ON [ORDER].OrderID = [ORDER_DETAIL].OrderID\n"
                     + "WHERE [ORDER].OrderStatus = 'PROCESSING'\n"
-                    + "GROUP BY \n"
-                    + "   [ORDER].OrderID, \n"
-                    + "   [ORDER].BuyerFullName, \n"
-                    + "   [ORDER].OrderDate, \n"
-                    + "   [ORDER].OrderStatus"; // query select form database
+                    + "GROUP BY [ORDER].OrderID, [ORDER].BuyerFullName,[ORDER].OrderDate,[ORDER].OrderStatus\n"
+                    + "ORDER BY [ORDER].OrderDate DESC;"; // query select form database
+
             con = new DBContext().getConnection(); // open conect database
             ps = con.prepareStatement(query); // set account ID into query
             rs = ps.executeQuery(); // execute query
@@ -410,6 +405,161 @@ public class OrderDAO {
     }
 
     /**
+     * This function get list product have status is pending
+     *
+     * @param sortOption
+     * @return list order
+     */
+    public ArrayList<Order> getListSortedOrderForChefByPriceDesc() {
+        try {
+            String query = "SELECT [ORDER].OrderID\n"
+                    + ", [ORDER].BuyerFullName\n"
+                    + ", [ORDER].OrderDate\n"
+                    + ", [ORDER].OrderStatus\n"
+                    + ",SUM([ORDER_DETAIL].OrderDQuantity) AS Quantity, \n"
+                    + " SUM(([ORDER_DETAIL].OrderDPrice * (100 - [ORDER].ProductSalePercent) / 100) * [ORDER_DETAIL].OrderDQuantity) AS Price \n"
+                    + "FROM [ORDER]\n"
+                    + "INNER JOIN [ORDER_DETAIL] ON [ORDER].OrderID = [ORDER_DETAIL].OrderID\n"
+                    + "WHERE [ORDER].OrderStatus = 'PROCESSING'\n"
+                    + "GROUP BY [ORDER].OrderID, [ORDER].BuyerFullName,[ORDER].OrderDate,[ORDER].OrderStatus\n"
+                    + "ORDER BY Price DESC;"; // query select form database
+
+            con = new DBContext().getConnection(); // open conect database
+            ps = con.prepareStatement(query); // set account ID into query
+//            ps.setString(1, sortOption);
+            rs = ps.executeQuery(); // execute query
+            ArrayList<Order> listOrder = new ArrayList<>(); // create list product in order
+            while (rs.next()) {
+                listOrder.add(new Order(rs.getString(1), OrderStatus.valueOf(rs.getString(4)), rs.getString(3), rs.getString(2), rs.getInt(5), rs.getInt(6)));
+                // add new item into list order
+            } // end while
+            return listOrder; // return list order
+        } catch (Exception e) {
+            e.getMessage();
+        } // end try catch
+        return null; // return null if not order
+    }
+
+    /**
+     * This function get list product have status is pending
+     *
+     * @param sortOption
+     * @return list order
+     */
+    public ArrayList<Order> getListSortedOrderForChefByPriceAsc() {
+        try {
+            String query = "SELECT [ORDER].OrderID\n"
+                    + ", [ORDER].BuyerFullName\n"
+                    + ", [ORDER].OrderDate\n"
+                    + ", [ORDER].OrderStatus\n"
+                    + ",SUM([ORDER_DETAIL].OrderDQuantity) AS Quantity, \n"
+                    + " SUM(([ORDER_DETAIL].OrderDPrice * (100 - [ORDER].ProductSalePercent) / 100) * [ORDER_DETAIL].OrderDQuantity) AS Price \n"
+                    + "FROM [ORDER]\n"
+                    + "INNER JOIN [ORDER_DETAIL] ON [ORDER].OrderID = [ORDER_DETAIL].OrderID\n"
+                    + "WHERE [ORDER].OrderStatus = 'PROCESSING'\n"
+                    + "GROUP BY [ORDER].OrderID, [ORDER].BuyerFullName,[ORDER].OrderDate,[ORDER].OrderStatus\n"
+                    + "ORDER BY Price ASC;"; // query select form database
+
+            con = new DBContext().getConnection(); // open conect database
+            ps = con.prepareStatement(query); // set account ID into query
+//            ps.setString(1, sortOption);
+            rs = ps.executeQuery(); // execute query
+            ArrayList<Order> listOrder = new ArrayList<>(); // create list product in order
+            while (rs.next()) {
+                listOrder.add(new Order(rs.getString(1), OrderStatus.valueOf(rs.getString(4)), rs.getString(3), rs.getString(2), rs.getInt(5), rs.getInt(6)));
+                // add new item into list order
+            } // end while
+            return listOrder; // return list order
+        } catch (Exception e) {
+            e.getMessage();
+        } // end try catch
+        return null; // return null if not order
+    }
+
+    /**
+     * This function get list product have status is pending
+     *
+     * @param txtSearch
+     * @param sortOption
+     * @return list order
+     */
+    public ArrayList<Order> searchOrderByUserName(String txtSearch) {
+        try {
+            String query = "SELECT [ORDER].OrderID\n"
+                    + ", [ORDER].BuyerFullName\n"
+                    + ", [ORDER].OrderDate\n"
+                    + ", [ORDER].OrderStatus\n"
+                    + ",SUM([ORDER_DETAIL].OrderDQuantity) AS Quantity, \n"
+                    + " SUM(([ORDER_DETAIL].OrderDPrice * (100 - [ORDER].ProductSalePercent) / 100) * [ORDER_DETAIL].OrderDQuantity) AS Price \n"
+                    + "FROM [ORDER]\n"
+                    + "INNER JOIN [ORDER_DETAIL] ON [ORDER].OrderID = [ORDER_DETAIL].OrderID\n"
+                    + "WHERE [ORDER].OrderStatus = 'PROCESSING' \n"
+                    + "AND [ORDER].BuyerFullName LIKE ?\n"
+                    + "GROUP BY [ORDER].OrderID, [ORDER].BuyerFullName,[ORDER].OrderDate,[ORDER].OrderStatus\n"
+                    + "ORDER BY [ORDER].OrderDate desc;"; // query select form database
+
+            con = new DBContext().getConnection(); // open conect database
+            ps = con.prepareStatement(query); // set account ID into query
+            ps.setString(1, "%" + txtSearch + "%");
+            rs = ps.executeQuery(); // execute query
+            ArrayList<Order> listOrder = new ArrayList<>(); // create list product in order
+            while (rs.next()) {
+                listOrder.add(new Order(rs.getString(1), OrderStatus.valueOf(rs.getString(4)), rs.getString(3), rs.getString(2), rs.getInt(5), rs.getInt(6)));
+                // add new item into list order
+            } // end while
+            return listOrder; // return list order
+        } catch (Exception e) {
+            e.getMessage();
+        } // end try catch
+        return null; // return null if not order
+    }
+
+    /**
+     * This function get list product have status is pending
+     *
+     * @param txtSearch
+     * @param sortOption
+     * @return list order
+     */
+    public ArrayList<Order> searchOrderByID(String txtSearchOrderID) {
+        try {
+            String query = "SELECT [ORDER].OrderID\n"
+                    + ", [ORDER].BuyerFullName\n"
+                    + ", [ORDER].OrderDate\n"
+                    + ", [ORDER].OrderStatus\n"
+                    + ",SUM([ORDER_DETAIL].OrderDQuantity) AS Quantity, \n"
+                    + " SUM(([ORDER_DETAIL].OrderDPrice * (100 - [ORDER].ProductSalePercent) / 100) * [ORDER_DETAIL].OrderDQuantity) AS Price \n"
+                    + "FROM [ORDER]\n"
+                    + "INNER JOIN [ORDER_DETAIL] ON [ORDER].OrderID = [ORDER_DETAIL].OrderID\n"
+                    + "WHERE [ORDER].OrderID = ?\n"
+                    + "GROUP BY [ORDER].OrderID, [ORDER].BuyerFullName,[ORDER].OrderDate,[ORDER].OrderStatus\n"
+                    + "ORDER BY [ORDER].OrderDate desc;"; // query select form database
+
+            con = new DBContext().getConnection(); // open conect database
+            ps = con.prepareStatement(query); // set account ID into query
+            ps.setString(1, txtSearchOrderID);
+            rs = ps.executeQuery(); // execute query
+            ArrayList<Order> listOrder = new ArrayList<>(); // create list product in order
+            while (rs.next()) {
+                listOrder.add(new Order(rs.getString(1), OrderStatus.valueOf(rs.getString(4)), rs.getString(3), rs.getString(2), rs.getInt(5), rs.getInt(6)));
+                // add new item into list order
+            } // end while
+            return listOrder; // return list order
+        } catch (Exception e) {
+            e.getMessage();
+        } // end try catch
+        return null; // return null if not order
+    }
+
+    public long sumOfOrderPrice(List<Order> listOrder) {
+        long sumOfOrderPrice = 0;
+        for (Order order : listOrder) {
+            sumOfOrderPrice += order.getTotalPrice();
+        }
+        return sumOfOrderPrice;
+    }
+
+    /**
      *
      * Retrieves the list of order history for a given shipper account ID from
      * the database.
@@ -420,21 +570,17 @@ public class OrderDAO {
      */
     public ArrayList<Order> getListOrderHistoryForChef(String accountOfIDChef) {
         try { //Database query statement
-            String query = " SELECT \n"
-                    + "   [ORDER].OrderID, \n"
-                    + "   [ORDER].BuyerFullName,\n"
-                    + "   [ORDER].OrderDate,\n"
-                    + "   [ORDER].OrderStatus, \n"
-                    + "   SUM([ORDER_DETAIL].OrderDQuantity) AS Quantity, \n"
-                    + "   SUM([ORDER_DETAIL].OrderDPrice * (100 - [ORDER].ProductSalePercent) / 100) AS Price \n"
-                    + "FROM [ORDER] \n"
-                    + "INNER JOIN [ORDER_DETAIL] ON [ORDER].OrderID = [ORDER_DETAIL].OrderID \n"
-                    + "WHERE [ORDER].AccIDOfChef = ?\n"
-                    + "GROUP BY \n"
-                    + "   [ORDER].OrderID, \n"
-                    + "   [ORDER].BuyerFullName,\n"
-                    + "   [ORDER].OrderDate,\n"
-                    + "   [ORDER].OrderStatus"; // query select form database
+            String query = "SELECT [ORDER].OrderID\n"
+                    + ", [ORDER].BuyerFullName\n"
+                    + ", [ORDER].OrderDate\n"
+                    + ", [ORDER].OrderStatus\n"
+                    + ",SUM([ORDER_DETAIL].OrderDQuantity) AS Quantity, \n"
+                    + " SUM(([ORDER_DETAIL].OrderDPrice * (100 - [ORDER].ProductSalePercent) / 100) * [ORDER_DETAIL].OrderDQuantity) AS Price \n"
+                    + "FROM [ORDER]\n"
+                    + "INNER JOIN [ORDER_DETAIL] ON [ORDER].OrderID = [ORDER_DETAIL].OrderID\n"
+                    + "WHERE [ORDER].AccIDOfChef = ? \n"
+                    + "GROUP BY [ORDER].OrderID, [ORDER].BuyerFullName,[ORDER].OrderDate,[ORDER].OrderStatus\n"
+                    + "ORDER BY [ORDER].OrderDate desc;"; // query select form database
             con = new DBContext().getConnection(); // open conect database
             ps = con.prepareStatement(query); // set account ID into query
             ps.setString(1, accountOfIDChef);
@@ -526,7 +672,8 @@ public class OrderDAO {
                     + "   [ORDER].OrderID, \n"
                     + "   [ORDER].BuyerFullName,\n"
                     + "   [ORDER].OrderDate,\n"
-                    + "   [ORDER].OrderStatus"; // query select form database
+                    + "   [ORDER].OrderStatus\n"
+                    + "ORDER BY [ORDER].OrderDate desc;"; // query select form database
             con = new DBContext().getConnection(); // open conect database
             ps = con.prepareStatement(query); // set account ID into query
             ps.setString(1, accountID);
@@ -541,6 +688,30 @@ public class OrderDAO {
             System.out.println(e.getMessage());
         } // end try catch
         return null; // return null if not order
+    }
+
+    public List<Order> sortOrdersByTotalPriceAscending(List<Order> orders) {
+        // Sort orders by totalPrice attribute
+        Collections.sort(orders, new Comparator<Order>() {
+            @Override
+            public int compare(Order o1, Order o2) {
+                return o1.getTotalPrice() - o2.getTotalPrice();
+            }
+        });
+
+        return orders;
+    }
+
+    public List<Order> sortOrdersByTotalPriceDescending(List<Order> orders) {
+        // Sort orders by totalPrice attribute in descending order
+        Collections.sort(orders, new Comparator<Order>() {
+            @Override
+            public int compare(Order o1, Order o2) {
+                return o2.getTotalPrice() - o1.getTotalPrice();
+            }
+        });
+
+        return orders;
     }
 
     /**
@@ -607,7 +778,7 @@ public class OrderDAO {
                     + "   SUM(([ORDER_DETAIL].OrderDPrice * (100 - [ORDER].ProductSalePercent) / 100) * [ORDER_DETAIL].OrderDQuantity) AS Price \n"
                     + "FROM [ORDER] \n"
                     + "INNER JOIN [ORDER_DETAIL] ON [ORDER].OrderID = [ORDER_DETAIL].OrderID \n"
-                    + "WHERE [ORDER].OrderStatus = 'PROCESSING' AND [ORDER].OrderID = ?\n"
+                    + "WHERE [ORDER].OrderID = ?\n"
                     + "GROUP BY \n"
                     + "   [ORDER].OrderID, \n"
                     + "   [ORDER].AccountID,\n"
@@ -907,12 +1078,10 @@ public class OrderDAO {
 
     public static void main(String[] args) {
         OrderDAO odao = new OrderDAO();
-//        List<Account> listBestSellerProduct = odao.getTop5BesTCustomers("2023-03-01 21:29:33.050", "2023-03-06 21:29:33.050");
-//        for (Account product : listBestSellerProduct) {
-//            System.out.println("ID:" + product.getAccountID());
-//            System.out.println("Name:" + product.getAccountName());
-//            System.out.println("Img:" + product.getRoleDescription());
-//        }
-        System.out.println("Revenue: " + odao.getTotalOfProductSelled("2023-03-05 01:29:33.050", "2023-03-05 23:29:33.050"));
+        ArrayList<Order> listOrder;
+        listOrder = odao.searchOrderByUserName("OR0045");
+        for (Order order : listOrder) {
+            System.out.println(order.getOrderID());
+        }
     }
 }

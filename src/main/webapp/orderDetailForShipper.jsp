@@ -16,7 +16,7 @@
         <link rel="stylesheet" href="./bootstap/css/bootstrap.min.css" type="text/css">
         <link rel="stylesheet" href="./bootstap/js/bootstrap.js" type="text/javascript">
         <link rel="stylesheet" href="./assert/css/style.css" type="text/css">
-        <link rel="stylesheet" href="./assert/css/orderDetailForChefPage.css" type="text/css">
+        <link rel="stylesheet" href="./assert/css/orderDetailForChef.css" type="text/css">
         <link rel="stylesheet" href="./assert/font/fontawesome-free-6.1.1-web/css/all.css" type="text/css">
         <title>Order Detail For Shipper</title>
     </head>
@@ -98,7 +98,7 @@
                     </div>
                     <div class="row">
                         <div class="col-xs-12">
-                            <h6 class="table-header">ORDER DETAIL FOR CHEF</h6>
+                            <h6 class="table-header">ORDER DETAIL FOR SHIPPER</h6>
                             <div class="table-control-btn-group">
                                 <form class="sort-form" action="">
 

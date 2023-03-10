@@ -171,12 +171,12 @@
                         </c:if>
                     </div>
 
-                    <!--                    <div class="row justify-content-center">
+<!--                                       <div class="row justify-content-center">
                                             <div class="col-xs-12 separator-container">
                                                 <div class="separtor"></div>
                                             </div>
-                                        </div>-->
-                    <!--
+                                        </div>
+                    
                                         <div class="row satistic-row">
                                             <div class="col-xs-12">
                                                 <div id="revenueChart" style="height: 370px; width: 100%;"></div>

@@ -1,5 +1,4 @@
 com\example\demo\hash\jni\LibraryLoaders.class
-dao\OrderDAO.class
 controller\LoadListOrderedForManagePageController.class
 controller\DeliveringOrderShipController.class
 controller\UseVoucherController.class

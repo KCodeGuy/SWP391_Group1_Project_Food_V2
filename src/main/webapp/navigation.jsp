@@ -12,7 +12,7 @@
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
         <link rel="stylesheet" href="./bootstap/css/bootstrap.min.css" type="text/css">
         <link rel="stylesheet" href="./assert/css/style.css"  type="text/css">
-        <link rel="stylesheet" href="./assert/css/homePage.css" type="text/css">
+        <link rel="stylesheet" href="./assert/css/home.css" type="text/css">
         <title>Navigation</title>
     </head>
     <body>
@@ -134,13 +134,13 @@
                                             </a>
                                         </li>
                                         <li class="nav-item">
-                                            <a class="nav-link" aria-current="page" href="chef-manage-order">
+                                            <a class="nav-link" aria-current="page" href="chef-manage-order?sort-product=none">
                                                 <i class="fa-sharp fa-solid fa-file-invoice-dollar"></i>
                                                 Manage orders
                                             </a>
                                         </li>
                                         <li class="nav-item">
-                                            <a class="nav-link" aria-current="page" href="staffProfile.jsp">
+                                            <a class="nav-link" aria-current="page" href="chef-accepted-order?accountID=${sessionScope.accountSesseion.accountID}">
                                                 <i class="fa-sharp fa-solid fa-file-invoice-dollar"></i>
                                                 Accepted orders
                                             </a>
@@ -169,15 +169,15 @@
                                             </a>
                                         </li>
                                         <li class="nav-item">
-                                            <a class="nav-link" aria-current="page" href=shipper-manage-order">
+                                            <a class="nav-link" aria-current="page" href=shipper-manage-order?accountID=${sessionScope.accountSesseion.accountID}">
                                                 <i class="fa-sharp fa-solid fa-file-invoice-dollar"></i>
-                                                Manage ship
+                                                Pickup orders
                                             </a>
                                         </li>
                                         <li class="nav-item">
-                                            <a class="nav-link" aria-current="page" href="staffProfile.jsp">
+                                            <a class="nav-link" aria-current="page" href="ship-order-history?accountID=${sessionScope.accountSesseion.accountID}">
                                                 <i class="fa-sharp fa-solid fa-file-invoice-dollar"></i>
-                                                Pickup orders
+                                                Delivered orders
                                             </a>
                                         </li>
                                         <div class="separator-persional-tab"></div>
@@ -191,7 +191,14 @@
                                 </li>
                             </c:if>
                             <c:if test="${sessionScope.accountSesseion.accountID.startsWith('US')}">
+                                <li class="nav-item">
+                                    <a class="nav-link" href="register.jsp">
+                                        <i class="fa-solid fa-clipboard-user"></i>
+                                        Register
+                                    </a>
+                                </li>
                                 <li class="nav-item nav-option-list">
+
                                     <a class="nav-link option-list-user-name" aria-current="page" href="home">
                                         <i class="fa-solid fa-user option-list-user-icon"></i>
                                         ${sessionScope.accountSesseion.accountName}
@@ -204,7 +211,7 @@
                                             </a>
                                         </li>
                                         <li class="nav-item">
-                                            <a class="nav-link" aria-current="page" href="user-order-history?accountID=${sessionScope.accountSesseion.accountID}">
+                                            <a class="nav-link" aria-current="page" href="user-order-history?accountID=${sessionScope.accountSesseion.accountID}&sort-option=none">
                                                 <i class="fa-sharp fa-solid fa-file-invoice-dollar"></i>
                                                 My orders
                                             </a>
@@ -243,6 +250,12 @@
                                 <a class="nav-link" href="formApplication.jsp">
                                     <i class="fa-solid fa-clipboard-user"></i>
                                     Recruit
+                                </a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link" href="register.jsp">
+                                    <i class="fa-solid fa-clipboard-user"></i>
+                                    Register
                                 </a>
                             </li>
                             <li class="nav-item">

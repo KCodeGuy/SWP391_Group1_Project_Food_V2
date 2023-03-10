@@ -12,6 +12,7 @@ import jakarta.servlet.http.HttpServlet;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
 import java.util.ArrayList;
+import java.util.List;
 import model.Order;
 import model.OrderStatus;
 
@@ -36,19 +37,25 @@ public class LoadOrderHistoryForUserController extends HttpServlet {
         //Create an instance of OrderDAO class
         OrderDAO odao = new OrderDAO();
         String accountID = request.getParameter("accountID");
-        //Get the list of orders that have been shipped
-        ArrayList<Order> listOrderHistory = odao.getListOrderHistoryForUser(accountID);
+        String sortOption = request.getParameter("sort-option");
+        List<Order> listOrderHistory = odao.getListOrderHistoryForUser(accountID);
         int totalPrice = 0;
-        //Calculate the total order count and total price of those orders
-        if (!listOrderHistory.isEmpty()) {
+        if(sortOption.equals("desc")) {
+            listOrderHistory = odao.sortOrdersByTotalPriceDescending(listOrderHistory);
+        }else if(sortOption.equals("asc")) {
+            listOrderHistory = odao.sortOrdersByTotalPriceAscending(listOrderHistory);
+        }
+        
+        if (listOrderHistory != null) {
             for (Order order : listOrderHistory) {
                 if (order.getOrderStatus() == OrderStatus.DELIVERED) {
                     totalPrice += order.getTotalPrice();
                 }
             }
+            request.setAttribute("totalOrder", listOrderHistory.size());
+        }else {
+            request.setAttribute("totalOrder", 0);
         }
-        //Set the attributes for the request
-        request.setAttribute("totalOrder", listOrderHistory.size());
         request.setAttribute("totalPrice", totalPrice);
         request.setAttribute("listOrderHistory", listOrderHistory);
         //Forward the request to the orderHistory.jsp page for display

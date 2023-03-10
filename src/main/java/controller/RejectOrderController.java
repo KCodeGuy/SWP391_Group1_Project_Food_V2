@@ -35,7 +35,7 @@ public class RejectOrderController extends HttpServlet {
         OrderDAO odao = new OrderDAO(); // create orderDAO
         odao.rejectOrderByOrderID(accountID, orderID);
         
-        response.sendRedirect("chef-manage-order");
+    response.sendRedirect("chef-manage-order" + "?sort-product=none");
     } 
 
     // <editor-fold defaultstate="collapsed" desc="HttpServlet methods. Click on the + sign on the left to edit the code.">

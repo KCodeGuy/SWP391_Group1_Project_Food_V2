@@ -14,7 +14,7 @@
     <link rel="stylesheet" href="./bootstap/css/bootstrap.min.css" type="text/css">
     <link rel="stylesheet" href="./bootstap/js/bootstrap.js" type="text/javascript">
     <link rel="stylesheet" href="./assert/css/style.css" type="text/css">
-    <link rel="stylesheet" href="./assert/css/updateProduct.css" type="text/css">
+    <link rel="stylesheet" href="./assert/css/updateProductPage.css" type="text/css">
     <link rel="stylesheet" href="./assert/font/fontawesome-free-6.1.1-web/css/all.css">
     <title> Add-Product</title>
 </head>
@@ -33,7 +33,6 @@
                         <i class="fa-solid fa-plus"></i>
                         <h2 class="form-heading">ADD PRODUCT</h2>
                     </div>             
-                    
                     <div class="form-control-group">
                         <h4 class="form-text-label">Name:</h4>
                         <input type="text" id="name" name="name" placeholder="Enter name of product">
@@ -48,7 +47,7 @@
 
                     <div class="form-control-group">
                         <h4 class="form-text-label">Sale-Percent:</h4>
-                        <input type="number" id="salesoff" name="salesoff" placeholder="Enter sales of product">
+                        <input type="number" id="salesoff" name="salesoff" min="1" max="100" placeholder="Enter sales of product">
                         <div class="alert-warning" id="txtNameMessage2"></div>
                     </div>
                        
@@ -96,7 +95,7 @@
         <jsp:include page="footer.jsp"></jsp:include>
     </div>
     <script src="jquery/Jquery.js" type="text/javascript"></script>
-    <script src="jquery/updateProduct.js" type="text/javascript"></script>
+    <!--<script src="jquery/updateProduct.js" type="text/javascript"></script>-->
 </body>
 
 </html>

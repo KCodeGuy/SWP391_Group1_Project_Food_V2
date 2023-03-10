@@ -15,6 +15,7 @@
         <link rel="stylesheet" href="./bootstap/css/bootstrap.min.css" type="text/css">
         <link rel="stylesheet" href="./bootstap/js/bootstrap.js" type="text/javascript">
         <link rel="stylesheet" href="./assert/css/style.css" type="text/css"> 
+        <link rel="stylesheet" href="./assert/css/manageUser.css" type="text/css">         
         <link rel="stylesheet" href="./assert/font/fontawesome-free-6.1.1-web/css/all.css" type="text/css">
         <title>Manage-user</title>
     </head>
@@ -77,7 +78,7 @@
                                     <c:forEach items="${listUser}" var="lu">
                                         <tr>
                                             <td class="table-order">1</td>
-                                            <td class="table-id">${lu.accountID}</td>
+                                            <td class="table-order">${lu.accountID}</td>
                                             <td class="table-name"><a href="">${lu.accountName}</a></td>
                                             <td class="table-email">
                                                 ${lu.accountEmail}

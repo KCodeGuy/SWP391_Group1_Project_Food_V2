@@ -79,7 +79,7 @@
                                     <c:forEach items="${listStaff}" var="ls">
                                         <tr>
                                             <td class="table-order">1</td>
-                                            <td class="table-id">${ls.accountID}</td>
+                                            <td class="table-order">${ls.accountID}</td>
                                             <td class="table-name"><a href="">${ls.accountName}</a></td>
                                             <td class="table-email">
                                                 ${ls.accountEmail}

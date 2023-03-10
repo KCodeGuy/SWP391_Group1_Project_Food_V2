@@ -34,7 +34,10 @@ public class ShowOrderDetailsForChefController extends HttpServlet {
     throws ServletException, IOException {
         response.setContentType("text/html;charset=UTF-8");
         String orderID = request.getParameter("orderID");
-        
+        String option = request.getParameter("option");
+        if(option.equals("see")) {
+            request.setAttribute("optionSeeOnly", true);
+        }
         Order order; // create order
         OrderDAO odao = new OrderDAO(); // create orderDAO
         order = odao.getOrderByOrderID(orderID); // get order by order ID

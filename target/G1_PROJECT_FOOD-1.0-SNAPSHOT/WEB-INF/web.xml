@@ -236,6 +236,18 @@
         <servlet-name>SatisticController</servlet-name>
         <servlet-class>controller.SatisticController</servlet-class>
     </servlet>
+    <servlet>
+        <servlet-name>SearchOrderForChefController</servlet-name>
+        <servlet-class>controller.SearchOrderForChefController</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>LoadAcceptedOrdersChefController</servlet-name>
+        <servlet-class>controller.LoadAcceptedOrdersChefController</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>SearchOrderHistoryForUserController</servlet-name>
+        <servlet-class>controller.SearchOrderHistoryForUserController</servlet-class>
+    </servlet>
     <servlet-mapping>
         <servlet-name>HomeController</servlet-name>
         <url-pattern>/home</url-pattern>
@@ -459,6 +471,18 @@
     <servlet-mapping>
         <servlet-name>SatisticController</servlet-name>
         <url-pattern>/satistic</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>SearchOrderForChefController</servlet-name>
+        <url-pattern>/search-order-chef</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>LoadAcceptedOrdersChefController</servlet-name>
+        <url-pattern>/chef-accepted-order</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>SearchOrderHistoryForUserController</servlet-name>
+        <url-pattern>/search-user-order-history</url-pattern>
     </servlet-mapping>
     <session-config>
         <session-timeout>

@@ -49,9 +49,6 @@ public class HomeController extends HttpServlet {
                 txtSearch = "";
             }
             listProduct = pdao.findProductByName(txtSearch, category);
-            if (listProduct.isEmpty()) {
-                request.setAttribute("MESSAGE", "Product not found");
-            }
         }
 
         int totalPages = PagingUtil.getTotalPages(listAllProduct, pageSize);

@@ -30,7 +30,9 @@
                     <div class="container">
                         <div class="row">
                             <div class="col-xs-12">
-                                <h4 class="table-header">CART</h4>
+                                <h4 class="table-header">
+                                     <i class="fa-solid fa-cart-plus"></i>
+                                    CART</h4>
                             </div>
                         </div>
                         <div class="row">
@@ -43,27 +45,35 @@
                                             <th class="table-heading-text" scope="col">Name</th>
                                             <th class="table-heading-text" scope="col">Quantity</th>
                                             <th class="table-heading-text" scope="col">Price</th>
+                                            <th class="table-heading-text" scope="col">Total</th>
                                             <th class="table-heading-text" scope="col">Delete</th>
                                         </tr>
                                     </thead>
                                     <tbody>
+                                    <c:set var="no" value="1" />
                                     <c:forEach items="${listCart}" var="cart">
                                         <tr>
-                                            <td class="table-order">${cart.cartID}</td>
+                                            <td class="table-order">${no}</td>
                                             <td class="table-img"><a href="product-detail?productID=${cart.productID}"><img src="${cart.productLink}"></a></td>
                                             <td class="table-name"><a href="product-detail?productID=${cart.productID}">${cart.productName}</a></td>
                                             <td class="table-quantity">
                                                 ${cart.cartQuantity}
                                             </td>
-                                            <td class="table-price"><fmt:formatNumber type="number" pattern="###,###" value="${(cart.productPrice * (1-(cart.productSalePercent/100)))*cart.cartQuantity}"/>đ</td>
+                                             <td class="table-price">
+                                                <fmt:formatNumber type="number" pattern="###,###" value="${cart.productPrice * (1-(cart.productSalePercent/100))}"/>đ
+                                            </td>
+                                            <td class="table-price">
+                                                <fmt:formatNumber type="number" pattern="###,###" value="${(cart.productPrice * (1-(cart.productSalePercent/100)))*cart.cartQuantity}"/>đ
+                                            </td>
                                             <td class="table-btn">
                                                 <a href="cart-delete?productID=${cart.productID}&accountID=${sessionScope.accountSesseion.accountID}" onclick="return showMessageDelete();"><i class="fa-solid fa-trash"></i></a>
                                             </td>
                                         </tr>
+                                        <c:set var="no" value="${no + 1}" />
                                     </c:forEach>
                                     <c:if test="${listCart.size() == 0}">
                                         <tr>
-                                            <td colspan="6">There are no items in your cart.</td>
+                                            <td colspan="7" class="table-row-no-product">There are no product in your cart!</td>
                                         </tr>
                                     </c:if>
                                 </tbody>
@@ -83,21 +93,23 @@
                                     <h4 class="table-label">Total:</h4>
                                     <span class="table-total"><fmt:formatNumber type="number" pattern="###,###" value="${totalPrice}"/>đ</span>
                                 </div>
-                                <button class="btn-primary btn-paying">
-                                    <a href="load-paying?accountID=${sessionScope.accountSesseion.accountID}">Paying</a>
-                                </button>
+                                <c:if test="${listCart.size() != 0}">
+                                    <button class="btn-primary btn-paying">
+                                        <a href="load-paying?accountID=${sessionScope.accountSesseion.accountID}">Paying</a>
+                                    </button>
+                                </c:if>
                             </div>
                         </div>
 
+                    </div>
                 </div>
             </div>
-        </div>
 
-        <!-- 5. Footer  -->
-        <jsp:include page="footer.jsp"></jsp:include>
-    </div>
-    <script src="jquery/Jquery.js" type="text/javascript"></script>
-    <script src="jquery/cart.js" type="text/javascript"></script>
-</body>
+            <!-- 5. Footer  -->
+            <jsp:include page="footer.jsp"></jsp:include>
+        </div>
+        <script src="jquery/Jquery.js" type="text/javascript"></script>
+        <script src="jquery/cart.js" type="text/javascript"></script>
+    </body>
 
 </html>

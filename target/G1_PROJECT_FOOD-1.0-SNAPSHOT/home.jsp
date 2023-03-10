@@ -15,7 +15,7 @@
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
         <link rel="stylesheet" href="./bootstap/css/bootstrap.min.css" type="text/css">
         <link rel="stylesheet" href="./assert/css/style.css" type="text/css">
-        <link rel="stylesheet" href="./assert/css/homePage.css" type="text/css">
+        <link rel="stylesheet" href="./assert/css/home.css" type="text/css">
         <link rel="stylesheet" href="./assert/font/fontawesome-free-6.1.1-web/css/all.css" type="text/css">
         <title>Home-Page</title>
     </head>
@@ -160,7 +160,11 @@
                                 </div>
                             </div>
                         </c:forEach>
-
+                        <c:if test="${listProduct.size() == 0}">
+                            <div class="col-xs-12">
+                                <div class="table-row-no-product" style="text-align: center">There are no product is collected!</div>
+                            </div>
+                        </c:if>
                     </div>
                 </div>
             </div>
@@ -170,54 +174,56 @@
                 <div class="row">
                     <div class="col-xs-12">
                         <nav aria-label="Page navigation example">
-                            <ul class="pagination">
-                                <li class="page-item">
-                                    <a class="page-link" href="#" aria-label="Previous">
-                                        <span aria-hidden="true">&laquo;</span>
-                                    </a>
-                                </li>
-                                <c:if test="${page eq 'home'}">
-                                    <c:forEach begin="1" end="${totalPages}" step="1" var="i">
-                                        <li class="page-item">
-                                            <a class="page-link ${i == pageNo ? "acctivePage" : ""}" href="home?pageNo=${i}">${i}</a>
-                                        </li>
-                                    </c:forEach>
-                                </c:if>
-                                <c:if test="${page eq 'top-sale'}">
-                                    <c:forEach begin="1" end="${totalPages}" step="1" var="i">
-                                        <li class="page-item">
-                                            <a class="page-link ${i == pageNo ? "acctivePage" : ""}" href="loadProductIsSale?pageNo=${i}">${i}</a>
-                                        </li>
-                                    </c:forEach>
-                                </c:if>
+                            <c:if test="${listProduct.size() != 0}">
+                                <ul class="pagination">
+                                    <li class="page-item">
+                                        <a class="page-link" href="#" aria-label="Previous">
+                                            <span aria-hidden="true">&laquo;</span>
+                                        </a>
+                                    </li>
+                                    <c:if test="${page eq 'home'}">
+                                        <c:forEach begin="1" end="${totalPages}" step="1" var="i">
+                                            <li class="page-item">
+                                                <a class="page-link ${i == pageNo ? "acctivePage" : ""}" href="home?pageNo=${i}">${i}</a>
+                                            </li>
+                                        </c:forEach>
+                                    </c:if>
+                                    <c:if test="${page eq 'top-sale'}">
+                                        <c:forEach begin="1" end="${totalPages}" step="1" var="i">
+                                            <li class="page-item">
+                                                <a class="page-link ${i == pageNo ? "acctivePage" : ""}" href="loadProductIsSale?pageNo=${i}">${i}</a>
+                                            </li>
+                                        </c:forEach>
+                                    </c:if>
 
-                                <c:if test="${page eq 'category'}">
-                                    <c:forEach begin="1" end="${totalPages}" step="1" var="i">
-                                        <li class="page-item">
-                                            <a class="page-link ${i == pageNo ? "acctivePage" : ""}" href="category?pageNo=${i}&categoryID=${categoryID}">${i}</a>
-                                        </li>
-                                    </c:forEach>
-                                </c:if>
-                                <c:if test="${page eq 'search'}">
-                                    <c:forEach begin="1" end="${totalPages}" step="1" var="i">
-                                        <li class="page-item">
-                                            <a class="page-link ${i == pageNo ? "acctivePage" : ""}" href="search-product-home?pageNo=${i}&txtSearch=${txtSearch}">${i}</a>
-                                        </li>
-                                    </c:forEach>
-                                </c:if>
-                                <c:if test="${page eq 'sort'}">
-                                    <c:forEach begin="1" end="${totalPages}" step="1" var="i">
-                                        <li class="page-item">
-                                            <a class="page-link ${i == pageNo ? "acctivePage" : ""}" href="sort-product-home?pageNo=${i}&txtSort=${txtSort}">${i}</a>
-                                        </li>
-                                    </c:forEach>
-                                </c:if>
-                                <li class="page-item">
-                                    <a class="page-link" href="#" aria-label="Next">
-                                        <span aria-hidden="true">&raquo;</span>
-                                    </a>
-                                </li>
-                            </ul>
+                                    <c:if test="${page eq 'category'}">
+                                        <c:forEach begin="1" end="${totalPages}" step="1" var="i">
+                                            <li class="page-item">
+                                                <a class="page-link ${i == pageNo ? "acctivePage" : ""}" href="category?pageNo=${i}&categoryID=${categoryID}">${i}</a>
+                                            </li>
+                                        </c:forEach>
+                                    </c:if>
+                                    <c:if test="${page eq 'search'}">
+                                        <c:forEach begin="1" end="${totalPages}" step="1" var="i">
+                                            <li class="page-item">
+                                                <a class="page-link ${i == pageNo ? "acctivePage" : ""}" href="search-product-home?pageNo=${i}&txtSearch=${txtSearch}">${i}</a>
+                                            </li>
+                                        </c:forEach>
+                                    </c:if>
+                                    <c:if test="${page eq 'sort'}">
+                                        <c:forEach begin="1" end="${totalPages}" step="1" var="i">
+                                            <li class="page-item">
+                                                <a class="page-link ${i == pageNo ? "acctivePage" : ""}" href="sort-product-home?pageNo=${i}&txtSort=${txtSort}">${i}</a>
+                                            </li>
+                                        </c:forEach>
+                                    </c:if>
+                                    <li class="page-item">
+                                        <a class="page-link" href="#" aria-label="Next">
+                                            <span aria-hidden="true">&raquo;</span>
+                                        </a>
+                                    </li>
+                                </ul>
+                            </c:if>
                         </nav>
                     </div>
                 </div>

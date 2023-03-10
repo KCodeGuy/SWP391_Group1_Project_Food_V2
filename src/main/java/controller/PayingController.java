@@ -5,9 +5,11 @@
 
 package controller;
 
+import dao.AccountDAO;
 import dao.CartDAO;
 import dao.OrderDAO;
 import dao.OrderDetailDAO;
+import emailHandler.EmailHandler;
 import java.io.IOException;
 import java.io.PrintWriter;
 import jakarta.servlet.ServletException;
@@ -15,6 +17,9 @@ import jakarta.servlet.http.HttpServlet;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
 import jakarta.servlet.http.HttpSession;
+import java.util.List;
+import model.Account;
+import model.OrderDetail;
 
 /**
  *
@@ -32,7 +37,7 @@ public class PayingController extends HttpServlet {
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
     throws ServletException, IOException {
         response.setContentType("text/html;charset=UTF-8");
-        String accountID = request.getParameter("accountID");
+       String accountID = request.getParameter("accountID");
         String voucherID = request.getParameter("voucherID");
         String productSalePercent = request.getParameter("productSalePercent");
         int discount;
@@ -49,10 +54,22 @@ public class PayingController extends HttpServlet {
         OrderDAO odao = new OrderDAO();
         OrderDetailDAO ddao = new OrderDetailDAO();
         CartDAO cdao = new CartDAO();
+        EmailHandler eh = new EmailHandler();
+        AccountDAO adao = new AccountDAO();
+        Account acc = adao.getAccountByID(accountID);
+        
         
         odao.createOrder(note, accountID, name, phone, address, voucherID, discount);
-        ddao.createOrderDetails(cdao.getListCartToPaying(accountID), odao.getLastIDOfOrder());
+        String orderID = odao.getLastIDOfOrder();
+        ddao.createOrderDetails(cdao.getListCartToPaying(accountID), orderID);
         cdao.deleteCartByAccountID(accountID);
+        List<OrderDetail> listOrderDetail = ddao.getListOrderDetailByOrderID(orderID);
+        long totalPrice = 0;
+        for (OrderDetail orderDetail : listOrderDetail) {
+            totalPrice += orderDetail.getOrderPrice() * orderDetail.getOrderQuantity();
+        }
+        
+        eh.sendEmailOrderSuccess(name, acc.getAccountEmail(), phone, address, orderID, "PROCESSING", listOrderDetail.size(), totalPrice);
         
         HttpSession session = request.getSession();
         int cartSize = cdao.getListCartByAccountID(accountID).size();

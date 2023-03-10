@@ -16,7 +16,7 @@
         <link rel="stylesheet" href="./bootstap/css/bootstrap.min.css" type="text/css">
         <link rel="stylesheet" href="./bootstap/js/bootstrap.js" type="text/javascript">
         <link rel="stylesheet" href="./assert/css/style.css" type="text/css">
-        <link rel="stylesheet" href="./assert/css/orderDetailForChefPage.css" type="text/css">
+        <link rel="stylesheet" href="./assert/css/orderDetailForChef.css" type="text/css">
         <link rel="stylesheet" href="./assert/font/fontawesome-free-6.1.1-web/css/all.css" type="text/css">
         <title>Order Detail For Chef</title>
     </head>
@@ -101,8 +101,6 @@
                             <h6 class="table-header">ORDER DETAIL FOR CHEF</h6>
                             <div class="table-control-btn-group">
                                 <form class="sort-form" action="">
-
-
                                     <div class="total-quantity-group">
                                         <h6 class="sort-form-label">Order ID:</h6>
                                         <button class="btn-primary total-quantity">
@@ -129,33 +127,38 @@
                                         <th class="table-heading-text" scope="col">Name</th>
                                         <th class="table-heading-text" scope="col">Quantity</th>
                                         <th class="table-heading-text" scope="col">Price</th>
+                                        <th class="table-heading-text" scope="col">Total</th>
                                     </tr>
                                 </thead>
                                 <tbody>
+                                    <c:set var="no" value="1" />
                                     <c:forEach items="${listOrder}" var="o">
                                         <tr>
-                                            <td class="table-order">1</td>
+                                            <td class="table-order">${no}</td>
                                             <td class="table-img"><img src="${o.productLink}"></td>
                                             <td class="table-name"><a href="">${o.productName}</a></td>
                                             <td class="table-quantity">
                                                 ${o.orderQuantity}
                                             </td>
+                                            <td class="table-price"><fmt:formatNumber type="number" pattern="###,###" value="${o.orderPrice}"/>đ</td>
                                             <td class="table-price"><fmt:formatNumber type="number" pattern="###,###" value="${o.orderPrice * o.orderQuantity}"/>đ</td>
-
                                         </tr>
+                                        <c:set var="no" value="${no + 1}" />
                                     </c:forEach>
                                 </tbody>
                             </table>
                         </div>
                     </div>
-                    <div class="row">
-                        <div class="col-xs-12">
-                            <div class="detail-table-group">
-                                <button class="btn-primary"><a href="chef-accept-order?accountID=${sessionScope.accountSesseion.accountID}&orderID=${order.orderID}">Accept</a></button>
-                                <button class="btn-main"><a href="chef-reject-order?accountID=${sessionScope.accountSesseion.accountID}&orderID=${order.orderID}">Reject</a></button>
+                    <c:if test="${!optionSeeOnly}">
+                        <div class="row">
+                            <div class="col-xs-12">
+                                <div class="detail-table-group">
+                                    <button class="btn-primary"><a href="chef-accept-order?accountID=${sessionScope.accountSesseion.accountID}&orderID=${order.orderID}">Accept</a></button>
+                                    <button class="btn-main"><a href="chef-reject-order?accountID=${sessionScope.accountSesseion.accountID}&orderID=${order.orderID}">Reject</a></button>
+                                </div>
                             </div>
                         </div>
-                    </div>
+                    </c:if>
                 </div>
             </div>
 

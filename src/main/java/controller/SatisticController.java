@@ -58,7 +58,7 @@ public class SatisticController extends HttpServlet {
     
         int totalRejectOrders = odao.getTotalOrderByStatus(startDate.concat(starDateHourDetail), endDate.concat(endDateHourDetail), "REJECTED");
         int totalAcceptOrders = odao.getTotalOrderByStatus(startDate.concat(starDateHourDetail), endDate.concat(endDateHourDetail), "ACCEPTED");
-        int totalCompletedOrders = odao.getTotalOrderByStatus(startDate.concat(starDateHourDetail), endDate.concat(endDateHourDetail), "COMPLETED");
+        int totalCompletedOrders = odao.getTotalOrderByStatus(startDate.concat(starDateHourDetail), endDate.concat(endDateHourDetail), "DELIVERED");
         int totalProcessingOrders = odao.getTotalOrderByStatus(startDate.concat(starDateHourDetail), endDate.concat(endDateHourDetail), "PROCESSING");
         int totalDeleveringOrders = odao.getTotalOrderByStatus(startDate.concat(starDateHourDetail), endDate.concat(endDateHourDetail), "DELIVERING");
         long totalSellingProducts = odao.getTotalOfProductSelled(startDate.concat(starDateHourDetail), endDate.concat(endDateHourDetail));
