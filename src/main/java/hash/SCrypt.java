@@ -2,7 +2,7 @@
 
 package hash;
 
-import com.example.demo.hash.jni.*;
+import hash.jni.*;
 
 import javax.crypto.Mac;
 import javax.crypto.spec.SecretKeySpec;

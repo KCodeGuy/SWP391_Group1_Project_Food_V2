@@ -121,50 +121,50 @@
                                         <div class="voucher-container">
                                             <div class="voucher-form-group">
                                                 <span class="voucher-form-label">Voucher:</span>
-                                                <div class="voucher-form-sub-group">
-                                                </div>
+                                                <input type="text" id="voucher-input" name="voucherID">                                                
                                             </div>
-                                            <div class="voucher-form-group">
-                                                <span class="voucher-form-label">Pre-total:</span>
-                                                <span class="voucher-number">
-                                                <fmt:formatNumber type="number" pattern="###,###" value="${totalPrice}"/>đ
-                                            </span>
+                                            <div id="voucherResult"></div>
                                         </div>
                                         <div class="voucher-form-group">
-                                            <span class="voucher-form-label">Ship fee:</span>
-                                            <span class="voucher-number">+${shipFee}đ</span>
-                                        </div>
-                                        <div class="voucher-form-group">
-                                            <span class="voucher-form-label">Voucher discount: (-${productSalePercent}%)</span>
+                                            <span class="voucher-form-label">Pre-total:</span>
                                             <span class="voucher-number">
-
-                                                -<fmt:formatNumber type="number" pattern="###,###" value="${totalPrice * productSalePercent / 100}"/>đ
-                                            </span>
-                                        </div>
-                                        <div class="voucher-form-group">
-                                            <span class="voucher-form-label">Total:</span>
-                                            <span class="voucher-number voucher-total"> 
-                                                <fmt:formatNumber type="number" pattern="###,###" value="${(((100 - productSalePercent) * totalPrice) / 100) + shipFee}"/>đ
-                                            </span>
-                                        </div>
+                                            <fmt:formatNumber type="number" pattern="###,###" value="${totalPrice}"/>đ
+                                        </span>
                                     </div>
+                                    <div class="voucher-form-group">
+                                        <span class="voucher-form-label">Ship fee:</span>
+                                        <span class="voucher-number">+0đ</span>
+                                    </div>
+                                    <div class="voucher-form-group">
+                                        <span class="voucher-form-label">Voucher discount: <div style="display: inline" id="discount"></div></span>
+                                        <span class="voucher-number">
 
+                                            -<div style="display: inline" id="discountPrice">0</div>đ
+                                        </span>
+                                    </div>
+                                    <div class="voucher-form-group">
+                                        <span class="voucher-form-label">Total:</span>
+                                        <span class="voucher-number voucher-total"> 
+                                            <div style="display: inline" id="totalPrice"><fmt:formatNumber type="number" pattern="###,###" value="${totalPrice}"/></div>đ
+                                        </span>
+                                    </div>
                                 </div>
-                                <div class="col-xs-12 col-lg-5">
-                                    <div class="form-paying-btn">
-                                        <p>
-                                            <strong>Note: </strong>Please check the your information and product to paying carefully before proceeding with the order. 
-                                            Thank you very much for choosing to place an order at Group-1-food store.
-                                            If you have any questions, please contact our hotline at 0366.777.999. We wish you good luck!
-                                        </p>
-                                        <div class="form-paying-btn-group">
-                                            <button type="Submit" class="btn-primary">
-                                                Paying
-                                            </button>
-                                            <button type="button" class="btn-main">
-                                                <a href="home">Cancel</a>
-                                            </button>
-                                        </div>
+
+                            </div>
+                            <div class="col-xs-12 col-lg-5">
+                                <div class="form-paying-btn">
+                                    <p>
+                                        <strong>Note: </strong>Please check the your information and product to paying carefully before proceeding with the order. 
+                                        Thank you very much for choosing to place an order at Group-1-food store.
+                                        If you have any questions, please contact our hotline at 0366.777.999. We wish you good luck!
+                                    </p>
+                                    <div class="form-paying-btn-group">
+                                        <button type="Submit" class="btn-primary">
+                                            Paying
+                                        </button>
+                                        <button type="button" class="btn-main">
+                                            <a href="home">Cancel</a>
+                                        </button>
                                     </div>
                                 </div>
                             </div>
@@ -172,47 +172,69 @@
                     </div>
                 </div>
             </div>
-        </form>
-        <!-- 5. Footer  -->
-        <div class="container-fluid footer">
-            <form action="use-voucher" class="voucher-form" id="voucher-form-id">
-                <input class="voucher-from-input" type="text" id="accountID" name="accountID" placeholder="" hidden="true" value="${user.accountID}" readonly=""/>
-                <input class="voucher-from-input" type="text" id="voucherID" name="voucherID" placeholder="ABC123" required="" value="${voucherID}"/>
-                <button type="submit" class="btn-primary btn-apply">
-                    Apply
-                </button>
-            </form>
-            <div class="row">
-                <div class="col-sm-12 col-md-4">
-                    <i class="fa-solid fa-phone footer-icon"></i>
-                    <h2 class="footer-heading">Phone</h2>
-                    <p class="footer-info">(0292) 730 363</p>
-                    <p class="footer-info">(0292) 730 364</p>
-                    <p class="footer-info">(0292) 730 365</p>
-                </div>
-                <div class="col-sm-12 col-md-4">
-                    <i class="fa-solid fa-envelope footer-icon"></i>
-                    <h2 class="footer-heading">Email</h2>
-                    <p class="footer-info">group1shop@gmail.com</p>
-                    <p class="footer-info">group1food@gmail.com</p>
-                </div>
-                <div class="col-sm-12 col-md-4">
-                    <i class="fa-solid fa-location-dot footer-icon"></i>
-                    <h2 class="footer-heading">Address</h2>
-                    <p class="footer-info">Store 1: 600, đường Nguyễn Văn Cừ nối dài, An Bình, Ninh Kiều, Cần Thơ</p>
-                    <p class="footer-info">Store 2: 123/1A Hai Bà Trưng, Thủ Đức, Tp.HCM</p>
-                </div>
+        </div>
+    </form>
+    <!-- 5. Footer  -->
+    <div class="container-fluid footer">
+
+        <div class="row">
+            <div class="col-sm-12 col-md-4">
+                <i class="fa-solid fa-phone footer-icon"></i>
+                <h2 class="footer-heading">Phone</h2>
+                <p class="footer-info">(0292) 730 363</p>
+                <p class="footer-info">(0292) 730 364</p>
+                <p class="footer-info">(0292) 730 365</p>
             </div>
-            <div class="row">
-                <div class="col-xs-12">
-                    <span class="footer-copycript">© 2023 GROUP1-FOOD - a software of group1 students in FPT university </span>
-                </div>
+            <div class="col-sm-12 col-md-4">
+                <i class="fa-solid fa-envelope footer-icon"></i>
+                <h2 class="footer-heading">Email</h2>
+                <p class="footer-info">group1shop@gmail.com</p>
+                <p class="footer-info">group1food@gmail.com</p>
+            </div>
+            <div class="col-sm-12 col-md-4">
+                <i class="fa-solid fa-location-dot footer-icon"></i>
+                <h2 class="footer-heading">Address</h2>
+                <p class="footer-info">Store 1: 600, đường Nguyễn Văn Cừ nối dài, An Bình, Ninh Kiều, Cần Thơ</p>
+                <p class="footer-info">Store 2: 123/1A Hai Bà Trưng, Thủ Đức, Tp.HCM</p>
             </div>
         </div>
+        <div class="row">
+            <div class="col-xs-12">
+                <span class="footer-copycript">© 2023 GROUP1-FOOD - a software of group1 students in FPT university </span>
+            </div>
+        </div>
+    </div>
 
 
-        <script src="jquery/Jquery.js" type="text/javascript"></script>
-
-    </body>
+    <script src="jquery/Jquery.js" type="text/javascript"></script>
+    <script>
+        $(function () {
+            $('#voucher-input').blur(function () {
+                event.preventDefault();
+                var voucherID = $('#voucher-input').val();
+                var accountID = '${sessionScope.accountSesseion.accountID}';
+                $.ajax({
+                    url: 'use-voucher',
+                    type: 'POST',
+                    data: {
+                        voucherID: voucherID,
+                        accountID: accountID
+                    },
+                    success: function (responseText) {
+                        $('#discount').text('(-' + responseText.discount + '%)');
+                        $('#discountPrice').text(responseText.discountPrice.toLocaleString('vi-VN').replace(/\D/g, '.'));
+                        $('#totalPrice').text(responseText.totalPrice.toLocaleString('vi-VN').replace(/\D/g, '.'));
+                    },
+                    error: function (xhr, status, error) {
+                        alert('Error');
+                        console.log("Error: " + error);
+                        console.log("Status: " + status);
+                        console.log(xhr);
+                    }
+                });
+            });
+        });
+    </script>
+</body>
 
 </html>

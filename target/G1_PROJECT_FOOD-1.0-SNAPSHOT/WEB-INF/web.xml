@@ -248,6 +248,10 @@
         <servlet-name>SearchOrderHistoryForUserController</servlet-name>
         <servlet-class>controller.SearchOrderHistoryForUserController</servlet-class>
     </servlet>
+    <servlet>
+        <servlet-name>ImageController</servlet-name>
+        <servlet-class>controller.ImageController</servlet-class>
+    </servlet>
     <servlet-mapping>
         <servlet-name>HomeController</servlet-name>
         <url-pattern>/home</url-pattern>
@@ -483,6 +487,10 @@
     <servlet-mapping>
         <servlet-name>SearchOrderHistoryForUserController</servlet-name>
         <url-pattern>/search-user-order-history</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>ImageController</servlet-name>
+        <url-pattern>/image</url-pattern>
     </servlet-mapping>
     <session-config>
         <session-timeout>

@@ -6,7 +6,7 @@ import java.io.UnsupportedEncodingException;
 import java.security.GeneralSecurityException;
 import java.security.SecureRandom;
 
-import static com.example.demo.hash.codec.Base64.*;
+import static hash.codec.Base64.*;
 
 /**
  * Simple {@link SCrypt} interface for hashing passwords using the
@@ -39,7 +39,7 @@ public class SCryptUtil {
      *
      * @return The hashed password.
      */
-    public static String scrypt(String passwd, int N, int r, int p) {
+    public String scrypt(String passwd, int N, int r, int p) {
         try {
             byte[] salt = new byte[16];
             SecureRandom.getInstance("SHA1PRNG").nextBytes(salt);
@@ -69,7 +69,7 @@ public class SCryptUtil {
      *
      * @return true if passwd matches hashed value.
      */
-    public static boolean check(String passwd, String hashed) {
+    public boolean check(String passwd, String hashed) {
         try {
             String[] parts = hashed.split("\\$");
 

@@ -78,7 +78,9 @@
                     
                      <div class="form-control-group">
                         <h4 class="form-text-label">Link Image: <h4>
-                        <input type="text" id="image" name="image" placeholder="http://imgagelink">
+                        <input type="file" id="upload" name="upload">
+                        <img id="image" style="width: 50px; height: 50px;" src="">
+                        <input type="text" id="base64" readonly>
                         <div class="alert-warning" id="txtImage"></div>
                     </div>
 
@@ -96,6 +98,33 @@
     </div>
     <script src="jquery/Jquery.js" type="text/javascript"></script>
     <!--<script src="jquery/updateProduct.js" type="text/javascript"></script>-->
+    <script>
+            $(function () {
+                $('#upload').change(function () {
+                    var file = this.files[0];
+                    if (file) {
+                        var reader = new FileReader();
+                        reader.readAsDataURL(file);
+                        reader.onload = function () {
+                            var base64 = reader.result.split(',')[1];
+                            $.ajax({
+                                url: 'image',
+                                type: 'POST',
+                                data: {base64: base64},
+                                success: function () {
+                                    $('#image').attr('src', 'data:image/png;base64,' + base64);
+                                },
+                                error: function () {
+                                    alert('Error');
+                                }
+                            });
+                            $('#base64').val(base64);
+                        };
+                    }
+                });
+            });
+            
+        </script>
 </body>
 
 </html>
