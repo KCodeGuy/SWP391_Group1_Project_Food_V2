@@ -211,7 +211,7 @@
         $(function () {
             $('#voucher-input').blur(function () {
                 event.preventDefault();
-                var voucherCode = $('#voucher-input').val();
+                var voucherID = $('#voucher-input').val();
                 var accountID = '${sessionScope.accountSesseion.accountID}';
                 $.ajax({
                     url: 'use-voucher',
