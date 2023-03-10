@@ -78,9 +78,9 @@
                     
                      <div class="form-control-group">
                         <h4 class="form-text-label">Link Image: <h4>
-                        <input type="file" id="upload" name="upload">
-                        <img id="image" style="width: 50px; height: 50px;" src="">
-                        <input type="text" id="base64" readonly>
+                        <input type="file" id="upload" name="upload" accept=".jpg, .jpeg, .png">
+                        <img id="image" style="width: 50px; height: 50px; display: none" src="">
+                        <input type="text" id="base64" readonly hidden="true">
                         <div class="alert-warning" id="txtImage"></div>
                     </div>
 
@@ -112,7 +112,12 @@
                                 type: 'POST',
                                 data: {base64: base64},
                                 success: function () {
-                                    $('#image').attr('src', 'data:image/png;base64,' + base64);
+                                    if (base64) {
+                                        $('#image').show();
+                                        $('#image').attr('src', 'data:image/png;base64,' + base64);
+                                    } else {
+                                        $('#image').hide();
+                                    }
                                 },
                                 error: function () {
                                     alert('Error');
@@ -123,7 +128,19 @@
                     }
                 });
             });
-            
+            $(document).ready(function() {
+                $('#upload').on('change', function() {
+                  var fileInput = $(this);
+                  var filePath = fileInput.val();
+
+                  var allowedExtensions = /(\.jpg|\.jpeg|\.png)$/i;
+                  if (!allowedExtensions.exec(filePath)) {
+                    alert('Please select an image file with JPG, JPEG or PNG format.');
+                    fileInput.val('');
+                    return false;
+                  }
+                });
+              });
         </script>
 </body>
 
