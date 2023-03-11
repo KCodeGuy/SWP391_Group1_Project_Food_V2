@@ -17,7 +17,7 @@ import jakarta.servlet.http.HttpServletResponse;
  *
  * @author NghiaHHCE160343@fpt.edu.vn
  */
-public class AddNewReviewController extends HttpServlet {
+public class ReplyReviewController extends HttpServlet {
    
     /** 
      * Processes requests for both HTTP <code>GET</code> and <code>POST</code> methods.
@@ -30,12 +30,12 @@ public class AddNewReviewController extends HttpServlet {
     throws ServletException, IOException {
         response.setContentType("text/html;charset=UTF-8");
         String accountID = request.getParameter("accountID");
+        String replyID = request.getParameter("replyID");
         String productID = request.getParameter("productID");
-        int rating = Integer.parseInt(request.getParameter("rating"));
         String review = request.getParameter("review");
         
         ReviewDAO rdao = new ReviewDAO();
-        rdao.insertReview(rating, review, productID, accountID, null);
+        rdao.insertReview(0, review, productID, accountID, replyID);
         
         response.sendRedirect("product-detail?productID=" + productID);
     } 

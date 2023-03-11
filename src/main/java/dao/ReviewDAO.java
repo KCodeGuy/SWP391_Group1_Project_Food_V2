@@ -29,7 +29,7 @@ public class ReviewDAO {
     ResultSet rs = null;         // save result query.
 
     /**
-     * Get the list of reviews for a given product ID.
+     * Sub get the list of reviews for a given product ID.
      *
      * @param productID The ID of the product to get reviews for.
      * @return The list of reviews for the product with the given ID.
@@ -40,7 +40,8 @@ public class ReviewDAO {
         
         try {
             // Create the SQL query to get the reviews for the given product ID
-            String query = "SELECT R.*, A.AccountName FROM [REVIEW] R JOIN [ACCOUNT] A ON R.AccountID = A.AccountID WHERE R.ProductID = ? AND R.ReplyID is null AND R.ReviewStatus = 'SUCCESS'";
+            String query = "SELECT R.*, A.AccountName FROM [REVIEW] R JOIN [ACCOUNT] A ON R.AccountID = A.AccountID WHERE R.ProductID = ? AND R.ReplyID is null AND R.ReviewStatus = 'SUCCESS'"
+                    + "ORDER BY R.reviewDay DESC";
             con = new DBContext().getConnection(); // Open a connection to the SQL database
             ps = con.prepareStatement(query); // Create a PreparedStatement object and pass in the query
             ps.setString(1, productID); // Replace the parameter '?' in the query with the productID passed to the method
@@ -59,6 +60,12 @@ public class ReviewDAO {
         return null;
     }
     
+    /**
+     * Get the list of reviews for a given product ID.
+     *
+     * @param productID The ID of the product to get reviews for.
+     * @return The list of reviews for the product with the given ID.
+     */
     public ArrayList<Review> getListReview(String productID) {
         ArrayList<Review> list = getListReviewByProductID(productID);
         
@@ -110,15 +117,16 @@ public class ReviewDAO {
      * @param rating The rating of the review.
      * @param review The text of the review.
      * @param productID The ID of the product being reviewed.
-     * @param accountID The ID of the account that wrote the review.
+     * @param replyID The ID of the account that wrote the review.
+     * @param accountID The ID of the account that wrote the reply.
      */
-    public void insertReview(int rating, String review, String productID, String accountID) {
+    public void insertReview(int rating, String review, String productID, String accountID, String replyID) {
         GenerateID gi = new GenerateID();
         LocalDateTime now = LocalDateTime.now();
         DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm:ss.SSS");
         String formattedDateTime = now.format(formatter);
         String reviewID = gi.generateNewID("RV", getLastIDOfReview()); // Generate a new ID for the review
-        String query = "INSERT INTO [REVIEW] VALUES (?,?,?,'SUCCESS',?,?,?,null)"; // Create the SQL query to insert the new review
+        String query = "INSERT INTO [REVIEW] VALUES (?,?,?,'SUCCESS',?,?,?,?)"; // Create the SQL query to insert the new review
         try {
             con = new DBContext().getConnection(); // Open a connection to the SQL database
             ps = con.prepareStatement(query); // Create a PreparedStatement object and pass in the query
@@ -127,7 +135,8 @@ public class ReviewDAO {
             ps.setString(3, review); // Replace the third parameter '?' in the query with the review's text
             ps.setString(4, formattedDateTime); // Replace the fourth parameter '?' in the query with the product ID being reviewed
             ps.setString(5, productID); // Replace the fifth parameter '?' in the query with the account ID of the reviewer
-            ps.setString(6, accountID); // Replace the sixth parameter '?' in the query with the account ID of the reviewer
+            ps.setString(6, accountID); // Replace the sixth parameter '?' in the query with the account ID of the reply
+            ps.setString(7, replyID); // Replace the sixth parameter '?' in the query with the account ID of the reviewer
             ps.executeUpdate(); // Execute the query to insert the new review into the database
         } catch (Exception e) {
             e.printStackTrace(); // Print any exceptions that occur during the insertion process

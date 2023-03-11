@@ -260,6 +260,10 @@
         <servlet-name>LoadOrderDetailsForUserController</servlet-name>
         <servlet-class>controller.ShowOrderDetailsForUserController</servlet-class>
     </servlet>
+    <servlet>
+        <servlet-name>ReplyReviewController</servlet-name>
+        <servlet-class>controller.ReplyReviewController</servlet-class>
+    </servlet>
     <servlet-mapping>
         <servlet-name>RegisterAccount</servlet-name>
         <url-pattern>/register-account</url-pattern>
@@ -515,6 +519,10 @@
     <servlet-mapping>
         <servlet-name>LoadOrderDetailsForUserController</servlet-name>
         <url-pattern>/user-order-details</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>ReplyReviewController</servlet-name>
+        <url-pattern>/reply-review</url-pattern>
     </servlet-mapping>
     <session-config>
         <session-timeout>

@@ -188,10 +188,17 @@
                                                 </div>
                                             </div>
                                             <div class="review-item-group">
-                                                <!--<a href="" class="reply-link"> <i class="fa-solid fa-reply"></i> Reply comment</a>-->
-
+                                                <a href="" class="reply-link"> <i class="fa-solid fa-reply"></i> Reply comment</a>
                                             </div>
+                                            <div>
+                                                <form id="rating-form" action="reply-review">
+                                                    <input name="productID" value="${productID}" hidden="true">
+                                                    <input name="accountID" value="${sessionScope.accountSesseion.accountID}" hidden="true">
+                                                    <input name="replyID" value="${rv.reviewID}" hidden="true">
+                                                    <div id="cmt"></div>
 
+                                                </form> 
+                                            </div>
                                         </li>
                                         <!-- Reply -->
                                         <c:forEach items="${rv.listReply}" var="re">
@@ -298,6 +305,39 @@
                     return false;
                 }
             }
+
+
+            var replyLink = document.querySelector(".reply-link");
+
+            replyLink.addEventListener("click", function (event) {
+                event.preventDefault();
+
+
+                var htmlCode = `
+    <textarea id="review" name="review" rows="5" placeholder="Enter your feeback here!"></textarea>
+    <div class="rating-btn-group">
+      
+        <button type="submit" class="btn-primary">Comment</button>
+      
+      <button type="reset" class="btn-main"btn-related-product>
+        Cancel
+      </button>
+    </div>
+  `;
+
+
+                var cmtDiv = document.getElementById("cmt");
+                cmtDiv.innerHTML = htmlCode;
+
+
+                var cancelButton = cmtDiv.querySelector(".btn-main");
+
+
+                cancelButton.addEventListener("click", function () {
+
+                    cmtDiv.innerHTML = "";
+                });
+            });
         </script>
     </body>
 

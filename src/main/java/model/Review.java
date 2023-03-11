@@ -89,10 +89,18 @@ public class Review {
         this.listReply = listReply;
     }
 
+    /**
+     * Get The unique identifier for reply of review
+     * @return The unique identifier for reply of review
+     */
     public ArrayList<Review> getListReply() {
         return listReply;
     }
 
+    /**
+     * Set The unique identifier for reply of review
+     * @param listReply The unique identifier for reply of review
+     */
     public void setListReply(ArrayList<Review> listReply) {
         this.listReply = listReply;
     }
