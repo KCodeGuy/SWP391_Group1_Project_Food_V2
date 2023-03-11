@@ -189,10 +189,36 @@
                                             </div>
                                             <div class="review-item-group">
                                                 <!--<a href="" class="reply-link"> <i class="fa-solid fa-reply"></i> Reply comment</a>-->
-                                                
+
                                             </div>
-                                            
+
                                         </li>
+                                        <!-- Reply -->
+                                        <c:forEach items="${rv.listReply}" var="re">
+                                            <li class="review-item">
+                                                <div class="review-item-header">
+                                                    <div class="review-item-group">
+                                                        <div class="review-item-sub-group">
+                                                            <i class="fa-solid fa-user option-list-user-icon"></i>
+                                                            ${re.accountName}
+                                                        </div>
+                                                        <c:if test="${sessionScope.accountSesseion.accountID.startsWith('AD') || sessionScope.accountSesseion.accountID == rv.accountID}">
+                                                            <a class="btn-delete-comment" href="user-delete-review?reviewID=${re.reviewID}&productID=${re.productID}" onclick="return showMessageDelete();"><i
+                                                                    class="fa-solid fa-trash"></i>
+                                                            </a>
+                                                        </c:if>
+                                                    </div>
+                                                </div>
+                                                <div class="review-item-group">
+                                                    <div class="review-item-content">${re.review}</div>
+                                                    <div class="review-item-date">
+                                                        <i class="fa-sharp fa-regular fa-clock"></i>
+                                                        ${re.reviewDay}
+                                                    </div>
+                                                </div>
+                                            </li>
+                                        </c:forEach>
+
                                     </c:forEach>
                                 </ul>
                             </div>

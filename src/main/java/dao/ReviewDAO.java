@@ -50,11 +50,56 @@ public class ReviewDAO {
                 Date date = inputFormat.parse(rs.getString(5));
                 String outputDateStr = outputFormat.format(date);
                 // Add each review returned by the query to the ArrayList
-                list.add(new Review(rs.getString(1), rs.getInt(2), rs.getString(3), outputDateStr, rs.getString(6), rs.getString(7), rs.getString(9)));
+                list.add(new Review(rs.getString(1), rs.getInt(2), rs.getString(3), outputDateStr, rs.getString(6), rs.getString(7), rs.getString(9), null));
             }
             return list; // Return the ArrayList of reviews
         } catch (Exception e) {
-            e.getMessage();
+            System.out.println(e.getMessage());
+        }
+        return null;
+    }
+    
+    public ArrayList<Review> getListReview(String productID) {
+        ArrayList<Review> list = getListReviewByProductID(productID);
+        
+        for (Review review : list) {
+            if (getReplyByReplyID(productID, review.getReviewID()) != null) {
+                review.setListReply(getReplyByReplyID(productID, review.getReviewID()));
+            }
+        }
+        
+        return list;
+    }
+    
+    /**
+     * Get the list of reply review.
+     *
+     * @param productID The ID of the product to get reviews for.
+     * @param reviewID The ID of the review to get reviews for.
+     * @return The list of reviews for the product with the given ID.
+     */
+    public ArrayList<Review> getReplyByReplyID(String productID, String reviewID) {
+        SimpleDateFormat inputFormat = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss.SSS");
+        SimpleDateFormat outputFormat = new SimpleDateFormat("yyyy-MM-dd HH:mm");
+        
+        try {
+            // Create the SQL query to get the reviews for the given product ID
+            String query = "SELECT R.*, A.AccountName FROM [REVIEW] R JOIN [ACCOUNT] A ON R.AccountID = A.AccountID WHERE R.ProductID = ? AND R.ReplyID = ? AND R.ReviewStatus = 'SUCCESS'";
+            con = new DBContext().getConnection(); // Open a connection to the SQL database
+            ps = con.prepareStatement(query); // Create a PreparedStatement object and pass in the query
+            ps.setString(1, productID); // Replace the parameter '?' in the query with the productID passed to the method
+            ps.setString(2, reviewID);
+            rs = ps.executeQuery(); // Execute the query and store the result in a ResultSet object
+            ArrayList<Review> list = new ArrayList<>(); // Create an ArrayList to store the reviews
+            while (rs.next()) {
+                Date date = inputFormat.parse(rs.getString(5));
+                String outputDateStr = outputFormat.format(date);
+                // Add each review returned by the query to the ArrayList
+                list.add(new Review(rs.getString(1), 0, rs.getString(3), outputDateStr, rs.getString(6), rs.getString(7), rs.getString(9)));
+            }
+            return list; // Return the ArrayList of reviews
+        } catch (Exception e) {
+            System.out.println(e.getMessage());
         }
         return null;
     }

@@ -4,6 +4,8 @@
  */
 package model;
 
+import java.util.ArrayList;
+
 /**
  *
  * @author NghiaHHCE160343@fpt.edu.vn
@@ -18,6 +20,7 @@ public class Review {
     private String productID;   // The unique identifier for the product being reviewed.
     private String accountID;   // The unique identifier for the reviewer's account.
     private String accountName; // The unique identifier for the reviewer's name of account.
+    private ArrayList<Review> listReply; // The unique identifier for reply of review
 
     /**
      * Constructs a new Review object with default values.
@@ -61,6 +64,37 @@ public class Review {
         this.productID = productID;
         this.accountID = accountID;
         this.accountName = accountName;
+    }
+
+    /**
+     * Constructs a new Review object with the specified values.
+     *
+     * @param reviewID The unique identifier for the review.
+     * @param rating The rating score given by the reviewer for the product.
+     * @param review The text content of the review.
+     * @param reviewDay The text day of the review.
+     * @param productID The unique identifier for the product being reviewed.
+     * @param accountID The unique identifier for the reviewer's account.
+     * @param accountName The unique identifier for the reviewer's name of account.
+     * @param listReply The unique identifier for reply of review
+     */
+    public Review(String reviewID, int rating, String review, String reviewDay, String productID, String accountID, String accountName, ArrayList<Review> listReply) {
+        this.reviewID = reviewID;
+        this.rating = rating;
+        this.review = review;
+        this.reviewDay = reviewDay;
+        this.productID = productID;
+        this.accountID = accountID;
+        this.accountName = accountName;
+        this.listReply = listReply;
+    }
+
+    public ArrayList<Review> getListReply() {
+        return listReply;
+    }
+
+    public void setListReply(ArrayList<Review> listReply) {
+        this.listReply = listReply;
     }
 
     /**

@@ -48,7 +48,7 @@ public class LoadProductDetailController extends HttpServlet {
         ArrayList<Product> listProduct = pdao.getTop4ProductByCategoryID(categoryID, productID);
         //Set the retrieved Product object as an attribute of the current request object with the key "product".
         ReviewDAO rdao = new ReviewDAO();
-        ArrayList<Review> listReview = rdao.getListReviewByProductID(productID);
+        ArrayList<Review> listReview = rdao.getListReview(productID);
 
         HashMap<Integer, Integer> listRating = new HashMap<>();
         listRating.put(5, 0);
