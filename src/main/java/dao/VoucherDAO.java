@@ -53,7 +53,50 @@ public class VoucherDAO {
         //If an exception is caught, return null
         return list;
     }
-    
+
+    public int quantityOfVoucher(String voucherID) {
+        try {
+            //Declare a SQL query string
+            String query = "SELECT VoucherQuantity\n"
+                    + "FROM VOUCHER\n"
+                    + "WHERE GETDATE() BETWEEN VoucherStartDay AND VoucherEndday AND VoucherID = ?"; // Specify the condition for selecting a specific account ID
+            con = new DBContext().getConnection(); //Open connection to SQL
+            ps = con.prepareStatement(query); //Move query to database
+            ps.setString(1, voucherID); //Set voucherID
+            //Execute the query and get the result set
+            rs = ps.executeQuery();
+            //Initialize a new user object
+            int quantity = 0;
+            //Loop through the result set and create a new user object with the retrieved data
+            while (rs.next()) {
+                //Create a new User object using data retrieved from the database
+                quantity = rs.getInt(1);
+            } //End while
+            //Return the user object
+            return quantity;
+        } catch (Exception e) {
+            e.getMessage();
+        } //End trycatch
+        //If an exception is caught, return null
+        return 0;
+    }
+
+    public void updateQuantity(String voucherID) {
+        try {
+            //Declare a SQL query string
+            String query = "Update VOUCHER\n"
+                    + "SET VoucherQuantity = VoucherQuantity - 1\n"
+                    + "WHERE VoucherID = ?"; // Specify the condition for selecting a specific account ID
+            con = new DBContext().getConnection(); //Open connection to SQL
+            ps = con.prepareStatement(query); //Move query to database
+            ps.setString(1, voucherID); //Set voucherID
+            //Execute the query and get the result set
+            ps.executeUpdate();
+        } catch (Exception e) {
+            e.getMessage();
+        } //End trycatch
+    }
+
     public List<Voucher> getTop4Voucher() {
         Connection con = null; // connect to SQL server.
         PreparedStatement ps = null; // move query from Netbeen to SQl.

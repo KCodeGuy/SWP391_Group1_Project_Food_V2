@@ -121,11 +121,16 @@
                                                 <span class="voucher-form-label">Voucher:</span>
                                                 <input type="text" id="voucher-input" name="voucherID">                                                
                                             </div>
-                                            <div id="voucherResult"></div>
+                                            <div id="voucherResult">
+                                            <c:if test="${not empty sessionScope.messageVoucher}">
+                                                ${sessionScope.messageVoucher}
+                                                <% session.removeAttribute("messageVoucher"); %>
+                                            </c:if>
                                         </div>
-                                        <div class="voucher-form-group">
-                                            <span class="voucher-form-label">Pre-total:</span>
-                                            <span class="voucher-number">
+                                    </div>
+                                    <div class="voucher-form-group">
+                                        <span class="voucher-form-label">Pre-total:</span>
+                                        <span class="voucher-number">
                                             <fmt:formatNumber type="number" pattern="###,###" value="${totalPrice}"/>đ
                                         </span>
                                     </div>
@@ -208,6 +213,8 @@
     <script>
         $(function () {
             $('#voucher-input').blur(function () {
+                var voucherResultDiv = document.getElementById("voucherResult");
+                voucherResultDiv.style.display = "none";
                 event.preventDefault();
                 var voucherID = $('#voucher-input').val();
                 var accountID = '${sessionScope.accountSesseion.accountID}';
@@ -232,6 +239,7 @@
                 });
             });
         });
+
     </script>
 </body>
 

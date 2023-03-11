@@ -44,8 +44,6 @@ public class UseVoucherController extends HttpServlet {
                 totalPrice += ((c.getProductPrice() * (100 - c.getProductSalePercent())) / 100 * c.getCartQuantity());
             }
         }
-        
-        System.out.println(accountID + totalPrice);
 
         VoucherDAO vdao = new VoucherDAO();
         int discount = vdao.getProductSalePrecent(voucher);
