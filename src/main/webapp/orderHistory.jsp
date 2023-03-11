@@ -96,7 +96,7 @@
                                             <td class="table-status">${os.orderStatus}</td>
                                             <td class="table-price"><fmt:formatNumber type="number" pattern="###,###" value="${os.totalPrice}"/>đ</td>
                                             <td class="table-btn">
-                                                <a class="table-btn-edit" href="orderDetail.jsp"><i class="fa-solid fa-pen-to-square"></i></a>
+                                                <a class="table-btn-edit" href="user-order-details?orderID=${os.orderID}&option=accept"><i class="fa-solid fa-pen-to-square"></i></a>
                                             </td>
                                         </tr>
                                         <c:set var="orderNo" value="${orderNo+1}" />

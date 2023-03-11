@@ -133,7 +133,7 @@
                                     <label for="star1"><i class="fa fa-star"></i></label>
                                 </div>
                                 <input name="productID" value="${productID}" hidden="true">
-                                <input name="accountID" value="${sessionScope.accountSesseion.accountID.startsWith('AD')}" hidden="true">
+                                <input name="accountID" value="${sessionScope.accountSesseion.accountID}" hidden="true">
                                 <textarea id="review" name="review" rows="5" placeholder="Enter your feeback here!"></textarea>
                                 <div class="rating-btn-group">
                                     <c:if test="${sessionScope.accountSesseion.accountID.startsWith('US') || sessionScope.accountSesseion.accountID.startsWith('AD')}">
@@ -165,7 +165,7 @@
                                                         <i class="fa-solid fa-user option-list-user-icon"></i>
                                                         ${rv.accountName}
                                                     </div>
-                                                    <c:if test="${sessionScope.accountSesseion.accountID.startsWith('AD')}">
+                                                    <c:if test="${sessionScope.accountSesseion.accountID.startsWith('AD') || sessionScope.accountSesseion.accountID == rv.accountID}">
                                                         <a class="btn-delete-comment" href="user-delete-review?reviewID=${rv.reviewID}&productID=${rv.productID}" onclick="return showMessageDelete();"><i
                                                                 class="fa-solid fa-trash"></i>
                                                         </a>

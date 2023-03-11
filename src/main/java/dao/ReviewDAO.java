@@ -10,9 +10,11 @@ import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.text.SimpleDateFormat;
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
 import model.Review;
 
@@ -33,6 +35,9 @@ public class ReviewDAO {
      * @return The list of reviews for the product with the given ID.
      */
     public ArrayList<Review> getListReviewByProductID(String productID) {
+        SimpleDateFormat inputFormat = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss.SSS");
+        SimpleDateFormat outputFormat = new SimpleDateFormat("yyyy-MM-dd HH:mm");
+        
         try {
             // Create the SQL query to get the reviews for the given product ID
             String query = "SELECT R.*, A.AccountName FROM [REVIEW] R JOIN [ACCOUNT] A ON R.AccountID = A.AccountID WHERE R.ProductID = ? AND R.ReplyID is null AND R.ReviewStatus = 'SUCCESS'";
@@ -42,8 +47,10 @@ public class ReviewDAO {
             rs = ps.executeQuery(); // Execute the query and store the result in a ResultSet object
             ArrayList<Review> list = new ArrayList<>(); // Create an ArrayList to store the reviews
             while (rs.next()) {
+                Date date = inputFormat.parse(rs.getString(5));
+                String outputDateStr = outputFormat.format(date);
                 // Add each review returned by the query to the ArrayList
-                list.add(new Review(rs.getString(1), rs.getInt(2), rs.getString(3), rs.getString(5), rs.getString(6), rs.getString(7), rs.getString(9)));
+                list.add(new Review(rs.getString(1), rs.getInt(2), rs.getString(3), outputDateStr, rs.getString(6), rs.getString(7), rs.getString(9)));
             }
             return list; // Return the ArrayList of reviews
         } catch (Exception e) {

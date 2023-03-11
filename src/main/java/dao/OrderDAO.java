@@ -5,11 +5,13 @@ import hash.GenerateID;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
+import java.text.SimpleDateFormat;
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.Comparator;
+import java.util.Date;
 import java.util.List;
 import model.Account;
 import model.Cart;
@@ -376,6 +378,8 @@ public class OrderDAO {
      * @return list order
      */
     public ArrayList<Order> getListOrderForChef() {
+        SimpleDateFormat inputFormat = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss.SSS");
+        SimpleDateFormat outputFormat = new SimpleDateFormat("yyyy-MM-dd HH:mm");
         try {
             String query = "SELECT [ORDER].OrderID\n"
                     + ", [ORDER].BuyerFullName\n"
@@ -394,7 +398,9 @@ public class OrderDAO {
             rs = ps.executeQuery(); // execute query
             ArrayList<Order> listOrder = new ArrayList<>(); // create list product in order
             while (rs.next()) {
-                listOrder.add(new Order(rs.getString(1), OrderStatus.valueOf(rs.getString(4)), rs.getString(3), rs.getString(2), rs.getInt(5), rs.getInt(6)));
+                Date date = inputFormat.parse(rs.getString(3));
+                String outputDateStr = outputFormat.format(date);
+                listOrder.add(new Order(rs.getString(1), OrderStatus.valueOf(rs.getString(4)), outputDateStr, rs.getString(2), rs.getInt(5), rs.getInt(6)));
                 // add new item into list order
             } // end while
             return listOrder; // return list order
@@ -411,6 +417,9 @@ public class OrderDAO {
      * @return list order
      */
     public ArrayList<Order> getListSortedOrderForChefByPriceDesc() {
+        SimpleDateFormat inputFormat = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss.SSS");
+        SimpleDateFormat outputFormat = new SimpleDateFormat("yyyy-MM-dd HH:mm");
+
         try {
             String query = "SELECT [ORDER].OrderID\n"
                     + ", [ORDER].BuyerFullName\n"
@@ -430,7 +439,9 @@ public class OrderDAO {
             rs = ps.executeQuery(); // execute query
             ArrayList<Order> listOrder = new ArrayList<>(); // create list product in order
             while (rs.next()) {
-                listOrder.add(new Order(rs.getString(1), OrderStatus.valueOf(rs.getString(4)), rs.getString(3), rs.getString(2), rs.getInt(5), rs.getInt(6)));
+                Date date = inputFormat.parse(rs.getString(3));
+                String outputDateStr = outputFormat.format(date);
+                listOrder.add(new Order(rs.getString(1), OrderStatus.valueOf(rs.getString(4)), outputDateStr, rs.getString(2), rs.getInt(5), rs.getInt(6)));
                 // add new item into list order
             } // end while
             return listOrder; // return list order
@@ -447,6 +458,9 @@ public class OrderDAO {
      * @return list order
      */
     public ArrayList<Order> getListSortedOrderForChefByPriceAsc() {
+        SimpleDateFormat inputFormat = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss.SSS");
+        SimpleDateFormat outputFormat = new SimpleDateFormat("yyyy-MM-dd HH:mm");
+
         try {
             String query = "SELECT [ORDER].OrderID\n"
                     + ", [ORDER].BuyerFullName\n"
@@ -466,7 +480,10 @@ public class OrderDAO {
             rs = ps.executeQuery(); // execute query
             ArrayList<Order> listOrder = new ArrayList<>(); // create list product in order
             while (rs.next()) {
-                listOrder.add(new Order(rs.getString(1), OrderStatus.valueOf(rs.getString(4)), rs.getString(3), rs.getString(2), rs.getInt(5), rs.getInt(6)));
+
+                Date date = inputFormat.parse(rs.getString(3));
+                String outputDateStr = outputFormat.format(date);
+                listOrder.add(new Order(rs.getString(1), OrderStatus.valueOf(rs.getString(4)), outputDateStr, rs.getString(2), rs.getInt(5), rs.getInt(6)));
                 // add new item into list order
             } // end while
             return listOrder; // return list order
@@ -484,6 +501,9 @@ public class OrderDAO {
      * @return list order
      */
     public ArrayList<Order> searchOrderByUserName(String txtSearch) {
+        SimpleDateFormat inputFormat = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss.SSS");
+        SimpleDateFormat outputFormat = new SimpleDateFormat("yyyy-MM-dd HH:mm");
+
         try {
             String query = "SELECT [ORDER].OrderID\n"
                     + ", [ORDER].BuyerFullName\n"
@@ -504,7 +524,10 @@ public class OrderDAO {
             rs = ps.executeQuery(); // execute query
             ArrayList<Order> listOrder = new ArrayList<>(); // create list product in order
             while (rs.next()) {
-                listOrder.add(new Order(rs.getString(1), OrderStatus.valueOf(rs.getString(4)), rs.getString(3), rs.getString(2), rs.getInt(5), rs.getInt(6)));
+
+                Date date = inputFormat.parse(rs.getString(3));
+                String outputDateStr = outputFormat.format(date);
+                listOrder.add(new Order(rs.getString(1), OrderStatus.valueOf(rs.getString(4)), outputDateStr, rs.getString(2), rs.getInt(5), rs.getInt(6)));
                 // add new item into list order
             } // end while
             return listOrder; // return list order
@@ -522,6 +545,9 @@ public class OrderDAO {
      * @return list order
      */
     public ArrayList<Order> searchOrderByID(String txtSearchOrderID) {
+        SimpleDateFormat inputFormat = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss.SSS");
+        SimpleDateFormat outputFormat = new SimpleDateFormat("yyyy-MM-dd HH:mm");
+
         try {
             String query = "SELECT [ORDER].OrderID\n"
                     + ", [ORDER].BuyerFullName\n"
@@ -541,7 +567,9 @@ public class OrderDAO {
             rs = ps.executeQuery(); // execute query
             ArrayList<Order> listOrder = new ArrayList<>(); // create list product in order
             while (rs.next()) {
-                listOrder.add(new Order(rs.getString(1), OrderStatus.valueOf(rs.getString(4)), rs.getString(3), rs.getString(2), rs.getInt(5), rs.getInt(6)));
+                Date date = inputFormat.parse(rs.getString(3));
+                String outputDateStr = outputFormat.format(date);
+                listOrder.add(new Order(rs.getString(1), OrderStatus.valueOf(rs.getString(4)), outputDateStr, rs.getString(2), rs.getInt(5), rs.getInt(6)));
                 // add new item into list order
             } // end while
             return listOrder; // return list order
@@ -569,6 +597,9 @@ public class OrderDAO {
      * the given chef
      */
     public ArrayList<Order> getListOrderHistoryForChef(String accountOfIDChef) {
+        SimpleDateFormat inputFormat = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss.SSS");
+        SimpleDateFormat outputFormat = new SimpleDateFormat("yyyy-MM-dd HH:mm");
+
         try { //Database query statement
             String query = "SELECT [ORDER].OrderID\n"
                     + ", [ORDER].BuyerFullName\n"
@@ -587,7 +618,9 @@ public class OrderDAO {
             rs = ps.executeQuery(); // execute query
             ArrayList<Order> listOrderHistory = new ArrayList<>(); // create list product in order
             while (rs.next()) { //Value access loop from the database
-                listOrderHistory.add(new Order(rs.getString(1), OrderStatus.valueOf(rs.getString(4)), rs.getString(3), rs.getString(2), rs.getInt(5), rs.getInt(6)));
+                Date date = inputFormat.parse(rs.getString(3));
+                String outputDateStr = outputFormat.format(date);
+                listOrderHistory.add(new Order(rs.getString(1), OrderStatus.valueOf(rs.getString(4)), outputDateStr, rs.getString(2), rs.getInt(5), rs.getInt(6)));
                 // add new item into list order
             } // end while
             return listOrderHistory; // return list order
@@ -611,6 +644,9 @@ public class OrderDAO {
      * null if there are no orders.
      */
     public ArrayList<Order> getListOrderForShip() {
+        SimpleDateFormat inputFormat = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss.SSS");
+        SimpleDateFormat outputFormat = new SimpleDateFormat("yyyy-MM-dd HH:mm");
+
         try {
             String query = "SELECT \n"
                     + "   [ORDER].OrderID, \n"
@@ -632,7 +668,9 @@ public class OrderDAO {
             rs = ps.executeQuery(); // execute query
             ArrayList<Order> listOrder = new ArrayList<>(); // create list product in order
             while (rs.next()) {
-                listOrder.add(new Order(rs.getString(1), OrderStatus.valueOf(rs.getString(4)), rs.getString(3), rs.getString(2), rs.getInt(5), rs.getInt(6)));
+                Date date = inputFormat.parse(rs.getString(3));
+                String outputDateStr = outputFormat.format(date);
+                listOrder.add(new Order(rs.getString(1), OrderStatus.valueOf(rs.getString(4)), outputDateStr, rs.getString(2), rs.getInt(5), rs.getInt(6)));
                 // add new item into list order
             } // end while
             return listOrder; // return list order
@@ -657,6 +695,8 @@ public class OrderDAO {
      * null if there are no orders.
      */
     public ArrayList<Order> getListOrderHistoryForUser(String accountID) {
+        SimpleDateFormat inputFormat = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss.SSS");
+        SimpleDateFormat outputFormat = new SimpleDateFormat("yyyy-MM-dd HH:mm");
         try { //Database query statement
             String query = "SELECT \n"
                     + "   [ORDER].OrderID, \n"
@@ -680,7 +720,9 @@ public class OrderDAO {
             rs = ps.executeQuery(); // execute query
             ArrayList<Order> listOrderHistory = new ArrayList<>(); // create list product in order
             while (rs.next()) { //Value access loop from the database
-                listOrderHistory.add(new Order(rs.getString(1), OrderStatus.valueOf(rs.getString(4)), rs.getString(3), rs.getString(2), rs.getInt(5), rs.getInt(6)));
+                Date date = inputFormat.parse(rs.getString(3));
+                String outputDateStr = outputFormat.format(date);
+                listOrderHistory.add(new Order(rs.getString(1), OrderStatus.valueOf(rs.getString(4)), outputDateStr, rs.getString(2), rs.getInt(5), rs.getInt(6)));
                 // add new item into list order
             } // end while
             return listOrderHistory; // return list order
@@ -721,6 +763,9 @@ public class OrderDAO {
      * @return list order
      */
     public ArrayList<Order> getListOrderForAdmin() {
+        SimpleDateFormat inputFormat = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss.SSS");
+        SimpleDateFormat outputFormat = new SimpleDateFormat("yyyy-MM-dd HH:mm");
+
         try {
             String query = "SELECT \n"
                     + "   [ORDER].OrderID, \n"
@@ -741,9 +786,11 @@ public class OrderDAO {
             rs = ps.executeQuery(); // execute query
             ArrayList<Order> listOrder = new ArrayList<>(); // create list product in order
             while (rs.next()) {
+                Date date = inputFormat.parse(rs.getString(3));
+                String outputDateStr = outputFormat.format(date);
                 listOrder.add(new Order(rs.getString(1),
                         OrderStatus.valueOf(rs.getString(4)),
-                        rs.getString(3),
+                        outputDateStr,
                         rs.getString(2),
                         rs.getInt(5),
                         rs.getInt(6)));
@@ -763,6 +810,8 @@ public class OrderDAO {
      * @return order of user
      */
     public Order getOrderByOrderID(String orderID) {
+        SimpleDateFormat inputFormat = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss.SSS");
+        SimpleDateFormat outputFormat = new SimpleDateFormat("yyyy-MM-dd HH:mm");
         try {
             String query = "SELECT \n"
                     + "   [ORDER].OrderID, \n"
@@ -795,7 +844,9 @@ public class OrderDAO {
             rs = ps.executeQuery(); // execute query
             Order order = null;
             while (rs.next()) {
-                order = new Order(rs.getString(1), rs.getString(7), rs.getString(6), rs.getString(2), rs.getString(3), rs.getString(4), rs.getString(5), rs.getString(8), rs.getInt(9), rs.getInt(10), rs.getInt(11));
+                Date date = inputFormat.parse(rs.getString(6));
+                String outputDateStr = outputFormat.format(date);
+                order = new Order(rs.getString(1), rs.getString(7), outputDateStr, rs.getString(2), rs.getString(3), rs.getString(4), rs.getString(5), rs.getString(8), rs.getInt(9), rs.getInt(10), rs.getInt(11));
             } // end while
             return order; // return list order
         } catch (Exception e) {
@@ -812,6 +863,9 @@ public class OrderDAO {
      * error occurs
      */
     public Order getOrderByOrderIDForShipper(String orderID) {
+        SimpleDateFormat inputFormat = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss.SSS");
+        SimpleDateFormat outputFormat = new SimpleDateFormat("yyyy-MM-dd HH:mm");
+
         try {
             //SQL query to select data from the database
             String query = "SELECT \n"
@@ -847,8 +901,10 @@ public class OrderDAO {
             rs = ps.executeQuery();
             Order order = null;
             while (rs.next()) {
+                Date date = inputFormat.parse(rs.getString(3));
+                String outputDateStr = outputFormat.format(date);
                 //Create an Order object with the retrieved data
-                order = new Order(rs.getString(1), rs.getString(7), rs.getString(6), rs.getString(2), rs.getString(3), rs.getString(4), rs.getString(5), rs.getString(8), rs.getInt(9), rs.getInt(10), rs.getInt(11));
+                order = new Order(rs.getString(1), rs.getString(7), outputDateStr, rs.getString(2), rs.getString(3), rs.getString(4), rs.getString(5), rs.getString(8), rs.getInt(9), rs.getInt(10), rs.getInt(11));
             }
             return order; //Return the Order object
         } catch (Exception e) {
@@ -916,6 +972,8 @@ public class OrderDAO {
      * @return list order
      */
     public ArrayList<Order> getListOrderForAdmin(String search) {
+        SimpleDateFormat inputFormat = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss.SSS");
+        SimpleDateFormat outputFormat = new SimpleDateFormat("yyyy-MM-dd HH:mm");
         ArrayList<Order> listOrder = new ArrayList<>(); // create list product in order
         try {
             String query = "SELECT \n"
@@ -939,9 +997,11 @@ public class OrderDAO {
             rs = ps.executeQuery(); // execute query
 
             while (rs.next()) {
+                Date date = inputFormat.parse(rs.getString(3));
+                String outputDateStr = outputFormat.format(date);
                 listOrder.add(new Order(rs.getString(1),
                         OrderStatus.valueOf(rs.getString(4)),
-                        rs.getString(3),
+                        outputDateStr,
                         rs.getString(2),
                         rs.getInt(5),
                         rs.getInt(6)));
@@ -1020,6 +1080,8 @@ public class OrderDAO {
      * the given shipper
      */
     public ArrayList<Order> getListOrderHistoryForShipper(String accountOfIDShipper) {
+        SimpleDateFormat inputFormat = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss.SSS");
+        SimpleDateFormat outputFormat = new SimpleDateFormat("yyyy-MM-dd HH:mm");
         try { //Database query statement
             String query = " SELECT \n"
                     + "   [ORDER].OrderID, \n"
@@ -1042,7 +1104,9 @@ public class OrderDAO {
             rs = ps.executeQuery(); // execute query
             ArrayList<Order> listOrderHistory = new ArrayList<>(); // create list product in order
             while (rs.next()) { //Value access loop from the database
-                listOrderHistory.add(new Order(rs.getString(1), OrderStatus.valueOf(rs.getString(4)), rs.getString(3), rs.getString(2), rs.getInt(5), rs.getInt(6)));
+                Date date = inputFormat.parse(rs.getString(3));
+                String outputDateStr = outputFormat.format(date);
+                listOrderHistory.add(new Order(rs.getString(1), OrderStatus.valueOf(rs.getString(4)), outputDateStr, rs.getString(2), rs.getInt(5), rs.getInt(6)));
                 // add new item into list order
             } // end while
             return listOrderHistory; // return list order
@@ -1076,12 +1140,4 @@ public class OrderDAO {
         return null; // return null if not order
     }
 
-    public static void main(String[] args) {
-        OrderDAO odao = new OrderDAO();
-        ArrayList<Order> listOrder;
-        listOrder = odao.searchOrderByUserName("OR0045");
-        for (Order order : listOrder) {
-            System.out.println(order.getOrderID());
-        }
-    }
 }
