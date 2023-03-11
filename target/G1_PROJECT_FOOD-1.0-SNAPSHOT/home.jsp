@@ -152,9 +152,17 @@
                                             </button>
                                         </c:if>
                                         <c:if test="${sessionScope.accountSesseion.accountID.startsWith('US')}">
-                                            <button class="btn-main ">
-                                                <a href="add-product-cart-home?accountID=${sessionScope.accountSesseion.accountID}&productID=${pr.productID}">BUY NOW</a>
-                                            </button>
+
+                                            <c:if test="${pr.productStatus eq 'SOUL_OUT'}">
+                                                <button class="btn-main " id="btn-now">
+                                                    BUY NOW
+                                                </button>
+                                            </c:if>
+                                            <c:if test="${pr.productStatus eq 'AVAILABLE'}">
+                                                <button class="btn-main ">
+                                                    <a href="add-product-cart-home?accountID=${sessionScope.accountSesseion.accountID}&productID=${pr.productID}" >BUY NOW</a>
+                                                </button>
+                                            </c:if>
                                         </c:if>
                                     </div>
                                 </div>
@@ -238,6 +246,12 @@
                 $('.carousel').carousel({
                     interval: 3000
                 });
+            });
+
+            const buyButton = document.querySelector('#btn-now');
+
+            buyButton.addEventListener('click', () => {
+                alert('The current product is sold out');
             });
         </script>
     </body>
