@@ -13,6 +13,7 @@ import jakarta.servlet.http.HttpServlet;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
 import java.util.ArrayList;
+import java.util.List;
 import model.Order;
 import model.OrderDetail;
 
@@ -35,6 +36,7 @@ public class LoadListOrdersShipController extends HttpServlet {
             throws ServletException, IOException {
         response.setContentType("text/html;charset=UTF-8");
         String accountID = request.getParameter("accountID");
+        String sortOption = request.getParameter("sort-option");
         //Create an instance of OrderDAO class
         OrderDAO odao = new OrderDAO();
         String orderID = odao.getDelivering(accountID);
@@ -45,6 +47,7 @@ public class LoadListOrdersShipController extends HttpServlet {
             //Create OrderDetailDAO object
             OrderDetailDAO ddao = new OrderDetailDAO();
             //Get list of OrderDetail objects by Order ID using OrderDetailDAO object
+
             ArrayList<OrderDetail> listOrderShip = ddao.getListOrderDetailByOrderIDForShipper(orderID);
             //Set Order object and list of OrderDetail objects as request attributes
             request.setAttribute("order", order);
@@ -54,7 +57,12 @@ public class LoadListOrdersShipController extends HttpServlet {
             request.getRequestDispatcher("orderDetailForShipper.jsp").forward(request, response);
         } else {
             //Get the list of orders that have been shipped
-            ArrayList<Order> listOrderShip = odao.getListOrderForShip();
+            List<Order> listOrderShip = odao.getListOrderForShip();
+            if (sortOption.equals("asc")) {
+                listOrderShip = odao.sortOrdersByTotalPriceAscending(listOrderShip);
+            } else if(sortOption.equals("desc")){
+                listOrderShip = odao.sortOrdersByTotalPriceDescending(listOrderShip);
+            }
             int totalPrice = 0;
             //Calculate the total order count and total price of those orders
 

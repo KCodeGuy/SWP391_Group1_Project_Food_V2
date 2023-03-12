@@ -35,9 +35,19 @@ public class LoadListUserController extends HttpServlet {
             throws ServletException, IOException {
         response.setContentType("text/html;charset=UTF-8");
         //Create a new instance of the UserDAO class
+        String sortOption = request.getParameter("sort-user");
+        
         AccountDAO udao = new AccountDAO();
+        List<Account> listUser = null;
         //Call the getListUser method from the UserDAO instance to retrieve a list of users
-        List<Account> listUser = udao.getListUser();
+        if(sortOption.equals("none")) {
+            listUser  = udao.getListUser();
+        }else if(sortOption.equals("asc")) {
+            listUser  = udao.getListUserOrderbyNameAsc();
+        }else if(sortOption.equals("desc")) {
+            listUser  = udao.getListUserOrderbyNameDesc();            
+        }
+       
         //Set the list of users as an attribute of the current request object with the key "listUser"
         request.setAttribute("listUser", listUser);
         request.setAttribute("size", listUser.size());

@@ -264,6 +264,14 @@
         <servlet-name>ReplyReviewController</servlet-name>
         <servlet-class>controller.ReplyReviewController</servlet-class>
     </servlet>
+    <servlet>
+        <servlet-name>SearchOrderForShipper</servlet-name>
+        <servlet-class>controller.SearchOrderForShipper</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>SortUserForAdminController</servlet-name>
+        <servlet-class>controller.SortUserForAdminController</servlet-class>
+    </servlet>
     <servlet-mapping>
         <servlet-name>RegisterAccount</servlet-name>
         <url-pattern>/register-account</url-pattern>
@@ -523,6 +531,14 @@
     <servlet-mapping>
         <servlet-name>ReplyReviewController</servlet-name>
         <url-pattern>/reply-review</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>SearchOrderForShipper</servlet-name>
+        <url-pattern>/seachOrderForShipper</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>SortUserForAdminController</servlet-name>
+        <url-pattern>/sortUserForAdmin</url-pattern>
     </servlet-mapping>
     <session-config>
         <session-timeout>

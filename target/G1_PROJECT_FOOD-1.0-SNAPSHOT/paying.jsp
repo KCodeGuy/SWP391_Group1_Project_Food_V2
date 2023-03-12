@@ -115,13 +115,14 @@
                             </div>
                             <div class="row">
                                 <div class="col-xs-12 col-lg-7">
-                                    <c:set var="shipFee" value="25000"></c:set>
-                                        <div class="voucher-container">
-                                            <div class="voucher-form-group">
-                                                <span class="voucher-form-label">Voucher:</span>
-                                                <input type="text" id="voucher-input" name="voucherID">                                                
-                                            </div>
-                                            <div id="voucherResult">
+                                    <%--<c:set var="shipFee" value="25000"></c:set>--%>
+                                    <div class="voucher-container">
+                                        <div class="voucher-form-group">
+                                            <span class="voucher-form-label">Voucher:</span>
+                                            <input class="voucher-from-input " type="text" id="voucher-input" name="voucherID"> 
+
+                                        </div>
+                                        <div id="voucherResult">
                                             <c:if test="${not empty sessionScope.messageVoucher}">
                                                 ${sessionScope.messageVoucher}
                                                 <% session.removeAttribute("messageVoucher"); %>
@@ -141,7 +142,6 @@
                                     <div class="voucher-form-group">
                                         <span class="voucher-form-label">Voucher discount: <div style="display: inline" id="discount"></div></span>
                                         <span class="voucher-number">
-
                                             -<div style="display: inline" id="discountPrice">0</div>đ
                                         </span>
                                     </div>
@@ -152,34 +152,34 @@
                                         </span>
                                     </div>
                                 </div>
-
-                            </div>
-                            <div class="col-xs-12 col-lg-5">
-                                <div class="form-paying-btn">
-                                    <p>
-                                        <strong>Note: </strong>Please check the your information and product to paying carefully before proceeding with the order. 
-                                        Thank you very much for choosing to place an order at Group-1-food store.
-                                        If you have any questions, please contact our hotline at 0366.777.999. We wish you good luck!
-                                    </p>
-                                    <div class="form-paying-btn-group">
-                                        <button type="Submit" class="btn-primary">
-                                            Paying
-                                        </button>
-                                        <button type="button" class="btn-main">
-                                            <a href="home">Cancel</a>
-                                        </button>
+                                <div class="col-xs-12 col-lg-5">
+                                    <div class="form-paying-btn">
+                                        <p>
+                                            <strong>Note: </strong>Please check the your information and product to paying carefully before proceeding with the order. 
+                                            Thank you very much for choosing to place an order at Group-1-food store.
+                                            If you have any questions, please contact our hotline at 0366.777.999. We wish you good luck!
+                                        </p>
+                                        <div class="form-paying-btn-group">
+                                            <button type="Submit" class="btn-primary">
+                                                Paying
+                                            </button>
+                                            <button type="button" class="btn-main">
+                                                <a href="home">Cancel</a>
+                                            </button>
+                                        </div>
                                     </div>
                                 </div>
                             </div>
+
                         </div>
                     </div>
                 </div>
             </div>
         </div>
     </form>
+
     <!-- 5. Footer  -->
     <div class="container-fluid footer">
-
         <div class="row">
             <div class="col-sm-12 col-md-4">
                 <i class="fa-solid fa-phone footer-icon"></i>

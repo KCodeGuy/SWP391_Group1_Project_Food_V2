@@ -48,7 +48,7 @@ public class LoadOrderHistoryForUserController extends HttpServlet {
         
         if (listOrderHistory != null) {
             for (Order order : listOrderHistory) {
-                if (order.getOrderStatus() == OrderStatus.DELIVERED) {
+                if (order.getOrderStatus().equals(OrderStatus.DELIVERED) ) {
                     totalPrice += order.getTotalPrice();
                 }
             }

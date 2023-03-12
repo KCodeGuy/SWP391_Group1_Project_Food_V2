@@ -36,7 +36,7 @@
                                 <div class="table-control-btn-group">
                                     <form class="sort-form" action="">
                                         <h6 class="sort-form-label">Sort order:</h6>
-                                        <select style="height: 36px; margin-top: 10px;" name="sort-product" id="sort-product">
+                                        <select style="height: 36px; margin-top: 10px;" name="sort-option" id="sort-product">
                                             <option value="asc">Price ascending</option>
                                             <option value="desc">Price descending</option>
                                         </select>
@@ -54,14 +54,16 @@
                                         </button>
                                     </div>
                                 </form>
-                                <div class="btn-group-search-add">
-                                    <div class="search-group">
-                                        <input type="text" placeholder="Enter order's ID">
-                                        <button class="btn-main btn-search">
-                                            <i class="fa-solid fa-magnifying-glass"></i>
-                                        </button>
+                                <form action="seachOrderForShipper" method="get" >
+                                    <div class="btn-group-search-add">
+                                        <div class="search-group">
+                                            <input value="${txtSearchOrder}" name="txtSearchOrder" type="text" placeholder="Enter customer's name" >
+                                            <button class="btn-main btn-search" type="submit">
+                                                <i class="fa-solid fa-magnifying-glass"></i>
+                                            </button>
+                                        </div>
                                     </div>
-                                </div>
+                                </form>
                             </div>
                         </div>
                     </div>
@@ -81,9 +83,10 @@
                                     </tr>
                                 </thead>
                                 <tbody>
+                                    <c:set var="no" value="1" />
                                     <c:forEach items="${listOrderShip}" var="os"> 
                                         <tr>
-                                            <td class="table-order">1</td>
+                                            <td class="table-order">${no}</td>
                                             <td class="table-order">${os.orderID}</td>
                                             <td class="table-name">${os.userFullName}</td>
                                             <td class="table-quantity">${os.totalQuanityProduct}</td>
@@ -94,10 +97,11 @@
                                                 <a class="table-btn-edit" href="shipper-order-detail?orderID=${os.orderID}&accountID=${sessionScope.accountSesseion.accountID}"><i class="fa-solid fa-pen-to-square"></i></a>
                                             </td> 
                                         </tr>
+                                        <c:set var="no" value="${no + 1}" />
                                     </c:forEach>
                                     <c:if test="${listOrderShip.size() == 0 }">
                                         <tr>
-                                            <td colspan="8">There are no orders to be delivered</td>
+                                            <td class="table-row-no-product" colspan="8">There are no orders is collected!</td>
                                         </tr>
                                     </c:if>
 

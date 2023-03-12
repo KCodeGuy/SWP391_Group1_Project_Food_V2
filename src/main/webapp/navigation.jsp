@@ -81,13 +81,13 @@
                                             </a>
                                         </li>
                                         <li class="nav-item">
-                                            <a class="nav-link" aria-current="page" href="admin-manage-user">
+                                            <a class="nav-link" aria-current="page" href="admin-manage-user?sort-user=none">
                                                 <i class="fa-solid fa-user-group"></i>
                                                 Manage users
                                             </a>
                                         </li>
                                         <li class="nav-item">
-                                            <a class="nav-link" aria-current="page" href="admin-manage-staff">
+                                            <a class="nav-link" aria-current="page" href="admin-manage-staff?sort-staff=none">
                                                 <i class="fa-sharp fa-solid fa-user-tie"></i>
                                                 Manage staff
                                             </a>
@@ -169,7 +169,7 @@
                                             </a>
                                         </li>
                                         <li class="nav-item">
-                                            <a class="nav-link" aria-current="page" href="shipper-manage-order?accountID=${sessionScope.accountSesseion.accountID}">
+                                            <a class="nav-link" aria-current="page" href="shipper-manage-order?accountID=${sessionScope.accountSesseion.accountID}&sort-option=none">
                                                 <i class="fa-sharp fa-solid fa-file-invoice-dollar"></i>
                                                 Pickup orders
                                             </a>

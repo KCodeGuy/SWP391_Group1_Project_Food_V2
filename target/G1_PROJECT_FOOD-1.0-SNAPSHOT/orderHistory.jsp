@@ -16,7 +16,7 @@
         <link rel="stylesheet" href="./bootstap/css/bootstrap.min.css" type="text/css">
         <link rel="stylesheet" href="./bootstap/js/bootstrap.js" type="text/javascript">
         <link rel="stylesheet" href="./assert/css/style.css" type="text/css">
-        <link rel="stylesheet" href="./assert/css/orderHistoryPage.css" type="text/css">
+        <link rel="stylesheet" href="./assert/css/orderHistory.css" type="text/css">
         <link rel="stylesheet" href="./assert/font/fontawesome-free-6.1.1-web/css/all.css" type="text/css">
         <title>Order-History</title>
     </head>
@@ -32,8 +32,9 @@
                     <div class="container">
                         <div class="row">
                             <div class="col-xs-12">
-                                <h6 class="table-header">ORDER HISTORY</h6>
+                                <h6 class="table-header">DELIVERED ORDERS</h6>
                                 <div class="table-control-btn-group">
+                                <c:if test="${featurePage != 'orderShipped'}">
                                     <form class="sort-form" action="user-order-history">
                                         <h6 class="sort-form-label">Sort order:</h6>
                                         <select style="height: 36px; margin-top: 10px;" name="sort-option" id="sort-option">
@@ -42,30 +43,34 @@
                                         </select>
                                         <input class="disabled" name="accountID" type="text" value="${sessionScope.accountSesseion.accountID}">
                                         <button type="submit" class="btn-primary btn-sort"><i class="fa-solid fa-arrow-up-a-z"></i>Sort</button>
-                                        <div class="total-quantity-group">
-                                            <h6 class="sort-form-label">Total quantity:</h6>
-                                            <button type="button" class="btn-primary total-quantity">
-                                            ${totalOrder}
-                                        </button>
-                                    </div>
-                                    <div class="total-quantity-group">
-                                        <h6 class="sort-form-label">Total revenue:</h6>
-                                        <button class="btn-primary total-quantity total-revenue" type="button">
-                                            <fmt:formatNumber type="number" pattern="###,###" value="${totalPrice}"/>đ
-                                        </button>
-                                    </div>
-                                </form>
-                                <form method="GET" action="search-user-order-history"> 
-                                    <div class="btn-group-search-add">
-                                        <div class="search-group">
-                                            <input name="txtSearchOrderID" type="text" placeholder="Enter order's ID" value="${txtSearchOrderID}">
-                                            <button class="btn-main btn-search">
-                                                <i class="fa-solid fa-magnifying-glass"></i>
-                                            </button>
-                                        </div>
-                                    </div>
-                                </form>
 
+                                    </form>
+                                </c:if>
+                                <div class="total-quantity-group">
+                                    <h6 class="sort-form-label">Total quantity:</h6>
+                                    <button type="button" class="btn-primary total-quantity">
+                                        ${totalOrder}
+                                    </button>
+                                </div>
+                                <div class="total-quantity-group">
+                                    <h6 class="sort-form-label">Total:</h6>
+                                    <button class="btn-primary total-quantity total-revenue" type="button">
+                                        <fmt:formatNumber type="number" pattern="###,###" value="${totalPrice}"/>đ
+                                    </button>
+                                </div>
+                                <c:if test="${featurePage != 'orderShipped'}">
+                                    <form method="GET" action="search-user-order-history"> 
+                                        <div class="btn-group-search-add">
+                                            <div class="search-group">
+                                                <input name="txtSearchOrderID" type="text" placeholder="Enter order's ID" value="${txtSearchOrderID}">
+                                                <input class="disabled" name="accountID" type="text" value="${sessionScope.accountSesseion.accountID}">
+                                                <button class="btn-main btn-search">
+                                                    <i class="fa-solid fa-magnifying-glass"></i>
+                                                </button>
+                                            </div>
+                                        </div>
+                                    </form>
+                                </c:if>
                             </div>
                         </div>
                     </div>
@@ -95,9 +100,9 @@
                                             <td class="table-order-date">${os.orderDate}</td>
                                             <td class="table-status">${os.orderStatus}</td>
                                             <td class="table-price"><fmt:formatNumber type="number" pattern="###,###" value="${os.totalPrice}"/>đ</td>
-                                            <td class="table-btn">
-                                                <a class="table-btn-edit" href="user-order-details?orderID=${os.orderID}&option=accept"><i class="fa-solid fa-pen-to-square"></i></a>
-                                            </td>
+                                             <td class="table-btn">
+                                                <a class="table-btn-edit" href="shipper-order-detail?orderID=${os.orderID}&accountID=${sessionScope.accountSesseion.accountID}"><i class="fa-solid fa-pen-to-square"></i></a>
+                                            </td> 
                                         </tr>
                                         <c:set var="orderNo" value="${orderNo+1}" />
                                     </c:forEach>

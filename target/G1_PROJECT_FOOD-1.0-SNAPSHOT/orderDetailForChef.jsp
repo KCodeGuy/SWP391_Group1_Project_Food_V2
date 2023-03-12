@@ -98,7 +98,13 @@
                     </div>
                     <div class="row">
                         <div class="col-xs-12">
-                            <h6 class="table-header">ORDER DETAIL FOR CHEF</h6>
+                            <c:if test="${sessionScope.accountSesseion.accountID.startsWith('CH')}">
+                                <h6 class="table-header">ORDER DETAIL FOR CHEF</h6>
+                            </c:if>
+                            <c:if test="${sessionScope.accountSesseion.accountID.startsWith('US')}">
+                                <h6 class="table-header">ORDER DETAIL</h6>
+                            </c:if>
+
                             <div class="table-control-btn-group">
                                 <form class="sort-form" action="">
                                     <div class="total-quantity-group">

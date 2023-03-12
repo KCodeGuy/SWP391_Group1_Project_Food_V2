@@ -15,6 +15,7 @@ import java.util.List;
 import model.Category;
 import model.Product;
 import model.ProductStatus;
+import paging.PagingUtil;
 
 /**
  *
@@ -59,6 +60,14 @@ public class ProductDAO {
             e.getMessage();
         }
         return null;
+    }
+    
+    public static void main(String[] args) {
+        ProductDAO pdao = new ProductDAO();
+        List<Product> list = pdao.getListProduct();
+       
+        List<Product> listProduct = PagingUtil.getPagingProducts(list, 2, 8);
+         System.out.println(listProduct.get(1).getProductID());
     }
 
     /**
@@ -513,13 +522,4 @@ public class ProductDAO {
         }
         return list;
     }
-    
-    public static void main(String[] args) {
-        ProductDAO pdao = new ProductDAO();
-        List<Product> list = pdao.getIsSaledProduct();
-        for (Product product : list) {
-            System.out.println(product.getProductID());
-        }
-    }
-
 }

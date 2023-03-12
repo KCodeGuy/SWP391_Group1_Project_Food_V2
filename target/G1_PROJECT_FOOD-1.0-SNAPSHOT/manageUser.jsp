@@ -33,9 +33,9 @@
                             <div class="col-xs-12">
                                 <h6 class="table-header">MANAGE USER</h6>
                                 <div class="table-control-btn-group">
-                                    <form class="sort-form" action="">
+                                    <form class="sort-form" action="admin-manage-user">
                                         <h6 class="sort-form-label">Sort user:</h6>
-                                        <select style="height: 36px; margin-top: 10px;" name="sort-product" id="sort-product">
+                                        <select style="height: 36px; margin-top: 10px;" name="sort-user">
                                             <option value="asc">Name ascending</option>
                                             <option value="desc">Name descending</option>
                                         </select>
@@ -44,14 +44,14 @@
                                         <div class="total-quantity-group">
                                             <h6 class="sort-form-label">Total quantity:</h6>
                                             <button class="btn-primary total-quantity">
-                                            ${size}
+                                            ${listUser.size()}
                                         </button>
                                     </div>
                                 </form>
                                 <form action="admin-search-user">
                                     <div class="btn-group-search-add">
                                         <div class="search-group">
-                                            <input type="text" name="txtSearch" placeholder="Enter user's name">
+                                            <input value="${txtSearchUsername}" type="text" name="txtSearch" placeholder="Enter user's name">
                                             <button type="submit" class="btn-main btn-search">
                                                 <i class="fa-solid fa-magnifying-glass"></i>
                                             </button>
@@ -75,9 +75,10 @@
                                     </tr>
                                 </thead>
                                 <tbody>
+                                    <c:set var="no" value="1" />
                                     <c:forEach items="${listUser}" var="lu">
                                         <tr>
-                                            <td class="table-order">1</td>
+                                            <td class="table-order">${no}</td>
                                             <td class="table-order">${lu.accountID}</td>
                                             <td class="table-name"><a href="">${lu.accountName}</a></td>
                                             <td class="table-email">
@@ -91,10 +92,11 @@
                                                         class="fa-solid fa-trash"></i></a>        
                                             </td>
                                         </tr>
+                                        <c:set var="no" value="${no + 1}" />
                                     </c:forEach>
                                     <c:if test="${listUser.size() == 0}">
                                         <tr>
-                                            <td class="table-row-no-product" colspan="5" >
+                                            <td class="table-row-no-product" colspan="6" >
                                                 ${message}
                                             </td>
                                         </tr>

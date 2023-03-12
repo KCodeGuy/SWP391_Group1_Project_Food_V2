@@ -500,7 +500,7 @@ public class OrderDAO {
      * @param sortOption
      * @return list order
      */
-    public ArrayList<Order> searchOrderByUserName(String txtSearch) {
+    public ArrayList<Order> searchOrderByUserName(String txtSearch, String status) {
         SimpleDateFormat inputFormat = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss.SSS");
         SimpleDateFormat outputFormat = new SimpleDateFormat("yyyy-MM-dd HH:mm");
 
@@ -513,14 +513,15 @@ public class OrderDAO {
                     + " SUM(([ORDER_DETAIL].OrderDPrice * (100 - [ORDER].ProductSalePercent) / 100) * [ORDER_DETAIL].OrderDQuantity) AS Price \n"
                     + "FROM [ORDER]\n"
                     + "INNER JOIN [ORDER_DETAIL] ON [ORDER].OrderID = [ORDER_DETAIL].OrderID\n"
-                    + "WHERE [ORDER].OrderStatus = 'PROCESSING' \n"
-                    + "AND [ORDER].BuyerFullName LIKE ?\n"
+                    + "WHERE [ORDER].BuyerFullName LIKE ? \n"
+                    + "AND [ORDER].OrderStatus = ? \n"
                     + "GROUP BY [ORDER].OrderID, [ORDER].BuyerFullName,[ORDER].OrderDate,[ORDER].OrderStatus\n"
                     + "ORDER BY [ORDER].OrderDate desc;"; // query select form database
 
             con = new DBContext().getConnection(); // open conect database
             ps = con.prepareStatement(query); // set account ID into query
             ps.setString(1, "%" + txtSearch + "%");
+            ps.setString(2, status);
             rs = ps.executeQuery(); // execute query
             ArrayList<Order> listOrder = new ArrayList<>(); // create list product in order
             while (rs.next()) {
@@ -544,7 +545,7 @@ public class OrderDAO {
      * @param sortOption
      * @return list order
      */
-    public ArrayList<Order> searchOrderByID(String txtSearchOrderID) {
+    public ArrayList<Order> searchOrderByID(String txtSearchOrderID, String accountID) {
         SimpleDateFormat inputFormat = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss.SSS");
         SimpleDateFormat outputFormat = new SimpleDateFormat("yyyy-MM-dd HH:mm");
 
@@ -557,13 +558,14 @@ public class OrderDAO {
                     + " SUM(([ORDER_DETAIL].OrderDPrice * (100 - [ORDER].ProductSalePercent) / 100) * [ORDER_DETAIL].OrderDQuantity) AS Price \n"
                     + "FROM [ORDER]\n"
                     + "INNER JOIN [ORDER_DETAIL] ON [ORDER].OrderID = [ORDER_DETAIL].OrderID\n"
-                    + "WHERE [ORDER].OrderID = ?\n"
+                    + "WHERE [ORDER].AccountID = ? AND [ORDER].OrderID LIKE ?\n"
                     + "GROUP BY [ORDER].OrderID, [ORDER].BuyerFullName,[ORDER].OrderDate,[ORDER].OrderStatus\n"
                     + "ORDER BY [ORDER].OrderDate desc;"; // query select form database
 
             con = new DBContext().getConnection(); // open conect database
             ps = con.prepareStatement(query); // set account ID into query
-            ps.setString(1, txtSearchOrderID);
+            ps.setString(1, accountID);
+            ps.setString(2, "%" + txtSearchOrderID + "%");
             rs = ps.executeQuery(); // execute query
             ArrayList<Order> listOrder = new ArrayList<>(); // create list product in order
             while (rs.next()) {
@@ -780,7 +782,8 @@ public class OrderDAO {
                     + "   [ORDER].OrderID, \n"
                     + "   [ORDER].BuyerFullName, \n"
                     + "   [ORDER].OrderDate, \n"
-                    + "   [ORDER].OrderStatus"; // query select form database
+                    + "   [ORDER].OrderStatus \n"
+                    + "ORDER BY [ORDER].OrderDate desc;";// query select form database
             con = new DBContext().getConnection(); // open conect database
             ps = con.prepareStatement(query); // set account ID into query
             rs = ps.executeQuery(); // execute query
@@ -901,7 +904,7 @@ public class OrderDAO {
             rs = ps.executeQuery();
             Order order = null;
             while (rs.next()) {
-                Date date = inputFormat.parse(rs.getString(3));
+                Date date = inputFormat.parse(rs.getString(6));
                 String outputDateStr = outputFormat.format(date);
                 //Create an Order object with the retrieved data
                 order = new Order(rs.getString(1), rs.getString(7), outputDateStr, rs.getString(2), rs.getString(3), rs.getString(4), rs.getString(5), rs.getString(8), rs.getInt(9), rs.getInt(10), rs.getInt(11));
@@ -911,6 +914,12 @@ public class OrderDAO {
             e.getMessage();
         }
         return null; //Return null if there is no order found
+    }
+
+    public static void main(String[] args) {
+        OrderDAO odao = new OrderDAO();
+        Order o = odao.getOrderByOrderIDForShipper("OR0007");
+        System.out.println(o.getTotalPrice());
     }
 
     /**
@@ -1092,7 +1101,7 @@ public class OrderDAO {
                     + "   SUM([ORDER_DETAIL].OrderDPrice * (100 - [ORDER].ProductSalePercent) / 100) AS Price \n"
                     + "FROM [ORDER] \n"
                     + "INNER JOIN [ORDER_DETAIL] ON [ORDER].OrderID = [ORDER_DETAIL].OrderID \n"
-                    + "WHERE [ORDER].AccIDOfShipper = ?\n"
+                    + "WHERE [ORDER].AccIDOfShipper = ? AND [ORDER].OrderStatus = 'DELIVERED'\n"
                     + "GROUP BY \n"
                     + "   [ORDER].OrderID, \n"
                     + "   [ORDER].BuyerFullName,\n"

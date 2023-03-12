@@ -40,7 +40,8 @@ public class SearchStaffController extends HttpServlet {
         List<Account> listStaff = sdao.getListStaffByName(txtSearch);
         //Set the list of staffs as an attribute of the current request object with the key "listStaff"
         request.setAttribute("listStaff", listStaff);
-        request.setAttribute("message", "Unable to find a Staff with the name containing " + txtSearch);
+        request.setAttribute("txtSearchStaff", txtSearch);
+        request.setAttribute("message", "There is no staff is collected!");
         //Forward the request and response objects to the manageStaff.jsp view for display
         request.getRequestDispatcher("manageStaff.jsp").forward(request, response);
     }

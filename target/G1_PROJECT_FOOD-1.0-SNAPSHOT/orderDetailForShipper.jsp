@@ -132,17 +132,18 @@
                                     </tr>
                                 </thead>
                                 <tbody>
+                                    <c:set var="no" value="1" />
                                     <c:forEach items="${listOrderShip}" var="o">
                                         <tr>
-                                            <td class="table-order">1</td>
+                                            <td class="table-order">${no}</td>
                                             <td class="table-img"><img src="${o.productLink}"></td>
                                             <td class="table-name"><a href="">${o.productName}</a></td>
                                             <td class="table-quantity">
                                                 ${o.orderQuantity}
                                             </td>
                                             <td class="table-price"><fmt:formatNumber type="number" pattern="###,###" value="${o.orderPrice * o.orderQuantity}"/>đ</td>
-
                                         </tr>
+                                        <c:set var="no" value="${no + 1}" />
                                     </c:forEach>
                                 </tbody>
                             </table>

@@ -512,6 +512,66 @@ public class AccountDAO {
         //If an exception is caught or if the list is empty, return null.
         return null;
     }
+    
+        /**
+     * Returns a list of all active staffs in the database.
+     *
+     * @return A list of Staff objects representing active staffs.
+     */
+    public List<Account> sortListStaffByNameDesc() {
+        try {
+            //Define a SQL query to retrieve account details for all active staffs, including role information.
+            String query = "SELECT AccountID, AccountName, AccountEmail, AccountStatus FROM ACCOUNT WHERE ([AccountID] LIKE 'CH%' OR [AccountID] LIKE 'SP%') ORDER BY  AccountName DESC";
+            con = new DBContext().getConnection(); //Open a connection to the database.
+            ps = con.prepareStatement(query); //Move query from Netbeen to SQL
+            rs = ps.executeQuery(); //Execute the query and get the result set.
+            //Create a list to hold the Staff objects that will be created from the query results.
+            List<Account> list = new ArrayList<>();
+            //Loop through the result set and create a new Staff object for each row.
+            while (rs.next()) { // Loop through creating a new staff and retrieved data
+                if (rs.getString(1).substring(0, 2).equalsIgnoreCase("SP")) {
+                    list.add(new Account(rs.getString(1), rs.getString(3), "", AccountStatus.valueOf(rs.getString(4)), rs.getString(2), "", "", "", "", "Shipper")); // add new item in list
+                } else {
+                    list.add(new Account(rs.getString(1), rs.getString(3), "", AccountStatus.valueOf(rs.getString(4)), rs.getString(2), "", "", "", "", "Chef")); // add new item in list
+                }
+            } // end while rs.next
+            return list;  //Return the list of Staff objects.
+        } catch (Exception e) {
+            e.getMessage();
+        } //End trycatch
+        //If an exception is caught or if the list is empty, return null.
+        return null;
+    }
+    
+            /**
+     * Returns a list of all active staffs in the database.
+     *
+     * @return A list of Staff objects representing active staffs.
+     */
+    public List<Account> sortListStaffByNameAsc() {
+        try {
+            //Define a SQL query to retrieve account details for all active staffs, including role information.
+            String query = "SELECT AccountID, AccountName, AccountEmail, AccountStatus FROM ACCOUNT WHERE ([AccountID] LIKE 'CH%' OR [AccountID] LIKE 'SP%') ORDER BY  AccountName ASC";
+            con = new DBContext().getConnection(); //Open a connection to the database.
+            ps = con.prepareStatement(query); //Move query from Netbeen to SQL
+            rs = ps.executeQuery(); //Execute the query and get the result set.
+            //Create a list to hold the Staff objects that will be created from the query results.
+            List<Account> list = new ArrayList<>();
+            //Loop through the result set and create a new Staff object for each row.
+            while (rs.next()) { // Loop through creating a new staff and retrieved data
+                if (rs.getString(1).substring(0, 2).equalsIgnoreCase("SP")) {
+                    list.add(new Account(rs.getString(1), rs.getString(3), "", AccountStatus.valueOf(rs.getString(4)), rs.getString(2), "", "", "", "", "Shipper")); // add new item in list
+                } else {
+                    list.add(new Account(rs.getString(1), rs.getString(3), "", AccountStatus.valueOf(rs.getString(4)), rs.getString(2), "", "", "", "", "Chef")); // add new item in list
+                }
+            } // end while rs.next
+            return list;  //Return the list of Staff objects.
+        } catch (Exception e) {
+            e.getMessage();
+        } //End trycatch
+        //If an exception is caught or if the list is empty, return null.
+        return null;
+    }
 
     /**
      * Update a staff's profile in the database with the provided information.
@@ -749,6 +809,59 @@ public class AccountDAO {
         try {
             //Define a SQL query to retrieve account details for all active users, including role information.
             String query = "SELECT AccountID, AccountName, AccountEmail, AccountStatus FROM ACCOUNT WHERE  AccountID LIKE 'US%'";
+            con = new DBContext().getConnection(); //Open a connection to the database.
+            ps = con.prepareStatement(query); //Move query from Netbeen to SQL
+            rs = ps.executeQuery(); //Execute the query and get the result set.
+            //Create a list to hold the User objects that will be created from the query results.
+            List<Account> list = new ArrayList<>();
+            //Loop through the result set and create a new User object for each row.
+            while (rs.next()) {
+                list.add(new Account(rs.getString(1), rs.getString(3), "", AccountStatus.valueOf(rs.getString(4)), rs.getString(2), "", "", "", "", ""));  //AccountName
+            } //End while
+            return list;  //Return the list of User objects.
+        } catch (Exception e) {
+            e.getMessage();
+        } //End trycatch
+        //If an exception is caught or if the list is empty, return null.
+        return null;
+    }
+    
+        /**
+     * Returns a list of all active users in the database.
+     *
+     * @return A list of User objects representing active users.
+     */
+    public List<Account> getListUserOrderbyNameDesc() {
+        try {
+            //Define a SQL query to retrieve account details for all active users, including role information.
+            String query = "SELECT AccountID, AccountName, AccountEmail, AccountStatus FROM ACCOUNT WHERE  AccountID LIKE 'US%' ORDER BY AccountName DESC";
+            con = new DBContext().getConnection(); //Open a connection to the database.
+            ps = con.prepareStatement(query); //Move query from Netbeen to SQL
+            rs = ps.executeQuery(); //Execute the query and get the result set.
+            //Create a list to hold the User objects that will be created from the query results.
+            List<Account> list = new ArrayList<>();
+            //Loop through the result set and create a new User object for each row.
+            while (rs.next()) {
+                list.add(new Account(rs.getString(1), rs.getString(3), "", AccountStatus.valueOf(rs.getString(4)), rs.getString(2), "", "", "", "", ""));  //AccountName
+            } //End while
+            return list;  //Return the list of User objects.
+        } catch (Exception e) {
+            e.getMessage();
+        } //End trycatch
+        //If an exception is caught or if the list is empty, return null.
+        return null;
+    }
+    
+    
+        /**
+     * Returns a list of all active users in the database.
+     *
+     * @return A list of User objects representing active users.
+     */
+    public List<Account> getListUserOrderbyNameAsc() {
+        try {
+            //Define a SQL query to retrieve account details for all active users, including role information.
+            String query = "SELECT AccountID, AccountName, AccountEmail, AccountStatus FROM ACCOUNT WHERE  AccountID LIKE 'US%' ORDER BY AccountName ASC";
             con = new DBContext().getConnection(); //Open a connection to the database.
             ps = con.prepareStatement(query); //Move query from Netbeen to SQL
             rs = ps.executeQuery(); //Execute the query and get the result set.

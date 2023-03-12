@@ -28,10 +28,11 @@ public class SearchOrderHistoryForUserController extends HttpServlet {
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         response.setContentType("text/html;charset=UTF-8");
-         String txtSearch = request.getParameter("txtSearchOrderID");
+        String txtSearch = request.getParameter("txtSearchOrderID");
+        String accountID = request.getParameter("accountID");
         OrderDAO odao = new OrderDAO();
         ArrayList<Order> listOrder;
-        listOrder = odao.searchOrderByID(txtSearch);
+        listOrder = odao.searchOrderByID(txtSearch, accountID);
         long totalPrice = odao.sumOfOrderPrice(listOrder);
       
         request.setAttribute("totalOrder", listOrder.size());

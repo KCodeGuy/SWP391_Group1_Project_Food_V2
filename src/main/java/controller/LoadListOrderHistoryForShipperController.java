@@ -45,6 +45,7 @@ public class LoadListOrderHistoryForShipperController extends HttpServlet {
             }
         }
         //Set the attributes for the request
+        request.setAttribute("featurePage", "orderShipped");
         request.setAttribute("totalOrder", listOrderHistory.size());
         request.setAttribute("totalPrice", totalPrice);
         request.setAttribute("listOrderHistory", listOrderHistory);

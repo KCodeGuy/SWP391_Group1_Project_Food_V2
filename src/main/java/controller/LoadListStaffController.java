@@ -33,12 +33,20 @@ public class LoadListStaffController extends HttpServlet {
             throws ServletException, IOException {
         response.setContentType("text/html;charset=UTF-8");
         //Create a new instance of the StaffDAO class
+        String sortOption = request.getParameter("sort-staff");
         AccountDAO sdao = new AccountDAO();
         //Call the getListStaff method from the StaffDAO instance to retrieve a list of staffs
-        List<Account> listStaff = sdao.getListStaff();
+        List<Account> listStaff = null;
+        if(sortOption.equals("none")) {
+            listStaff = sdao.getListStaff();
+        }else if(sortOption.equals("asc")) {
+            listStaff = sdao.sortListStaffByNameAsc();
+        }else if(sortOption.equals("desc")) {
+            listStaff = sdao.sortListStaffByNameDesc();
+        }
         //Set the list of staffs as an attribute of the current request object with the key "listStaff"
         request.setAttribute("listStaff", listStaff);//Switch to JSP page
-        request.setAttribute("message", "The staff is not found!");//display if not found
+        request.setAttribute("message", "There is no staff is collected!");//display if not found
         //Forward the request and response objects to the manageStaff.jsp view for display
         request.getRequestDispatcher("manageStaff.jsp").forward(request, response);
 

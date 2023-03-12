@@ -143,16 +143,6 @@
     position: relative;
 }
 
-.total-quantity-group::before {
-    display: block;
-    content: "";
-    width: 2px;
-    height: 40px;
-    background-color: #555;
-    top: 12px;
-    left: -12px;
-    position: absolute;
-}
 
 .total-quantity {
     width: max-content;

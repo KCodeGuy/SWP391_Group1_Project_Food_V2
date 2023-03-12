@@ -33,9 +33,9 @@
                             <div class="col-xs-12">
                                 <h6 class="table-header">MANAGE STAFF</h6>
                                 <div class="table-control-btn-group">
-                                    <form class="sort-form" action="">
+                                    <form class="sort-form" action="admin-manage-staff">
                                         <h6 class="sort-form-label">Sort staff:</h6>
-                                        <select style="height: 36px; margin-top: 10px;" name="sort-product" id="sort-product">
+                                        <select style="height: 36px; margin-top: 10px;" name="sort-staff" >
                                             <option value="asc">Name ascending</option>
                                             <option value="desc">Name descending</option>
                                         </select>
@@ -44,14 +44,14 @@
                                         <div class="total-quantity-group">
                                             <h6 class="sort-form-label">Total quantity:</h6>
                                             <button class="btn-primary total-quantity">
-                                            ${size}
+                                            ${listStaff.size()}
                                         </button>
                                     </div>
                                 </form>
                                 <form action="admin-search-staff">
                                     <div class="btn-group-search-add">
                                         <div class="search-group">
-                                            <input type="text" name="txtSearch" placeholder="Enter staff's name">
+                                            <input value="${txtSearchStaff}" type="text" name="txtSearch" placeholder="Enter staff's name">
                                             <button type="submit" class="btn-main btn-search">
                                                 <i class="fa-solid fa-magnifying-glass"></i>
                                             </button>
@@ -76,9 +76,10 @@
                                     </tr>
                                 </thead>
                                 <tbody>
+                                    <c:set var="no" value="1" />
                                     <c:forEach items="${listStaff}" var="ls">
                                         <tr>
-                                            <td class="table-order">1</td>
+                                            <td class="table-order">${no}</td>
                                             <td class="table-order">${ls.accountID}</td>
                                             <td class="table-name"><a href="">${ls.accountName}</a></td>
                                             <td class="table-email">
@@ -87,16 +88,14 @@
                                             <td class="table-name"><a href="">${ls.roleDescription}</a></td>
                                             <td class="table-name"><a href="">${ls.accountStatus}</a></td>
                                             <td class="table-btn">
-
                                                 <a class="table-btn-edit" href="staff-profile?accountID=${ls.accountID}"><i
                                                         class="fa-solid fa-pen-to-square"></i></a>
-                                                <a href="admin-delete-staff?accountID=${ls.accountID}" onclick="return showMessageDelete();"><i
-            
-            
-            
-                                                        class="fa-solid fa-trash"></i></a>        
+                                                <a href="admin-delete-staff?accountID=${ls.accountID}" onclick="return showMessageDelete();">
+                                                    <i class="fa-solid fa-trash"></i>
+                                                </a>        
                                             </td> 
                                         </tr>
+                                        <c:set var="no" value="${no + 1}" />
                                     </c:forEach>
                                     <c:if test="${listStaff.size() == 0}">
                                         <tr>

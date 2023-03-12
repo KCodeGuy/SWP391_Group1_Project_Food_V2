@@ -9,6 +9,7 @@ import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
 import java.util.ArrayList;
 import model.Order;
+import model.OrderStatus;
 
 /**
  *
@@ -31,7 +32,7 @@ public class SearchOrderForChefController extends HttpServlet {
         String txtSearch = request.getParameter("txtSearch");
         OrderDAO odao = new OrderDAO();
         ArrayList<Order> listOrder;
-        listOrder = odao.searchOrderByUserName(txtSearch);
+        listOrder = odao.searchOrderByUserName(txtSearch, String.valueOf(OrderStatus.PROCESSING));
         long totalPrice = odao.sumOfOrderPrice(listOrder);
       
         request.setAttribute("totalOrder", listOrder.size());

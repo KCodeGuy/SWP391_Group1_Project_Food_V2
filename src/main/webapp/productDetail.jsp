@@ -17,7 +17,7 @@
         <link rel="stylesheet" href="./bootstap/js/bootstrap.js" type="text/javascript">
         <link rel="stylesheet" href="./assert/css/style.css" type="text/css">
         <link rel="stylesheet" href="./assert/css/home.css" type="text/css">
-        <link rel="stylesheet" href="./assert/css/productDetailPage.css" type="text/css">
+        <link rel="stylesheet" href="./assert/css/productDetail.css" type="text/css">
         <link rel="stylesheet" href="./assert/font/fontawesome-free-6.1.1-web/css/all.css">
         <title>Product-detail</title>
 
@@ -188,28 +188,29 @@
                                                 </div>
                                             </div>
                                             <div class="review-item-group">
-                                                <a href="" class="reply-link"> <i class="fa-solid fa-reply"></i> Reply comment</a>
+                                                <a href="" class="reply-link"><i class="fa-solid fa-reply"></i> Reply comment</a>
+                                                <!--<a href="" class="btn-show-more">Show all</a>-->
                                             </div>
-                                            <div>
+                                            <div class="reply-form-container">
                                                 <form id="rating-form" action="reply-review">
                                                     <input name="productID" value="${productID}" hidden="true">
                                                     <input name="accountID" value="${sessionScope.accountSesseion.accountID}" hidden="true">
                                                     <input name="replyID" value="${rv.reviewID}" hidden="true">
                                                     <div id="cmt"></div>
-
                                                 </form> 
                                             </div>
                                         </li>
+
                                         <!-- Reply -->
                                         <c:forEach items="${rv.listReply}" var="re">
-                                            <li class="review-item">
+                                            <li class="review-item reply-list">
                                                 <div class="review-item-header">
                                                     <div class="review-item-group">
                                                         <div class="review-item-sub-group">
                                                             <i class="fa-solid fa-user option-list-user-icon"></i>
                                                             ${re.accountName}
                                                         </div>
-                                                        <c:if test="${sessionScope.accountSesseion.accountID.startsWith('AD') || sessionScope.accountSesseion.accountID == rv.accountID}">
+                                                        <c:if test="${sessionScope.accountSesseion.accountID.startsWith('AD') || sessionScope.accountSesseion.accountID == rv.accountID || sessionScope.accountSesseion.accountID == re.accountID}">
                                                             <a class="btn-delete-comment" href="user-delete-review?reviewID=${re.reviewID}&productID=${re.productID}" onclick="return showMessageDelete();"><i
                                                                     class="fa-solid fa-trash"></i>
                                                             </a>
@@ -217,7 +218,9 @@
                                                     </div>
                                                 </div>
                                                 <div class="review-item-group">
-                                                    <div class="review-item-content">${re.review}</div>
+                                                    <div class="review-item-content">
+                                                        <c:if test="${sessionScope.accountSesseion.accountID != rv.accountID || sessionScope.accountSesseion.accountID != re.accountID || rv.accountID != re.accountID}"><b>@${rv.accountName}</b></c:if>
+                                                        ${re.review}</div>
                                                     <div class="review-item-date">
                                                         <i class="fa-sharp fa-regular fa-clock"></i>
                                                         ${re.reviewDay}
@@ -225,7 +228,6 @@
                                                 </div>
                                             </li>
                                         </c:forEach>
-
                                     </c:forEach>
                                 </ul>
                             </div>
@@ -282,21 +284,17 @@
             function increment() {
                 var numberInput = document.getElementById("number");
                 var currentValue = parseInt(numberInput.value);
-
                 if (currentValue < 100) {
                     numberInput.value = currentValue + 1;
                 }
             }
-
             function decrement() {
                 var numberInput = document.getElementById("number");
                 var currentValue = parseInt(numberInput.value);
-
                 if (currentValue > 1) {
                     numberInput.value = currentValue - 1;
                 }
             }
-
             function showMessageDelete() {
                 var result = confirm("Are you sure to delete this review?");
                 if (result) {
@@ -305,16 +303,11 @@
                     return false;
                 }
             }
-
-
             var replyLink = document.querySelector(".reply-link");
-
             replyLink.addEventListener("click", function (event) {
                 event.preventDefault();
-
-
                 var htmlCode = `
-    <textarea id="review" name="review" rows="5" placeholder="Enter your feeback here!"></textarea>
+    <textarea id="review" name="review" rows="2" placeholder="Enter your feeback here!"></textarea>
     <div class="rating-btn-group">
       
         <button type="submit" class="btn-primary">Comment</button>
@@ -324,17 +317,10 @@
       </button>
     </div>
   `;
-
-
                 var cmtDiv = document.getElementById("cmt");
                 cmtDiv.innerHTML = htmlCode;
-
-
                 var cancelButton = cmtDiv.querySelector(".btn-main");
-
-
                 cancelButton.addEventListener("click", function () {
-
                     cmtDiv.innerHTML = "";
                 });
             });

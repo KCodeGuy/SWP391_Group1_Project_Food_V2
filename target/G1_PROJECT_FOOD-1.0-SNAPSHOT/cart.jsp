@@ -31,8 +31,8 @@
                         <div class="row">
                             <div class="col-xs-12">
                                 <h4 class="table-header">
-                                     <i class="fa-solid fa-cart-plus"></i>
-                                    CART</h4>
+                                    CART
+                                </h4>
                             </div>
                         </div>
                         <div class="row">
