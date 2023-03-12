@@ -19,7 +19,6 @@ hash\jni\NilLibraryLoader.class
 hash\jni\Platform$OS.class
 controller\LoadListVouchersController.class
 controller\DeleteProductInCartController.class
-controller\SearchProductInHomePage.class
 controller\LogoutController.class
 dao\ProductDAO.class
 controller\LoadListOrderHistoryForShipperController.class
@@ -85,7 +84,6 @@ controller\DeleteStaffController.class
 controller\RegisterController.class
 hash\SCryptUtil.class
 controller\ForgotPasswordController.class
-model\VoucherStatus.class
 controller\LoadStaffProfileController.class
 controller\AddProductIntoCartFromProductDetail.class
 emailHandler\EmailHandler$1.class

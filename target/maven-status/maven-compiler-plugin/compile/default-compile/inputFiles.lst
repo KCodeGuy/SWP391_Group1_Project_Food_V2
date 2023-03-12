@@ -57,11 +57,11 @@ D:\2023\[SP23]SWP391\SWP391_Group1_Project_Food_V2\src\main\java\controller\Load
 D:\2023\[SP23]SWP391\SWP391_Group1_Project_Food_V2\src\main\java\dao\OrderDetailDAO.java
 D:\2023\[SP23]SWP391\SWP391_Group1_Project_Food_V2\src\main\java\controller\LoadAcceptedOrdersChefController.java
 D:\2023\[SP23]SWP391\SWP391_Group1_Project_Food_V2\src\main\java\controller\LoginController.java
+D:\2023\[SP23]SWP391\SWP391_Group1_Project_Food_V2\src\main\java\controller\SearchProductInHomePageController.java
 D:\2023\[SP23]SWP391\SWP391_Group1_Project_Food_V2\src\main\java\controller\SearchStaffController.java
 D:\2023\[SP23]SWP391\SWP391_Group1_Project_Food_V2\src\main\java\hash\NewClass.java
 D:\2023\[SP23]SWP391\SWP391_Group1_Project_Food_V2\src\main\java\controller\ShowOrderDetailsForUserController.java
 D:\2023\[SP23]SWP391\SWP391_Group1_Project_Food_V2\src\main\java\hash\jni\Platform.java
-D:\2023\[SP23]SWP391\SWP391_Group1_Project_Food_V2\src\main\java\controller\SearchProductInHomePage.java
 D:\2023\[SP23]SWP391\SWP391_Group1_Project_Food_V2\src\main\java\controller\LogoutController.java
 D:\2023\[SP23]SWP391\SWP391_Group1_Project_Food_V2\src\main\java\controller\DeliveringOrderShipController.java
 D:\2023\[SP23]SWP391\SWP391_Group1_Project_Food_V2\src\main\java\controller\AddProductIntoCartFromHome.java
@@ -82,7 +82,6 @@ D:\2023\[SP23]SWP391\SWP391_Group1_Project_Food_V2\src\main\java\controller\Upda
 D:\2023\[SP23]SWP391\SWP391_Group1_Project_Food_V2\src\main\java\model\ProductStatus.java
 D:\2023\[SP23]SWP391\SWP391_Group1_Project_Food_V2\src\main\java\controller\UpdateUserProfileController.java
 D:\2023\[SP23]SWP391\SWP391_Group1_Project_Food_V2\src\main\java\controller\DeliveredOrderShipController.java
-D:\2023\[SP23]SWP391\SWP391_Group1_Project_Food_V2\src\main\java\model\VoucherStatus.java
 D:\2023\[SP23]SWP391\SWP391_Group1_Project_Food_V2\src\main\java\dao\VoucherDAO.java
 D:\2023\[SP23]SWP391\SWP391_Group1_Project_Food_V2\src\main\java\hash\SCryptUtil.java
 D:\2023\[SP23]SWP391\SWP391_Group1_Project_Food_V2\src\main\java\controller\UpdateStaffProfileController.java

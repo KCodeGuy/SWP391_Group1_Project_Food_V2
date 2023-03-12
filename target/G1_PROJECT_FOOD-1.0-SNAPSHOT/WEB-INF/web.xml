@@ -206,7 +206,7 @@
     </servlet>
     <servlet>
         <servlet-name>SearchProductInHomePage</servlet-name>
-        <servlet-class>controller.SearchProductInHomePage</servlet-class>
+        <servlet-class>controller.SearchProductInHomePageController</servlet-class>
     </servlet>
     <servlet>
         <servlet-name>SortProductInHomeController</servlet-name>
