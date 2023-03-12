@@ -139,7 +139,7 @@ public class ReviewDAO {
             ps.setString(7, replyID); // Replace the sixth parameter '?' in the query with the account ID of the reviewer
             ps.executeUpdate(); // Execute the query to insert the new review into the database
         } catch (Exception e) {
-            e.printStackTrace(); // Print any exceptions that occur during the insertion process
+            e.getMessage(); // Print any exceptions that occur during the insertion process
         }
     }
 

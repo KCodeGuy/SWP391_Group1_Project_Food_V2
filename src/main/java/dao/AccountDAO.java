@@ -35,42 +35,26 @@ public class AccountDAO {
      * @author Trần Đăng Khoa - CE160367
      */
     public Account loginAccount(String email, String password) {
-        String scryptPass = null;
+
         // query to check whether passed email and password is exist or not.
-        String query = "SELECT AccountPassword FROM ACCOUNT WHERE AccountEmail=? AND AccountStatus = 'ACTIVED'";
+        String query = "SELECT AccountEmail, AccountName, AccountID, AccountPassword FROM ACCOUNT WHERE AccountEmail=? AND AccountStatus = 'ACTIVED'";
         try {
             con = new DBContext().getConnection();  // open connection to SQL
             ps = con.prepareStatement(query); // move query from Netbeen to SQl
             ps.setString(1, email);         // pass entered email to the first ?.
             rs = ps.executeQuery();                 // excute query and return result to rs.
             while (rs.next()) {
-                // return an account
-                scryptPass = rs.getString(1);
+                if (scrypt.check(password, rs.getString(4))) {
+                    // return an account
+                    return new Account(rs.getString(3), rs.getString(1), "", AccountStatus.ACTIVED, rs.getString(2), "", "", "", "", "");
+                } else {
+                    return null;
+                }             
             } // end while loop of table result.
         } catch (Exception e) {
             e.getMessage();
         } // end try-catch.
-
-        if (scrypt.check(password, scryptPass)) {
-            // query to check whether passed email and password is exist or not.
-            query = "SELECT AccountEmail, AccountName, AccountID FROM ACCOUNT WHERE AccountEmail=? AND AccountStatus = 'ACTIVED'";
-            try {
-                con = new DBContext().getConnection();  // open connection to SQL
-                ps = con.prepareStatement(query); // move query from Netbeen to SQl
-                ps.setString(1, email);         // pass entered email to the first ?.
-                rs = ps.executeQuery();                 // excute query and return result to rs.
-                while (rs.next()) {
-                    // return an account
-                    return new Account(rs.getString(3), rs.getString(1), "", AccountStatus.ACTIVED, rs.getString(2), "", "", "", "", "");
-                } // end while loop of table result.
-            } catch (Exception e) {
-                e.getMessage();
-            } // end try-catch.
-            return null;
-        } else {
-            return null;
-        }
-
+        return null;
     }
 
     /**

@@ -20,7 +20,7 @@ import paging.PagingUtil;
  *
  * @author NghiaHHCE160343@fpt.edu.vn
  */
-public class SearchProductInHomePage extends HttpServlet {
+public class SearchProductInHomePageController extends HttpServlet {
    
     /** 
      * Processes requests for both HTTP <code>GET</code> and <code>POST</code> methods.
