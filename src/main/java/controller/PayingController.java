@@ -17,9 +17,13 @@ import jakarta.servlet.http.HttpServlet;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
 import jakarta.servlet.http.HttpSession;
+import java.sql.SQLException;
 import java.util.List;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import model.Account;
 import model.OrderDetail;
+import model.Voucher;
 
 /**
  *
@@ -35,25 +39,43 @@ public class PayingController extends HttpServlet {
      * @param response servlet response
      * @throws ServletException if a servlet-specific error occurs
      * @throws IOException if an I/O error occurs
+     * @throws java.sql.SQLException
      */
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
-            throws ServletException, IOException {
+            throws ServletException, IOException, SQLException {
         response.setContentType("text/html;charset=UTF-8");
         String accountID = request.getParameter("accountID");
         String voucherID = request.getParameter("voucherID");
-
+        int totalPriceCheck = Integer.parseInt(request.getParameter("totalPrice"));
+        HttpSession session = request.getSession();
         VoucherDAO vdao = new VoucherDAO();
-
-        if (voucherID != null) {
-            if (vdao.quantityOfVoucher(voucherID) < 1) {
-                HttpSession session = request.getSession();
-                session.setAttribute("messageVoucher", "Voucher quantity is not enough. Please try again later.");
+        Voucher v;
+        if (!voucherID.isEmpty()) {
+            v = vdao.getVoucherByID(voucherID);
+            if (v == null) {
+                session.setAttribute("messageVoucher", "Voucher is not exist! Please try again!");
                 response.sendRedirect(request.getHeader("referer"));
                 return;
+            } else {
+                int condition = v.getVoucherCondition();
+                if (v.getVoucherQuantity() < 1) {
+                    session.setAttribute("messageVoucher", "Voucher is not enough quantity!");
+                    response.sendRedirect(request.getHeader("referer"));
+                    return;
+                } else {
+                    if (!VoucherDAO.checkVoucherIsUsed(condition, totalPriceCheck)) {
+                        session.setAttribute("messageVoucher", "Total of order must be greater than or equal " + condition + "đ!");
+                        response.sendRedirect(request.getHeader("referer"));
+                        return;
+                    }
+                }
             }
         }
-
-        int discount = vdao.getProductSalePrecent(voucherID);
+        
+        int discount = 0;
+        if (vdao.getVoucherByID(voucherID) != null) {
+            discount = vdao.getProductSalePrecent(voucherID);
+        }
 
         String note = request.getParameter("note");
         String name = request.getParameter("name");
@@ -75,15 +97,13 @@ public class PayingController extends HttpServlet {
         List<OrderDetail> listOrderDetail = ddao.getListOrderDetailByOrderID(orderID);
         long totalPrice = 0;
         for (OrderDetail orderDetail : listOrderDetail) {
-            totalPrice += orderDetail.getOrderPrice() * orderDetail.getOrderQuantity();
+            totalPrice += orderDetail.getOrderPrice() * orderDetail.getOrderQuantity() ;
         }
 
-        eh.sendEmailOrderSuccess(name, acc.getAccountEmail(), phone, address, orderID, "PROCESSING", listOrderDetail.size(), totalPrice);
-
-        HttpSession session = request.getSession();
         int cartSize = cdao.getListCartByAccountID(accountID).size();
         session.setAttribute("cartSize", cartSize);
-        response.sendRedirect("home");
+        eh.sendEmailIsOrdered(name, acc.getAccountEmail(), phone, address, orderID, "PROCESSING", listOrderDetail.size(), discount, totalPrice);
+        request.getRequestDispatcher("home").forward(request, response);
     }
 
     // <editor-fold defaultstate="collapsed" desc="HttpServlet methods. Click on the + sign on the left to edit the code.">
@@ -98,7 +118,11 @@ public class PayingController extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        processRequest(request, response);
+        try {
+            processRequest(request, response);
+        } catch (SQLException ex) {
+            Logger.getLogger(PayingController.class.getName()).log(Level.SEVERE, null, ex);
+        }
     }
 
     /**
@@ -112,7 +136,11 @@ public class PayingController extends HttpServlet {
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        processRequest(request, response);
+        try {
+            processRequest(request, response);
+        } catch (SQLException ex) {
+            Logger.getLogger(PayingController.class.getName()).log(Level.SEVERE, null, ex);
+        }
     }
 
     /**

@@ -8,6 +8,7 @@
         <filter-name>G1FOODFilter</filter-name>
         <url-pattern>/*</url-pattern>
     </filter-mapping>
+    
     <servlet>
         <servlet-name>HomeController</servlet-name>
         <servlet-class>controller.HomeController</servlet-class>
@@ -540,9 +541,13 @@
         <servlet-name>SortUserForAdminController</servlet-name>
         <url-pattern>/sortUserForAdmin</url-pattern>
     </servlet-mapping>
+   
     <session-config>
         <session-timeout>
             30
         </session-timeout>
     </session-config>
+    <welcome-file-list>
+        <welcome-file>home.jsp</welcome-file>
+    </welcome-file-list>
 </web-app>

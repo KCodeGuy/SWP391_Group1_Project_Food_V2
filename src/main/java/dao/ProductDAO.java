@@ -1,7 +1,3 @@
-/*
- * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
- * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
- */
 package dao;
 
 import context.DBContext;
@@ -12,7 +8,6 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
-import model.Category;
 import model.Product;
 import model.ProductStatus;
 import paging.PagingUtil;
@@ -33,8 +28,8 @@ public class ProductDAO {
      * This function use to take all products in a condition other than REMOVED
      * to upload to the home page
      *
-     * @return List<Product> list of product
-     * @author Trần Dăng Khoa -  CE160367.
+     * @return List of product
+     * @author Trần Dăng Khoa - CE160367.
      */
     public List<Product> getListProduct() {
         try {
@@ -61,14 +56,6 @@ public class ProductDAO {
         }
         return null;
     }
-    
-    public static void main(String[] args) {
-        ProductDAO pdao = new ProductDAO();
-        List<Product> list = pdao.getListProduct();
-       
-        List<Product> listProduct = PagingUtil.getPagingProducts(list, 2, 8);
-         System.out.println(listProduct.get(1).getProductID());
-    }
 
     /**
      * Function get list product
@@ -76,7 +63,7 @@ public class ProductDAO {
      * This function use to take all products in a condition other than REMOVED
      * to upload to the home page
      *
-     * @return List<Product> list of product
+     * @return list of product
      */
     public List<Product> getIsSaledProduct() {
         try {
@@ -109,7 +96,7 @@ public class ProductDAO {
     /**
      * Function get list product
      *
-     * @return List<Product> list of product
+     * @return List of product
      */
     public List<Product> getListProductManagePage() {
         try {
@@ -431,7 +418,8 @@ public class ProductDAO {
     public List<Product> getListProductByCategory(String category) {
         List<Product> list = new ArrayList<>(); //list products
         try {
-            String query = "SELECT * FROM PRODUCT WHERE ProductStatus <> 'REMOVED' AND CategoryID = ?"; //query select product orther than REMOVED
+            //query select product orther than REMOVED
+            String query = "SELECT * FROM PRODUCT WHERE ProductStatus <> 'REMOVED' AND CategoryID = ?"; 
             con = new DBContext().getConnection(); // open connection to SQL           
             ps = con.prepareStatement(query); // move query from Netbeen to SQl
             ps.setString(1, category);
@@ -457,15 +445,18 @@ public class ProductDAO {
     }
 
     /**
-     * Search by name in database
+     * Retrieves a list of products whose name contains the specified search
+     * text.
      *
-     * @param category string Category
-     * @return Product name to search
+     * @param txtSearch the text to search for in product names
+     * @return a list of Product objects whose name contains the specified
+     * search text
      */
     public List<Product> getListProductByName(String txtSearch) {
         List<Product> list = new ArrayList<>(); //list products
         try {
-            String query = "SELECT * FROM PRODUCT WHERE ProductStatus <> 'REMOVED' AND ProductName LIKE ?"; //query select product orther than REMOVED
+            //query select product orther than REMOVED
+            String query = "SELECT * FROM PRODUCT WHERE ProductStatus <> 'REMOVED' AND ProductName LIKE ?"; 
             con = new DBContext().getConnection(); // open connection to SQL           
             ps = con.prepareStatement(query); // move query from Netbeen to SQl
             ps.setString(1, "%" + txtSearch + "%");
@@ -491,15 +482,18 @@ public class ProductDAO {
     }
 
     /**
-     * Sort by price in database
+     * Retrieves a list of products sorted by price in either ascending or
+     * descending order.
      *
-     * @param category string Category
-     * @return Product name to search
+     * @param txtSort the text indicating the sort order ("ASC" for ascending or
+     * "DESC" for descending)
+     * @return a list of Product objects sorted by price in the specified order
      */
     public List<Product> getListProductOrderByPrice(String txtSort) {
         List<Product> list = new ArrayList<>(); //list products
         try {
-            String query = "   SELECT * FROM PRODUCT WHERE ProductStatus <> 'REMOVED' ORDER BY ((ProductPrice * (100 - ProductSalePercent)) / 100)" + txtSort; //query select product orther than REMOVED
+            //query select product orther than REMOVED
+            String query = "   SELECT * FROM PRODUCT WHERE ProductStatus <> 'REMOVED' ORDER BY ((ProductPrice * (100 - ProductSalePercent)) / 100)" + txtSort; 
             con = new DBContext().getConnection(); // open connection to SQL           
             ps = con.prepareStatement(query); // move query from Netbeen to SQl
             rs = ps.executeQuery(); // the same with click to "excute" btn;

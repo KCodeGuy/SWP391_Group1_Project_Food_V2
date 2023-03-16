@@ -14,7 +14,6 @@ import java.util.Comparator;
 import java.util.Date;
 import java.util.List;
 import model.Account;
-import model.Cart;
 import model.Order;
 import model.OrderStatus;
 import model.Product;
@@ -30,16 +29,23 @@ public class OrderDAO {
     ResultSet rs = null; // save result query
 
     /**
-     * This function to create order
+     * Creates a new order in the database with the specified order details.
      *
-     * @param orderNote Note of order
-     * @param accountID Account ID of user
-     * @param accountName Name of user
-     * @param accountPhone Phone of user
-     * @param accountAddress Address of user
-     * @param voucherID ID of voucher
-     * @param productSalePercent Product sale percent
-     * @return true if create successful, false if can not create
+     * @param orderNote a string containing the order note
+     * @param accountID a string containing the ID of the account associated
+     * with the order
+     * @param accountName a string containing the name of the account associated
+     * with the order
+     * @param accountPhone a string containing the phone number of the account
+     * associated with the order
+     * @param accountAddress a string containing the address of the account
+     * associated with the order
+     * @param voucherID a string containing the ID of the voucher used for the
+     * order, if any
+     * @param productSalePercent an integer value indicating the percentage of
+     * discount applied to the products in the order
+     * @return a Boolean value indicating whether the order was successfully
+     * created in the database
      */
     public boolean createOrder(String orderNote, String accountID, String accountName, String accountPhone, String accountAddress, String voucherID, int productSalePercent) {
         LocalDateTime now = LocalDateTime.now();
@@ -70,15 +76,15 @@ public class OrderDAO {
     }
 
     /**
-     * This function get list product have status is pending
+     * This function get top 5 best product from start date to end date
      *
-     * @param startDate start date in range passed to statistic -(String).
-     * @param endDate end date in range passed to statistic -(String).
-     * @return list of 5 products is bought at most in range.
-     * @author Trần Đăng Khoa - CE160367
+     * @param startDate the start date in range is selected by admin.
+     * @param endDate the end date in range is selected by admin.
+     * @return list of top 5 product is buy at most - List
      */
     public ArrayList<Product> getTop5BestSellerProducts(String startDate, String endDate) {
         try {
+            // query to insert to database get top 5 best products.
             String query = "SELECT TOP 5\n"
                     + "    P.ProductID,\n"
                     + "    P.ProductName,\n"
@@ -121,15 +127,16 @@ public class OrderDAO {
     }
 
     /**
-     * This function get list product have status is pending
+     * This function get top 5 best customer. It means they spending at most
+     * money from start date to end date
      *
-     * @param startDate
-     * @param endDate
-     * @return list order
-     * @author Trần Đăng Khoa - CE160367
+     * @param startDate the start date in range is selected by admin.
+     * @param endDate the end date in range is selected by admin.
+     * @return list of top 5 customer is buy at most
      */
     public ArrayList<Account> getTop5BesTCustomers(String startDate, String endDate) {
         try {
+            // query to insert to database get top 5 best customers. 
             String query = "SELECT TOP 5\n"
                     + "    A.AccountID,\n"
                     + "    A.AccountName,\n"
@@ -163,6 +170,14 @@ public class OrderDAO {
         return null; // return null if not order
     }
 
+    /**
+     * This function to get total of quantity food is sell. It means they
+     * spending at most money from start date to end date
+     *
+     * @param startDate the start date in range is selected by admin.
+     * @param endDate the end date in range is selected by admin.
+     * @return quantity of food is sell
+     */
     public int getTotalQuantityFoodSelled(String startDate, String endDate) {
         try {
             String query = "SELECT c.CategoryDescription, SUM(od.OrderDQuantity) AS Quantity\n"
@@ -188,6 +203,14 @@ public class OrderDAO {
         return 0; // return null if not order
     }
 
+    /**
+     * This function to get total of quantity drink is sell. It means they
+     * spending at most money from start date to end date
+     *
+     * @param startDate the start date in range is selected by admin.
+     * @param endDate the end date in range is selected by admin.
+     * @return quantity of drink is sell
+     */
     public int getTotalQuantityDrinkSelled(String startDate, String endDate) {
         try {
             String query = "SELECT c.CategoryDescription, SUM(od.OrderDQuantity) AS Quantity\n"
@@ -213,6 +236,14 @@ public class OrderDAO {
         return 0; // return null if not order
     }
 
+    /**
+     * This function to get total of quantity combo is sell. It means they
+     * spending at most money from start date to end date
+     *
+     * @param startDate the start date in range is selected by admin.
+     * @param endDate the end date in range is selected by admin.
+     * @return quantity of combo is sell
+     */
     public int getTotalQuantityComboSelled(String startDate, String endDate) {
         try {
             String query = "SELECT c.CategoryDescription, SUM(od.OrderDQuantity) AS Quantity\n"
@@ -238,6 +269,14 @@ public class OrderDAO {
         return 0; // return null if not order
     }
 
+    /**
+     * This function to get total of quantity soup is sell. It means they
+     * spending at most money from start date to end date
+     *
+     * @param startDate the start date in range is selected by admin.
+     * @param endDate the end date in range is selected by admin.
+     * @return quantity of soup is sell
+     */
     public int getTotalQuantitySoupSelled(String startDate, String endDate) {
         try {
             String query = "SELECT c.CategoryDescription, SUM(od.OrderDQuantity) AS Quantity\n"
@@ -263,6 +302,14 @@ public class OrderDAO {
         return 0; // return null if not order
     }
 
+    /**
+     * This function to get total of revenue is sell. It means they spending at
+     * most money from start date to end date
+     *
+     * @param startDate the start date in range is selected by admin.
+     * @param endDate the end date in range is selected by admin.
+     * @return total of revenue is sell
+     */
     public long getTotalRevenue(String startDate, String endDate) {
         try {
             // query select form database
@@ -285,6 +332,16 @@ public class OrderDAO {
         return 0; // return null if not order
     }
 
+    /**
+     * This function to get total of order by status from start date to end date
+     * with some of status as below: PROCESSING, ACCEPTED, DELIVERING, PENDING,
+     * DELIVERED.
+     *
+     * @param startDate the start date in range is selected by admin.
+     * @param endDate the end date in range is selected by admin.
+     * @param status
+     * @return total of revenue is sell
+     */
     public int getTotalOrderByStatus(String startDate, String endDate, String status) {
         try {
             // query select form database
@@ -306,6 +363,12 @@ public class OrderDAO {
         return 0; // return null if not order
     }
 
+    /**
+     * This function to get total of product is sell from start date to end date.
+     * @param startDate the start date in range is selected by admin.
+     * @param endDate the end date in range is selected by admin.
+     * @return total of product is sell 
+     */
     public long getTotalOfProductSelled(String startDate, String endDate) {
         try {
             // query select form database
@@ -328,6 +391,12 @@ public class OrderDAO {
         return 0; // return null if not order
     }
 
+    /**
+     * This function to get total of customer has been bought product from start date to end date.
+     * @param startDate the start date in range is selected by admin.
+     * @param endDate the end date in range is selected by admin.
+     * @return total of customer has been bought product 
+     */
     public int getTotalOfCustomerBought(String startDate, String endDate) {
         try {
             // query select form database
@@ -351,9 +420,9 @@ public class OrderDAO {
     }
 
     /**
-     * Get last id in table order
+     * Get last id in table order to insert into order detail.
      *
-     * @return last id
+     * @return last id of order.
      */
     public String getLastIDOfOrder() {
         String lastID = null;
@@ -375,7 +444,7 @@ public class OrderDAO {
     /**
      * This function get list product have status is pending
      *
-     * @return list order
+     * @return list order for chef can confirm.
      */
     public ArrayList<Order> getListOrderForChef() {
         SimpleDateFormat inputFormat = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss.SSS");
@@ -412,9 +481,8 @@ public class OrderDAO {
 
     /**
      * This function get list product have status is pending
-     *
-     * @param sortOption
-     * @return list order
+     * 
+     * @return list order is sorted be descending.
      */
     public ArrayList<Order> getListSortedOrderForChefByPriceDesc() {
         SimpleDateFormat inputFormat = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss.SSS");
@@ -435,7 +503,6 @@ public class OrderDAO {
 
             con = new DBContext().getConnection(); // open conect database
             ps = con.prepareStatement(query); // set account ID into query
-//            ps.setString(1, sortOption);
             rs = ps.executeQuery(); // execute query
             ArrayList<Order> listOrder = new ArrayList<>(); // create list product in order
             while (rs.next()) {
@@ -453,9 +520,8 @@ public class OrderDAO {
 
     /**
      * This function get list product have status is pending
-     *
-     * @param sortOption
-     * @return list order
+     * 
+     * @return list order is sorted be ascending.
      */
     public ArrayList<Order> getListSortedOrderForChefByPriceAsc() {
         SimpleDateFormat inputFormat = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss.SSS");
@@ -476,7 +542,6 @@ public class OrderDAO {
 
             con = new DBContext().getConnection(); // open conect database
             ps = con.prepareStatement(query); // set account ID into query
-//            ps.setString(1, sortOption);
             rs = ps.executeQuery(); // execute query
             ArrayList<Order> listOrder = new ArrayList<>(); // create list product in order
             while (rs.next()) {
@@ -494,11 +559,11 @@ public class OrderDAO {
     }
 
     /**
-     * This function get list product have status is pending
+     * This function to search orders that contains txtSearch that is user's full name.
      *
-     * @param txtSearch
-     * @param sortOption
-     * @return list order
+     * @param txtSearch txtSearch entered by user.
+     * @param status status of order.
+     * @return list order that contains txtSearch that is user's full name.
      */
     public ArrayList<Order> searchOrderByUserName(String txtSearch, String status) {
         SimpleDateFormat inputFormat = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss.SSS");
@@ -538,12 +603,12 @@ public class OrderDAO {
         return null; // return null if not order
     }
 
-    /**
-     * This function get list product have status is pending
+   /**
+     * This function to search orders that contains txtSearch that is user's full name.
      *
-     * @param txtSearch
-     * @param sortOption
-     * @return list order
+     * @param txtSearchOrderID txtSearch entered by user.
+     * @param accountID account id of user that need to search.
+     * @return list order that contains txtSearch that is user's full name.
      */
     public ArrayList<Order> searchOrderByID(String txtSearchOrderID, String accountID) {
         SimpleDateFormat inputFormat = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss.SSS");
@@ -581,6 +646,11 @@ public class OrderDAO {
         return null; // return null if not order
     }
 
+    /**
+     * To get total of order's price
+     * @param listOrder list of order to sum
+     * @return total of order's price
+     */
     public long sumOfOrderPrice(List<Order> listOrder) {
         long sumOfOrderPrice = 0;
         for (Order order : listOrder) {
@@ -734,6 +804,11 @@ public class OrderDAO {
         return null; // return null if not order
     }
 
+    /**
+     * This function return list of sorted order by ascending
+     * @param orders list is unsorted orders.
+     * @return  list of sorted orders.
+     */
     public List<Order> sortOrdersByTotalPriceAscending(List<Order> orders) {
         // Sort orders by totalPrice attribute
         Collections.sort(orders, new Comparator<Order>() {
@@ -742,10 +817,14 @@ public class OrderDAO {
                 return o1.getTotalPrice() - o2.getTotalPrice();
             }
         });
-
         return orders;
     }
 
+     /**
+     * This function return list of sorted order by descending
+     * @param orders list is unsorted orders.
+     * @return  list of sorted orders.
+     */
     public List<Order> sortOrdersByTotalPriceDescending(List<Order> orders) {
         // Sort orders by totalPrice attribute in descending order
         Collections.sort(orders, new Comparator<Order>() {
@@ -762,7 +841,7 @@ public class OrderDAO {
      * This function get list product have status is accept reject and
      * successful
      *
-     * @return list order
+     * @return list order load to admin page.
      */
     public ArrayList<Order> getListOrderForAdmin() {
         SimpleDateFormat inputFormat = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss.SSS");
@@ -809,8 +888,8 @@ public class OrderDAO {
     /**
      * This function get order by order ID
      *
-     * @param orderID ID of order
-     * @return order of user
+     * @param orderID ID of order passed to get a specified order.
+     * @return order of user.
      */
     public Order getOrderByOrderID(String orderID) {
         SimpleDateFormat inputFormat = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss.SSS");
@@ -914,12 +993,6 @@ public class OrderDAO {
             e.getMessage();
         }
         return null; //Return null if there is no order found
-    }
-
-    public static void main(String[] args) {
-        OrderDAO odao = new OrderDAO();
-        Order o = odao.getOrderByOrderIDForShipper("OR0007");
-        System.out.println(o.getTotalPrice());
     }
 
     /**

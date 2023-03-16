@@ -7,6 +7,7 @@ package model;
 public class Voucher {
 
     private String voucherID; // ID of the voucher
+    private int voucherCondition;    // store condition to use voucher
     private String voucherDescription; // Description of the voucher
     private String voucherStatus; // Status of the voucher (available, unavailable)
     private int productSalePercent; // Sale percent associated with the voucher
@@ -14,6 +15,28 @@ public class Voucher {
     private String voucherStartDay; // start day voucher
     private String voucherEndDay; // end day voucher
 
+    /**
+     *
+     * @param voucherID
+     * @param voucherCondition
+     * @param voucherDescription
+     * @param voucherStatus
+     * @param productSalePercent
+     * @param voucherQuantity
+     * @param voucherStartDay
+     * @param voucherEndDay
+     */
+    public Voucher(String voucherID, int voucherCondition, String voucherDescription, String voucherStatus, int productSalePercent, int voucherQuantity, String voucherStartDay, String voucherEndDay) {
+        this.voucherID = voucherID;
+        this.voucherCondition = voucherCondition;
+        this.voucherDescription = voucherDescription;
+        this.voucherStatus = voucherStatus;
+        this.productSalePercent = productSalePercent;
+        this.voucherQuantity = voucherQuantity;
+        this.voucherStartDay = voucherStartDay;
+        this.voucherEndDay = voucherEndDay;
+    }
+    
     /**
      * Constructor with parameter voucherID, voucherDescription, voucherStatus,
      * and productSalePercent
@@ -155,5 +178,23 @@ public class Voucher {
     public void setProductSalePercent(int productSalePercent) {
         this.productSalePercent = productSalePercent;
     }
+
+    /**
+     * To get voucher condition
+     * @return condition of voucher 
+     */
+    public int getVoucherCondition() {
+        return voucherCondition;
+    }
+
+    /**
+     * To set new condition to voucher.
+     * @param voucherCondition of voucher.
+     */
+    public void setVoucherCondition(int voucherCondition) {
+        this.voucherCondition = voucherCondition;
+    }
+    
+    
 
 }

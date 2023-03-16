@@ -14,8 +14,9 @@
         <meta http-equiv="X-UA-Compatible" content="IE=edge">
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
         <link rel="stylesheet" href="./bootstap/css/bootstrap.min.css" type="text/css">
-        <link rel="stylesheet" href="./assert/css/style.css" type="text/css">
+        <link rel="stylesheet" href="./assert/css/base.css" type="text/css">
         <link rel="stylesheet" href="./assert/css/home.css" type="text/css">
+        <link rel="stylesheet" href="./assert/css/reponsive.css" type="text/css">
         <link rel="stylesheet" href="./assert/font/fontawesome-free-6.1.1-web/css/all.css" type="text/css">
         <title>Home-Page</title>
     </head>
@@ -82,19 +83,19 @@
                                             <div class="voucher-group"> 
                                                 <img class="voucher-img" src="./assert/img/voucher.png " alt="alt"/>
                                                 <div class="voucher-sub-group">
-                                                    <h5 class="voucher-name">Woman day voucher</h5>
+                                                    <h5 class="voucher-name">G1-Food's Voucher</h5>
                                                     <div class="voucher-group">
                                                         <div class="voucher-group">
                                                             <i class="fa-sharp fa-solid fa-key id-icon"></i>
                                                             <span class="voucher-id">${list4Voucher.voucherID}</span>
                                                         </div>
-                                                        <span class="voucher-discount">-${list4Voucher.productSalePercent}k</span>
+                                                        <span class="voucher-discount">-${list4Voucher.productSalePercent}%</span>
                                                     </div>
                                                     <h6 class="voucher-end-date">
-                                                        To: <b>${list4Voucher.voucherEndDay} -12PM</b>
+                                                        To: <b>${list4Voucher.voucherEndDay}</b>
                                                     </h6>
                                                     <h6 class="voucher-end-date">
-                                                        Remain quantity: ${list4Voucher.voucherQuantity}
+                                                        Remain quantity: <b>${list4Voucher.voucherQuantity}</b>
                                                     </h6>
                                                 </div>
                                             </div>
@@ -127,7 +128,11 @@
                                         <c:if test="${pr.productSalePercent != 0}">
                                             <div class="card-sale-percent"><span>-${pr.productSalePercent}%</span></div>
                                         </c:if>
-                                        <div class="card-sold-out"><span>${pr.productStatus}</span></div>
+                                        <c:if test="${pr.productStatus eq 'SOUL_OUT'}">
+                                            <div class="card-sold-out">
+                                                <span>SOLD-OUT</span>
+                                            </div>  
+                                        </c:if>
                                         <h5 class="card-title"><a href="product-detail?productID=${pr.productID}">
 
                                                 ${pr.productName}</a>
@@ -147,15 +152,21 @@
                                             </div>
                                         </div>
                                         <c:if test="${sessionScope.accountSesseion.accountID == null}">
-                                            <button class="btn-main ">
-                                                <a href="login.jsp">BUY NOW</a>
-                                            </button>
+                                            <c:if test="${pr.productStatus eq 'SOUL_OUT'}">
+                                                <button class="btn-main btn-sold-out" id="btn-now" disabled>
+                                                    SOLD-OUT
+                                                </button>
+                                            </c:if>
+                                            <c:if test="${pr.productStatus eq 'AVAILABLE'}">
+                                                <button class="btn-main ">
+                                                    <a href="login.jsp" >BUY NOW</a>
+                                                </button>
+                                            </c:if>
                                         </c:if>
                                         <c:if test="${sessionScope.accountSesseion.accountID.startsWith('US')}">
-
                                             <c:if test="${pr.productStatus eq 'SOUL_OUT'}">
-                                                <button class="btn-main " id="btn-now">
-                                                    BUY NOW
+                                                <button class="btn-main btn-sold-out" id="btn-now" disabled>
+                                                    SOLD-OUT
                                                 </button>
                                             </c:if>
                                             <c:if test="${pr.productStatus eq 'AVAILABLE'}">

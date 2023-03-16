@@ -12,10 +12,14 @@ import jakarta.servlet.ServletException;
 import jakarta.servlet.http.HttpServlet;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
+import java.sql.SQLException;
 import java.util.ArrayList;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javax.json.Json;
 import javax.json.JsonObject;
 import model.Cart;
+import model.Voucher;
 
 /**
  *
@@ -33,27 +37,29 @@ public class UseVoucherController extends HttpServlet {
      * @throws IOException if an I/O error occurs
      */
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
-            throws ServletException, IOException {
-        String voucher = request.getParameter("voucherID");
+            throws ServletException, IOException, SQLException {
+        String voucherID = request.getParameter("voucherID");
         String accountID = request.getParameter("accountID");
+        int totalPriceCheck = Integer.parseInt(request.getParameter("totalPrice"));
         CartDAO cdao = new CartDAO();
         ArrayList<Cart> listCart = cdao.getListCartByAccountID(accountID);
         int totalPrice = 0;
+
+        VoucherDAO vdao = new VoucherDAO();
+        Voucher v = vdao.getVoucherByID(voucherID);
+        int condition = v.getVoucherCondition();
         if (!listCart.isEmpty()) {
             for (Cart c : listCart) {
                 totalPrice += ((c.getProductPrice() * (100 - c.getProductSalePercent())) / 100 * c.getCartQuantity());
             }
         }
 
-        VoucherDAO vdao = new VoucherDAO();
-        int discount = vdao.getProductSalePrecent(voucher);
-
+        int discount = vdao.getProductSalePrecent(voucherID);
         JsonObject json = Json.createObjectBuilder()
                 .add("discount", discount)
-                .add("discountPrice", (totalPrice * discount)/100)
-                .add("totalPrice", totalPrice - (totalPrice * discount)/100)
+                .add("discountPrice", (totalPrice * discount) / 100)
+                .add("totalPrice", totalPrice - (totalPrice * discount) / 100)
                 .build();
-
         response.setContentType("application/json");
 
         PrintWriter out = response.getWriter();
@@ -73,7 +79,11 @@ public class UseVoucherController extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        processRequest(request, response);
+        try {
+            processRequest(request, response);
+        } catch (SQLException ex) {
+            Logger.getLogger(UseVoucherController.class.getName()).log(Level.SEVERE, null, ex);
+        }
     }
 
     /**
@@ -87,7 +97,11 @@ public class UseVoucherController extends HttpServlet {
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        processRequest(request, response);
+        try {
+            processRequest(request, response);
+        } catch (SQLException ex) {
+            Logger.getLogger(UseVoucherController.class.getName()).log(Level.SEVERE, null, ex);
+        }
     }
 
     /**

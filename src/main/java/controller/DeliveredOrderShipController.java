@@ -4,13 +4,20 @@
  */
 package controller;
 
+import dao.AccountDAO;
 import dao.OrderDAO;
+import dao.OrderDetailDAO;
+import emailHandler.EmailHandler;
 import java.io.IOException;
 import java.io.PrintWriter;
 import jakarta.servlet.ServletException;
 import jakarta.servlet.http.HttpServlet;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
+import java.util.List;
+import model.Account;
+import model.Order;
+import model.OrderDetail;
 
 /**
  *
@@ -35,8 +42,20 @@ public class DeliveredOrderShipController extends HttpServlet {
         
         OrderDAO odao = new OrderDAO(); // create orderDAO
         odao.deliveredOrderByOrderID(accountID,orderID);
+        EmailHandler eh = new EmailHandler();
+        AccountDAO adao = new AccountDAO();
         
-        response.sendRedirect("shipper-manage-order");
+        Order order = odao.getOrderByOrderID(orderID);
+        OrderDetailDAO ddao = new OrderDetailDAO();
+        
+        Account acc = adao.getAccountByID(order.getAccountID());
+        List<OrderDetail> listOrderDetail = ddao.getListOrderDetailByOrderID(orderID);
+        long totalPrice = 0;
+        for (OrderDetail orderDetail : listOrderDetail) {
+            totalPrice += orderDetail.getOrderPrice() * orderDetail.getOrderQuantity();
+        }
+        eh.sendEmailIsDelivered(order.getUserFullName(),acc.getAccountEmail() , orderID, listOrderDetail.size(), totalPrice);
+        response.sendRedirect("shipper-manage-order?accountID=" +accountID + "&sort-option=none");
     }
 
     // <editor-fold defaultstate="collapsed" desc="HttpServlet methods. Click on the + sign on the left to edit the code.">

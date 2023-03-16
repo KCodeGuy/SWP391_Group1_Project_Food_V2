@@ -13,7 +13,7 @@
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
         <link rel="stylesheet" href="./bootstap/css/bootstrap.min.css" type="text/css" >
         <link rel="stylesheet" href="./bootstap/js/bootstrap.js" type="text/javascript" >
-        <link rel="stylesheet" href="./assert/css/style.css" type="text/css" >
+        <link rel="stylesheet" href="./assert/css/base.css" type="text/css" >
         <link rel="stylesheet" href="./assert/css/formApplicationDetailsForAdmin.css" type="text/css" >
         <link rel="stylesheet" href="./assert/font/fontawesome-free-6.1.1-web/css/all.css" type="text/css" >
         <title> Form-Application-Details</title>
@@ -53,7 +53,7 @@
 
                         <div class="form-control-group">
                             <h4 class="form-text-label">Address:</h4>
-                            <input type="text" id="address" name="address" placeholder="An bình, ninh kiều, cần thơ" value="${staff.accountAddress}" readonly>
+                            <input type="text" id="address" name="address" value="${staff.accountAddress}" readonly>
                             <div class="alert-warning" id="txtAddressMessage"></div>
                         </div>
 
@@ -79,7 +79,7 @@
             <jsp:include page="footer.jsp"></jsp:include>
         </div>
         <script src="jquery/Jquery.js" type="text/javascript" ></script>
-        <script src="jquery/formApplication.js" type="text/javascript" ></script>
+        <!--<script src="jquery/formApplication.js" type="text/javascript" ></script>-->
     </body>
 </html>
 

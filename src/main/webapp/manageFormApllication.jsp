@@ -3,6 +3,7 @@
     Created on : Feb 12, 2023, 2:14:42 AM
     Author     : PC
 --%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@page import="model.Account"%>
 <%@page import="java.util.List"%>
 <%@page import="java.util.List"%>
@@ -19,7 +20,7 @@
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
         <link rel="stylesheet" href="./bootstap/css/bootstrap.min.css" type="text/css" >
         <link rel="stylesheet" href="./bootstap/js/bootstrap.js" type="text/javascript" >
-        <link rel="stylesheet" href="./assert/css/style.css" type="text/css" >
+        <link rel="stylesheet" href="./assert/css/base.css" type="text/css" >
         <link rel="stylesheet" href="./assert/css/manageformapplication.css" type="text/css" >
         <link rel="stylesheet" href="./assert/font/fontawesome-free-6.1.1-web/css/all.css" type="text/css" >
         <title>Manage-Form-Application</title>
@@ -38,31 +39,15 @@
                             <div class="col-xs-12">
                                 <h6 class="table-header">LIST FORM APPLICATION</h6>
                                 <div class="table-control-btn-group">
-                                    <form class="sort-form" action="">
-
-                                        <div class="total-quantity-group">
-                                            <h6 class="sort-form-label">Total quantity:</h6>
-                                        <%
-                                            AccountDAO ad2 = new AccountDAO();
-                                            int la3 = ad2.getCountListAccount();
-
-
-                                        %>
-                                        <button class="btn-primary total-quantity">
-                                            <%=la3%>
-                                        </button>
-
-                                        <%
-                                        %>
-                                    </div>
-                                </form>
-                                <div class="btn-group-search-add">
-                                    <div class="search-group">
-                                        <input type="text" placeholder="Enter indicate's name">
-                                        <button class="btn-main btn-search">
-                                            <i class="fa-solid fa-magnifying-glass"></i>
-                                        </button>
-                                    </div>
+                                    <div class="total-quantity-group">
+                                        <h6 class="sort-form-label">Total quantity:</h6>
+                                    <%
+                                        AccountDAO ad = new AccountDAO();
+                                        List<Account> listFormApplication = ad.getListFormApplication();
+                                    %>
+                                    <button class="btn-primary total-quantity">
+                                        <%=listFormApplication.size()%>
+                                    </button>
                                 </div>
                             </div>
                         </div>
@@ -82,33 +67,21 @@
 
                                 </thead>
                                 <tbody>
-                                      <!-- display information in the form of a list on the page -->
-                                    <%
-                                        AccountDAO ad = new AccountDAO();
-                                        List<Account> la = ad.getListAccount();
+                                    <!-- display information in the form of a list on the page -->
 
-                                        for (int idx = 0; idx < la.size(); idx++) {
-
-                                    %>
-                                    <tr>
-                                        <td class="table-order"><%= idx + 1%></td>
-                                        <td class="table-id"><%= la.get(idx).getAccountID()%></td>
-                                        <td class="table-name"><a href=""><%= la.get(idx).getAccountName()%></a></td>
-                                        <td class="table-email">
-                                            <%= la.get(idx).getAccountEmail()%>
-                                        </td>
-                                        <td class="table-role"><%= la.get(idx).getRoleDescription()%></td>
-                                        <td class="table-btn">
-                                            <a class="table-btn-edit" href="admin-application-detail?accountID=<%= la.get(idx).getAccountID()%>"><i
-                                                    class="fa-solid fa-pen-to-square"></i></a>
-                                        </td>
-                                    </tr>
-
-
-                                    <%
-                                        }
-                                    %>
-
+                                    <c:forEach var="list" items="<%=listFormApplication%>">
+                                        <tr>
+                                            <td class="table-order">1</td>
+                                            <td class="table-id">${list.accountID}</td>
+                                            <td class="table-name"><a href="">${list.accountName}</a></td>
+                                            <td class="table-email">${list.accountEmail}</td>
+                                            <td class="table-role">${list.roleDescription}</td>
+                                            <td class="table-btn">
+                                                <a class="table-btn-edit" href="admin-application-detail?accountID=${list.accountID}"><i
+                                                        class="fa-solid fa-pen-to-square"></i></a>
+                                            </td>
+                                        </tr>
+                                    </c:forEach>
 
                                 </tbody>
                             </table>

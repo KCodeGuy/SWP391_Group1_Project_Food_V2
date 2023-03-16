@@ -37,20 +37,29 @@ public class UpdateVoucherController extends HttpServlet {
      */
     protected void processRequest(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException, ParseException, SQLException {
         String voucherID = request.getParameter("voucherID");
+        int voucherCondition = Integer.parseInt(request.getParameter("voucherCondition"));
         String voucherDescription = request.getParameter("voucherDescription");
         String voucherPercent = request.getParameter("voucherPercent");
         String voucherStatus = request.getParameter("voucherStatus");
         String voucherQuantity = request.getParameter("voucherQuantity");
         String voucherSDate = request.getParameter("voucherSDate");
         String voucherEDate = request.getParameter("voucherEDate");
-        
+
         SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-DD");
         if (sdf.parse(voucherSDate).after(sdf.parse(voucherEDate))) {
             request.setAttribute("DATEERROR", "Start date is before end date");
-            request.getRequestDispatcher("updateVoucher.jsp?voucherID="+voucherID+"&voucherDescription="+voucherDescription+"&voucherPercent="+voucherPercent+"&voucherStatus="+voucherStatus+"&voucherQuantity="+voucherQuantity+"&voucherSDate="+voucherSDate+"&voucherEDate="+voucherEDate).forward(request, response);
+            request.setAttribute("voucherID", voucherID);
+            request.setAttribute("voucherCondition", voucherCondition);
+            request.setAttribute("voucherDescription", "abc");
+            request.setAttribute("voucherPercent", voucherPercent);
+            request.setAttribute("voucherQuantity", voucherQuantity);
+            request.setAttribute("voucherSDate", voucherSDate);
+            request.setAttribute("voucherEDate", voucherEDate);
+            request.getRequestDispatcher("updateVoucher.jsp").forward(request, response);
         }
         Voucher vc = new Voucher(
                 voucherID.toUpperCase(),
+                voucherCondition,
                 voucherDescription,
                 voucherStatus,
                 Integer.valueOf(voucherPercent),
@@ -58,9 +67,8 @@ public class UpdateVoucherController extends HttpServlet {
                 voucherSDate,
                 voucherEDate
         );
-        if (VoucherDAO.updateVoucher(vc)) {
-            response.sendRedirect("manageVoucher.jsp");
-        }
+        VoucherDAO.updateVoucher(vc);
+        response.sendRedirect("manageVoucher.jsp");
     }
 
     // <editor-fold defaultstate="collapsed" desc="HttpServlet methods. Click on the + sign on the left to edit the code.">

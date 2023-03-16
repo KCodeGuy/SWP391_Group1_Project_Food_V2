@@ -14,7 +14,7 @@
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
         <link rel="stylesheet" href="./bootstap/css/bootstrap.min.css" type="text/css">
         <link rel="stylesheet" href="./bootstap/js/bootstrap.js" type="text/javascript">
-        <link rel="stylesheet" href="./assert/css/style.css" type="text/css"> 
+        <link rel="stylesheet" href="./assert/css/base.css" type="text/css"> 
         <link rel="stylesheet" href="./assert/css/manageUser.css" type="text/css">         
         <link rel="stylesheet" href="./assert/font/fontawesome-free-6.1.1-web/css/all.css" type="text/css">
         <title>Manage-user</title>
@@ -33,7 +33,7 @@
                             <div class="col-xs-12">
                                 <h6 class="table-header">MANAGE USER</h6>
                                 <div class="table-control-btn-group">
-                                    <form class="sort-form" action="admin-manage-user">
+                                    <form class="sort-form" action="admin-manage-user" method="POST">
                                         <h6 class="sort-form-label">Sort user:</h6>
                                         <select style="height: 36px; margin-top: 10px;" name="sort-user">
                                             <option value="asc">Name ascending</option>

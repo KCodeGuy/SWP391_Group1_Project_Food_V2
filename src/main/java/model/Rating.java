@@ -12,26 +12,50 @@ public class Rating {
     private int rating;
     private int ratingQuanity;
 
+    /**
+     *
+     */
     public Rating() {
     }
 
+    /**
+     *
+     * @param rating
+     * @param ratingQuanity
+     */
     public Rating(int rating, int ratingQuanity) {
         this.rating = rating;
         this.ratingQuanity = ratingQuanity;
     }
 
+    /**
+     *
+     * @return
+     */
     public int getRating() {
         return rating;
     }
 
+    /**
+     *
+     * @param rating
+     */
     public void setRating(int rating) {
         this.rating = rating;
     }
 
+    /**
+     *
+     * @return
+     */
     public int getRatingQuanity() {
         return ratingQuanity;
     }
 
+    /**
+     *
+     * @param ratingQuanity
+     */
     public void setRatingQuanity(int ratingQuanity) {
         this.ratingQuanity = ratingQuanity;
     }

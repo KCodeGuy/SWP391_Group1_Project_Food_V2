@@ -3,6 +3,8 @@
     Created on : Feb 12, 2023, 2:14:42 AM
     Author     : PC
 --%>
+<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
+<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
 <%@page import="model.Voucher"%>
 <%@page import="java.util.List"%>
 <%@page import="dao.VoucherDAO"%>
@@ -17,7 +19,7 @@
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
         <link rel="stylesheet" href="./bootstap/css/bootstrap.min.css" type="text/css">
         <link rel="stylesheet" href="./bootstap/js/bootstrap.js" type="text/javascript">
-        <link rel="stylesheet" href="./assert/css/style.css" type="text/css">
+        <link rel="stylesheet" href="./assert/css/base.css" type="text/css">
         <link rel="stylesheet" href="./assert/css/manageVoucherPage.css" type="text/css">
         <link rel="stylesheet" href="./assert/font/fontawesome-free-6.1.1-web/css/all.css" type="text/css">
         <title>Manage voucher</title>
@@ -34,61 +36,54 @@
                     <div class="container">
                         <div class="row">
                             <div class="col-xs-12">
-                                <% List<Voucher> list = VoucherDAO.getAllVoucher();%>
-                                <h6 class="table-header">MANAGE VOUCHER</h6>
-                                <div class="table-control-btn-group">
-                                    <form class="sort-form" action="">
-                                        <div class="total-quantity-control">
-                                            <h6 class="sort-form-label">Total quantity:</h6>
-                                            <button class="btn-primary total-quantity">
-                                                <%=list.size()%>
-                                            </button>
-                                        </div>
-                                    </form>
-                                    <div class="btn-group-search-add">
-                                        <button class="btn-primary btn-add">
-                                            <i class="fa-solid fa-plus"></i>
-                                            <a href="addVoucher.jsp">Add voucher</a>
-                                        </button>
-                                        <div class="search-group">
-                                            <input type="text" placeholder="ABC123">
-                                            <button class="btn-main btn-search">
-                                                <i class="fa-solid fa-magnifying-glass"></i>
-                                            </button>
-                                        </div>
-                                    </div>
+                            <% List<Voucher> list = VoucherDAO.getAllVoucherForAdmin();%>
+                            <h6 class="table-header">MANAGE VOUCHER</h6>
+                            <div class="table-control-btn-group">
+                                <div class="total-quantity-control">
+                                    <h6 class="sort-form-label">Total quantity:</h6>
+                                    <button class="btn-primary total-quantity">
+                                        <%=list.size()%>
+                                    </button>
                                 </div>
+                                <button class="btn-primary btn-add">
+                                    <i class="fa-solid fa-plus"></i>
+                                    <a href="addVoucher.jsp">Add voucher</a>
+                                </button>
                             </div>
                         </div>
-                        <div class="row">
-                            <div class="col-xs-12">
-                                <table class="table table-striped text-center align-middle">
-                                    <thead class="table-heading">
-                                        <tr>
-                                            <th class="table-heading-text" scope="col">No.</th>
-                                            <th class="table-heading-text" scope="col">Voucher-Code</th>
-                                            <th class="table-heading-text" scope="col">Name</th>
-                                            <th class="table-heading-text" scope="col">Discount percent</th>
-                                            <th class="table-heading-text" scope="col">Status</th>
-                                            <th class="table-heading-text" scope="col">Option</th>
-                                        </tr>
-                                    </thead>
-                                    <tbody>
-                                    
+                    </div>
+                    <div class="row">
+                        <div class="col-xs-12">
+                            <table class="table table-striped text-center align-middle">
+                                <thead class="table-heading">
+                                    <tr>
+                                        <th class="table-heading-text" scope="col">No.</th>
+                                        <th class="table-heading-text" scope="col">Voucher-Code</th>
+                                        <th class="table-heading-text" scope="col">Discount percent</th>
+                                        <th class="table-heading-text" scope="col">Condition</th>
+                                        <th class="table-heading-text" scope="col">Description</th>
+                                        <th class="table-heading-text" scope="col">Status</th>
+                                        <th class="table-heading-text" scope="col">Option</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+
                                     <c:forEach var="vc" items="<%=list%>" varStatus="count">
                                         <tr>
                                             <td class="table-order">${count.count}</td>
                                             <td class="table-code">${vc.voucherID}</td>
-                                            <td class="table-name"><a href="">${vc.voucherDescription}</a></td>
-
                                             <td class="table-sale">
                                                 ${vc.productSalePercent}
                                             </td>
+                                            <td class="table-code">
+                                                <fmt:formatNumber type="number" pattern="###,###" value="${vc.voucherCondition}"/>đ
+                                            </td>
+                                            <td class="table-name"><a href="">${vc.voucherDescription}</a></td>
                                             <td class="table-status">
                                                 ${vc.voucherStatus}
                                             </td>
                                             <td class="table-btn">
-                                                <a class="table-btn-edit" href="updateVoucher.jsp?voucherID=${vc.voucherID}&voucherDescription=${vc.voucherDescription}&voucherPercent=${vc.productSalePercent}&voucherStatus=${vc.voucherStatus}&voucherQuantity=${vc.voucherQuantity}&voucherSDate=${vc.voucherStartDay}&voucherEDate=${vc.voucherEndDay}"><i
+                                                <a class="table-btn-edit" href="updateVoucher.jsp?voucherID=${vc.voucherID}&voucherCondition=${vc.voucherCondition}&voucherDescription=${vc.voucherDescription}&voucherPercent=${vc.productSalePercent}&voucherStatus=${vc.voucherStatus}&voucherQuantity=${vc.voucherQuantity}&voucherSDate=${vc.voucherStartDay}&voucherEDate=${vc.voucherEndDay}"><i
                                                         class="fa-solid fa-pen-to-square"></i></a>
                                                 <a href="#" onclick="return showMessageDelete();"><i
                                                         class="fa-solid fa-trash"></i></a>

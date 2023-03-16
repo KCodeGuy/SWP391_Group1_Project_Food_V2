@@ -28,6 +28,12 @@ public class Account {
     public Account() {
     }
 
+    /**
+     *
+     * @param accountID
+     * @param accountName
+     * @param roleDescription
+     */
     public Account(String accountID, String accountName, String roleDescription) {
         this.accountID = accountID;
         this.accountName = accountName;
@@ -45,7 +51,6 @@ public class Account {
      * @param accountName Full name associated with the account
      * @param accountPhone Phone number associated with the account
      * @param accountAddress Address associated with the account
-     * @param roleID ID of the role associated with the account
      * @param accountDOB Birthday of staff or user
      * @param accountStartDay Day create account
      */

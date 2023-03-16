@@ -14,7 +14,7 @@
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
         <link rel="stylesheet" href="./bootstap/css/bootstrap.min.css" type="text/css">
         <link rel="stylesheet" href="./bootstap/js/bootstrap.js" type="text/javascript">
-        <link rel="stylesheet" href="./assert/css/style.css" type="text/css">
+        <link rel="stylesheet" href="./assert/css/base.css" type="text/css">
         <link rel="stylesheet" href="./assert/css/updateStaffProfilePage.css" type="text/css">
         <link rel="stylesheet" href="./assert/font/fontawesome-free-6.1.1-web/css/all.css" type="text/css">
         <title> Update user profile</title>
@@ -28,7 +28,7 @@
 
                 <div class="container-fluid container-fluid-form">
                     <div class="wrapper-form">
-                        <form action="user-update-profile" id="myForm" method="post">
+                        <form action="user-update-profile" id="myForm" method="POST">
                             <div class="form-heading-group">
                                 <i class="fa-solid fa-file-pen"></i>
                                 <h2 class="form-heading">UPDATE USER PROFILE</h2>
@@ -59,11 +59,13 @@
                             <input type="text" id="address" name="address" value="${user.accountAddress}">
                             <div class="alert-warning" id="txtAddressMessage"></div>
                         </div>
-                        <div class="form-btn-group">
-                            <button type="Submit" name="submit" class="btn-primary">Update</button>
-                            <h6 class="form-btn-separator">&nbsp;OR&nbsp;</h6>
-                            <button type="button" class="btn-main"><a href="user-profile?accountID=${sessionScope.accountSesseion.accountID}">Cancel</a></button>
-                        </div>
+                        <c:if test="${!sessionScope.accountSesseion.accountID.startsWith('AD')}">
+                            <div class="form-btn-group">
+                                <button type="Submit" name="submit" class="btn-primary">Update</button>
+                                <h6 class="form-btn-separator">&nbsp;OR&nbsp;</h6>
+                                <button type="button" class="btn-main"><a href="user-profile?accountID=${sessionScope.accountSesseion.accountID}">Cancel</a></button>
+                            </div>
+                        </c:if>
                     </form>
                 </div>
             </div>

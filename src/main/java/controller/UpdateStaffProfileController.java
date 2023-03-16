@@ -11,6 +11,7 @@ import jakarta.servlet.ServletException;
 import jakarta.servlet.http.HttpServlet;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
+import jakarta.servlet.http.HttpSession;
 import model.Account;
 
 /**
@@ -92,6 +93,10 @@ public class UpdateStaffProfileController extends HttpServlet {
         AccountDAO sdao = new AccountDAO();
         sdao.updateStaffProfile(accountID, accountName, accountPhone, accountAddress, accountStartDay,roleDescription);
         //Redirect staff to the staff profile page with the updated accountID
+        Account acc = sdao.getAccountByID(accountID);
+        HttpSession session = request.getSession();
+        session.setAttribute("accountID", accountID);
+        session.setAttribute("accountSesseion", acc);
         request.setAttribute("email", accountEmail);
         //Forward the request and response objects to the updateStaffProfile.jsp view for display.
         request.getRequestDispatcher("staff-profile?accountID=" + accountID).forward(request, response);

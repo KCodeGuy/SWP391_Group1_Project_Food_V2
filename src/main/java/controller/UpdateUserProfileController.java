@@ -11,6 +11,7 @@ import jakarta.servlet.ServletException;
 import jakarta.servlet.http.HttpServlet;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
+import jakarta.servlet.http.HttpSession;
 import model.Account;
 
 /**
@@ -79,15 +80,19 @@ public class UpdateUserProfileController extends HttpServlet {
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-         //Retrieve form data from HTTP request parameters
+        //Retrieve form data from HTTP request parameters
         String accountID = request.getParameter("accountID");
         String accountName = request.getParameter("name");
         String accountAddress = request.getParameter("address");
         String accountPhone = request.getParameter("phone");
         String userBirthday = request.getParameter("date-of-birth");
-         //Create a UserDAO object and update user profile using retrieved form data
+        //Create a UserDAO object and update user profile using retrieved form data
         AccountDAO udao = new AccountDAO();
         udao.updateUserProfile(accountID, userBirthday, accountName, accountPhone, accountAddress);
+        Account acc = udao.getAccountByID(accountID);
+        HttpSession session = request.getSession();
+        session.setAttribute("accountID", accountID);
+        session.setAttribute("accountSesseion", acc);
         //Redirect user to the user profile page with the updated accountID
         response.sendRedirect("user-profile?accountID=" + accountID);
     }

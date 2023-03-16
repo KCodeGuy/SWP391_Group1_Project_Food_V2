@@ -22,7 +22,7 @@ public class AccountDAO {
     Connection con = null;       // connect to SQL server.
     PreparedStatement ps = null; // move query from Netbeen to SQl.
     ResultSet rs = null;         // save result query.
-    SCryptUtil scrypt = new SCryptUtil();
+    SCryptUtil scrypt = new SCryptUtil(); // for encrypt data
 
     /**
      * For all actors of system login an account to system. This function will
@@ -49,7 +49,7 @@ public class AccountDAO {
                     return new Account(rs.getString(3), rs.getString(1), "", AccountStatus.ACTIVED, rs.getString(2), "", "", "", "", "");
                 } else {
                     return null;
-                }             
+                }
             } // end while loop of table result.
         } catch (Exception e) {
             e.getMessage();
@@ -387,7 +387,7 @@ public class AccountDAO {
      *
      * This function use to take Account to upload to the home page
      *
-     * @return List<Account> list of Account
+     * @return List list of Account
      */
     public List<Account> getListAccount() {
         try {
@@ -496,11 +496,41 @@ public class AccountDAO {
         //If an exception is caught or if the list is empty, return null.
         return null;
     }
-    
-        /**
-     * Returns a list of all active staffs in the database.
+
+    /**
+     * Returns a list form application is spending stats for admin can check.
      *
-     * @return A list of Staff objects representing active staffs.
+     * @return list form application 
+     */
+    public List<Account> getListFormApplication() {
+        try {
+            //Define a SQL query to retrieve account details for all active staffs, including role information.
+            String query = "SELECT AccountID, AccountName, AccountEmail, AccountStatus, AccountAddress FROM ACCOUNT WHERE (AccountID LIKE '%SP%' OR AccountID LIKE '%CH%') AND AccountStatus = 'PENDING'";
+            con = new DBContext().getConnection(); //Open a connection to the database.
+            ps = con.prepareStatement(query); //Move query from Netbeen to SQL
+            rs = ps.executeQuery(); //Execute the query and get the result set.
+            //Create a list to hold the Staff objects that will be created from the query results.
+            List<Account> list = new ArrayList<>();
+            //Loop through the result set and create a new Staff object for each row.
+            while (rs.next()) { // Loop through creating a new staff and retrieved data
+                if (rs.getString(1).substring(0, 2).equalsIgnoreCase("SP")) {
+                    list.add(new Account(rs.getString(1), rs.getString(3), "", AccountStatus.valueOf(rs.getString(4)), rs.getString(2), "", rs.getString(5), "", "", "Shipper")); // add new item in list
+                } else {
+                    list.add(new Account(rs.getString(1), rs.getString(3), "", AccountStatus.valueOf(rs.getString(4)), rs.getString(2), "", rs.getString(5), "", "", "Chef")); // add new item in list
+                }
+            } // end while rs.next
+            return list;  //Return the list of Staff objects.
+        } catch (Exception e) {
+            e.getMessage();
+        } //End trycatch
+        //If an exception is caught or if the list is empty, return null.
+        return null;
+    }
+
+    /**
+     * Sorts a list of Account objects by name in descending order.
+     *
+     * @return the sorted list of Account objects
      */
     public List<Account> sortListStaffByNameDesc() {
         try {
@@ -526,11 +556,11 @@ public class AccountDAO {
         //If an exception is caught or if the list is empty, return null.
         return null;
     }
-    
-            /**
-     * Returns a list of all active staffs in the database.
+
+    /**
+     * Sorts a list of Account objects by name in ascending order.
      *
-     * @return A list of Staff objects representing active staffs.
+     * @return the sorted list of Account objects
      */
     public List<Account> sortListStaffByNameAsc() {
         try {
@@ -563,10 +593,8 @@ public class AccountDAO {
      * @param accountID The ID of the account whose profile is being updated.
      * @param accountName The staff's name associated with the account.
      * @param accountPhone The staff's phone number associated with the account.
-     * @param accountStartDay The staff's phone number associated with the
-     * account.
-     * @param roleDescription The staff's phone number associated with the
-     * account.
+     * @param accountStartDay The staff's phone number associated with the account.
+     * @param roleDescription The staff's phone number associated with the account.
      * @param accountAddress The staff's address associated with the account.
      */
     public void updateStaffProfile(String accountID, String accountName, String accountPhone, String accountAddress, String accountStartDay, String roleDescription) {
@@ -672,9 +700,9 @@ public class AccountDAO {
             Account staff = null;// Initialize a new staff object
             while (rs.next()) {  // Loop through creating a new staff and retrieved data
                 if (rs.getString(1).substring(0, 2).equalsIgnoreCase("SP")) { // id is shipper
-                    staff = new Account(rs.getString(1), rs.getString(4), "", AccountStatus.PENDING, rs.getString(2), rs.getString(3), "", "", "", "Shipper"); // add new item in list
+                    staff = new Account(rs.getString(1), rs.getString(4), "", AccountStatus.PENDING, rs.getString(2), rs.getString(3), rs.getString(5), "", "", "Shipper"); // add new item in list
                 } else { // id is chef
-                    staff = new Account(rs.getString(1), rs.getString(4), "", AccountStatus.PENDING, rs.getString(2), rs.getString(3), "", "", "", "Chef"); // add new item in list
+                    staff = new Account(rs.getString(1), rs.getString(4), "", AccountStatus.PENDING, rs.getString(2), rs.getString(3), rs.getString(5), "", "", "Chef"); // add new item in list
                 }
             }//end while    
             return staff;// return the staff
@@ -809,8 +837,8 @@ public class AccountDAO {
         //If an exception is caught or if the list is empty, return null.
         return null;
     }
-    
-        /**
+
+    /**
      * Returns a list of all active users in the database.
      *
      * @return A list of User objects representing active users.
@@ -835,9 +863,8 @@ public class AccountDAO {
         //If an exception is caught or if the list is empty, return null.
         return null;
     }
-    
-    
-        /**
+
+    /**
      * Returns a list of all active users in the database.
      *
      * @return A list of User objects representing active users.

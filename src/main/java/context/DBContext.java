@@ -16,11 +16,11 @@ import java.sql.SQLException;
 public class DBContext {
 
     // local host name 
-    private static final String dbPrefix = "jdbc:sqlserver://localhost";
+    private static final String dbPrefix = "jdbc:sqlserver://LAPTOP-F7OGOM4I\\SQLEXPRESS01";
     // set port here
     private static final String dbPort = "1433";
     // database name to connect sql
-    private static final String databaseName = "G1FOOD";
+    private static final String databaseName = "G1FOOD_V5";
     // instance to for connection
     private final String instance = "";
     // user name when seting to connect
@@ -47,4 +47,8 @@ public class DBContext {
         return conn;
     }
     
+    public static void main(String[] args) {
+        DBContext db = new DBContext();
+        System.out.println(db.getConnection());
+    }
 }

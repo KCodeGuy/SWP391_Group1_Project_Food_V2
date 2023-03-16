@@ -28,7 +28,7 @@ public class LoadListVouchersController extends HttpServlet {
             throws ServletException, IOException {
         response.setContentType("text/html;charset=UTF-8");
         VoucherDAO vdao = new VoucherDAO();
-        List<Voucher> listAllVoucher = VoucherDAO.getAllVoucher();
+        List<Voucher> listAllVoucher = VoucherDAO.getAllVoucherForUser();
         request.setAttribute("listAllVoucher", listAllVoucher);
         request.getRequestDispatcher("voucher.jsp").forward(request, response);
     }

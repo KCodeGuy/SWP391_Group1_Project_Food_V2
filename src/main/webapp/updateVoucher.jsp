@@ -13,7 +13,7 @@
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
         <link rel="stylesheet" href="./bootstap/css/bootstrap.min.css" type="text/css">
         <link rel="stylesheet" href="./bootstap/js/bootstrap.js" type="text/javascript">
-        <link rel="stylesheet" href="./assert/css/style.css" type="text/css">
+        <link rel="stylesheet" href="./assert/css/base.css" type="text/css">
         <link rel="stylesheet" href="./assert/font/fontawesome-free-6.1.1-web/css/all.css" type="text/css">
         <link rel="stylesheet" href="./assert/css/updateVoucherPage.css" type="text/css">
         <title>Update Voucher</title>
@@ -41,12 +41,17 @@
                         </div>
 
                         <div class="form-control-group">
+                            <h4 class="form-text-label">Voucher's condition:</h4>
+                            <input type="text" id="voucherCondition" name="voucherCondition"
+                                   value="${param.voucherCondition}">
+                            <div class="alert-warning" id="txtVoucherConditionMessage"></div>
+                        </div>
+                        <div class="form-control-group">
                             <h4 class="form-text-label">Voucher's description:</h4>
                             <input type="text" id="voucherDescription" name="voucherDescription"
-                                   placeholder="Combo học sinh viên viên" required="" value="${param.voucherDescription}">
+                                   value="${param.voucherDescription}">
                             <div class="alert-warning" id="txtVoucherDescriptionMessage"></div>
                         </div>
-
                         <div class="form-control-group">
                             <h4 class="form-text-label">Voucher's discount percent:</h4>
                             <input type="number" id="voucherPercent" name="voucherPercent" placeholder="50" required="" value="${param.voucherPercent}" min="0" max="100">

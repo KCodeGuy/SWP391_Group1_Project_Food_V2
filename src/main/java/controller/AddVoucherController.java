@@ -37,6 +37,7 @@ public class AddVoucherController extends HttpServlet {
   protected void processRequest(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException, ParseException {
     try {
       String voucherID = request.getParameter("voucherID");
+      int voucherCondition = Integer.parseInt(request.getParameter("voucherCondition"));
       String voucherDescription = request.getParameter("voucherDescription");
       String voucherPercent = request.getParameter("voucherPercent");
       String voucherStatus = request.getParameter("voucherStatus");
@@ -52,6 +53,7 @@ public class AddVoucherController extends HttpServlet {
 
       Voucher vc = new Voucher(
         voucherID.toUpperCase(),
+        voucherCondition,
         voucherDescription,
         voucherStatus,
         Integer.valueOf(voucherPercent),

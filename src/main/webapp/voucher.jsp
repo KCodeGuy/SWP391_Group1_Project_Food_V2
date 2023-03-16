@@ -14,7 +14,7 @@
         <meta http-equiv="X-UA-Compatible" content="IE=edge">
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
         <link rel="stylesheet" href="./bootstap/css/bootstrap.min.css" type="text/css">
-        <link rel="stylesheet" href="./assert/css/style.css" type="text/css">
+        <link rel="stylesheet" href="./assert/css/base.css" type="text/css">
         <link rel="stylesheet" href="./assert/css/home.css" type="text/css">
         <link rel="stylesheet" href="./assert/font/fontawesome-free-6.1.1-web/css/all.css" type="text/css">
         <title>Home-Page</title>
@@ -45,7 +45,7 @@
                                         <div class="voucher-group"> 
                                             <img class="voucher-img" src="./assert/img/voucher.png " alt="alt"/>
                                             <div class="voucher-sub-group">
-                                                <h5 class="voucher-name">Woman day voucher</h5>
+                                                <h5 class="voucher-name">G1-Food's Voucher</h5>
                                                 <div class="voucher-group">
                                                     <div class="voucher-group">
                                                         <i class="fa-sharp fa-solid fa-key id-icon"></i>
@@ -54,10 +54,10 @@
                                                     <span class="voucher-discount">-${listAllVoucher.productSalePercent}k</span>
                                                 </div>
                                                 <h6 class="voucher-end-date">
-                                                    To: <b>${listAllVoucher.voucherEndDay} -12PM</b>
+                                                    To: <b>${listAllVoucher.voucherEndDay}</b>
                                                 </h6>
                                                 <h6 class="voucher-end-date">
-                                                    Remain quantity: ${listAllVoucher.voucherQuantity}
+                                                   <b> Remain quantity: ${listAllVoucher.voucherQuantity}</b>
                                                 </h6>
                                             </div>
                                         </div>
