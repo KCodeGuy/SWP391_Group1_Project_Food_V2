@@ -61,7 +61,7 @@
                             </div>
                             <div class="table-control-btn-group">
                                 <form class="sort-form" action="admin-sort-product">
-                                    <h6 class="sort-form-label">Sort staff:</h6>
+                                    <h6 class="sort-form-label">Sort product:</h6>
                                     <select style="height: 36px; margin-top: 10px;" name="txtSort" id="sort-product">
                                         <option value="asc" selected="${txtSort eq 'asc'}">Price ascending</option>
                                         <option value="desc" selected="${txtSort eq 'desc'}">Price descending</option>

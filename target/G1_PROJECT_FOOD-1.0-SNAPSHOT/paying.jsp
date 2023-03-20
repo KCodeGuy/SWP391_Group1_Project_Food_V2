@@ -14,8 +14,9 @@
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
         <link rel="stylesheet" href="./bootstap/css/bootstrap.min.css" type="text/css">
         <link rel="stylesheet" href="./bootstap/js/bootstrap.js" type="text/javascript">
-        <link rel="stylesheet" href="./assert/css/style.css" type="text/css">
-        <link rel="stylesheet" href="./assert/css/paying.css" type="text/css">
+        <link rel="stylesheet" href="./assert/css/base.css" type="text/css">
+        <link rel="stylesheet" href="./assert/css/payingPage.css" type="text/css">
+        <link rel="stylesheet" href="./assert/css/reponsive.css" type="text/css">
         <link rel="stylesheet" href="./assert/font/fontawesome-free-6.1.1-web/css/all.css" type="text/css">
         <title>Paying</title>
     </head>
@@ -25,7 +26,7 @@
         <!-- 1. Navigation -->
         <jsp:include page="navigation.jsp"></jsp:include>
 
-            <form action="paying" class="container-fluild table-container margin-nav-fixed" id="myForm">
+        <form action="paying" class="container-fluild table-container margin-nav-fixed" id="myForm" method="POST">
                 <div class="container">
                     <div class="row">
                         <!-- User profile paying -->
@@ -85,10 +86,10 @@
                                     <table class="table table-striped text-center align-middle">
                                         <thead class="table-heading">
                                             <tr>
-                                                <th class="table-heading-text" scope="col">No.</th>
+                                                <th class="table-heading-text table-order" scope="col">No.</th>
                                                 <th class="table-heading-text" scope="col">Picture</th>
                                                 <th class="table-heading-text" scope="col">Name</th>
-                                                <th class="table-heading-text" scope="col">Quantity</th>
+                                                <th class="table-heading-text" scope="col">Number</th>
                                                 <th class="table-heading-text" scope="col">Price</th>
                                             </tr>
                                         </thead>
@@ -103,7 +104,7 @@
                                                     <td class="table-quantity">
                                                         ${cart.cartQuantity}
                                                     </td>
-                                                    <td class="table-price">
+                                                    <td class="table-name">
                                                         <fmt:formatNumber type="number" pattern="###,###" value="${(cart.productPrice * (1-(cart.productSalePercent/100)))*cart.cartQuantity}"/>đ
                                                     </td>
                                                 </tr>
@@ -119,14 +120,13 @@
                                     <div class="voucher-container">
                                         <div class="voucher-form-group">
                                             <span class="voucher-form-label">Voucher:</span>
-                                            <input class="voucher-from-input " type="text" id="voucher-input" name="voucherID"> 
-
+                                            <input class="voucher-from-input" type="text" id="voucher-input" name="voucherID" placeholder="Enter vocher here!"> 
                                         </div>
                                         <div id="voucherResult">
                                             <c:if test="${not empty sessionScope.messageVoucher}">
-                                                ${sessionScope.messageVoucher}
+                                                <span class="alert-warning" style="margin-left: 6px;">${sessionScope.messageVoucher}</span>
                                                 <% session.removeAttribute("messageVoucher"); %>
-                                            </c:if>
+                                            </c:if> 
                                         </div>
                                     </div>
                                     <div class="voucher-form-group">
@@ -140,7 +140,7 @@
                                         <span class="voucher-number">+0đ</span>
                                     </div>
                                     <div class="voucher-form-group">
-                                        <span class="voucher-form-label">Voucher discount: <div style="display: inline" id="discount"></div></span>
+                                        <span class="voucher-form-label">Discount: <div style="display: inline" id="discount"></div></span>
                                         <span class="voucher-number">
                                             -<div style="display: inline" id="discountPrice">0</div>đ
                                         </span>
@@ -148,7 +148,8 @@
                                     <div class="voucher-form-group">
                                         <span class="voucher-form-label">Total:</span>
                                         <span class="voucher-number voucher-total"> 
-                                            <div style="display: inline" id="totalPrice"><fmt:formatNumber type="number" pattern="###,###" value="${totalPrice}"/></div>đ
+                                            <div name style="display: inline" id="totalPrice"><fmt:formatNumber type="number" pattern="###,###" value="${totalPrice}"/></div>đ
+                                            <input class="disabled" type="text" name="totalPrice" value="${totalPrice}">
                                         </span>
                                     </div>
                                 </div>
@@ -157,10 +158,10 @@
                                         <p>
                                             <strong>Note: </strong>Please check the your information and product to paying carefully before proceeding with the order. 
                                             Thank you very much for choosing to place an order at Group-1-food store.
-                                            If you have any questions, please contact our hotline at 0366.777.999. We wish you good luck!
+                                            If you have any questions, please contact our hotline (0292) 730 363. We wish you good luck!
                                         </p>
                                         <div class="form-paying-btn-group">
-                                            <button type="Submit" class="btn-primary">
+                                            <button type="submit" class="btn-primary">
                                                 Paying
                                             </button>
                                             <button type="button" class="btn-main">
@@ -218,12 +219,14 @@
                 event.preventDefault();
                 var voucherID = $('#voucher-input').val();
                 var accountID = '${sessionScope.accountSesseion.accountID}';
+                var totalPrice = '${totalPrice}';
                 $.ajax({
                     url: 'use-voucher',
-                    type: 'POST',
+                    type: 'GET',
                     data: {
                         voucherID: voucherID,
-                        accountID: accountID
+                        accountID: accountID,
+                        totalPrice: totalPrice
                     },
                     success: function (responseText) {
                         $('#discount').text('(-' + responseText.discount + '%)');
@@ -231,7 +234,6 @@
                         $('#totalPrice').text(responseText.totalPrice.toLocaleString('vi-VN').replace(/\D/g, '.'));
                     },
                     error: function (xhr, status, error) {
-                        alert('Error');
                         console.log("Error: " + error);
                         console.log("Status: " + status);
                         console.log(xhr);

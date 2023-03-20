@@ -20,7 +20,7 @@ public class DBContext {
     // set port here
     private static final String dbPort = "1433";
     // database name to connect sql
-    private static final String databaseName = "G1FOOD_V5";
+    private static final String databaseName = "G1FOOD_v6";
     // instance to for connection
     private final String instance = "";
     // user name when seting to connect

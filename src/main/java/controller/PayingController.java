@@ -22,6 +22,7 @@ import java.util.List;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import model.Account;
+import model.Order;
 import model.OrderDetail;
 import model.Voucher;
 
@@ -50,6 +51,7 @@ public class PayingController extends HttpServlet {
         HttpSession session = request.getSession();
         VoucherDAO vdao = new VoucherDAO();
         Voucher v;
+        int discount = 0;
         if (!voucherID.isEmpty()) {
             v = vdao.getVoucherByID(voucherID);
             if (v == null) {
@@ -58,6 +60,7 @@ public class PayingController extends HttpServlet {
                 return;
             } else {
                 int condition = v.getVoucherCondition();
+                discount = v.getProductSalePercent();
                 if (v.getVoucherQuantity() < 1) {
                     session.setAttribute("messageVoucher", "Voucher is not enough quantity!");
                     response.sendRedirect(request.getHeader("referer"));
@@ -72,11 +75,6 @@ public class PayingController extends HttpServlet {
             }
         }
         
-        int discount = 0;
-        if (vdao.getVoucherByID(voucherID) != null) {
-            discount = vdao.getProductSalePrecent(voucherID);
-        }
-
         String note = request.getParameter("note");
         String name = request.getParameter("name");
         String phone = request.getParameter("phone");
@@ -94,12 +92,11 @@ public class PayingController extends HttpServlet {
         ddao.createOrderDetails(cdao.getListCartToPaying(accountID), orderID);
         vdao.updateQuantity(voucherID);
         cdao.deleteCartByAccountID(accountID);
+        
         List<OrderDetail> listOrderDetail = ddao.getListOrderDetailByOrderID(orderID);
-        long totalPrice = 0;
-        for (OrderDetail orderDetail : listOrderDetail) {
-            totalPrice += orderDetail.getOrderPrice() * orderDetail.getOrderQuantity() ;
-        }
-
+        int totalPrice = 0;
+        Order order = odao.getOrderByOrderID(orderID);
+        totalPrice = order.getTotalPrice();
         int cartSize = cdao.getListCartByAccountID(accountID).size();
         session.setAttribute("cartSize", cartSize);
         eh.sendEmailIsOrdered(name, acc.getAccountEmail(), phone, address, orderID, "PROCESSING", listOrderDetail.size(), discount, totalPrice);

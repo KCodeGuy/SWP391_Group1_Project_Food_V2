@@ -82,7 +82,11 @@
                                             </td>
                                         </tr>
                                     </c:forEach>
-
+                                    <c:if test="<%=listFormApplication.size() == 0%>">
+                                        <tr>
+                                            <td colspan="6" class="table-row-no-product">There are no order is collected!</td>
+                                        </tr>
+                                    </c:if>
                                 </tbody>
                             </table>
                         </div>

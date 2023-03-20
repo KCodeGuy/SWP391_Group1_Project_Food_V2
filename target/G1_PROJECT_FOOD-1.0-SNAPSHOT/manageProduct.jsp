@@ -15,7 +15,7 @@
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
         <link rel="stylesheet" href="./bootstap/css/bootstrap.min.css" type="text/css">
         <link rel="stylesheet" href="./bootstap/js/bootstrap.js" type="text/javascript">
-        <link rel="stylesheet" href="./assert/css/style.css" type="text/css">
+        <link rel="stylesheet" href="./assert/css/base.css" type="text/css">
         <link rel="stylesheet" href="./assert/css/manageProduct.css" type="text/css">
         <link rel="stylesheet" href="./assert/font/fontawesome-free-6.1.1-web/css/all.css" type="text/css">
         <title>Manage-product</title>
@@ -61,7 +61,7 @@
                             </div>
                             <div class="table-control-btn-group">
                                 <form class="sort-form" action="admin-sort-product">
-                                    <h6 class="sort-form-label">Sort staff:</h6>
+                                    <h6 class="sort-form-label">Sort product:</h6>
                                     <select style="height: 36px; margin-top: 10px;" name="txtSort" id="sort-product">
                                         <option value="asc" selected="${txtSort eq 'asc'}">Price ascending</option>
                                         <option value="desc" selected="${txtSort eq 'desc'}">Price descending</option>

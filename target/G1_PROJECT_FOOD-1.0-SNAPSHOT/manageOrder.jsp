@@ -15,7 +15,7 @@
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
         <link rel="stylesheet" href="./bootstap/css/bootstrap.min.css" type="text/css">
         <link rel="stylesheet" href="./bootstap/js/bootstrap.js" type="text/javascript">
-        <link rel="stylesheet" href="./assert/css/style.css" type="text/css">
+        <link rel="stylesheet" href="./assert/css/base.css" type="text/css">
         <link rel="stylesheet" href="./assert/css/manageOrder.css" type="text/css">
         <link rel="stylesheet" href="./assert/font/fontawesome-free-6.1.1-web/css/all.css" type="text/css">
         <title>Manage-Ordered</title>
@@ -34,7 +34,7 @@
                             <div class="col-xs-12">
                                 <h6 class="table-header">MANAGE ORDER</h6>
                                 <div class="table-control-btn-group">
-                                    <form class="sort-form" action="chef-manage-order" method="GET">
+                                    <form class="sort-form" action="chef-manage-order" method="POST">
                                         <h6 class="sort-form-label">Sort order:</h6>
                                         <select style="height: 36px; margin-top: 10px;" name="sort-product" id="sort-product">
                                             <option value="asc" selected="${txtSort eq 'asc'}" >Price ascending</option>

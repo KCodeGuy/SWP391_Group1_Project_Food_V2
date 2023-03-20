@@ -39,23 +39,21 @@ public class DeliveredOrderShipController extends HttpServlet {
         response.setContentType("text/html;charset=UTF-8");
         String accountID = request.getParameter("accountID");
         String orderID = request.getParameter("orderID");
-        
+
         OrderDAO odao = new OrderDAO(); // create orderDAO
-        odao.deliveredOrderByOrderID(accountID,orderID);
+        odao.deliveredOrderByOrderID(accountID, orderID);
         EmailHandler eh = new EmailHandler();
         AccountDAO adao = new AccountDAO();
-        
+
         Order order = odao.getOrderByOrderID(orderID);
         OrderDetailDAO ddao = new OrderDetailDAO();
-        
+
         Account acc = adao.getAccountByID(order.getAccountID());
         List<OrderDetail> listOrderDetail = ddao.getListOrderDetailByOrderID(orderID);
-        long totalPrice = 0;
-        for (OrderDetail orderDetail : listOrderDetail) {
-            totalPrice += orderDetail.getOrderPrice() * orderDetail.getOrderQuantity();
-        }
-        eh.sendEmailIsDelivered(order.getUserFullName(),acc.getAccountEmail() , orderID, listOrderDetail.size(), totalPrice);
-        response.sendRedirect("shipper-manage-order?accountID=" +accountID + "&sort-option=none");
+        int totalPrice = 0;
+        totalPrice = order.getTotalPrice();
+        eh.sendEmailIsDelivered(order.getUserFullName(), acc.getAccountEmail(), orderID, listOrderDetail.size(), totalPrice);
+        response.sendRedirect("shipper-manage-order?accountID=" + accountID + "&sort-option=none");
     }
 
     // <editor-fold defaultstate="collapsed" desc="HttpServlet methods. Click on the + sign on the left to edit the code.">

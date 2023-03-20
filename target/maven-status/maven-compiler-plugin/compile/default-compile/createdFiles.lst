@@ -1,13 +1,16 @@
+emailHandler\EmailHandler$3.class
 hash\jni\LibraryLoaders.class
 dao\OrderDAO.class
 hash\jni\JarLibraryLoader$1.class
 controller\LoadListOrderedForManagePageController.class
 controller\DeliveringOrderShipController.class
 controller\UseVoucherController.class
+controller\SortUserForAdminController.class
 hash\codec\Base64.class
 hash\jni\LibraryLoader.class
 hash\jni\Platform$Arch.class
 controller\LoadOrderHistoryForUserController.class
+controller\SearchOrderForShipper.class
 dao\OrderDAO$2.class
 controller\UpdateUserProfileController.class
 controller\LoadPayingController.class
@@ -27,6 +30,7 @@ controller\AddNewReviewController.class
 model\Cart.class
 controller\ShowOrderDetailForShipperController.class
 dao\CartDAO.class
+dao\AccountDAO.class
 controller\UpdateProductForMangePageController.class
 hash\NewClass.class
 model\Review.class
@@ -39,6 +43,8 @@ controller\EmailAuthenUpdatePasswordController.class
 controller\AcceptApplicationController.class
 controller\LoadListOrdersShipController.class
 controller\LoadFormApplicationDetailController.class
+controller\ShowOrderDetailsForUserController.class
+controller\SearchProductInHomePageController.class
 controller\LoadUserProfileController.class
 controller\RejectApplicationController.class
 model\ProductStatus.class
@@ -69,6 +75,7 @@ model\Voucher.class
 controller\LoadProductDetailController.class
 hash\PBKDF.class
 model\OrderStatus.class
+controller\ReplyReviewController.class
 controller\SearchOrderHistoryForUserController.class
 controller\ImageController.class
 controller\RejectOrderController.class

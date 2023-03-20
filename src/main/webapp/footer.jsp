@@ -35,7 +35,7 @@
                     <i class="fa-solid fa-location-dot footer-icon"></i>
                     <h2 class="footer-heading">ADDRESS</h2>
                     <p class="footer-info">Store 1: 600, đường Nguyễn Văn Cừ nối dài, An Bình, Ninh Kiều, Cần Thơ</p>
-                    <p class="footer-info">Store 2: 123/1A Hai Bà Trưng, Thủ Đức, Tp.HCM</p>
+                    <p class="footer-info">Store 2: 873 Nguyễn Văn Cừ nối dài, P. An Khánh, Q. Ninh Kiều, TP. Cần Thơ</p>
                 </div>
             </div>
             <div class="row">

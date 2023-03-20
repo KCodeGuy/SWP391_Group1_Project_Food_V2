@@ -15,9 +15,10 @@
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
         <link rel="stylesheet" href="./bootstap/css/bootstrap.min.css" type="text/css">
         <link rel="stylesheet" href="./bootstap/js/bootstrap.js" type="text/javascript">
-        <link rel="stylesheet" href="./assert/css/style.css" type="text/css">
+        <link rel="stylesheet" href="./assert/css/base.css" type="text/css">
         <link rel="stylesheet" href="./assert/css/home.css" type="text/css">
         <link rel="stylesheet" href="./assert/css/productDetail.css" type="text/css">
+        <link rel="stylesheet" href="./assert/css/reponsive.css" type="text/css">
         <link rel="stylesheet" href="./assert/font/fontawesome-free-6.1.1-web/css/all.css">
         <title>Product-detail</title>
 
@@ -43,11 +44,19 @@
                                     <c:if test="${product.productSalePercent != 0}">
                                         <span class="product-detail-sale-percent">${product.productSalePercent}%</span>
                                     </c:if>
-
                                 </li> 
                                 <li class="product-detail-item">
                                     <span class="product-detail-label">Description:</span>
                                     <span class="product-detail-descript">${product.productDescription}</span>
+                                </li>
+                                <li class="product-detail-item">
+                                    <span class="product-detail-label">Status:</span>
+                                    <c:if test="${product.productStatus eq 'SOUL_OUT'}">
+                                        <span class="product-detail-status">SOLD-OUT</span>
+                                    </c:if>
+                                    <c:if test="${product.productStatus eq 'AVAILABLE'}">
+                                        <span class="product-detail-status">AVAILABLE</span>
+                                    </c:if>
                                 </li>
                                 <li class="product-detail-item">
                                     <span class="product-detail-label">Price:</span>
@@ -57,11 +66,6 @@
                                     <span class="product-detail-original-price"><fmt:formatNumber type="number" pattern="###,###" value="${product.productPrice}"/>đ</span>
                                     </tr>
                                 </c:if>
-                                </li>
-
-                                <li class="product-detail-item">
-                                    <span class="product-detail-label">Status:</span>
-                                    <span class="product-detail-status">${product.productStatus}</span>
                                 </li>
                                 <form action="add-product-cart-product-details" method="">
                                     <li class="product-detail-item">
@@ -75,14 +79,28 @@
                                     </li>
                                     <li class="product-detail-item">
                                         <c:if test="${sessionScope.accountSesseion.accountID.startsWith('US')}">
-                                            <button type="submit" class="btn-main">
-                                                Add to cart
-                                            </button>
+                                            <c:if test="${product.productStatus eq 'SOUL_OUT'}">
+                                                <button class="btn-main btn-sold-out" id="btn-now" disabled>
+                                                    Sold-out
+                                                </button>
+                                            </c:if>
+                                            <c:if test="${product.productStatus eq 'AVAILABLE'}">
+                                                <button type="submit" class="btn-main">
+                                                    Add to cart
+                                                </button>
+                                            </c:if>
                                         </c:if>
                                         <c:if test="${sessionScope.accountSesseion.accountID == null}">
-                                            <button type="button" class="btn-main">
-                                                <a href="login.jsp">Add to cart</a>
-                                            </button>
+                                            <c:if test="${product.productStatus eq 'SOUL_OUT'}">
+                                                <button class="btn-main btn-sold-out" id="btn-now" disabled>
+                                                    Sold-out
+                                                </button>
+                                            </c:if>
+                                            <c:if test="${product.productStatus eq 'AVAILABLE'}">
+                                                <button class="btn-main ">
+                                                    <a href="login.jsp" >Add to cart</a>
+                                                </button>
+                                            </c:if>
                                         </c:if>
                                         <button type="button" class="btn-primary" >
                                             <a href="home">Back to home</a>
@@ -188,7 +206,9 @@
                                                 </div>
                                             </div>
                                             <div class="review-item-group">
-                                                <a href="" class="reply-link"><i class="fa-solid fa-reply"></i> Reply comment</a>
+                                                <c:if test="${sessionScope.accountSesseion.accountID != null}">
+                                                    <a href="" class="reply-link"><i class="fa-solid fa-reply"></i> Reply comment</a>
+                                                </c:if>
                                                 <!--<a href="" class="btn-show-more">Show all</a>-->
                                             </div>
                                             <div class="reply-form-container">
@@ -284,7 +304,7 @@
             function increment() {
                 var numberInput = document.getElementById("number");
                 var currentValue = parseInt(numberInput.value);
-                if (currentValue < 100) {
+                if (currentValue < 20) {
                     numberInput.value = currentValue + 1;
                 }
             }

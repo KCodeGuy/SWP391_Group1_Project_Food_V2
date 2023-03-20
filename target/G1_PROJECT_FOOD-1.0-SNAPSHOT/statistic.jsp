@@ -17,7 +17,7 @@
         <link rel="stylesheet" href="./assert/font/fontawesome-free-6.1.1-web/css/all.css">
         <link rel="stylesheet" href="./bootstap/css/bootstrap.min.css" type="text/css">
         <link rel="stylesheet" href="./bootstap/js/bootstrap.js" type="text/javascript">
-        <link rel="stylesheet" href="./assert/css/style.css" type="text/css">
+        <link rel="stylesheet" href="./assert/css/base.css" type="text/css">
         <link rel="stylesheet" href="./assert/css/statisticPage.css" type="text/css">
         <title>Statistic</title>
     </head>
@@ -33,7 +33,7 @@
                     <div class="container ">
                         <div class="row">
                             <div class="col-xs-12">
-                                <form action="satistic" method="GET">
+                                <form action="satistic" method="POST">
                                     <h6 class="table-header">STATISTIC</h6>
                                     <div class="statistic-container">
                                         <div class="statistic-group">
@@ -157,13 +157,13 @@
                                 <div class="table-row-no-product" style="width: 100%; text-align: center">No data is selected to statistic!</div>
                             </div> 
                         </c:if>
-                        <c:if test="${!sellQuantityStatus && sellQuantityStatus != null}">
+                        <c:if test="${!sellQuantityStatus}">
                             <div class="col-xs-12 col-md-6">
                                 <h6 class="table-header">SELLING QUANTITY</h6>
                                 <div id="totalQuantityChart" style="height: 370px; width: 100%;"></div>
                             </div>
                         </c:if>
-                        <c:if test="${sellQuantityStatus || sellQuantityStatus == null}">
+                        <c:if test="${sellQuantityStatus}">
                             <div class="col-xs-12 col-md-6">
                                 <h6 class="table-header">SELLING QUANTITY</h6>
                                 <div class="table-row-no-product" style="width: 100%; text-align: center">No data is selected to statistic!</div>
@@ -292,7 +292,7 @@
                                     {y: parseInt(acceptedTagContent), label: "Accepted orders"},
                                     {y: parseInt(rejectedTagContent), label: "Rejected orders"},
                                     {y: parseInt(deliveringTagContent), label: "Delivering orders"},
-                                    {y: parseInt(completedTagContent), label: "Completed orders"},
+                                    {y: parseInt(completedTagContent), label: "Delivered orders"},
                                     {y: parseInt(sumOfSellProductContent), label: "Selled products"}
 
                                 ]

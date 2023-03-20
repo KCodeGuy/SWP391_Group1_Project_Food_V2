@@ -102,7 +102,7 @@ public class EmailHandler {
      * @param discount percent of discount by voucher
      * @param total total order price
      */
-    public void sendEmailIsOrdered(String fulllName, String toEmail, String phone, String address, String oID, String status, int quantity, int discount, long total) {
+    public void sendEmailIsOrdered(String fulllName, String toEmail, String phone, String address, String oID, String status, int quantity, int discount, int total) {
         final String formEmail = "group1shop.fpt@gmail.com";
         final String password = "gzqoghcnqnoqmsxa";
         

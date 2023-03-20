@@ -15,7 +15,7 @@
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
         <link rel="stylesheet" href="./bootstap/css/bootstrap.min.css" type="text/css">
         <link rel="stylesheet" href="./bootstap/js/bootstrap.js" type="text/javascript">
-        <link rel="stylesheet" href="./assert/css/style.css" type="text/css">
+        <link rel="stylesheet" href="./assert/css/base.css" type="text/css">
         <link rel="stylesheet" href="./assert/css/orderHistory.css" type="text/css">
         <link rel="stylesheet" href="./assert/font/fontawesome-free-6.1.1-web/css/all.css" type="text/css">
         <title>Order-History</title>
@@ -32,7 +32,7 @@
                     <div class="container">
                         <div class="row">
                             <div class="col-xs-12">
-                                <h6 class="table-header">DELIVERED ORDERS</h6>
+                                <h6 class="table-header">MY ORDERS</h6>
                                 <div class="table-control-btn-group">
                                 <c:if test="${featurePage != 'orderShipped'}">
                                     <form class="sort-form" action="user-order-history">
@@ -101,7 +101,7 @@
                                             <td class="table-status">${os.orderStatus}</td>
                                             <td class="table-price"><fmt:formatNumber type="number" pattern="###,###" value="${os.totalPrice}"/>đ</td>
                                              <td class="table-btn">
-                                                <a class="table-btn-edit" href="shipper-order-detail?orderID=${os.orderID}&accountID=${sessionScope.accountSesseion.accountID}"><i class="fa-solid fa-pen-to-square"></i></a>
+                                                <a class="table-btn-edit" href="user-order-details?orderID=${os.orderID}&accountID=${sessionScope.accountSesseion.accountID}&option=see"><i class="fa-solid fa-pen-to-square"></i></a>
                                             </td> 
                                         </tr>
                                         <c:set var="orderNo" value="${orderNo+1}" />

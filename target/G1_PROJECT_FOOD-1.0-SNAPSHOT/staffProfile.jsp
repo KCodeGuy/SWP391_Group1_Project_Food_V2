@@ -14,7 +14,7 @@
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
         <link rel="stylesheet" href="./bootstap/css/bootstrap.min.css" type="text/css">
         <link rel="stylesheet" href="./bootstap/js/bootstrap.js" type="text/javascript">
-        <link rel="stylesheet" href="./assert/css/style.css" type="text/css">
+        <link rel="stylesheet" href="./assert/css/base.css" type="text/css">
         <link rel="stylesheet" href="./assert/css/staffProfilePage.css" type="text/css">
         <link rel="stylesheet" href="./assert/font/fontawesome-free-6.1.1-web/css/all.css" type="text/css">
         <title>Staff profile</title>
@@ -57,9 +57,16 @@
                             <label class="form-text-label">Start date:</label>
                             <label>${staff.accountStartDay}</label>
                         </div>
-                        <div class="form-btn-group">
-                            <button type="button" name="submit" class="btn-primary"><a href="staff-update-profile?accountID=${sessionScope.accountSesseion.accountID}">Update profile</a></button>
-                        </div>
+                        <c:if test="${!sessionScope.accountSesseion.accountID.startsWith('AD')}">
+                            <div class="form-btn-group">
+                                <button type="button" name="submit" class="btn-primary"><a href="staff-update-profile?accountID=${sessionScope.accountSesseion.accountID}">Update profile</a></button>
+                            </div>
+                        </c:if>
+                        <c:if test="${sessionScope.accountSesseion.accountID.startsWith('AD')}">
+                            <div class="form-btn-group">
+                                <button type="button" name="button" class="btn-primary"><a href="admin-manage-user?sort-user=none">Back to</a></button>
+                            </div>
+                        </c:if>
                     </form>
                 </div>
             </div>

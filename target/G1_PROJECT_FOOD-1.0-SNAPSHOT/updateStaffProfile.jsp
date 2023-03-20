@@ -14,7 +14,7 @@
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
         <link rel="stylesheet" href="./bootstap/css/bootstrap.min.css" type="text/css">
         <link rel="stylesheet" href="./bootstap/js/bootstrap.js" type="text/javascript">
-        <link rel="stylesheet" href="./assert/css/style.css" type="text/css">
+        <link rel="stylesheet" href="./assert/css/base.css" type="text/css">
         <link rel="stylesheet" href="./assert/css/updateStaffProfilePage.css" type="text/css">
         <link rel="stylesheet" href="./assert/font/fontawesome-free-6.1.1-web/css/all.css" type="text/css">
         <title> Update-staff-profile</title>
@@ -28,7 +28,7 @@
 
                 <div class="container-fluid container-fluid-form">
                     <div class="wrapper-form">
-                        <form action="staff-update-profile" id="myForm" method="post">
+                        <form action="staff-update-profile" id="myForm" method="POST">
                             <div class="form-heading-group">
                                 <i class="fa-solid fa-file-pen"></i>
                                 <h2 class="form-heading">UPDATE STAFF PROFILE</h2>

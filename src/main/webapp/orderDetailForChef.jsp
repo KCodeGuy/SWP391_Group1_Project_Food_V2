@@ -155,7 +155,7 @@
                             </table>
                         </div>
                     </div>
-                    <c:if test="${sessionScope.accountSesseion.accountID.startsWith('CH')}">
+                    <c:if test="${sessionScope.accountSesseion.accountID.startsWith('CH') && !optionSeeOnly}">
                         <div class="row">
                             <div class="col-xs-12">
                                 <div class="detail-table-group">

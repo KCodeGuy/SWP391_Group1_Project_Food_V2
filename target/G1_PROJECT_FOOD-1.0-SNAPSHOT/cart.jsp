@@ -15,8 +15,9 @@
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
         <link rel="stylesheet" href="./bootstap/css/bootstrap.min.css" type="text/css">
         <link rel="stylesheet" href="./bootstap/js/bootstrap.js" type="text/javascript">
-        <link rel="stylesheet" href="./assert/css/style.css" type="text/css">
+        <link rel="stylesheet" href="./assert/css/base.css" type="text/css">
         <link rel="stylesheet" href="./assert/css/cartPage.css" type="text/css">
+        <link rel="stylesheet" href="./assert/css/reponsive.css" type="text/css">
         <link rel="stylesheet" href="./assert/font/fontawesome-free-6.1.1-web/css/all.css">
         <title>Cart</title>
     </head>
@@ -40,11 +41,11 @@
                                 <table class="table table-striped text-center align-middle">
                                     <thead class="table-heading">
                                         <tr>
-                                            <th class="table-heading-text" scope="col">No.</th>
+                                            <th class="table-heading-text table-order" scope="col">No.</th>
                                             <th class="table-heading-text" scope="col">Picture</th>
                                             <th class="table-heading-text" scope="col">Name</th>
                                             <th class="table-heading-text" scope="col">Quantity</th>
-                                            <th class="table-heading-text" scope="col">Price</th>
+                                            <th class="table-heading-text table-price" scope="col">Price</th>
                                             <th class="table-heading-text" scope="col">Total</th>
                                             <th class="table-heading-text" scope="col">Delete</th>
                                         </tr>
@@ -62,7 +63,7 @@
                                              <td class="table-price">
                                                 <fmt:formatNumber type="number" pattern="###,###" value="${cart.productPrice * (1-(cart.productSalePercent/100))}"/>đ
                                             </td>
-                                            <td class="table-price">
+                                            <td class="table-name">
                                                 <fmt:formatNumber type="number" pattern="###,###" value="${(cart.productPrice * (1-(cart.productSalePercent/100)))*cart.cartQuantity}"/>đ
                                             </td>
                                             <td class="table-btn">
@@ -83,7 +84,7 @@
 
                     <div class="row cart-btn-group">
                         <div class="col-xs-12 col-md-2">
-                            <button type="button" class="btn-primary" >
+                            <button type="button" class="btn-primary btn-back-home" >
                                 <a href="home">Back to home</a>
                             </button>
                         </div>

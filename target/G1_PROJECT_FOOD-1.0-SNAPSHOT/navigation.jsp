@@ -11,8 +11,9 @@
     <head>
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
         <link rel="stylesheet" href="./bootstap/css/bootstrap.min.css" type="text/css">
-        <link rel="stylesheet" href="./assert/css/style.css"  type="text/css">
+        <link rel="stylesheet" href="./assert/css/base.css"  type="text/css">
         <link rel="stylesheet" href="./assert/css/home.css" type="text/css">
+        <link rel="stylesheet" href="./assert/css/reponsive.css" type="text/css">
         <title>Navigation</title>
     </head>
     <body>
