@@ -13,3 +13,5 @@ Account login:
 - Chef:    chef1@gmail.com    - aA@chef1123
 - Shipper: shipper1@gmail.com - aA@shipper1123
 - User:    user1@gmail.com    - aA@user1123
+
+Database: SQLQuery_G1_FOOD_Final.sql
