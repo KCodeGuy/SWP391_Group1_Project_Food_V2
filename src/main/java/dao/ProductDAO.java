@@ -516,4 +516,10 @@ public class ProductDAO {
         }
         return list;
     }
+    
+    
+    public static void main(String[] args) {
+        ProductDAO pdao = new ProductDAO();
+        pdao.insertProduct("Cafe sua", 1000000, 0, "FOOD", "Com ga rat ngon", "abclaskdf");
+    }
 }

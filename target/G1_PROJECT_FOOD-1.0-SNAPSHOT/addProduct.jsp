@@ -13,7 +13,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="./bootstap/css/bootstrap.min.css" type="text/css">
     <link rel="stylesheet" href="./bootstap/js/bootstrap.js" type="text/javascript">
-    <link rel="stylesheet" href="./assert/css/base.css" type="text/css">
+    <link rel="stylesheet" href="./assert/css/style.css" type="text/css">
     <link rel="stylesheet" href="./assert/css/updateProductPage.css" type="text/css">
     <link rel="stylesheet" href="./assert/font/fontawesome-free-6.1.1-web/css/all.css">
     <title> Add-Product</title>
@@ -28,7 +28,7 @@
         <!-- Form update product -->
         <div class="container-fluid container-fluid-form">
             <div class="wrapper-form">
-                <form id="myForm" action="admin-add-product" method="get">
+                <form id="myForm" action="admin-add-product" method="post">
                     <div class="form-heading-group">
                         <i class="fa-solid fa-plus"></i>
                         <h2 class="form-heading">ADD PRODUCT</h2>
@@ -78,9 +78,9 @@
                     
                      <div class="form-control-group">
                         <h4 class="form-text-label">Link Image: <h4>
-                        <input type="file" id="upload" name="upload" accept=".jpg, .jpeg, .png">
-                        <img id="image" style="width: 50px; height: 50px; display: none" src="">
-                        <input type="text" id="base64" readonly hidden="true">
+                        <input type="file" id="upload" name="upload">
+                        <img id="image" style="width: 50px; height: 50px;" src="">
+                        <input type="text" id="base64" name="base64" readonly>
                         <div class="alert-warning" id="txtImage"></div>
                     </div>
 
@@ -112,35 +112,18 @@
                                 type: 'POST',
                                 data: {base64: base64},
                                 success: function () {
-                                    if (base64) {
-                                        $('#image').show();
-                                        $('#image').attr('src', 'data:image/png;base64,' + base64);
-                                    } else {
-                                        $('#image').hide();
-                                    }
+                                    $('#image').attr('src', 'data:image/png;base64,' + base64);
                                 },
                                 error: function () {
                                     alert('Error');
                                 }
                             });
-                            $('#base64').val(base64);
+                            $('#base64').val('data:image/png;base64,' + base64);
                         };
                     }
                 });
             });
-            $(document).ready(function() {
-                $('#upload').on('change', function() {
-                  var fileInput = $(this);
-                  var filePath = fileInput.val();
-
-                  var allowedExtensions = /(\.jpg|\.jpeg|\.png)$/i;
-                  if (!allowedExtensions.exec(filePath)) {
-                    alert('Please select an image file with JPG, JPEG or PNG format.');
-                    fileInput.val('');
-                    return false;
-                  }
-                });
-              });
+            
         </script>
 </body>
 

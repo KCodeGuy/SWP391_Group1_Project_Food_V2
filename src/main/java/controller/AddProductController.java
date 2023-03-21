@@ -5,13 +5,17 @@
 package controller;
 
 import dao.ProductDAO;
+import hash.Base64Convert;
 import java.io.IOException;
 import java.io.PrintWriter;
 import jakarta.servlet.ServletException;
 import jakarta.servlet.http.HttpServlet;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
+import java.net.URL;
 import java.sql.SQLException;
+import java.util.Base64;
+import org.apache.commons.io.IOUtils;
 
 /**
  *
@@ -37,7 +41,7 @@ public class AddProductController extends HttpServlet {
         int productSale = Integer.parseInt(request.getParameter("salesoff"));//get data from parameter salesoff
         String categoryID = request.getParameter("category");//get data from parameter category
         String productDescription = request.getParameter("description");//get data from parameter description
-        String productImage = request.getParameter("image");//get data from parameter image
+        String productImage = request.getParameter("base64");//get data from parameter image
         ProductDAO pdao = new ProductDAO();// Create a new ProductDAO instance to retrieve infomation
         pdao.insertProduct(productName, productPrice, productSale, categoryID, productDescription, productImage); //add products to database using insertProduct
         response.sendRedirect("admin-manage-product");//display the list on the page loadlistproductformanagepage

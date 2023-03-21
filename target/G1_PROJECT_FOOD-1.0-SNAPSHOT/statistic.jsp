@@ -157,13 +157,13 @@
                                 <div class="table-row-no-product" style="width: 100%; text-align: center">No data is selected to statistic!</div>
                             </div> 
                         </c:if>
-                        <c:if test="${!sellQuantityStatus}">
+                        <c:if test="${!sellQuantityStatus && sellQuantityStatus != null}">
                             <div class="col-xs-12 col-md-6">
                                 <h6 class="table-header">SELLING QUANTITY</h6>
                                 <div id="totalQuantityChart" style="height: 370px; width: 100%;"></div>
                             </div>
                         </c:if>
-                        <c:if test="${sellQuantityStatus}">
+                        <c:if test="${sellQuantityStatus && sellQuantityStatus != null}">
                             <div class="col-xs-12 col-md-6">
                                 <h6 class="table-header">SELLING QUANTITY</h6>
                                 <div class="table-row-no-product" style="width: 100%; text-align: center">No data is selected to statistic!</div>
